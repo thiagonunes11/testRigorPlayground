@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/api/task")
 public class TaskController {
 
-        private final TaskService service;
+    private final TaskService service;
 
     public TaskController(TaskService service){
         this.service = service;
@@ -29,6 +29,11 @@ public class TaskController {
         System.out.println(tasks);
         return ResponseEntity.ok().body(tasks);
         
+    }
+
+    @GetMapping ("/test")
+    public String test(){
+        return "Esdras é gay";
     }
 
     @PostMapping
