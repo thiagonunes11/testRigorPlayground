@@ -1,0 +1,42 @@
+[
+    {
+        "task": "Buy groceries",
+        "date": "2024-03-28",
+        "description": "Buy vegetables, fruits, and bread for the week"
+    },
+    {
+        "task": "Team meeting",
+        "date": "2024-03-29",
+        "description": "Weekly meeting to discuss project progress"
+    },
+    {
+        "task": "Send financial report",
+        "date": "2024-03-30",
+        "description": "Send the quarterly financial report to the accounting department"
+    },
+    {
+        "task": "Clean the office",
+        "date": "2024-03-31",
+        "description": "Clean and organize the desk and files in the office"
+    },
+    {
+        "task": "Prepare presentation",
+        "date": "2024-04-01",
+        "description": "Prepare slides for the upcoming client presentation"
+    },
+    {
+        "task": "Call client",
+        "date": "2024-04-02",
+        "description": "Follow up with the client regarding the project status"
+    },
+    {
+        "task": "Attend training session",
+        "date": "2024-04-03",
+        "description": "Participate in the training session on new software tools"
+    },
+    {
+        "task": "Review project proposal",
+        "date": "2024-04-04",
+        "description": "Review and provide feedback on the project proposal document"
+    }
+]

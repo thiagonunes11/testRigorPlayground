@@ -8,9 +8,9 @@ body{
   width: 300px;
   border: 1px solid #ddd;
   border-radius: 5px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Adicionar sombra sutil */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   padding: 10px;
-  background-color: #f5f5f5af; /* Cor de fundo clara */
+  background-color: #f5f5f5af;
   margin: 0 auto;
 
 }
