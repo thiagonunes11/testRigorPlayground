@@ -42,12 +42,3 @@ li.dragging {
 li.dragging.dropped {
   animation: drop 0.5s ease-in-out;
 }
-
-#textElement {
-  display: none;
-}
-
-#hoverElement:hover + #textElement {
-  display: block;
-}
-

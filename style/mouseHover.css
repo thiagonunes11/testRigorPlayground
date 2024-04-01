@@ -1,7 +1,0 @@
-#textElement {
-    display: none;
-}
-
-#hoverElement:hover + #textElement {
-    display: block;
-}
