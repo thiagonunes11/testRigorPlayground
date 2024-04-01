@@ -1,0 +1,27 @@
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  padding: 10px;
+  margin-bottom: 5px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  cursor: grab;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+
+}
+
+li.dragging {
+  opacity: 0.5;
+  border-color: #747474; /* Borda escura durante a ação de arrastar */
+}
+
+
+li.dragging.dropped {
+  animation: drop 0.5s ease-in-out;
+}
