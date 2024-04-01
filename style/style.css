@@ -42,3 +42,20 @@ li.dragging {
 li.dragging.dropped {
   animation: drop 0.5s ease-in-out;
 }
+
+.button {
+  text-align: center;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  border: none;
+  vertical-align: middle;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
