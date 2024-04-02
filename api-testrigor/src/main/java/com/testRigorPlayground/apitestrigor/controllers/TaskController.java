@@ -31,9 +31,9 @@ public class TaskController {
         
     }
 
-    @GetMapping ("/test")
+    @GetMapping ("/esdras")
     public String test(){
-        return "Esdras é gay";
+        return "is gay";
     }
 
     @PostMapping
