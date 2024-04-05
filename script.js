@@ -58,13 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       const messageElement = document.getElementById('order-message');
 
-      if (isCorrectOrder) {
-          messageElement.textContent = 'Correct';
-
-      } else {
-          messageElement.textContent = 'Incorrect';
-
-      }
+      messageElement.textContent = isCorrectOrder ? 'Correct' : 'Incorrect';
   }
 
   function shuffleList(container) {
