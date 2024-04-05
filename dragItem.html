@@ -12,11 +12,12 @@
 <body>
     <main class="container text-center mt-5">
         <div class="row">
-            <h1 class="fs-2 fw-bold">Task List</h1>
-            <p>
-                <small>Drag items in the list to put them in order</small>
-                
-            </p>
+            <div class="container">
+                <h1 class="fs-2 fw-bold">Task List</h1>
+                <p>
+                    <small>Drag items in the list to put them in order</small>
+                </p>
+            </div>
         </div>
         <div class="row justify-content-center">
             <div class="col-4 border">
@@ -29,6 +30,7 @@
                     <li draggable="true" class="draggable" id="task6">Task 6</li>
                     <li draggable="true" class="draggable" id="task7">Task 7</li>
                 </ul>
+                <div id="order-message" class="mt-3">Waiting for sorting...</div>
             </div>
         </div>
     </main>
