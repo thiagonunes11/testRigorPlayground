@@ -59,6 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const messageElement = document.getElementById('order-message');
 
       messageElement.textContent = isCorrectOrder ? 'Correct' : 'Incorrect';
+      messageElement.className = isCorrectOrder ? 'mt-3 alert alert-success' : 'mt-3 alert alert-danger';
   }
 
   function shuffleList(container) {
