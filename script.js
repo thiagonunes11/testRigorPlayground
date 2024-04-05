@@ -60,12 +60,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
       if (isCorrectOrder) {
           messageElement.textContent = 'Correct';
-          messageElement.classList.remove('incorrect');
-          messageElement.classList.add('correct');
+
       } else {
           messageElement.textContent = 'Incorrect';
-          messageElement.classList.remove('correct');
-          messageElement.classList.add('incorrect');
+
       }
   }
 
