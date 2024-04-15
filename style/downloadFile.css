@@ -7,13 +7,5 @@ body {
   
 
   
-  a {
-    background-color: #4CAF50; /* Green button style */
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none; /* Remove underline */
-    border: none;
-    display: inline-block; /* Allow side-by-side elements */
-    cursor: pointer; /* Indicate clickable element */
-  }
+
   
