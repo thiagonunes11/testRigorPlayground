@@ -1,0 +1,19 @@
+/* style.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 2rem;
+    text-align: center; /* Center all text content within the body */
+  }
+  
+
+  
+  a {
+    background-color: #4CAF50; /* Green button style */
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none; /* Remove underline */
+    border: none;
+    display: inline-block; /* Allow side-by-side elements */
+    cursor: pointer; /* Indicate clickable element */
+  }
+  
