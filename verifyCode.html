@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Code</title>
+    <link rel="stylesheet" href="style/verifyCode.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Code Verification</h1>
+        <p style="font-size: 0; color: transparent;">1234</p>
+        <form id="verificationForm">
+            <label for="code">Insert the code:</label>
+            <input type="text" id="code" name="code" required>
+            <button type="submit">Verify</button>
+            <p>The code is: 1234</p>
+        </form>
+        <div id="result"></div>
+    </div>
+    <script src="scripts/verifyCode.js"></script>
+</body>
+</html>
