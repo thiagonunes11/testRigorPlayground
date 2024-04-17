@@ -18,11 +18,10 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <div class="d-flex col-6" role="search">
-                            <!-- <input class="form-control rounded-end-0" id="searchInput" type="search" placeholder="Search" aria-label="Search" value="Earphones"> -->
+                        <form class="d-flex col-6" role="search" onsubmit="event.preventDefault()">
                             <input class="form-control rounded-end-0" id="searchInput" type="search" placeholder="Search" aria-label="Search" value="">
                             <button class="btn btn-primary rounded-start-0" id="searchButton" type="submit"><i class="bi bi-search"></i></button>
-                        </div>
+                        </form>
                     </div>
                     <button type="button" class="btn btn-warning" id="cartButton"><span id="cartQuantityText"></span> <i class="bi bi-cart3"></i> Cart</button>
                 </div>
