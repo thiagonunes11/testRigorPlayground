@@ -11,14 +11,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Adiciona o evento de envio ao formulário
     document.getElementById("verificationForm").addEventListener("submit", function(event) {
-        event.preventDefault(); 
+        event.preventDefault();
 
         var code = document.getElementById("code").value;
 
         if (code === generatedCode.toString()) {
-            document.getElementById("result").innerHTML = "Valid Code";
+            document.getElementById("resultValid").hidden = false;
+            document.getElementById("resultInvalid").hidden = true;
         } else {
-            document.getElementById("result").innerHTML = "Invalid Code. Try again";
+            document.getElementById("resultValid").hidden = true;
+            document.getElementById("resultInvalid").hidden = false;
         }
     });
 });
