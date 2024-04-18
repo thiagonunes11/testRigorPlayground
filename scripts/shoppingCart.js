@@ -1,184 +1,208 @@
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
+const search = urlParams.get('search');
 
-const searchButton      = document.getElementById('searchButton');
-const searchInput       = document.getElementById('searchInput');
-const itemListBlock     = document.getElementById('itemListBlock');
-const cartListBlock     = document.getElementById('cartListBlock');
-
-// creates an object to store the cart items
-var cartItems = {
-    name: urlParams.get('search'),
-    first: {
-        quantity: 0,
-        value   : 50
-    },
-    second: {
-        quantity: 0,
-        value   : 8.73
-    },
-    getSubtotal: function(){
-        return (this.first.quantity * this.first.value + this.second.quantity * this.second.value).toFixed(2);
-    },
-    getQuantityOnCart: function(){
-        var itemsAdded = 0;
-
-        if(urlParams.get('first') == 'true')
-            itemsAdded++;
-
-        if(urlParams.get('second') == 'true')
-            itemsAdded++;
-
-        return itemsAdded;
-    }
-}
-
-// set the current screen values
-function checkCurrentScreen() {
-    const currentScreen = urlParams.get('screen');
-
-    if(cartItems.name == ''){
-        // if there is not search parameter, clear parameters and get back to the main page 
-        window.location.href = window.location.pathname
-        return;
-    }
-
-    if(currentScreen == null){
-        checkEmptyScreen();
-    } else if (currentScreen == 'itemListing'){
-        checkListingScreen(currentScreen);
-    } else if (currentScreen == 'cart'){
-        checkCartScreen(currentScreen)
-    }
-}
+var generatedProducts = [];
+var storedProducts = localStorage.getItem('products');
+var products = JSON.parse(storedProducts);
 
 checkCurrentScreen();
 
-// when clicking on the search button
-document.getElementById('searchButton').addEventListener('click', (event) => {
-    urlParams.set('screen', 'itemListing');
-    urlParams.set('search', searchInput.value.trim());
-    refreshPageWithParameters();
-});
+function checkCurrentScreen() {
+    var currentScreen = localStorage.getItem('screen');
+    document.getElementById('searchInput').value = search;
 
-function checkEmptyScreen(){
-    itemListBlock.hidden = true;
-    cartListBlock.hidden = true;
+    document.getElementById('cartQuantityText').innerHTML = getQuantityOnCart();
+
+    if (currentScreen == 'cartList')
+        checkCartList();
+    else if (search)
+        checkProductsList();
 }
 
-function checkListingScreen(){
-    itemListBlock.hidden = false;
-    cartListBlock.hidden = true;
+function checkProductsList(){
+    document.getElementById('itemListBlock').hidden = false;
 
-    document.getElementById('firstItemName').innerHTML  = cartItems.name;
-    document.getElementById('secondItemName').innerHTML = cartItems.name;
+    generatedProducts.push({
+        name: 'the best ' + search + ' ever made',
+        value: getRandomMoney(),
+        quantity: 1
+    });
 
-    document.getElementById('firstItemValue').innerHTML  = cartItems.first.value.toFixed(2);
-    document.getElementById('secondItemValue').innerHTML = cartItems.second.value.toFixed(2);
+    generatedProducts.push({
+        name: search + ' #2 you NEED this one!',
+        value: getRandomMoney(),
+        quantity: 1
+    });
 
-    if(urlParams.get('first') == 'true'){
-        document.getElementById('firstAddToCart').hidden     = true;
-        document.getElementById('firstRemoveFromCart').hidden= false;
-    }
+    document.getElementById('firstItemName').innerHTML = generatedProducts[0].name;
+    document.getElementById('firstItemValue').innerHTML = generatedProducts[0].value;
 
-    if(urlParams.get('second') == 'true'){
-        document.getElementById('secondAddToCart').hidden     = true;
-        document.getElementById('secondRemoveFromCart').hidden= false;
-    }
+    document.getElementById('secondItemName').innerHTML = generatedProducts[1].name;
+    document.getElementById('secondItemValue').innerHTML = generatedProducts[1].value;
 
-    const itemsAdded = cartItems.getQuantityOnCart();
-    
-    if(itemsAdded > 0)
-        cartQuantityText.innerHTML = "+ " + itemsAdded;
+
+    document.getElementById('firstRemoveFromCart').hidden   = true;
+    document.getElementById('firstAddToCart').hidden        = false;
+    document.getElementById('secondRemoveFromCart').hidden  = true;
+    document.getElementById('secondAddToCart').hidden       = false;
 }
 
-function checkCartScreen(){
-    itemListBlock.hidden = true;
-    cartListBlock.hidden = false;
+document.getElementById('searchButton').addEventListener('click', function(){
+    localStorage.setItem('screen', 'productsList');
+    var searchInput = document.getElementById('searchInput').value.trim();
 
-    document.getElementById('firstItemNameCart').innerHTML  = cartItems.name;
-    document.getElementById('secondItemNameCart').innerHTML = cartItems.name;
-
-    if(urlParams.get('first') == 'true'){
-        cartItems.first.quantity = 1;
-        document.getElementById('firstItemCart').hidden             = false;
-        document.getElementById('itemQuantityFirst').textContent    = cartItems.first.quantity;
-        document.getElementById('firstItemValueCart').textContent   = cartItems.first.value;
+    if(!searchInput){
+        window.location.href = window.location.pathname;
+        return;
     }
 
-    if(urlParams.get('second') == 'true'){
-        cartItems.second.quantity = 1;
-        document.getElementById('secondItemCart').hidden            = false;
-        document.getElementById('itemQuantitySecond').textContent   = cartItems.second.quantity;
-        document.getElementById('secondItemValueCart').textContent  = cartItems.second.value;
-    }
-
-    document.getElementById('subtotal').textContent = cartItems.getSubtotal();
-}
-
-
-document.getElementById('firstAddToCart').addEventListener('click', (event) => {
-    urlParams.set('first', 'true');
-    refreshPageWithParameters();
-});
-
-document.getElementById('secondAddToCart').addEventListener('click', (event) => {
-    urlParams.set('second', 'true');
-    refreshPageWithParameters();
-});
-
-document.getElementById('firstRemoveFromCart').addEventListener('click', (event) => {
-    urlParams.delete('first', 'true');
-    refreshPageWithParameters();
-});
-
-document.getElementById('secondRemoveFromCart').addEventListener('click', (event) => {
-    urlParams.delete('second', 'true');
-    refreshPageWithParameters();
+    urlParams.set('search', searchInput);
+    window.location.href = window.location.pathname + "?" + urlParams.toString();
 });
 
 document.getElementById('cartButton').addEventListener('click', (event) => {
-    urlParams.set('screen', 'cart');
-    refreshPageWithParameters();
+    localStorage.setItem('screen', 'cartList');
+    window.location.href = window.location.href // refresh page
 });
 
-const dropdownFirst = document.getElementById('dropdownFirst');
-var dropdownItems = dropdownFirst.querySelectorAll('.dropdown-item');
-dropdownItems.forEach(function(item) {
+function getQuantityOnCart(){
+    return products.length;
+}
+
+function checkCartList(){
+    document.getElementById('cartListBlock').hidden = false;
+
+    const cartListRows = document.getElementById('cartListRows');
+
+    for(var i = 0; i < products.length; i++){
+        var value   = products[i].value;
+        var name    = products[i].name;
+        var quantity= products[i].quantity;
+
+        var cartRow = `<div class="card mb-3" id="` + i + `ItemCart">
+            <div class="row g-0">
+                <div class="col-2" style="max-width: 200px;">
+                    <img src="./assets/OCR_TEXT.png" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="card-title" id="` + i + `itemName">
+                                    <span id="` + i + `ItemNameCart"></span>
+                                    <span>` + name + `</span>
+                                </h5>
+                            </div>
+                            <div class="col">
+                                <h5 class="card-text text-end">
+                                    <span>$</span>
+                                    <span id="` + i + `ItemValueCart">` + value + `</span>
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="dropdown" id="` + i + `Dropdown">
+                                    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <span>Qty</span>
+                                        <span id="` + i + `ItemQuantity">` + quantity + `</span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><span class="dropdown-item">0</span></li>
+                                        <li><span class="dropdown-item">1</span></li>
+                                        <li><span class="dropdown-item">2</span></li>
+                                        <li><span class="dropdown-item">3</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+
+        cartListRows.innerHTML += cartRow;
+    }
+
+    for(var i = 0; i < products.length; i++){
+        const dropdown = document.getElementById(i + "Dropdown");
+        var dropdownItems = dropdown.querySelectorAll('.dropdown-item');
+        dropdownItems.forEach(function(item) {
+            createEventListener(i, item);
+        });
+    }
+
+    document.getElementById('subtotal').textContent = getSubtotal();
+}
+
+function createEventListener(i, item) {
     item.addEventListener('click', function(event) {
         event.preventDefault();
+        products[i].quantity = parseInt(this.textContent);
 
-        cartItems.first.quantity = parseFloat(this.textContent);
-
-        if(this.textContent == "0"){
-            urlParams.delete('first');
-            refreshPageWithParameters();
-        }
-
-        document.getElementById('itemQuantityFirst').textContent = cartItems.first.quantity;
-        document.getElementById('subtotal').textContent = cartItems.getSubtotal();
-    });
-});
-
-const dropdownSecond = document.getElementById('dropdownSecond');
-var dropdownItems = dropdownSecond.querySelectorAll('.dropdown-item');
-dropdownItems.forEach(function(item) {
-    item.addEventListener('click', function(event) {
-        event.preventDefault();
-
-        cartItems.second.quantity = parseFloat(this.textContent);
+        var productsString = JSON.stringify(products);
+        localStorage.setItem('products', productsString);
 
         if(this.textContent == "0"){
-            urlParams.delete('second');
-            refreshPageWithParameters();
+            const index = products.indexOf(products[0])
+            products.splice(index, 1);
+            var productsString = JSON.stringify(products);
+            localStorage.setItem('products', productsString);
+            window.location.href = window.location.pathname;
+            return;
         }
 
-        document.getElementById('itemQuantitySecond').textContent = cartItems.second.quantity;
-        document.getElementById('subtotal').textContent = cartItems.getSubtotal();
+        document.getElementById(i + 'ItemQuantity').textContent = products[i].quantity;
+        document.getElementById('subtotal').textContent = getSubtotal();
     });
+}
+
+document.getElementById('firstAddToCart').addEventListener('click', (event) => {
+    products.push(generatedProducts[0]);
+    document.getElementById('firstRemoveFromCart').hidden   = false;
+    document.getElementById('firstAddToCart').hidden        = true;
+    updateProductsStorage();
 });
 
+document.getElementById('secondAddToCart').addEventListener('click', (event) => {
+    products.push(generatedProducts[1]);
+    document.getElementById('secondRemoveFromCart').hidden  = false;
+    document.getElementById('secondAddToCart').hidden       = true;
+    updateProductsStorage();
+});
 
-function refreshPageWithParameters(){
-    window.location.href = window.location.pathname + "?" + urlParams.toString();
+document.getElementById('firstRemoveFromCart').addEventListener('click', (event) => {
+    const index = products.indexOf(generatedProducts[0])
+    products.splice(index, 1);
+    document.getElementById('firstRemoveFromCart').hidden   = true;
+    document.getElementById('firstAddToCart').hidden        = false;
+    updateProductsStorage();
+});
+
+document.getElementById('secondRemoveFromCart').addEventListener('click', (event) => {
+    const index = products.indexOf(generatedProducts[1]);
+    products.splice(index, 1);
+    document.getElementById('secondRemoveFromCart').hidden  = true;
+    document.getElementById('secondAddToCart').hidden       = false;
+    updateProductsStorage();
+});
+
+function updateProductsStorage(){
+    var productsString = JSON.stringify(products);
+    localStorage.setItem('products', productsString);
+    document.getElementById('cartQuantityText').innerHTML = getQuantityOnCart();
+}
+
+function getRandomMoney(){
+    return (Math.random() * 100).toFixed(2);
+}
+
+function getSubtotal(){
+    var total = 0;
+
+    for(var i=0; i < products.length; i++)
+        total += products[i].quantity * products[i].value;
+
+    return total.toFixed(2);
 }
