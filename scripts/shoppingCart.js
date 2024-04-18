@@ -87,7 +87,7 @@ function checkCartList(){
         var cartRow = `<div class="card mb-3" id="` + i + `ItemCart">
             <div class="row g-0">
                 <div class="col-2" style="max-width: 200px;">
-                    <img src="./assets/OCR_TEXT.png" class="img-fluid rounded-start" alt="...">
+                    <img src="../assets/OCR_TEXT.png" class="img-fluid rounded-start" alt="...">
                 </div>
                 <div class="col">
                     <div class="card-body">
