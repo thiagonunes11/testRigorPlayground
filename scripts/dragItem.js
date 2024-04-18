@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   
   // Array com a ordem desejada dos itens
-  const desiredOrder = [3, 1, 2];
+  const desiredOrder = [5, 1, 3];
 
   // Organiza os itens de acordo com a ordem desejada
   const items = Array.from(taskList.querySelectorAll('.draggable'));
