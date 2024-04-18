@@ -62,11 +62,12 @@ document.addEventListener('DOMContentLoaded', function() {
       messageElement.className = isCorrectOrder ? 'mt-3 alert alert-success' : 'mt-3 alert alert-danger';
   }
 
-  function shuffleList(container) {
-      for (let i = container.children.length; i >= 0; i--) {
-          container.appendChild(container.children[Math.random() * i | 0]);
-      }
-  }
+  
+  // Array com a ordem desejada dos itens
+  const desiredOrder = [3, 1, 2];
 
-  shuffleList(taskList);
+  // Organiza os itens de acordo com a ordem desejada
+  const items = Array.from(taskList.querySelectorAll('.draggable'));
+  items.sort((a, b) => desiredOrder.indexOf(parseInt(a.id.slice(4))) - desiredOrder.indexOf(parseInt(b.id.slice(4))));
+  items.forEach(item => taskList.appendChild(item));
 });
