@@ -4,7 +4,7 @@ const search = urlParams.get('search');
 
 var generatedProducts = [];
 var storedProducts = localStorage.getItem('products');
-var products = JSON.parse(storedProducts);
+var products = JSON.parse(storedProducts) || [];
 
 checkCurrentScreen();
 
@@ -49,7 +49,7 @@ function checkProductsList(){
 }
 
 document.getElementById('searchButton').addEventListener('click', function(){
-    localStorage.setItem('screen', 'productsList');
+    console.log("teste")
     var searchInput = document.getElementById('searchInput').value.trim();
 
     if(!searchInput){
@@ -58,6 +58,7 @@ document.getElementById('searchButton').addEventListener('click', function(){
     }
 
     urlParams.set('search', searchInput);
+    localStorage.setItem('screen', 'productsList');
     window.location.href = window.location.pathname + "?" + urlParams.toString();
 });
 
@@ -67,6 +68,9 @@ document.getElementById('cartButton').addEventListener('click', (event) => {
 });
 
 function getQuantityOnCart(){
+    if(!products)
+        return '';
+
     return products.length;
 }
 
