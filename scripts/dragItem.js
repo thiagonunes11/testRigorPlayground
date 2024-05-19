@@ -61,12 +61,10 @@ document.addEventListener('DOMContentLoaded', function() {
       messageElement.textContent = isCorrectOrder ? 'Correct' : 'Incorrect';
       messageElement.className = isCorrectOrder ? 'mt-3 alert alert-success' : 'mt-3 alert alert-danger';
   }
-
   
-  // Array com a ordem desejada dos itens
   const desiredOrder = [5, 1, 3];
 
-  // Organiza os itens de acordo com a ordem desejada
+
   const items = Array.from(taskList.querySelectorAll('.draggable'));
   items.sort((a, b) => desiredOrder.indexOf(parseInt(a.id.slice(4))) - desiredOrder.indexOf(parseInt(b.id.slice(4))));
   items.forEach(item => taskList.appendChild(item));
