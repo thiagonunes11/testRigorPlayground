@@ -1,0 +1,35 @@
+.input{
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+}
+
+ol{
+    margin: 2rem;
+    list-style: none;
+}
+
+li{
+    margin: 10px 20px 10px 0;
+    padding: 5%;
+    border: 1px solid gray;
+}
+
+li button{
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    color: red;
+    float: right;
+}
+
+input:focus{
+    box-shadow: 0 0 5px gray;
+}
+
+@media (max-width: 600px) {
+    main{
+        width: 95%;
+        margin: 25% auto;
+    }
+}
