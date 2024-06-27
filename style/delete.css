@@ -33,3 +33,8 @@ input:focus{
         margin: 25% auto;
     }
 }
+
+.btn-close {
+    filter: invert(14%) sepia(79%) saturate(4609%) hue-rotate(355deg) brightness(110%) contrast(123%);
+    --bs-btn-close-opacity: 1 !important;
+}

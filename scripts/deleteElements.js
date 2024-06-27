@@ -3,13 +3,15 @@ window.onload = function () {
     const input = document.querySelector("input");
     input.addEventListener("keyup", e => {
         if(e.key == "Enter"){
-            const newLi = document.createElement("li");
-            const newSpan = document.createElement("span");
+            const newLi     = document.createElement("li");
+            const newSpan   = document.createElement("span");
             const newButton = document.createElement("button");
 
             newSpan.textContent = input.value;
-            newButton.textContent = "X";
-            newButton.name = "delete";
+            newButton.type      = "button";
+            newButton.className = "btn-close";
+            newButton.name      = "delete";
+            
             newLi.appendChild(newSpan);
             newLi.appendChild(newButton);
 
