@@ -10,7 +10,7 @@ settingsTime.addEventListener("change", e => {
 });
 
 document.body.addEventListener('longclick', function () {
-    clicktimeDisplay.innerHTML = diff / 1000 + 's<br>Long click';
+    clicktimeDisplay.innerHTML = diff / 1000 + 's Long click';
     clicktimeDisplay.style.color = '#00E676';
 });
 
@@ -24,7 +24,7 @@ div.addEventListener('mousedown', function () {
         if (diff >= clickTime) {
             document.body.dispatchEvent(longClick);
         } else {
-            clicktimeDisplay.innerHTML = diff / 1000 + 's<br>Not long click';
+            clicktimeDisplay.innerHTML = diff / 1000 + 's Not long click';
             clicktimeDisplay.style.color = '#F44336';
         }
     });
