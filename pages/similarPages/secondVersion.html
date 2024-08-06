@@ -44,14 +44,14 @@
                             <div class="row justify-content-center my-5">
                                 <div class="col-8">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="button-addon2">
+                                        <input type="text" class="form-control" placeholder="Author's name" aria-label="Author's name">
                                         <button class="btn btn-outline-primary" type="button" data-qa="search-button">Search</button>
                                     </div>
                                 </div>
                             </div>
                             
                             <div id="searchMessage" class="alert alert-success" role="alert" hidden>
-                                A book by this author was found!
+                                A book by <span id="author"></span> was found!
                             </div>
                         </div>
                     </div>
@@ -63,9 +63,11 @@
                 var input           = document.querySelector("input");
                 var button          = document.querySelector("button");
                 var searchMessage   = document.getElementById("searchMessage");
+                var author          = document.getElementById("author");
 
                 button.addEventListener("click", function() {
                     searchMessage.hidden = false;
+                    author.textContent = input.value;
                 });
             </script>
         </main>
