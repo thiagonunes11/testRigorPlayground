@@ -137,3 +137,5 @@
     overflow-y: auto
   }
 }
+
+html { scroll-padding-top: 3.5rem; }
