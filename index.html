@@ -1,115 +1,235 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="auto">
+<!-- Based on bootstrap's dashboard template demo by Mark Otto, Jacob Thornton, and Bootstrap contributors -->
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>testRigor Playground</title>
+  <script src="scripts/color-modes.js"></script>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <title>testRigor Playground</title>
+
+  <link rel="icon" href="">
+  <meta name="theme-color" content="#712cf9">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <link href="style/index.css" rel="stylesheet">
 </head>
+
 <body class="container">
-    <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">testRigor Playground</a>
-            </div>
-        </nav>
-    </header>
-    <main>
-        <div class="row">
-            <div class="col-3">
-                <div class="sticky-top">
-                    <div class="row vh-100">
-                        <div id="leftColumnDemos" class="col bg-body-tertiary h-100 overflow-y-scroll">
-                            <!-- Left Column Demos will be created here -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="rightColumnDemos" class="col bg-body-secondary">
-                <!-- Right Column Demos will be created here -->
-            </div>
+  <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+    <symbol id="check2" viewBox="0 0 16 16">
+      <path
+        d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+    </symbol>
+    <symbol id="circle-half" viewBox="0 0 16 16">
+      <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" />
+    </symbol>
+    <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+      <path
+        d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z" />
+      <path
+        d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z" />
+    </symbol>
+    <symbol id="sun-fill" viewBox="0 0 16 16">
+      <path
+        d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z" />
+    </symbol>
+  </svg>
+
+  <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+    <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center" id="bd-theme" type="button"
+      aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)">
+      <svg class="bi my-1 theme-icon-active" width="1em" height="1em">
+        <use href="#circle-half"></use>
+      </svg>
+      <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
+      <li>
+        <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light"
+          aria-pressed="false">
+          <svg class="bi me-2 opacity-50" width="1em" height="1em">
+            <use href="#sun-fill"></use>
+          </svg>
+          Light
+          <svg class="bi ms-auto d-none" width="1em" height="1em">
+            <use href="#check2"></use>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark"
+          aria-pressed="false">
+          <svg class="bi me-2 opacity-50" width="1em" height="1em">
+            <use href="#moon-stars-fill"></use>
+          </svg>
+          Dark
+          <svg class="bi ms-auto d-none" width="1em" height="1em">
+            <use href="#check2"></use>
+          </svg>
+        </button>
+      </li>
+      <li>
+        <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto"
+          aria-pressed="true">
+          <svg class="bi me-2 opacity-50" width="1em" height="1em">
+            <use href="#circle-half"></use>
+          </svg>
+          Auto
+          <svg class="bi ms-auto d-none" width="1em" height="1em">
+            <use href="#check2"></use>
+          </svg>
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  <header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark">
+    <a class="navbar-brand col-lg-3 me-0 px-3 fs-6 text-white" href="#">testRigor Playground</a>
+
+    <ul class="navbar-nav flex-row d-md-none">
+      <li class="nav-item text-nowrap">
+        <button class="nav-link px-3 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSearch"
+          aria-controls="navbarSearch" aria-expanded="false" aria-label="Toggle search">
+          <i class="bi bi-search"></i>
+        </button>
+      </li>
+      <li class="nav-item text-nowrap">
+        <button class="nav-link px-3 text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu"
+          aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="bi bi-list"></i>
+        </button>
+      </li>
+    </ul>
+
+    <div id="navbarSearch" class="navbar-search w-100 collapse">
+      <input class="form-control w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
+    </div>
+  </header>
+
+  <div class="container-fluid">
+    <div class="row">
+      <aside class="sidebar border border-right col-3 p-0 bg-body-tertiary">
+        <div class="bd-sidebar offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu"
+          aria-labelledby="sidebarMenuLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="sidebarMenuLabel">testRigor Playground</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu"
+              aria-label="Close"></button>
+          </div>
+          <div id="leftColumnDemos" class="offcanvas-body d-md-flex flex-column p-0 overflow-y-auto col-xs-1">
+            <!-- Left Column Demos will be created here -->
+          </div>
         </div>
-    </main>
+      </aside>
 
-    <script type="text/javascript" src="scripts/index.js"></script>
-    <script>
-        var demos = [
-            { title: "Drag Item", url: "pages/dragItem.html", name: "Drag the items to change its order",
-            description: "This demo allows the user to click and drag buttons below or above other buttons so you can change the structure order."},
+      <main class="col-md-9 col-lg-9 ms-sm-auto px-md-4">
+        <div id="rightColumnDemos" class="pt-3 pb-2 mb-3">
+          <!-- Right Column Demos will be created here -->
+        </div>
+      </main>
 
-            { title: "Open New Tab", url: "pages/openNewTab.html", name: "Open a new tab with a click",
-            description: "This demo offers the tester a button that they can click. This will open a new browser tab."},
+      <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <ul class="nav col-4">
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+        </ul>
 
-            { title: "Mouse Hover", url: "pages/mouseHover.html", name: "Hover the mouse over a button",
-            description: "This demo allows the user to hover the mouse over a button. When the mouse is over the button, text will appear."},
-                
-            { title: "Button Click", url: "pages/buttonClick.html", name: "Click the button to reveal the hidden text",
-            description: "This demo allows the user to click a button. When the button is clicked, a hidden text will be revealed."},
+        <!-- <a href="/" class="col-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+        </a> -->
 
-            { title: "OCR Check", url: "pages/ocrCheck.html", name: "Check the contents with OCR",
-            description: "This demo shows an image to the user, and they must use OCR to check the contents of the image."},
+        <p class="col-4 mb-0 text-muted text-end">© 2024 testRigor Playground. All rights reserved.</p>
+      </footer>
+    </div>
+  </div>
 
-            { title: "File Upload", url: "pages/fileUpload.html", name: "Upload a file using the input field.",
-            description: "This demo allows the user to submit files and check their names."},
+  <script type="text/javascript" src="scripts/index.js"></script>
 
-            {title: "Counter", url: "pages/counter.html", name: "Simple Counter",
-            description: "This demo allow the user to use a counter of clicks."},
+  <script>
+      var demos = [
+          { title: "Drag Item", url: "pages/dragItem.html", name: "Drag the items to change its order",
+          description: "This demo allows the user to click and drag buttons below or above other buttons so you can change the structure order." },
 
-            {title: "Download File", url: "pages/downloadFile.html", name: "Download File",
-            description: "This demo allow the user to download a file and check it"},
+          { title: "Open New Tab", url: "pages/openNewTab.html", name: "Open a new tab with a click",
+          description: "This demo offers the tester a button that they can click. This will open a new browser tab." },
 
-            {title: "Verify Code", url: "pages/firstVerification.html", name: "Code Verification",
-            description: "This demo allow the user to check a verification code"},
+          { title: "Mouse Hover", url: "pages/mouseHover.html", name: "Hover the mouse over a button",
+          description: "This demo allows the user to hover the mouse over a button. When the mouse is over the button, text will appear." },
+              
+          { title: "Button Click", url: "pages/buttonClick.html", name: "Click the button to reveal the hidden text",
+          description: "This demo allows the user to click a button. When the button is clicked, a hidden text will be revealed." },
 
-            {title: "Shopping Cart", url: "pages/shoppingCart.html", name: "A simple online shopping page",
-            description: "This demo allow the user to search for a product and add it to the cart."},
+          { title: "OCR Check", url: "pages/ocrCheck.html", name: "Check the contents with OCR",
+          description: "This demo shows an image to the user, and they must use OCR to check the contents of the image." },
 
-            {title: "Wait for the Message", url: "pages/waitMessage.html", name: "Wait five seconds for the message",
-            description: "In this demo, a message will appear after five seconds."},
+          { title: "File Upload", url: "pages/fileUpload.html", name: "Upload a file using the input field.",
+          description: "This demo allows the user to submit files and check their names." },
 
-            {title: "Checkbox", url: "pages/checkbox.html", name: "Click on any of the checkboxes",
-            description: "In this demo, the user can check any checkboxes it desired."},
+          { title: "Counter", url: "pages/counter.html", name: "Simple Counter",
+          description: "This demo allow the user to use a counter of clicks." },
 
-            {title: "Nested Iframes", url: "pages/nestedIframes.html", name: "Inspect and interact with nested iframes",
-            description: "In this demo, there are two levels of iframes, on inside another."},
+          { title: "Download File", url: "pages/downloadFile.html", name: "Download File",
+          description: "This demo allow the user to download a file and check it" },
 
-            {title: "Dynamic Table", url: "pages/dynamicTable.html", name: "A table with rows that changes order.",
-            description: "This demo contains a table in which its rows changes order every time the page is refreshed."},
+          { title: "Verify Code", url: "pages/firstVerification.html", name: "Code Verification",
+          description: "This demo allow the user to check a verification code" },
 
-            {title: "Relative Position Table", url: "pages/tableRelativePosition/firstPage.html", name: "A table to use math and relative location to solve questions",
-            description: "This demo contains a table wich contains random numbers to solve simple math questions"},
+          { title: "Shopping Cart", url: "pages/shoppingCart.html", name: "A simple online shopping page",
+          description: "This demo allow the user to search for a product and add it to the cart." },
 
-            {title: "Dropdowns", url: "pages/dropdowns.html", name: "Different dropdowns and selects.",
-            description: "This demo contains multiple dropdowns and selects with different ways of handling them."},
+          { title: "Wait for the Message", url: "pages/waitMessage.html", name: "Wait five seconds for the message",
+          description: "In this demo, a message will appear after five seconds." },
 
-            {title: "Similar Pages", url: "pages/similarPages.html", name: "Two pages with minor differences.",
-            description: "This demo contains two pages that have differences in some elements attributes and tags, but still being nearly identical."},
-            
-            {title: "Shadow DOM", url: "pages/shadowDom.html", name: "Different implementations of shadow DOMs.",
-            description: "This demo contains different implementations of shadow DOMs."},
+          { title: "Checkbox", url: "pages/checkbox.html", name: "Click on any of the checkboxes",
+          description: "In this demo, the user can check any checkboxes it desired." },
 
-            {title: "Scroll Down", url: "pages/scrollDown.html", name: "Scroll down to find a text.",
-            description: "This demo contains several texts that are widely spaced apart so that you have to scroll to find them."},
+          { title: "Nested Iframes", url: "pages/nestedIframes.html", name: "Inspect and interact with nested iframes",
+          description: "In this demo, there are two levels of iframes, on inside another." },
 
-            {title: "Delete Elements", url:"pages/deleteElements.html", name: "Dynamic page to delete elements.",
-            description: "This demo contains different elements that can be deleted by clicking in buttons and different elements can be added."},
-            
-            {title: "Long Click", url:"pages/longClick.html", name: "Long click button.",
-            description: "This demo contains a button that will say if it was clicked by a long click or a normal click depending on the setting"},
+          { title: "Dynamic Table", url: "pages/dynamicTable.html", name: "A table with rows that changes order.",
+          description: "This demo contains a table in which its rows changes order every time the page is refreshed." },
 
-            {title: "Dynamic Login Text", url: "pages/dynamicLoginText.html", name: "Press to login with changing button text.",
-            description: "This demo contains a login screen in which the affirmative button changes the text each refresh."},
+          { title: "Relative Position Table", url: "pages/tableRelativePosition/firstPage.html", name: "A table to use math and relative location to solve questions",
+          description: "This demo contains a table wich contains random numbers to solve simple math questions" },
 
-            {title: "Radio Buttons", url: "pages/radioButtons.html", name: "Check a radio button to select an option.",
-            description: "This demo displays a select a payment method page where you can select a method by checking a radio button."},
-        ]
+          { title: "Dropdowns", url: "pages/dropdowns.html", name: "Different dropdowns and selects.",
+          description: "This demo contains multiple dropdowns and selects with different ways of handling them." },
 
-        buildDemoBlocks();        
-    </script>
+          { title: "Similar Pages", url: "pages/similarPages.html", name: "Two pages with minor differences.",
+          description: "This demo contains two pages that have differences in some elements attributes and tags, but still being nearly identical." },
+          
+          { title: "Shadow DOM", url: "pages/shadowDom.html", name: "Different implementations of shadow DOMs.",
+          description: "This demo contains different implementations of shadow DOMs." },
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>        
+          { title: "Scroll Down", url: "pages/scrollDown.html", name: "Scroll down to find a text.",
+          description: "This demo contains several texts that are widely spaced apart so that you have to scroll to find them." },
+
+          { title: "Delete Elements", url:"pages/deleteElements.html", name: "Dynamic page to delete elements.",
+          description: "This demo contains different elements that can be deleted by clicking in buttons and different elements can be added." },
+          
+          { title: "Long Click", url:"pages/longClick.html", name: "Long click button.",
+          description: "This demo contains a button that will say if it was clicked by a long click or a normal click depending on the setting" },
+
+          { title: "Dynamic Login Text", url: "pages/dynamicLoginText.html", name: "Press to login with changing button text.",
+          description: "This demo contains a login screen in which the affirmative button changes the text each refresh." },
+
+          { title: "Radio Buttons", url: "pages/radioButtons.html", name: "Check a radio button to select an option.",
+          description: "This demo displays a select a payment method page where you can select a method by checking a radio button." },
+      ]
+
+      buildDemoBlocks();        
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
 </body>
+
 </html>
