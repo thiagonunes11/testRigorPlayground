@@ -83,13 +83,14 @@
 }
 
 /*
-* Sidebar
-*/
+ * Sidebar
+ */
 
 @media (min-width: 768px) {
   .sidebar .offcanvas-lg {
     position: -webkit-sticky;
     position: sticky;
+    /* top: 48px; */
   }
 
   .navbar-search {
@@ -111,8 +112,8 @@
 }
 
 /*
-   * Navbar
-   */
+ * Navbar
+ */
 
 .navbar-brand {
   padding-top: .75rem;
@@ -127,12 +128,12 @@
 
 @media (min-width: 992px) {
   .bd-sidebar {
-      position: -webkit-sticky;
-      position: sticky;
-      top: 4.5rem;
-      display: block !important;
-      height: calc(100vh - 6rem);
-      z-index: 1;
-      overflow-y: auto
+    position: -webkit-sticky;
+    position: sticky;
+    top: 4.5rem;
+    display: block !important;
+    height: calc(100vh - 6rem);
+    z-index: 1;
+    overflow-y: auto
   }
 }
