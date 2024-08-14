@@ -79,54 +79,64 @@ function checkCartList(){
 
     const cartListRows = document.getElementById('cartListRows');
 
-    for(var i = 0; i < products.length; i++){
-        var value   = products[i].value;
-        var name    = products[i].name;
-        var quantity= products[i].quantity;
-
-        var cartRow = `<div class="card mb-3" id="` + i + `ItemCart">
+    if (products.length == 0){
+        var cartRow = `<div class="card mb-3" id="emptyCart">
             <div class="row g-0">
-                <div class="col-2" style="max-width: 200px;">
-                    <img src="../assets/OCR_TEXT.png" class="img-fluid rounded-start" alt="...">
-                </div>
-                <div class="col">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-10">
-                                <h5 class="card-title" id="` + i + `itemName">
-                                    <span id="` + i + `ItemNameCart"></span>
-                                    <span>` + name + `</span>
-                                </h5>
+                <p>Shopping cart is empty</p>
+            </div>
+        </div>`;
+        cartListRows.innerHTML += cartRow;
+    }
+    else{
+        for(var i = 0; i < products.length; i++){
+            var value   = products[i].value;
+            var name    = products[i].name;
+            var quantity= products[i].quantity;
+
+            var cartRow = `<div class="card mb-3" id="` + i + `ItemCart">
+                <div class="row g-0">
+                    <div class="col-2" style="max-width: 200px;">
+                        <img src="../assets/OCR_TEXT.png" class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-10">
+                                    <h5 class="card-title" id="` + i + `itemName">
+                                        <span id="` + i + `ItemNameCart"></span>
+                                        <span>` + name + `</span>
+                                    </h5>
+                                </div>
+                                <div class="col">
+                                    <h5 class="card-text text-end">
+                                        <span>$</span>
+                                        <span id="` + i + `ItemValueCart">` + value + `</span>
+                                    </h5>
+                                </div>
                             </div>
-                            <div class="col">
-                                <h5 class="card-text text-end">
-                                    <span>$</span>
-                                    <span id="` + i + `ItemValueCart">` + value + `</span>
-                                </h5>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="dropdown" id="` + i + `Dropdown">
-                                    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <span>Qty</span>
-                                        <span id="` + i + `ItemQuantity">` + quantity + `</span>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><span class="dropdown-item">0</span></li>
-                                        <li><span class="dropdown-item">1</span></li>
-                                        <li><span class="dropdown-item">2</span></li>
-                                        <li><span class="dropdown-item">3</span></li>
-                                    </ul>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="dropdown" id="` + i + `Dropdown">
+                                        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <span>Qty</span>
+                                            <span id="` + i + `ItemQuantity">` + quantity + `</span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><span class="dropdown-item">0</span></li>
+                                            <li><span class="dropdown-item">1</span></li>
+                                            <li><span class="dropdown-item">2</span></li>
+                                            <li><span class="dropdown-item">3</span></li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>`;
+            </div>`;
 
-        cartListRows.innerHTML += cartRow;
+            cartListRows.innerHTML += cartRow;
+        }
     }
 
     for(var i = 0; i < products.length; i++){
