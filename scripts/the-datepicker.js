@@ -884,7 +884,7 @@ var TheDatepicker;
             if (!this.inputText_ || !this.options.isDeselectButtonShown() || this.deselectElement_) {
                 return null;
             }
-            var deselectButton = TheDatepicker.HtmlHelper_.createAnchor_(function (event) {
+            var deselectButton = TheDatepicker.HtmlHelper_.createButton_(function (event) {
                 deselectButton.focus();
                 _this.viewModel_.cancelSelection_(event);
             }, this.options, TheDatepicker.ClassNameType.DeselectButton);
@@ -893,11 +893,12 @@ var TheDatepicker;
             if (title !== '') {
                 deselectButton.title = title;
             }
-            var deselectElement = TheDatepicker.HtmlHelper_.createSpan_();
-            TheDatepicker.HtmlHelper_.addClass_(deselectElement, TheDatepicker.ClassNameType.Deselect, this.options);
-            deselectElement.appendChild(deselectButton);
-            this.inputText_.parentNode.insertBefore(deselectElement, this.inputText_.nextSibling);
-            this.deselectElement_ = deselectElement;
+            var aria_describedby = this.inputText_.getAttribute('aria-describedby');
+            if (aria_describedby)
+                deselectButton.id = aria_describedby;
+            TheDatepicker.HtmlHelper_.addClass_(deselectButton, TheDatepicker.ClassNameType.Deselect, this.options);
+            this.inputText_.parentNode.insertBefore(deselectButton, this.inputText_.nextSibling);
+            this.deselectElement_ = deselectButton;
             this.deselectButton_ = deselectButton;
         };
         Datepicker.prototype.updateDeselectElement_ = function () {
@@ -905,7 +906,7 @@ var TheDatepicker;
                 return;
             }
             var isVisible = this.options.isDeselectButtonShown() && this.viewModel_.selectedDate_;
-            this.deselectElement_.style.visibility = isVisible ? 'visible' : 'hidden';
+            this.deselectElement_.style.display = isVisible ? '' : 'none';
         };
         Datepicker.prototype.preselectFromInput_ = function () {
             if (this.inputText_) {
@@ -1569,6 +1570,26 @@ var TheDatepicker;
                 }
             };
             return anchor;
+        };
+        HtmlHelper_.createButton_ = function (onClick, options, type) {
+            if (type === void 0) { type = TheDatepicker.ClassNameType.Button; }
+            var button = document.createElement('button');
+            HtmlHelper_.addClass_(button, type, options);
+            button.classList.add("btn");
+            button.classList.add("btn-outline-secondary");
+            button.onclick = function (event) {
+                event = event || window.event;
+                TheDatepicker.Helper_.preventDefault_(event);
+                onClick(event);
+            };
+            button.onkeydown = function (event) {
+                event = event || window.event;
+                if (TheDatepicker.Helper_.inArray_([TheDatepicker.KeyCode_.Enter, TheDatepicker.KeyCode_.Space], event.keyCode)) {
+                    TheDatepicker.Helper_.preventDefault_(event);
+                    onClick(event);
+                }
+            };
+            return button
         };
         HtmlHelper_.createSpan_ = function () {
             return document.createElement('span');
