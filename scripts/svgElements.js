@@ -8,14 +8,14 @@ document.getElementById('closeButton').addEventListener('click', function() {
             <svg aria-label="number one automation tool" height="50" width="150" xmlns="http://www.w3.org/2000/svg">
                 <text x="30" y="30" fill="none" stroke="red" font-family="Roboto" font-size="12">#1 Automation Tool</text>
             </svg>
-            <button id="rightArrowButton" aria-label="right-arrow" class="btn btn-primary">
-                <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#000000">
-                    <path d="M8 5l7 7-7 7" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <button id="rightArrowButton" class="btn btn-primary">
+                <svg aria-label="right arrow" width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
+                    <path d="M8 5l7 7-7 7" stroke="#white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </button>
-            <button id="leftArrowButton" aria-label="left-arrow" class="btn btn-primary" style="display: none;">
-                <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#000000">
-                    <path d="M16 19l-7-7 7-7" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <button id="leftArrowButton" class="btn btn-primary" style="display: none;">
+                <svg aria-label="left arrow" width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
+                    <path d="M16 19l-7-7 7-7" stroke="#white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </button>
         </div>
