@@ -8,7 +8,7 @@ function showPrompt() {
 }
 
 window.onload = function() {
-    if (window.location.pathname.includes("browserPromptOnLoad.html")) {
+    if (window.location.pathname.toLowerCase().includes("browserpromptonload")) {
         showPrompt();
     }
 };
