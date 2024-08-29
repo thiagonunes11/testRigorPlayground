@@ -12,12 +12,10 @@ document.addEventListener('DOMContentLoaded', function () {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.fillStyle = 'black';
         dots.forEach((dot, index) => {
-            // Desenhar o ponto
             ctx.beginPath();
             ctx.arc(dot.x, dot.y, 5, 0, 2 * Math.PI);
             ctx.fill();
 
-            // Adicionar rótulo (número)
             ctx.fillStyle = 'black';
             ctx.font = '12px Arial';
             ctx.textAlign = 'center';
@@ -32,11 +30,10 @@ document.addEventListener('DOMContentLoaded', function () {
             { x: canvas.width * 3 / 4, y: canvas.height * 3 / 4 }, // bottom right
             { x: canvas.width / 4, y: canvas.height * 3 / 4 } // bottom left
         ];
-        isDrawing = false; // Reset drawing state
-        points = []; // Clear any existing points
+        isDrawing = false;
+        points = [];
         drawDots();
 
-        // Mostrar o botão "Connect more dots" e esconder o "Connect Less Dots"
         moreDotsButton.style.display = 'inline-block';
         lessDotsButton.style.display = 'none';
     }
@@ -50,11 +47,10 @@ document.addEventListener('DOMContentLoaded', function () {
             { x: canvas.width / 5, y: canvas.height * 2 / 3 }, // bottom left
             { x: canvas.width / 5, y: canvas.height / 3 }, // top left
         ];
-        isDrawing = false; // Reset drawing state
-        points = []; // Clear any existing points
+        isDrawing = false;
+        points = [];
         drawDots();
 
-        // Mostrar o botão "Connect Less Dots" e esconder o "Connect more dots"
         moreDotsButton.style.display = 'none';
         lessDotsButton.style.display = 'inline-block';
     }
@@ -134,10 +130,8 @@ document.addEventListener('DOMContentLoaded', function () {
         return null;
     }
 
-    // Mostrar o triângulo inicialmente
     showTriangle();
 
-    // Adicionar event listeners para os botões que trocam entre triângulo e hexágono
     moreDotsButton.addEventListener('click', function() {
         showHexagon();
     });
