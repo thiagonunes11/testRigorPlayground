@@ -5,8 +5,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const lessDotsButton = document.getElementById('lessDotsButton');
 
     let dots = [];
+    let lines = [];
+    let currentPath = [];
     let isDrawing = false;
-    let points = [];
+    let lastDot = null;
 
     function drawDots() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -16,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function () {
             ctx.arc(dot.x, dot.y, 5, 0, 2 * Math.PI);
             ctx.fill();
 
-            ctx.fillStyle = 'black';
             ctx.font = '12px Arial';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
@@ -24,15 +25,40 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    function drawLines() {
+        lines.forEach(line => {
+            ctx.beginPath();
+            ctx.moveTo(dots[line[0]].x, dots[line[0]].y);
+            ctx.lineTo(dots[line[1]].x, dots[line[1]].y);
+            ctx.strokeStyle = 'red';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+        });
+    }
+
+    function drawTempLine(toX, toY) {
+        if (lastDot !== null) {
+            ctx.beginPath();
+            ctx.moveTo(dots[lastDot].x, dots[lastDot].y);
+            ctx.lineTo(toX, toY);
+            ctx.strokeStyle = 'red';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+        }
+    }
+
     function showTriangle() {
         dots = [
             { x: canvas.width / 2, y: canvas.height / 4 }, // top
-            { x: canvas.width * 3 / 4, y: canvas.height * 3 / 4 }, // bottom right
-            { x: canvas.width / 4, y: canvas.height * 3 / 4 } // bottom left
+            { x: canvas.width * 3 / 4, y: canvas.height * 3 / 4 }, // right
+            { x: canvas.width / 4, y: canvas.height * 3 / 4 } // left
         ];
+        lines = []; // cleaning lines
+        currentPath = [];
         isDrawing = false;
-        points = [];
+        lastDot = null;
         drawDots();
+        drawLines();
 
         moreDotsButton.style.display = 'inline-block';
         lessDotsButton.style.display = 'none';
@@ -47,77 +73,16 @@ document.addEventListener('DOMContentLoaded', function () {
             { x: canvas.width / 5, y: canvas.height * 2 / 3 }, // bottom left
             { x: canvas.width / 5, y: canvas.height / 3 }, // top left
         ];
+        lines = []; // cleaning lines
+        currentPath = [];
         isDrawing = false;
-        points = [];
+        lastDot = null;
         drawDots();
+        drawLines();
 
         moreDotsButton.style.display = 'none';
         lessDotsButton.style.display = 'inline-block';
     }
-
-    canvas.addEventListener('mousedown', function (event) {
-        const { offsetX, offsetY } = event;
-        const clickedDot = getDotUnderCursor(offsetX, offsetY);
-
-        if (clickedDot !== null) {
-            if (!isDrawing) {
-                isDrawing = true;
-                points.push(clickedDot);
-                ctx.beginPath();
-                ctx.moveTo(dots[clickedDot].x, dots[clickedDot].y);
-            } else if (points.length < dots.length && !points.includes(clickedDot)) {
-                points.push(clickedDot);
-                ctx.lineTo(dots[clickedDot].x, dots[clickedDot].y);
-                ctx.strokeStyle = 'red';
-                ctx.lineWidth = 2;
-                ctx.stroke();
-
-                if (points.length === dots.length) {
-                    ctx.closePath();
-                    ctx.stroke();
-                    isDrawing = false;
-                    points = [];
-                }
-            }
-        }
-    });
-
-    canvas.addEventListener('mousemove', function (event) {
-        if (isDrawing && points.length > 0) {
-            const { offsetX, offsetY } = event;
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            drawDots();
-
-            ctx.beginPath();
-            ctx.moveTo(dots[points[0]].x, dots[points[0]].y);
-            points.slice(1).forEach((pointIndex) => {
-                ctx.lineTo(dots[pointIndex].x, dots[pointIndex].y);
-            });
-
-            ctx.lineTo(offsetX, offsetY);
-            ctx.strokeStyle = 'red';
-            ctx.lineWidth = 2;
-            ctx.stroke();
-        }
-    });
-
-    canvas.addEventListener('mouseup', function (event) {
-        const { offsetX, offsetY } = event;
-        const releasedDot = getDotUnderCursor(offsetX, offsetY);
-
-        if (isDrawing && releasedDot !== null && !points.includes(releasedDot)) {
-            points.push(releasedDot);
-            ctx.lineTo(dots[releasedDot].x, dots[releasedDot].y);
-            ctx.stroke();
-
-            if (points.length === dots.length) {
-                ctx.closePath();
-                ctx.stroke();
-                isDrawing = false;
-                points = [];
-            }
-        }
-    });
 
     function getDotUnderCursor(x, y) {
         for (let i = 0; i < dots.length; i++) {
@@ -130,12 +95,70 @@ document.addEventListener('DOMContentLoaded', function () {
         return null;
     }
 
-    showTriangle();
+    canvas.addEventListener('mousedown', function (event) {
+        const { offsetX, offsetY } = event;
+        const clickedDot = getDotUnderCursor(offsetX, offsetY);
 
+        if (clickedDot !== null) {
+            isDrawing = true;
+            currentPath = [clickedDot];
+            lastDot = clickedDot;
+            drawDots();
+            drawLines();
+        }
+    });
+
+    canvas.addEventListener('mousemove', function (event) {
+        if (isDrawing) {
+            const { offsetX, offsetY } = event;
+            const hoveredDot = getDotUnderCursor(offsetX, offsetY);
+
+            if (hoveredDot !== null && !currentPath.includes(hoveredDot)) {
+                lines.push([lastDot, hoveredDot]);
+                currentPath.push(hoveredDot);
+                lastDot = hoveredDot;
+                drawDots();
+                drawLines();
+            }
+
+            drawDots();
+            drawLines();
+            drawTempLine(offsetX, offsetY);
+        }
+    });
+
+    canvas.addEventListener('mouseup', function (event) {
+        if (isDrawing) {
+            if (currentPath.length === dots.length) {
+                isDrawing = false;
+                lastDot = null;
+            } else {
+                lines = [];
+                currentPath = [];
+                isDrawing = false;
+                lastDot = null;
+                drawDots();
+                drawLines();
+            }
+        }
+    });
+
+    // cleaning lines if mouse leaves canvas
+    canvas.addEventListener('mouseleave', function () {
+        if (isDrawing) {
+            lines = [];
+            currentPath = [];
+            isDrawing = false;
+            lastDot = null;
+            drawDots();
+            drawLines();
+        }
+    });
+
+    showTriangle();
     moreDotsButton.addEventListener('click', function() {
         showHexagon();
     });
-
     lessDotsButton.addEventListener('click', function() {
         showTriangle();
     });
