@@ -1074,6 +1074,7 @@ var TheDatepicker;
             }
             mainElement.style.position = "relative";
             mainElement.style.top = "2.5em";
+            mainElement.style.left = "2.5em";
         };
         Datepicker.setBodyClass_ = function (enable) {
             var pageClass = 'the-datepicker-page';
