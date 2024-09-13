@@ -1072,6 +1072,8 @@ var TheDatepicker;
                 TheDatepicker.HtmlHelper_.addClass_(this.container, TheDatepicker.ClassNameType.ContainerLeft, this.options);
                 mainElement.style.left = '-' + (containerWidth - inputWidth) + 'px';
             }
+            mainElement.style.position = "relative";
+            mainElement.style.top = "2.5em";
         };
         Datepicker.setBodyClass_ = function (enable) {
             var pageClass = 'the-datepicker-page';
