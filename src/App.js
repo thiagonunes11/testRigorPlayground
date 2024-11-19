@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import QRCodePage from './pages/qrCode'
+import ButtonClick from './pages/buttonClick';
 
 function App() {
     return (
@@ -16,7 +17,6 @@ function App() {
                   {/*
                   <Route path="/audioValidation" element={<AudioValidation />} />
                   <Route path="/browserPrompt" element={<BrowserPrompt />} />
-                  <Route path="/buttonClick" element={<ButtonClick />} />
                   <Route path="/checkbox" element={<Checkbox />} />
                   <Route path="/connectTheDots" element={<ConnectTheDots />} />
                   <Route path="/counter" element={<Counter />} />
@@ -45,6 +45,7 @@ function App() {
                   <Route path="/video" element={<VideoPlayback />} />
                   <Route path="/waitMessage" element={<WaitForMessage />} /> */}
                   <Route path="/qrCode" element={<QRCodePage />} />
+                  <Route path="/buttonClick" element={<ButtonClick />} />
                     </Routes>
                 </div>
             </div>

@@ -1,58 +1,53 @@
-import React, { useRef, useState } from 'react';
-import QRCode from 'qrcode';
+import React, { useState } from 'react';
+import { QRCodeCanvas } from 'qrcode.react';
 
 const QRCodePage = () => {
-  const qrCodeRef = useRef(null);  
-  const [inputText, setInputText] = useState('');  
+  const [text, setText] = useState('');
+  const [qrValue, setQRValue] = useState('');
 
-  const generateQRCode = () => {
-    if (inputText.trim() === '') {
-      alert('Please, enter some text to generate the QR Code.');
-      return;
-    }
-
-    if (qrCodeRef.current) {
-      qrCodeRef.current.innerHTML = ''; 
-    }
-
-    QRCode.toCanvas(qrCodeRef.current, inputText, {
-      width: 256,
-      height: 256
-    }, (error) => {
-      if (error) {
-        console.error('Error generating QR code:', error);
-        return;
-      }
-      console.log('QR code generated successfully');
-    });
-
-    setInputText('');
+  const handleGenerate = () => {
+    setQRValue(text); 
+    setText('');
   };
 
   return (
-    <div className="container text-center mt-5">
-      <div className="row justify-content-center">
-        <div className="col-6 border p-2 pt-4">
-          <h1 className="fs-2 fw-bold">QR Code</h1>
-          <p>
-            <small>Enter the text and click the button to generate a QR Code.</small>
-          </p>
-          <input
-            type="text"
-            className="form-control mt-3"
-            placeholder="Enter the text here"
-            value={inputText}
-            onChange={(e) => setInputText(e.target.value)}
-          />
-        </div>
-      </div>
-      <div className="row mt-5">
-        <div className="col-12">
-          <button className="btn btn-primary" onClick={generateQRCode}>
-            Generate QR Code
-          </button>
-          <div ref={qrCodeRef} className="mt-5 d-flex justify-content-center"></div>
-        </div>
+    <div style={{ textAlign: 'center', marginTop: '50px' }}>
+      <h1>QR Code</h1>
+      <p>Enter some text and click the Generate button to generate your QR Code.</p>
+      <input
+        type="text"
+        placeholder="Enter text here"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        style={{
+          padding: '10px',
+          width: '300px',
+          marginBottom: '20px',
+          fontSize: '16px',
+        }}
+      />
+      <br />
+      <button
+        onClick={handleGenerate}
+        style={{
+          padding: '10px 20px',
+          fontSize: '16px',
+          cursor: 'pointer',
+          backgroundColor: '#007BFF',
+          color: '#fff',
+          border: 'none',
+          borderRadius: '5px',
+        }}
+      >
+        Generate
+      </button>
+      <div style={{ marginTop: '30px' }}>
+        {qrValue && (
+          <>
+            <h2>Your QR Code:</h2>
+            <QRCodeCanvas value={qrValue} size={256} />
+          </>
+        )}
       </div>
     </div>
   );
