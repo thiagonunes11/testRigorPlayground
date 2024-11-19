@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import "bootstrap/dist/css/bootstrap.min.css";
 import { QRCodeCanvas } from 'qrcode.react';
 
 const QRCodePage = () => {
@@ -12,8 +13,10 @@ const QRCodePage = () => {
 
   return (
     <div style={{ textAlign: 'center', marginTop: '50px' }}>
-      <h1>QR Code</h1>
-      <p>Enter some text and click the Generate button to generate your QR Code.</p>
+      <div className="border p-2 pt-4">
+        <h1>QR Code</h1>
+        <p>Enter some text and click the Generate button to generate your QR Code.</p>
+      </div>
       <input
         type="text"
         placeholder="Enter text here"
@@ -22,6 +25,7 @@ const QRCodePage = () => {
         style={{
           padding: '10px',
           width: '300px',
+          marginTop: '20px',
           marginBottom: '20px',
           fontSize: '16px',
         }}
