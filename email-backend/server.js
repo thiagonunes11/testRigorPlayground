@@ -18,11 +18,13 @@ app.post("/send-email", async (req, res) => {
         },
     });
 
+    const randomnum = Math.floor(1000 + Math.random() * 9000);
+
     const mailOptions = {
         from: "CHANGE-ME@gmail.com",        // CREATE A NEW GMAIL ACCOUNT
         to: email,
         subject: "E-mail test",
-        text: "Congratulations, this e-mail was received succesfully.",
+        text: `Your verification code is ${randomnum}.`,
     };
 
     try {
