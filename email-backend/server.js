@@ -7,7 +7,7 @@ app.use(express.json());
 var randomnum = -1;
 
 //sendgrid.getApiKey("");
-var client = new postmark.ServerClient("7a443f1b-3348-4294-b4c0-b036c967285c");
+var client = new postmark.ServerClient(""); // PUT THE KEY HERE
 const cors = require("cors");
 app.use(cors());
 
@@ -70,7 +70,7 @@ app.post("/send-email", async (req, res) => {
     randomnum = Math.floor(100000 + Math.random() * 900000);
     try{
         await client.sendEmail({
-        "From": "gabriel.gavazzi@testrigor.com",
+        "From": "",     //PUT THE EMAIL HERE
         "To": email,
         "Subject": "tR Playground Code",
         "HtmlBody": `<strong>Hello</strong>, dear testRigor Playground user. 
