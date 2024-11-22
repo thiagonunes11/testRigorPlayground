@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { QRCodeCanvas } from 'qrcode.react';
 import Prompt from '../components/Prompt.js'
+import Demo from '../components/Demo.js';
 
 const QRCodePage = () => {
   const [text, setText] = useState('');
@@ -13,7 +14,7 @@ const QRCodePage = () => {
   };
 
   return (
-        <main className='container mt-5 text-center'>
+        <Demo>
             <Prompt title="QR Code" instructions="Enter some text and click the Generate button to generate your QR Code." />
             <input
                 type="text"
@@ -51,7 +52,7 @@ const QRCodePage = () => {
                 </>
                 )}
             </div>
-        </main>
+        </Demo>
   );
 };
 

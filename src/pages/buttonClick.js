@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Prompt from '../components/Prompt.js'
+import Demo from "../components/Demo.js";
 
 function ButtonClick() {
     const [isVisible, setIsVisible] = useState(false);
@@ -10,7 +11,7 @@ function ButtonClick() {
     };
 
     return (
-        <main className="container mt-5 text-center">
+        <Demo>
             <Prompt title="Button click" instructions="Click the button to reveal the hidden text."/>
 
             <div className="row mt-5">
@@ -31,7 +32,7 @@ function ButtonClick() {
                     </p>
                 </div>
             </div>
-        </main>
+        </Demo>
     );
 }
 

@@ -8,7 +8,6 @@ function Header(){
                     <Navbar.Brand href="/" className="mx-4">testRigor Playground 🛝</Navbar.Brand>
                 </Container>
             </Navbar>
-            
         </header>
     )
 }
