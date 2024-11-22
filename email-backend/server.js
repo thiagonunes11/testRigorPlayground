@@ -4,19 +4,22 @@ const nodemailer = require("nodemailer");
 const app = express();
 app.use(express.json());
 
+const cors = require("cors");
+app.use(cors());
+
 app.post("/send-email", async (req, res) => {
     const { email } = req.body;
 
     const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
-            user: "email@gmail.com",
-            pass: "pwd",
+            user: "CHANGE-ME@gmail.com",    // CREATE A NEW GMAIL ACCOUNT
+            pass: "CHANGE-ME",              // CREATE A NEW GMAIL ACCOUNT
         },
     });
 
     const mailOptions = {
-        from: "email@gmail.com",
+        from: "CHANGE-ME@gmail.com",        // CREATE A NEW GMAIL ACCOUNT
         to: email,
         subject: "E-mail test",
         text: "Congratulations, this e-mail was received succesfully.",
