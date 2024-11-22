@@ -24,15 +24,21 @@
     <main class="container text-center mt-5">
         <div class="row justify-content-center">
             <div class="col-6 border p-2 pt-4">
-                <h1 class="fs-2 fw-bold">E-mail Validation</h1>
-                <p><small>Enter the address and click the button to send an e-mail to it.</small></p>
-                <input type="text" id="emailForm" class="form-control mt-3" placeholder="Enter the address here">
+                <h1 class="fs-2 fw-bold">Simulated 2FA</h1>
+                <p><small>Enter the email address and click the button to send a random 6-digit auth code.</small></p>
+                <input type="text" id="emailForm" class="form-control mt-3 " placeholder="Enter the address here">
             </div>
+            
         </div>
         <div class="row mt-5">
             <div class="col-12">
                 <button id="clickableButton" class="btn btn-primary" onclick="sendEmail();">Send e-mail</button>
                 <p id="result" class="pt-5"></p>
+            </div>
+            <div class="row justify-content-center">
+                <input type="text" id="authForm" class="form-control p-6 pt-2 mt-3" placeholder="Enter the received auth code here">
+                <button id="clickableButton" class="btn btn-primary p-6 pt-6 mt-3" onclick="verifyCode();">Verify Code</button>
+                <p id="authMatch" class="pt-5"></p>
             </div>
         </div>
     </main>
@@ -44,6 +50,7 @@
                 document.getElementById("result").innerText = "Please, insert a valid e-mail address.";
                 return;
             }
+            document.getElementById("emailForm").value = "";
             try {
                 const response = await fetch("http://localhost:3000/send-email", {
                     method: "POST",
@@ -51,13 +58,40 @@
                     body: JSON.stringify({ email }),
                 });
                 const result = await response.json();
-
                 document.getElementById("result").innerText = result.message;
             } catch (error) {
                 document.getElementById("result").innerText = "Failed to send the e-mail. Please try again later.";
             }
         }
 
+    </script>
+    <script>
+        async function verifyCode(){
+            const typedCode = document.getElementById("authForm").value;
+            if (!typedCode) {
+                document.getElementById("authMatch").innerText = "Please, insert a valid auth code.";
+                return;
+            }
+            document.getElementById("authForm").value = "";
+            try {
+                const response = await fetch("http://localhost:3000/verify-code", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ typedCode }),
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    //alert(result.message);
+                    document.getElementById("authMatch").innerText = "The codes match.";
+                } else {
+                    alert("Error: " + result.message);
+                }
+            } catch (error) {
+                console.error("Request error:", error);
+            }
+            
+        }
     </script>
 </body>
 
