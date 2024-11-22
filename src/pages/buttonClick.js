@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Prompt from '../components/Prompt.js'
 
 function ButtonClick() {
     const [isVisible, setIsVisible] = useState(false);
@@ -12,12 +13,7 @@ function ButtonClick() {
         <div>
             <main className="container text-center mt-5">
                 <div className="row justify-content-center">
-                    <div className="col-6 border p-2 pt-4">
-                        <h1 className="fs-2 fw-bold">Button click</h1>
-                        <p>
-                            <small>Click the button to reveal the hidden text.</small>
-                        </p>
-                    </div>
+                    <Prompt title="Button click" instructions="Click the button to reveal the hidden text."/>
                 </div>
 
                 <div className="row mt-5">
