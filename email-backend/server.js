@@ -6,7 +6,7 @@ const app = express();
 app.use(express.json());
 var randomnum = -1;
 
-//sendgrid.getApiKey("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");
+//sendgrid.getApiKey("");
 var client = new postmark.ServerClient("7a443f1b-3348-4294-b4c0-b036c967285c");
 const cors = require("cors");
 app.use(cors());
