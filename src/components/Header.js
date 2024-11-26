@@ -1,15 +1,13 @@
-import {Container, Row, Col, Stack, Image, Nav, NavLink} from "react-bootstrap"
+import {Container, Row, Col, Stack, Image, Nav, NavLink, Navbar} from "react-bootstrap"
 
 function Header(){
     return(
-        <header >
-            <Container fluid>
-                <Row className="bg-light text-dark p-3">
-                    testRigor Playground 🛝
-                </Row>
-                    
-            </Container> 
-            
+        <header>
+            <Navbar expand="lg" className="bg-body-tertiary">
+                <Container fluid>
+                    <Navbar.Brand href="/" className="mx-4">testRigor Playground 🛝</Navbar.Brand>
+                </Container>
+            </Navbar>
         </header>
     )
 }
