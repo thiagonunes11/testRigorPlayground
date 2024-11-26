@@ -45,7 +45,6 @@
             </div>
         </div>
     </main>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script>
         async function sendEmail() {
             const email = document.getElementById("emailForm").value;
@@ -55,7 +54,7 @@
             }
             document.getElementById("emailForm").value = "";
             try {
-                const response = await fetch("http://localhost:3000/send-email", {
+                const response = await fetch("../netlify/functions/send-email", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ email }),
@@ -77,7 +76,7 @@
             }
             document.getElementById("authForm").value = "";
             try {
-                const response = await fetch("http://localhost:3000/verify-code", {
+                const response = await fetch("../netlify/functions/verify-code", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ typedCode }),
