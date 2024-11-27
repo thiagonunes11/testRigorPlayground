@@ -5,6 +5,8 @@ import QRCodePage from './pages/qrCode'
 import ButtonClick from './pages/buttonClick';
 import Footer from './components/Footer';
 import Header from './components/Header'
+import OpenNewTab from './pages/openNewTab';
+import NewTab from './pages/newTab';
 
 function App() {
     return (
@@ -37,7 +39,6 @@ function App() {
                         <Route path="/mouseHover" element={<MouseHover />} />
                         <Route path="/nestedIframes" element={<NestedIframes />} />
                         <Route path="/ocrCheck" element={<OcrCheck />} />
-                        <Route path="/openNewTab" element={<OpenNewTab />} />
                         <Route path="/radioButtons" element={<RadioButtons />} />
                         <Route path="/regex" element={<Regex />} />
                         <Route path="/tableRelativePosition" element={<RelativePositionTable />} />
@@ -49,6 +50,8 @@ function App() {
                         <Route path="/svgElements" element={<SvgElements />} />
                         <Route path="/video" element={<VideoPlayback />} />
                         <Route path="/waitMessage" element={<WaitForMessage />} /> */}
+                            <Route path="/openNewTab" element={<OpenNewTab />} />
+                            <Route path="/newTab" element={<NewTab />} />
                             <Route path="/qrCode" element={<QRCodePage />} />
                             <Route path="/buttonClick" element={<ButtonClick />} />
                         </Routes>
