@@ -54,7 +54,7 @@
             }
             document.getElementById("emailForm").value = "";
             try {
-                const response = await fetch("http://localhost:3000/send-email", {
+                const response = await fetch("https://tr-playground-email-backend.onrender.com/send-email", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ email }),
@@ -76,7 +76,7 @@
             }
             document.getElementById("authForm").value = "";
             try {
-                const response = await fetch("http://localhost:3000/verify-code", {
+                const response = await fetch("https://tr-playground-email-backend.onrender.com/verify-code", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ typedCode }),
