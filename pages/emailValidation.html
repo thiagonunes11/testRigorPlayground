@@ -46,8 +46,17 @@
         </div>
     </main>
     <script>
+        const validateEmail = (email) => {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email) && email.length < 30;
+        };
+
         async function sendEmail() {
-            const email = document.getElementById("emailForm").value;
+            var email = null;
+            if(validateEmail(document.getElementById("emailForm").value)){
+                email = document.getElementById("emailForm").value;
+            }
+            
             if (!email) {
                 document.getElementById("result").innerText = "Please, insert a valid e-mail address.";
                 return;
@@ -69,7 +78,12 @@
     </script>
     <script>
         async function verifyCode(){
-            const typedCode = document.getElementById("authForm").value;
+            var typedCode = null;
+
+            if(document.getElementById("authForm").value.length <= 6){
+                var typedCode = document.getElementById("authForm").value;
+            }
+            
             if (!typedCode) {
                 document.getElementById("authMatch").innerText = "Please, insert a valid auth code.";
                 return;
@@ -84,8 +98,7 @@
 
                 const result = await response.json();
                 if (response.ok) {
-                    //alert(result.message);
-                    document.getElementById("authMatch").innerText = "The codes match.";
+                    document.getElementById("authMatch").innerText = "The code is correct.";
                 } else {
                     alert("Error: " + result.message);
                 }
