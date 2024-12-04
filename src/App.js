@@ -8,6 +8,7 @@ import QRCodePage from './pages/qrCode'
 import ButtonClick from './pages/buttonClick';
 import OpenNewTab from './pages/openNewTab';
 import NewTab from './pages/newTab';
+import Counter from './pages/counter';
 import DragItem from './pages/dragItem';
 
 function App() {
@@ -28,7 +29,6 @@ function App() {
                         <Route path="/browserPrompt" element={<BrowserPrompt />} />
                         <Route path="/checkbox" element={<Checkbox />} />
                         <Route path="/connectTheDots" element={<ConnectTheDots />} />
-                        <Route path="/counter" element={<Counter />} />
                         <Route path="/datePicker" element={<DatePicker />} />
                         <Route path="/deleteElements" element={<DeleteElements />} />
                         <Route path="/dropdowns" element={<Dropdowns />} />
@@ -51,6 +51,7 @@ function App() {
                         <Route path="/svgElements" element={<SvgElements />} />
                         <Route path="/video" element={<VideoPlayback />} />
                         <Route path="/waitMessage" element={<WaitForMessage />} /> */}
+                            <Route path="/counter" element={<Counter />} />
                             <Route path="/dragItem" element={<DragItem />} />
                             <Route path="/openNewTab" element={<OpenNewTab />} />
                             <Route path="/newTab" element={<NewTab />} />
