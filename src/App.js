@@ -1,12 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Sidebar from './components/Sidebar';
-import QRCodePage from './pages/qrCode'
-import ButtonClick from './pages/buttonClick';
 import Footer from './components/Footer';
 import Header from './components/Header'
+import Sidebar from './components/Sidebar';
+
+import QRCodePage from './pages/qrCode'
+import ButtonClick from './pages/buttonClick';
 import OpenNewTab from './pages/openNewTab';
 import NewTab from './pages/newTab';
+import DragItem from './pages/dragItem';
 
 function App() {
     return (
@@ -29,7 +31,6 @@ function App() {
                         <Route path="/counter" element={<Counter />} />
                         <Route path="/datePicker" element={<DatePicker />} />
                         <Route path="/deleteElements" element={<DeleteElements />} />
-                        <Route path="/dragItem" element={<DragItem />} />
                         <Route path="/dropdowns" element={<Dropdowns />} />
                         <Route path="/dynamicLoginText" element={<DynamicLoginText />} />
                         <Route path="/dynamicTable" element={<DynamicTable />} />
@@ -50,6 +51,7 @@ function App() {
                         <Route path="/svgElements" element={<SvgElements />} />
                         <Route path="/video" element={<VideoPlayback />} />
                         <Route path="/waitMessage" element={<WaitForMessage />} /> */}
+                            <Route path="/dragItem" element={<DragItem />} />
                             <Route path="/openNewTab" element={<OpenNewTab />} />
                             <Route path="/newTab" element={<NewTab />} />
                             <Route path="/qrCode" element={<QRCodePage />} />
