@@ -13,6 +13,7 @@ import Counter from './pages/counter';
 import DragItem from './pages/dragItem';
 import MouseHover from './pages/mouseHover';
 import OcrCheck from './pages/ocrCheck';
+import FileUpload from './pages/fileUpload';
 
 function App() {
     return (
@@ -37,7 +38,6 @@ function App() {
                         <Route path="/dropdowns" element={<Dropdowns />} />
                         <Route path="/dynamicLoginText" element={<DynamicLoginText />} />
                         <Route path="/dynamicTable" element={<DynamicTable />} />
-                        <Route path="/fileUpload" element={<FileUpload />} />
                         <Route path="/longClick" element={<LongClick />} />
                         <Route path="/modalPopup" element={<ModalPopup />} />
                         <Route path="/nestedIframes" element={<NestedIframes />} />
@@ -60,6 +60,7 @@ function App() {
                             <Route path="/newTab" element={<NewTab />} />
                             <Route path="/qrCode" element={<QRCodePage />} />
                             <Route path="/buttonClick" element={<ButtonClick />} />
+                            <Route path="/fileUpload" element={<FileUpload />} />
                         </Routes>
                     </div>
                 </div>
