@@ -10,6 +10,7 @@ import OpenNewTab from './pages/openNewTab';
 import NewTab from './pages/newTab';
 import Counter from './pages/counter';
 import DragItem from './pages/dragItem';
+import MouseHover from './pages/mouseHover';
 
 function App() {
     return (
@@ -37,7 +38,6 @@ function App() {
                         <Route path="/fileUpload" element={<FileUpload />} />
                         <Route path="/longClick" element={<LongClick />} />
                         <Route path="/modalPopup" element={<ModalPopup />} />
-                        <Route path="/mouseHover" element={<MouseHover />} />
                         <Route path="/nestedIframes" element={<NestedIframes />} />
                         <Route path="/ocrCheck" element={<OcrCheck />} />
                         <Route path="/radioButtons" element={<RadioButtons />} />
@@ -53,6 +53,7 @@ function App() {
                         <Route path="/waitMessage" element={<WaitForMessage />} /> */}
                             <Route path="/counter" element={<Counter />} />
                             <Route path="/dragItem" element={<DragItem />} />
+                            <Route path="/mouseHover" element={<MouseHover />} />
                             <Route path="/openNewTab" element={<OpenNewTab />} />
                             <Route path="/newTab" element={<NewTab />} />
                             <Route path="/qrCode" element={<QRCodePage />} />
