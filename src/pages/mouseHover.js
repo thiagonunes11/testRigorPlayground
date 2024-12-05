@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import Prompt from '../components/Prompt.js'
 import Demo from '../components/Demo.js';
-import "bootstrap/dist/css/bootstrap.min.css";
 
 const MouseHover = () => {
     const [isHovering, setIsHovering] = useState(false);
