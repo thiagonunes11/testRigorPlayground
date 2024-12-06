@@ -48,7 +48,7 @@
     <script>
         const validateEmail = (email) => {
             const emailRegex = /^@?[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailRegex.test(email) && email.length < 30;
+            return emailRegex.test(email) && email.length < 60;
         };
 
         async function sendEmail() {
