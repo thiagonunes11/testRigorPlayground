@@ -189,6 +189,12 @@ const demos = [
         description: "This demo allows the user to play a sample video file to validate that a video is playing.",
     },
     {
+        title: "Verify Code",
+        url: "/verifyCode",
+        name: "Code Verification",
+        description: "This demo allow the user to check a verification code",
+    },
+    {
         title: "Wait for the Message",
         url: "/waitMessage",
         name: "Wait five seconds for the message.",

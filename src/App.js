@@ -15,6 +15,7 @@ import MouseHover from './pages/mouseHover';
 import OcrCheck from './pages/ocrCheck';
 import FileUpload from './pages/fileUpload';
 import FileDownload from './pages/fileDownload';
+import VerifyCode from './pages/verifyCode';
 
 function App() {
     return (
@@ -53,6 +54,7 @@ function App() {
                         <Route path="/svgElements" element={<SvgElements />} />
                         <Route path="/video" element={<VideoPlayback />} />
                         <Route path="/waitMessage" element={<WaitForMessage />} /> */}
+                            <Route path="/verifyCode" element={<VerifyCode />} />
                             <Route path="/fileDownload" element={<FileDownload />} />
                             <Route path="/counter" element={<Counter />} />
                             <Route path="/dragItem" element={<DragItem />} />
