@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import "bootstrap/dist/css/bootstrap.min.css";
 import { QRCodeCanvas } from 'qrcode.react';
 import Prompt from '../components/Prompt.js'
 import Demo from '../components/Demo.js';

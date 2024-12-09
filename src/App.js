@@ -1,4 +1,5 @@
 import React from 'react';
+import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Footer from './components/Footer';
 import Header from './components/Header'
@@ -11,6 +12,10 @@ import NewTab from './pages/newTab';
 import Counter from './pages/counter';
 import DragItem from './pages/dragItem';
 import MouseHover from './pages/mouseHover';
+import OcrCheck from './pages/ocrCheck';
+import FileUpload from './pages/fileUpload';
+import FileDownload from './pages/fileDownload';
+import VerifyCode from './pages/verifyCode';
 
 function App() {
     return (
@@ -35,11 +40,9 @@ function App() {
                         <Route path="/dropdowns" element={<Dropdowns />} />
                         <Route path="/dynamicLoginText" element={<DynamicLoginText />} />
                         <Route path="/dynamicTable" element={<DynamicTable />} />
-                        <Route path="/fileUpload" element={<FileUpload />} />
                         <Route path="/longClick" element={<LongClick />} />
                         <Route path="/modalPopup" element={<ModalPopup />} />
                         <Route path="/nestedIframes" element={<NestedIframes />} />
-                        <Route path="/ocrCheck" element={<OcrCheck />} />
                         <Route path="/radioButtons" element={<RadioButtons />} />
                         <Route path="/regex" element={<Regex />} />
                         <Route path="/tableRelativePosition" element={<RelativePositionTable />} />
@@ -51,13 +54,17 @@ function App() {
                         <Route path="/svgElements" element={<SvgElements />} />
                         <Route path="/video" element={<VideoPlayback />} />
                         <Route path="/waitMessage" element={<WaitForMessage />} /> */}
+                            <Route path="/verifyCode" element={<VerifyCode />} />
+                            <Route path="/fileDownload" element={<FileDownload />} />
                             <Route path="/counter" element={<Counter />} />
                             <Route path="/dragItem" element={<DragItem />} />
                             <Route path="/mouseHover" element={<MouseHover />} />
                             <Route path="/openNewTab" element={<OpenNewTab />} />
+                            <Route path="/ocrCheck" element={<OcrCheck />} />
                             <Route path="/newTab" element={<NewTab />} />
                             <Route path="/qrCode" element={<QRCodePage />} />
                             <Route path="/buttonClick" element={<ButtonClick />} />
+                            <Route path="/fileUpload" element={<FileUpload />} />
                         </Routes>
                     </div>
                 </div>
