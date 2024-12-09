@@ -14,6 +14,7 @@ import DragItem from './pages/dragItem';
 import MouseHover from './pages/mouseHover';
 import OcrCheck from './pages/ocrCheck';
 import FileUpload from './pages/fileUpload';
+import FileDownload from './pages/fileDownload';
 
 function App() {
     return (
@@ -52,6 +53,7 @@ function App() {
                         <Route path="/svgElements" element={<SvgElements />} />
                         <Route path="/video" element={<VideoPlayback />} />
                         <Route path="/waitMessage" element={<WaitForMessage />} /> */}
+                            <Route path="/fileDownload" element={<FileDownload />} />
                             <Route path="/counter" element={<Counter />} />
                             <Route path="/dragItem" element={<DragItem />} />
                             <Route path="/mouseHover" element={<MouseHover />} />
