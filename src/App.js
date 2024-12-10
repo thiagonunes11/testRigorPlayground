@@ -16,6 +16,7 @@ import OcrCheck from './pages/ocrCheck';
 import FileUpload from './pages/fileUpload';
 import FileDownload from './pages/fileDownload';
 import VerifyCode from './pages/verifyCode';
+import ShoppingCart from './pages/shoppingCart';
 
 function App() {
     return (
@@ -49,11 +50,11 @@ function App() {
                         <Route path="/rightClick" element={<RightClick />} />
                         <Route path="/scrollDown" element={<ScrollDown />} />
                         <Route path="/shadowDom" element={<ShadowDom />} />
-                        <Route path="/shoppingCart" element={<ShoppingCart />} />
                         <Route path="/similarPages" element={<SimilarPages />} />
                         <Route path="/svgElements" element={<SvgElements />} />
                         <Route path="/video" element={<VideoPlayback />} />
                         <Route path="/waitMessage" element={<WaitForMessage />} /> */}
+                            <Route path="/shoppingCart" element={<ShoppingCart />} />
                             <Route path="/verifyCode" element={<VerifyCode />} />
                             <Route path="/fileDownload" element={<FileDownload />} />
                             <Route path="/counter" element={<Counter />} />
