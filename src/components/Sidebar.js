@@ -205,17 +205,7 @@ const demos = [
 
 function Sidebar() {
     return (
-        <div
-            style={{
-                width: "200px",
-                background: "#f0f0f0",
-                padding: "10px",
-                height: "100vh", // Altura total da viewport
-                overflowY: "auto", // Barra de rolagem vertical
-                borderRight: "1px solid #ccc", // Delimitação visual
-            }}
-        >
-            <h3>Menu</h3>
+        <div>
             <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                 {demos.map((demo, index) => (
                     <li key={index} style={{ margin: "10px 0" }}>
