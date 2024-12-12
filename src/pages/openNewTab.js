@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Prompt from '../components/Prompt.js'
 import Demo from "../components/Demo.js";
 import { Link } from "react-router-dom";

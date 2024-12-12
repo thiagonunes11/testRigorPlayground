@@ -75,6 +75,12 @@ const demos = [
         description: "This demo contains a table in which its rows change order every time the page is refreshed.",
     },
     {
+        title: "File Download",
+        url: "/fileDownload",
+        name: "Download a file.",
+        description: "This demo allow the user to download a file and check it.",
+    },
+    {
         title: "File Upload",
         url: "/fileUpload",
         name: "Upload a file using the input field.",
@@ -181,6 +187,12 @@ const demos = [
         url: "/video",
         name: "Play a sample video file.",
         description: "This demo allows the user to play a sample video file to validate that a video is playing.",
+    },
+    {
+        title: "Verify Code",
+        url: "/verifyCode",
+        name: "Code Verification",
+        description: "This demo allow the user to check a verification code",
     },
     {
         title: "Wait for the Message",
