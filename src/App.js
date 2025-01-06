@@ -20,6 +20,7 @@ import FileDownload from './pages/fileDownload';
 import VerifyCode from './pages/verifyCode';
 import ShoppingCart from './pages/shoppingCart';
 import WaitForMessage from './pages/waitMessage';
+import DynamicTable from './pages/dynamicTable';
 
 function App() {
     return (
@@ -51,7 +52,6 @@ function App() {
                                     <Route path="/deleteElements" element={<DeleteElements />} />
                                     <Route path="/dropdowns" element={<Dropdowns />} />
                                     <Route path="/dynamicLoginText" element={<DynamicLoginText />} />
-                                    <Route path="/dynamicTable" element={<DynamicTable />} />
                                     <Route path="/longClick" element={<LongClick />} />
                                     <Route path="/modalPopup" element={<ModalPopup />} />
                                     <Route path="/nestedIframes" element={<NestedIframes />} />
@@ -65,6 +65,7 @@ function App() {
                                     <Route path="/svgElements" element={<SvgElements />} />
                                     <Route path="/video" element={<VideoPlayback />} />
                                     */}
+                                    <Route path="/dynamicTable" element={<DynamicTable />} />
                                     <Route path="/waitMessage" element={<WaitForMessage />} />
                                     <Route path="/shoppingCart" element={<ShoppingCart />} />
                                     <Route path="/verifyCode" element={<VerifyCode />} />
