@@ -21,6 +21,7 @@ import VerifyCode from './pages/verifyCode';
 import ShoppingCart from './pages/shoppingCart';
 import WaitForMessage from './pages/waitMessage';
 import DynamicTable from './pages/dynamicTable';
+import TableRelativePosition from './pages/tableRelativePosition';
 
 function App() {
     return (
@@ -57,7 +58,6 @@ function App() {
                                     <Route path="/nestedIframes" element={<NestedIframes />} />
                                     <Route path="/radioButtons" element={<RadioButtons />} />
                                     <Route path="/regex" element={<Regex />} />
-                                    <Route path="/tableRelativePosition" element={<RelativePositionTable />} />
                                     <Route path="/rightClick" element={<RightClick />} />
                                     <Route path="/scrollDown" element={<ScrollDown />} />
                                     <Route path="/shadowDom" element={<ShadowDom />} />
@@ -65,6 +65,7 @@ function App() {
                                     <Route path="/svgElements" element={<SvgElements />} />
                                     <Route path="/video" element={<VideoPlayback />} />
                                     */}
+                                    <Route path="/tableRelativePosition" element={<TableRelativePosition />} />
                                     <Route path="/dynamicTable" element={<DynamicTable />} />
                                     <Route path="/waitMessage" element={<WaitForMessage />} />
                                     <Route path="/shoppingCart" element={<ShoppingCart />} />
