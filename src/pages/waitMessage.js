@@ -27,7 +27,7 @@ function WaitForMessage() {
                     <p className="fs-3">
                         The secret message will appear in {secondsLeft}...
                     </p>
-                    <Collapse in={secondsLeft == 0}>
+                    <Collapse in={secondsLeft === 0}>
                         <div>
                             <Alert variant="success">The secret message is: <strong>banana</strong></Alert>
                         </div>
