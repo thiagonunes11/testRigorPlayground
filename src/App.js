@@ -1,10 +1,10 @@
 import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import {Container, Row, Col, Stack, Image, Nav, NavLink, Navbar} from "react-bootstrap"
+import {Container, Row, Col, Navbar} from "react-bootstrap"
 
 import Footer from './components/Footer';
-import Header from './components/Header'
+//import Header from './components/Header'
 import Sidebar from './components/Sidebar';
 
 import QRCodePage from './pages/qrCode'
