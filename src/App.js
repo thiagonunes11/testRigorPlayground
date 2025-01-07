@@ -52,7 +52,6 @@ function App() {
                                     <Route path="/connectTheDots" element={<ConnectTheDots />} />
                                     <Route path="/datePicker" element={<DatePicker />} />
                                     <Route path="/deleteElements" element={<DeleteElements />} />
-                                    <Route path="/dropdowns" element={<Dropdowns />} />
                                     <Route path="/dynamicLoginText" element={<DynamicLoginText />} />
                                     <Route path="/longClick" element={<LongClick />} />
                                     <Route path="/modalPopup" element={<ModalPopup />} />
