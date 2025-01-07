@@ -22,6 +22,7 @@ import ShoppingCart from './pages/shoppingCart';
 import WaitForMessage from './pages/waitMessage';
 import DynamicTable from './pages/dynamicTable';
 import TableRelativePosition from './pages/tableRelativePosition';
+import Dropdowns from './pages/dropdowns'
 
 function App() {
     return (
@@ -65,6 +66,7 @@ function App() {
                                     <Route path="/svgElements" element={<SvgElements />} />
                                     <Route path="/video" element={<VideoPlayback />} />
                                     */}
+                                    <Route path="/dropdowns" element={<Dropdowns />} />
                                     <Route path="/tableRelativePosition" element={<TableRelativePosition />} />
                                     <Route path="/dynamicTable" element={<DynamicTable />} />
                                     <Route path="/waitMessage" element={<WaitForMessage />} />
