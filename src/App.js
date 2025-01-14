@@ -23,6 +23,7 @@ import WaitForMessage from './pages/waitMessage';
 import DynamicTable from './pages/dynamicTable';
 import TableRelativePosition from './pages/tableRelativePosition';
 import Dropdowns from './pages/dropdowns'
+import VideoPlayer from './pages/video';
 
 function App() {
     return (
@@ -63,7 +64,6 @@ function App() {
                                     <Route path="/shadowDom" element={<ShadowDom />} />
                                     <Route path="/similarPages" element={<SimilarPages />} />
                                     <Route path="/svgElements" element={<SvgElements />} />
-                                    <Route path="/video" element={<VideoPlayback />} />
                                     */}
                                     <Route path="/dropdowns" element={<Dropdowns />} />
                                     <Route path="/tableRelativePosition" element={<TableRelativePosition />} />
@@ -81,6 +81,7 @@ function App() {
                                     <Route path="/qrCode" element={<QRCodePage />} />
                                     <Route path="/buttonClick" element={<ButtonClick />} />
                                     <Route path="/fileUpload" element={<FileUpload />} />
+                                    <Route path="/video" element={<VideoPlayer />} />
                                 </Routes>
                             </div>
                         </Col>
