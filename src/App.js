@@ -23,6 +23,7 @@ import WaitForMessage from './pages/waitMessage';
 import DynamicTable from './pages/dynamicTable';
 import TableRelativePosition from './pages/tableRelativePosition';
 import Dropdowns from './pages/dropdowns'
+import LongClick from './pages/longClick';
 
 function App() {
     return (
@@ -53,7 +54,6 @@ function App() {
                                     <Route path="/datePicker" element={<DatePicker />} />
                                     <Route path="/deleteElements" element={<DeleteElements />} />
                                     <Route path="/dynamicLoginText" element={<DynamicLoginText />} />
-                                    <Route path="/longClick" element={<LongClick />} />
                                     <Route path="/modalPopup" element={<ModalPopup />} />
                                     <Route path="/nestedIframes" element={<NestedIframes />} />
                                     <Route path="/radioButtons" element={<RadioButtons />} />
@@ -65,6 +65,7 @@ function App() {
                                     <Route path="/svgElements" element={<SvgElements />} />
                                     <Route path="/video" element={<VideoPlayback />} />
                                     */}
+                                    <Route path="/longClick" element={<LongClick />} />
                                     <Route path="/dropdowns" element={<Dropdowns />} />
                                     <Route path="/tableRelativePosition" element={<TableRelativePosition />} />
                                     <Route path="/dynamicTable" element={<DynamicTable />} />
