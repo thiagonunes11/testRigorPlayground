@@ -10,9 +10,9 @@ const CheckboxPage = () => {
                 </div>
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '30px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-evenly', padding: '80px' }}>
                 {/* First Box */}
-                <div style={{ border: '1px solid #ccc', borderRadius: '20px', padding: '40px', width: '45%' }}>
+                <div style={{ border: '1px solid #ccc', borderRadius: '20px', padding: '40px', width: '25%' }}>
                     <h3>Checkboxes with Labels</h3>
                     <div>
                         <label>
@@ -27,7 +27,7 @@ const CheckboxPage = () => {
                 </div>
 
                 {/* Second Box */}
-                <div style={{ border: '1px solid #ccc', borderRadius: '20px', padding: '40px', width: '45%' }}>
+                <div style={{ border: '1px solid #ccc', borderRadius: '20px', padding: '40px', width: '25%' }}>
                     <h3>Checkboxes with Numbers</h3>
                     <div>
                         <label>
