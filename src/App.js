@@ -24,6 +24,7 @@ import DynamicTable from './pages/dynamicTable';
 import TableRelativePosition from './pages/tableRelativePosition';
 import Dropdowns from './pages/dropdowns'
 import LongClick from './pages/longClick';
+import ScrollDown from './pages/scrollDown';
 
 function App() {
     return (
@@ -59,12 +60,12 @@ function App() {
                                     <Route path="/radioButtons" element={<RadioButtons />} />
                                     <Route path="/regex" element={<Regex />} />
                                     <Route path="/rightClick" element={<RightClick />} />
-                                    <Route path="/scrollDown" element={<ScrollDown />} />
                                     <Route path="/shadowDom" element={<ShadowDom />} />
                                     <Route path="/similarPages" element={<SimilarPages />} />
                                     <Route path="/svgElements" element={<SvgElements />} />
                                     <Route path="/video" element={<VideoPlayback />} />
                                     */}
+                                    <Route path="/scrollDown" element={<ScrollDown />} />
                                     <Route path="/longClick" element={<LongClick />} />
                                     <Route path="/dropdowns" element={<Dropdowns />} />
                                     <Route path="/tableRelativePosition" element={<TableRelativePosition />} />
