@@ -24,6 +24,7 @@ import DynamicTable from './pages/dynamicTable';
 import TableRelativePosition from './pages/tableRelativePosition';
 import Dropdowns from './pages/dropdowns'
 import VideoPlayer from './pages/video';
+import CheckboxPage from './pages/checkbox';
 
 function App() {
     return (
@@ -49,7 +50,6 @@ function App() {
                                     {/*
                                     <Route path="/audioValidation" element={<AudioValidation />} />
                                     <Route path="/browserPrompt" element={<BrowserPrompt />} />
-                                    <Route path="/checkbox" element={<Checkbox />} />
                                     <Route path="/connectTheDots" element={<ConnectTheDots />} />
                                     <Route path="/datePicker" element={<DatePicker />} />
                                     <Route path="/deleteElements" element={<DeleteElements />} />
@@ -82,6 +82,7 @@ function App() {
                                     <Route path="/buttonClick" element={<ButtonClick />} />
                                     <Route path="/fileUpload" element={<FileUpload />} />
                                     <Route path="/video" element={<VideoPlayer />} />
+                                    <Route path="/checkbox" element={<CheckboxPage />} />
                                 </Routes>
                             </div>
                         </Col>
