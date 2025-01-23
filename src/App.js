@@ -25,6 +25,7 @@ import TableRelativePosition from './pages/tableRelativePosition';
 import Dropdowns from './pages/dropdowns'
 import VideoPlayer from './pages/video';
 import CheckboxPage from './pages/checkbox';
+import RadioButtons from './pages/radioButtons';
 
 function App() {
     return (
@@ -57,7 +58,6 @@ function App() {
                                     <Route path="/longClick" element={<LongClick />} />
                                     <Route path="/modalPopup" element={<ModalPopup />} />
                                     <Route path="/nestedIframes" element={<NestedIframes />} />
-                                    <Route path="/radioButtons" element={<RadioButtons />} />
                                     <Route path="/regex" element={<Regex />} />
                                     <Route path="/rightClick" element={<RightClick />} />
                                     <Route path="/scrollDown" element={<ScrollDown />} />
@@ -83,6 +83,7 @@ function App() {
                                     <Route path="/fileUpload" element={<FileUpload />} />
                                     <Route path="/video" element={<VideoPlayer />} />
                                     <Route path="/checkbox" element={<CheckboxPage />} />
+                                    <Route path="/radioButtons" element={<RadioButtons />} />
                                 </Routes>
                             </div>
                         </Col>
