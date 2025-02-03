@@ -25,6 +25,9 @@ import TableRelativePosition from './pages/tableRelativePosition';
 import Dropdowns from './pages/dropdowns'
 import LongClick from './pages/longClick';
 import ScrollDown from './pages/scrollDown';
+import VideoPlayer from './pages/video';
+import CheckboxPage from './pages/checkbox';
+import RadioButtons from './pages/radioButtons';
 
 function App() {
     return (
@@ -50,20 +53,17 @@ function App() {
                                     {/*
                                     <Route path="/audioValidation" element={<AudioValidation />} />
                                     <Route path="/browserPrompt" element={<BrowserPrompt />} />
-                                    <Route path="/checkbox" element={<Checkbox />} />
                                     <Route path="/connectTheDots" element={<ConnectTheDots />} />
                                     <Route path="/datePicker" element={<DatePicker />} />
                                     <Route path="/deleteElements" element={<DeleteElements />} />
                                     <Route path="/dynamicLoginText" element={<DynamicLoginText />} />
                                     <Route path="/modalPopup" element={<ModalPopup />} />
                                     <Route path="/nestedIframes" element={<NestedIframes />} />
-                                    <Route path="/radioButtons" element={<RadioButtons />} />
                                     <Route path="/regex" element={<Regex />} />
                                     <Route path="/rightClick" element={<RightClick />} />
                                     <Route path="/shadowDom" element={<ShadowDom />} />
                                     <Route path="/similarPages" element={<SimilarPages />} />
                                     <Route path="/svgElements" element={<SvgElements />} />
-                                    <Route path="/video" element={<VideoPlayback />} />
                                     */}
                                     <Route path="/scrollDown" element={<ScrollDown />} />
                                     <Route path="/longClick" element={<LongClick />} />
@@ -83,6 +83,9 @@ function App() {
                                     <Route path="/qrCode" element={<QRCodePage />} />
                                     <Route path="/buttonClick" element={<ButtonClick />} />
                                     <Route path="/fileUpload" element={<FileUpload />} />
+                                    <Route path="/video" element={<VideoPlayer />} />
+                                    <Route path="/checkbox" element={<CheckboxPage />} />
+                                    <Route path="/radioButtons" element={<RadioButtons />} />
                                 </Routes>
                             </div>
                         </Col>
