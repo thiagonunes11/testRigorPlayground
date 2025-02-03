@@ -39,13 +39,13 @@ function App() {
                 
                 <Container fluid className="vh-100 pt-5 pb-5">
                     <Row className="h-100 pb-4">
-                        <Col xs={2} className="bg-light sidebar h-100 pt-3 pb-2">
-                            <h3>Demos</h3>
-                            <div style={{ height: '100%', overflowY: 'auto' }}>
+                        <Col xs={3} className="bg-light sidebar h-100 pt-3 pb-2 text-center">
+                            <h4 className='pe-4'>Demos</h4>
+                            <Container fluid className="h-100 w-100 overflow-auto pe-4">
                                 <Sidebar/>
-                            </div>
+                            </Container>
                         </Col>
-                        <Col xs={10} className="bg-white main h-100">
+                        <Col xs={9} className="bg-white main h-100">
                             <div style={{ height: '100%', overflowY: 'auto' }}>
                                 <Routes>
                                     {/*

@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Row } from 'react-bootstrap';
+
 
 const demos = [
     {
@@ -205,17 +207,13 @@ const demos = [
 
 function Sidebar() {
     return (
-        <div>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-                {demos.map((demo, index) => (
-                    <li key={index} style={{ margin: "10px 0" }}>
-                        <Link to={demo.url} title={demo.description}>
-                            {demo.title}
-                        </Link>
-                    </li>
-                ))}
-            </ul>
-        </div>
+        <Row>
+            {demos.map((demo, index) => (
+                <Link to={demo.url} title={demo.description} className='btn btn-primary my-2' role="button">
+                    {demo.title}
+                </Link>
+            ))}
+        </Row>
     );
 }
 
