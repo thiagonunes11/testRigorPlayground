@@ -1,7 +1,16 @@
 const inputFileMultiple     = document.getElementById('inputFileMultiple');
-const inputFileSingle       = document.getElementById('inputFileSingle');
+const inputFileSingle      = document.getElementById('inputFileSingle');
 const inputDirectoryMultiple= document.getElementById('inputDirectoryMultiple');
+const fileTypeSelect       = document.getElementById('fileTypeSelect');
 
+function updateAcceptedFileTypes(fileType) {
+    inputFileSingle.setAttribute('accept', fileType);
+    inputFileMultiple.setAttribute('accept', fileType);
+}
+
+fileTypeSelect.addEventListener('change', (event) => {
+    updateAcceptedFileTypes(event.target.value);
+});
 
 inputFileSingle.addEventListener('change', (event) => {
     checkInputFile(event, 'inputFileSingleAlert');
