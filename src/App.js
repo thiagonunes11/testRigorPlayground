@@ -19,6 +19,7 @@ import FileUpload from './pages/fileUpload';
 import FileDownload from './pages/fileDownload';
 import VerifyCode from './pages/verifyCode';
 import ShoppingCart from './pages/shoppingCart';
+import WaitForMessage from './pages/waitMessage';
 
 function App() {
     return (
@@ -62,8 +63,8 @@ function App() {
                                 <Route path="/shadowDom" element={<ShadowDom />} />
                                 <Route path="/similarPages" element={<SimilarPages />} />
                                 <Route path="/svgElements" element={<SvgElements />} />
-                                <Route path="/video" element={<VideoPlayback />} />
-                                <Route path="/waitMessage" element={<WaitForMessage />} /> */}
+                                <Route path="/video" element={<VideoPlayback />} />*/}
+                                    <Route path="/waitMessage" element={<WaitForMessage />} /> 
                                     <Route path="/shoppingCart" element={<ShoppingCart />} />
                                     <Route path="/verifyCode" element={<VerifyCode />} />
                                     <Route path="/fileDownload" element={<FileDownload />} />
