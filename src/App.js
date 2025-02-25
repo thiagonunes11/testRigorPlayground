@@ -1,10 +1,10 @@
 import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import {Container, Row, Col, Stack, Image, Nav, NavLink, Navbar} from "react-bootstrap"
+import {Container, Row, Col, Navbar} from "react-bootstrap"
 
 import Footer from './components/Footer';
-import Header from './components/Header'
+//import Header from './components/Header'
 import Sidebar from './components/Sidebar';
 
 import QRCodePage from './pages/qrCode'
@@ -20,6 +20,15 @@ import FileDownload from './pages/fileDownload';
 import VerifyCode from './pages/verifyCode';
 import ShoppingCart from './pages/shoppingCart';
 import WaitForMessage from './pages/waitMessage';
+import DynamicTable from './pages/dynamicTable';
+import TableRelativePosition from './pages/tableRelativePosition';
+import Dropdowns from './pages/dropdowns'
+import LongClick from './pages/longClick';
+import ScrollDown from './pages/scrollDown';
+import VideoPlayer from './pages/video';
+import CheckboxPage from './pages/checkbox';
+import RadioButtons from './pages/radioButtons';
+
 
 function App() {
     return (
@@ -43,6 +52,7 @@ function App() {
                             <div style={{ height: '100%', overflowY: 'auto' }}>
                                 <Routes>
                                     {/*
+
                                 <Route path="/audioValidation" element={<AudioValidation />} />
                                 <Route path="/browserPrompt" element={<BrowserPrompt />} />
                                 <Route path="/checkbox" element={<Checkbox />} />
@@ -65,6 +75,26 @@ function App() {
                                 <Route path="/svgElements" element={<SvgElements />} />
                                 <Route path="/video" element={<VideoPlayback />} />*/}
                                     <Route path="/waitMessage" element={<WaitForMessage />} /> 
+
+                                    <Route path="/audioValidation" element={<AudioValidation />} />
+                                    <Route path="/browserPrompt" element={<BrowserPrompt />} />
+                                    <Route path="/connectTheDots" element={<ConnectTheDots />} />
+                                    <Route path="/datePicker" element={<DatePicker />} />
+                                    <Route path="/deleteElements" element={<DeleteElements />} />
+                                    <Route path="/dynamicLoginText" element={<DynamicLoginText />} />
+                                    <Route path="/modalPopup" element={<ModalPopup />} />
+                                    <Route path="/nestedIframes" element={<NestedIframes />} />
+                                    <Route path="/regex" element={<Regex />} />
+                                    <Route path="/rightClick" element={<RightClick />} />
+                                    <Route path="/shadowDom" element={<ShadowDom />} />
+                                    <Route path="/similarPages" element={<SimilarPages />} />
+                                    <Route path="/svgElements" element={<SvgElements />} />
+                                    <Route path="/scrollDown" element={<ScrollDown />} />
+                                    <Route path="/longClick" element={<LongClick />} />
+                                    <Route path="/dropdowns" element={<Dropdowns />} />
+                                    <Route path="/tableRelativePosition" element={<TableRelativePosition />} />
+                                    <Route path="/dynamicTable" element={<DynamicTable />} />
+                                    <Route path="/waitMessage" element={<WaitForMessage />} />
                                     <Route path="/shoppingCart" element={<ShoppingCart />} />
                                     <Route path="/verifyCode" element={<VerifyCode />} />
                                     <Route path="/fileDownload" element={<FileDownload />} />
@@ -77,6 +107,9 @@ function App() {
                                     <Route path="/qrCode" element={<QRCodePage />} />
                                     <Route path="/buttonClick" element={<ButtonClick />} />
                                     <Route path="/fileUpload" element={<FileUpload />} />
+                                    <Route path="/video" element={<VideoPlayer />} />
+                                    <Route path="/checkbox" element={<CheckboxPage />} />
+                                    <Route path="/radioButtons" element={<RadioButtons />} />
                                 </Routes>
                             </div>
                         </Col>
