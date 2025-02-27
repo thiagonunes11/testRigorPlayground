@@ -29,6 +29,7 @@ import VideoPlayer from './pages/video';
 import CheckboxPage from './pages/checkbox';
 import RadioButtons from './pages/radioButtons';
 
+
 function App() {
     return (
         <Router>
@@ -51,6 +52,30 @@ function App() {
                             <div style={{ height: '100%', overflowY: 'auto' }}>
                                 <Routes>
                                     {/*
+
+                                <Route path="/audioValidation" element={<AudioValidation />} />
+                                <Route path="/browserPrompt" element={<BrowserPrompt />} />
+                                <Route path="/checkbox" element={<Checkbox />} />
+                                <Route path="/connectTheDots" element={<ConnectTheDots />} />
+                                <Route path="/datePicker" element={<DatePicker />} />
+                                <Route path="/deleteElements" element={<DeleteElements />} />
+                                <Route path="/dropdowns" element={<Dropdowns />} />
+                                <Route path="/dynamicLoginText" element={<DynamicLoginText />} />
+                                <Route path="/dynamicTable" element={<DynamicTable />} />
+                                <Route path="/longClick" element={<LongClick />} />
+                                <Route path="/modalPopup" element={<ModalPopup />} />
+                                <Route path="/nestedIframes" element={<NestedIframes />} />
+                                <Route path="/radioButtons" element={<RadioButtons />} />
+                                <Route path="/regex" element={<Regex />} />
+                                <Route path="/tableRelativePosition" element={<RelativePositionTable />} />
+                                <Route path="/rightClick" element={<RightClick />} />
+                                <Route path="/scrollDown" element={<ScrollDown />} />
+                                <Route path="/shadowDom" element={<ShadowDom />} />
+                                <Route path="/similarPages" element={<SimilarPages />} />
+                                <Route path="/svgElements" element={<SvgElements />} />
+                                <Route path="/video" element={<VideoPlayback />} />*/}
+                                    <Route path="/waitMessage" element={<WaitForMessage />} /> 
+
                                     <Route path="/audioValidation" element={<AudioValidation />} />
                                     <Route path="/browserPrompt" element={<BrowserPrompt />} />
                                     <Route path="/connectTheDots" element={<ConnectTheDots />} />
@@ -64,7 +89,6 @@ function App() {
                                     <Route path="/shadowDom" element={<ShadowDom />} />
                                     <Route path="/similarPages" element={<SimilarPages />} />
                                     <Route path="/svgElements" element={<SvgElements />} />
-                                    */}
                                     <Route path="/scrollDown" element={<ScrollDown />} />
                                     <Route path="/longClick" element={<LongClick />} />
                                     <Route path="/dropdowns" element={<Dropdowns />} />
