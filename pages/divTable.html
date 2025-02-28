@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Div Table</title>
+
+  <link rel="stylesheet" href="../style/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<style>
+  div.blueTable {
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
+    display: table;
+    border-collapse: collapse;
+    background-color: #fff;
+    color: #333;
+    font-family: Arial, sans-serif;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+  }
+
+  .divTable.blueTable .divTableRow {
+    display: table-row;
+  }
+
+  .divTable.blueTable .divTableCell,
+  .divTable.blueTable .divTableHead {
+    display: table-cell;
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ccc;
+    /* Adds column divisions */
+  }
+
+  .divTable.blueTable .divTableHeading {
+    display: table-header-group;
+    background: #f0f0f0;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .divTable.blueTable .divTableHeading .divTableHead {
+    border-bottom: 2px solid #aaa;
+  }
+
+  .divTable.blueTable .divTableBody {
+    display: table-row-group;
+  }
+
+  .divTable.blueTable .divTableRow:nth-child(even) {
+    background: #f9f9f9;
+  }
+
+  .divTable.blueTable .divTableRow:hover {
+    background: #eee;
+    transition: background 0.2s ease-in-out;
+  }
+</style>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="../index.html">testRigor Playground</a>
+      </div>
+    </nav>
+  </header>
+  <main class="container text-center mt-5">
+    <div class="row justify-content-center">
+      <div class="col-6 border p-2 pt-4">
+        <h1 class="fs-2 fw-bold">HTML Div Table</h1>
+        <p><small>Verify contents of table below.</small></p>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="divTable blueTable">
+        <div class="divTableHeading">
+          <div class="divTableRow">
+            <div class="divTableHead">head1</div>
+            <div class="divTableHead">head2</div>
+            <div class="divTableHead">head3</div>
+          </div>
+        </div>
+        <div class="divTableBody">
+          <div class="divTableRow">
+            <div class="divTableCell">ABC</div>
+            <div class="divTableCell">DEF</div>
+            <div class="divTableCell">GHI</div>
+          </div>
+          <div class="divTableRow">
+            <div class="divTableCell">QWE</div>
+            <div class="divTableCell">RTY</div>
+            <div class="divTableCell">UIO</div>
+          </div>
+          <div class="divTableRow">
+            <div class="divTableCell">MNB</div>
+            <div class="divTableCell">VCX</div>
+            <div class="divTableCell">ASD</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+</body>
+
+</html>
