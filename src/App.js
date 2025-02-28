@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 //import Header from './components/Header'
 import Sidebar from './components/Sidebar';
 
+import HomePage from './pages/homePage'
 import QRCodePage from './pages/qrCode'
 import ButtonClick from './pages/buttonClick';
 import OpenNewTab from './pages/openNewTab';
@@ -31,6 +32,7 @@ function App() {
     return (
         <Router>
             <Routes>
+                <Route path="/" element={<HomePage />} />
                 {/*
                 <Route path="/audioValidation" element={<AudioValidation />} />
                 <Route path="/browserPrompt" element={<BrowserPrompt />} />
