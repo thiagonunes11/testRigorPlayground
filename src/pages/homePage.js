@@ -41,7 +41,7 @@ const HomePage = () => {
                     </Col>
                 </Row>
                 {getDemos()}
-                <div className="mt-5"></div>
+                <div style={{height: "3rem"}}></div>
             </Container>
 
             <Footer />
