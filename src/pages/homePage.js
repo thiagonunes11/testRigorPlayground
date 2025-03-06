@@ -6,8 +6,26 @@ import DemoBlock from '../components/DemoBlock.js';
 import Footer from '../components//Footer';
 //import Header from './Header'
 import Sidebar from '../components/Sidebar';
+import demos from "../store/demos.js"
 
 const HomePage = () => {
+    function getDemos() {
+        // Render the demos in groups of three inside <Row/> components
+        const rows = [];
+
+        for (let i = 0; i < demos.length; i += 3) {
+            const row = (
+                <Row className='mt-4 mb-4'>
+                    {demos.slice(i, i + 3).map((item, index) => (
+                        <DemoBlock key={`item-${i}-${index}`} {...item} />
+                    ))}
+                </Row>
+            );
+            rows.push(row);
+        }
+        return rows;
+    }
+
     return (
         <div>
             <Navbar fixed="top" bg="dark" variant="dark">
@@ -16,21 +34,14 @@ const HomePage = () => {
                 </Container>
             </Navbar>
 
-            <Container className="vh-100 py-5">
+            <Container className="vh-100 py-5 mb-4">
                 <Row>
-                    <Col class="text-center mt-4">
+                    <Col className="text-center mt-4">
                         <h2>Demos</h2>
                     </Col>
                 </Row>
-                <Row className="mt-4">
-                    <DemoBlock title="Dropdowns" instructions="Interact with different dropdowns and observe the changes" to="/dropdowns" />
-                    <DemoBlock title="Relative Position Table" instructions="Answer the questions to move to the next page" to="/tableRelativePosition" />
-                    <DemoBlock title="Dynamic Table" instructions="The rows of the table below changes order every time the page is refreshed" to="/dynamicTable" />
-                </Row>
-                <Row className="mt-4">
-                    <DemoBlock title="Wait for the Message" instructions="In five seconds, the message will appear" to="/waitMessage" />
-                    <DemoBlock title="Shopping Cart" instructions="Search for a random item. This will display items you can press to add to cart." to="/shoppingCart" />
-                </Row>
+                {getDemos()}
+                <div className="mt-5"></div>
             </Container>
 
             <Footer />
