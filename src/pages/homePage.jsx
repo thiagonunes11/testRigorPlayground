@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Navbar } from "react-bootstrap"
 
-import DemoBlock from '../components/DemoBlock.js';
+import DemoBlock from '../components/DemoBlock.jsx';
 
-import Footer from '../components//Footer';
+import Footer from '../components/Footer';
 //import Header from './Header'
 import Sidebar from '../components/Sidebar';
-import demos from "../store/demos.js"
+import demos from "../store/demos.jsx"
 
 const HomePage = () => {
     function getDemos() {
