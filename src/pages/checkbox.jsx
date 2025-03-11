@@ -1,13 +1,14 @@
 import React from 'react';
 import Prompt from '../components/Prompt';
+import Demo from '../components/Demo.jsx';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 
 const CheckboxPage = () => {
     return (
-        
-        <main className="container mt-5">
+        <Demo>
             <Prompt title={"Checkbox"} instructions={"Click on checkboxes in order to select the desired option."}/>
 
-            <div style={{ display: 'flex', justifyContent: 'space-evenly', padding: '80px' }}>
+            <Container style={{ display: 'flex', justifyContent: 'space-evenly', padding: '80px' }}>
                 {/* First Box */}
                 <div style={{ border: '1px solid #ccc', borderRadius: '20px', padding: '40px', width: '25%' }}>
                     <h3>Checkboxes with Labels</h3>
@@ -40,9 +41,8 @@ const CheckboxPage = () => {
                         </label>
                     </div>
                 </div>
-            </div>
-        </main>
-
+            </Container>
+        </Demo>
     );
 };
 
