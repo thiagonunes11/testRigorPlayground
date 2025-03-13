@@ -27,6 +27,36 @@ document.addEventListener('DOMContentLoaded', function() {
       }
   });
 
+  taskList.addEventListener('touchstart', (e) => {
+      draggingItem = e.target.closest('.draggable');
+      if (draggingItem) {
+          draggingItem.classList.add('dragging');
+      }
+  });
+
+  taskList.addEventListener('touchmove', (e) => {
+      e.preventDefault();
+      const touch = e.touches[0];
+      const afterElement = getDragAfterElement(taskList, touch.clientY);
+      const draggable = document.querySelector('.dragging');
+
+      if (afterElement !== draggingItem && taskList.contains(draggable)) {
+          if (afterElement == null) {
+              taskList.appendChild(draggable);
+          } else {
+              taskList.insertBefore(draggable, afterElement);
+          }
+      }
+  });
+
+  taskList.addEventListener('touchend', (e) => {
+      if (draggingItem) {
+          draggingItem.classList.remove('dragging');
+          draggingItem = null;
+          checkOrder();
+      }
+  });
+
   function getDragAfterElement(container, y) {
       const draggableElements = [...container.querySelectorAll('.draggable:not(.dragging)')];
 
@@ -63,7 +93,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   const desiredOrder = [5, 1, 3];
-
 
   const items = Array.from(taskList.querySelectorAll('.draggable'));
   items.sort((a, b) => desiredOrder.indexOf(parseInt(a.id.slice(4))) - desiredOrder.indexOf(parseInt(b.id.slice(4))));
