@@ -156,113 +156,257 @@
 
   <script>
       var demos = [
-          { title: "Drag Item", url: "pages/dragItem.html", name: "Drag the items to change its order",
-          description: "This demo allows the user to click and drag buttons below or above other buttons so you can change the structure order." },
+          { title: "Drag Item",
+          url: "pages/dragItem.html",
+          name: "Drag the items to change its order",
+          description: "This demo allows the user to click and drag buttons below or above other buttons so you can change the structure order.",
+          buttonText: "Open Drag item Page"
+        },
 
-          { title: "Open New Tab", url: "pages/openNewTab.html", name: "Open a new tab with a click",
-          description: "This demo offers the tester a button that they can click. This will open a new browser tab." },
+          { title: "New Tab", 
+          url: "pages/openNewTab.html", 
+          name: "Open a new tab with a click",
+          description: "This demo offers the tester a button that they can click. This will open a new browser tab.",
+          buttonText: "Open New Tab Page"
+        },
 
-          { title: "Mouse Hover", url: "pages/mouseHover.html", name: "Hover the mouse over a button",
-          description: "This demo allows the user to hover the mouse over a button. When the mouse is over the button, text will appear." },
+          { title: "Mouse Hover",
+          url: "pages/mouseHover.html",
+          name: "Hover the mouse over a button",
+          description: "This demo allows the user to hover the mouse over a button. When the mouse is over the button, text will appear.",
+          buttonText: "Open Mouse Hover Page"
+        },
               
-          { title: "Button Click", url: "pages/buttonClick.html", name: "Click the button to reveal the hidden text",
-          description: "This demo allows the user to click a button. When the button is clicked, a hidden text will be revealed." },
+          { title: "Button Click",
+          url: "pages/buttonClick.html",
+          name: "Click the button to reveal the hidden text",
+          description: "This demo allows the user to click a button. When the button is clicked, a hidden text will be revealed.",
+          buttonText: "Open Button Click Page"        
+        },
 
-          { title: "OCR Check", url: "pages/ocrCheck.html", name: "Check the contents with OCR",
-          description: "This demo shows an image to the user, and they must use OCR to check the contents of the image." },
+          { title: "OCR Check",
+          url: "pages/ocrCheck.html",
+          name: "Check the contents with OCR",
+          description: "This demo shows an image to the user, and they must use OCR to check the contents of the image.",
+          buttonText: "Open OCR Check Page"
+        },
 
-          { title: "File Upload", url: "pages/fileUpload.html", name: "Upload a file using the input field.",
-          description: "This demo allows the user to submit files and check their names." },
+          { title: "File Upload",
+          url: "pages/fileUpload.html",
+          name: "Upload a file using the input field.",
+          description: "This demo allows the user to submit files and check their names.",
+          buttonText: "Open File Upload Page"
+        },
 
-          { title: "Counter", url: "pages/counter.html", name: "Simple Counter",
-          description: "This demo allow the user to use a counter of clicks." },
+          { title: "Counter",
+          url: "pages/counter.html",
+          name: "Simple Counter",
+          description: "This demo allow the user to use a counter of clicks.",
+          buttonText: "Open Counter Page"
+        },
 
-          { title: "Download File", url: "pages/downloadFile.html", name: "Download File",
-          description: "This demo allow the user to download a file and check it" },
+          { title: "Download File",
+          url: "pages/downloadFile.html",
+          name: "Download File",
+          description: "This demo allow the user to download a file and check it",
+          buttonText: "Open Download File Page"
+        },
 
-          { title: "Verify Code", url: "pages/firstVerification.html", name: "Code Verification",
-          description: "This demo allow the user to check a verification code" },
+          { title: "Verify Code",
+          url: "pages/firstVerification.html",
+          name: "Code Verification",
+          description: "This demo allow the user to check a verification code",
+          buttonText: "Open Verify Code Page"
+        },
 
-          { title: "Shopping Cart", url: "pages/shoppingCart.html", name: "A simple online shopping page",
-          description: "This demo allow the user to search for a product and add it to the cart." },
+          { title: "Shopping Cart",
+          url: "pages/shoppingCart.html",
+          name: "A simple online shopping page",
+          description: "This demo allow the user to search for a product and add it to the cart.",
+          buttonText: "Open Shopping Cart Page"
+        },
 
-          { title: "Wait for the Message", url: "pages/waitMessage.html", name: "Wait five seconds for the message",
-          description: "In this demo, a message will appear after five seconds." },
+          { title: "Wait for the Message",
+          url: "pages/waitMessage.html",
+          name: "Wait five seconds for the message",
+          description: "In this demo, a message will appear after five seconds.",
+          buttonText: "Open Wait for the Message Page"
+        },
 
-          { title: "Checkbox", url: "pages/checkbox.html", name: "Click on any of the checkboxes",
-          description: "In this demo, the user can check any checkboxes it desired." },
+          { title: "Checkbox",
+          url: "pages/checkbox.html",
+          name: "Click on any of the checkboxes",
+          description: "In this demo, the user can check any checkboxes it desired.",
+          buttonText: "Open Checkbox Page"
+        },
 
-          { title: "Nested Iframes", url: "pages/nestedIframes.html", name: "Inspect and interact with nested iframes",
-          description: "In this demo, there are two levels of iframes, on inside another." },
+          { title: "Nested Iframes",
+          url: "pages/nestedIframes.html",
+          name: "Inspect and interact with nested iframes",
+          description: "In this demo, there are two levels of iframes, on inside another.",
+          buttonText: "Open Nested Iframes Page"
+        },
 
-          { title: "Dynamic Table", url: "pages/dynamicTable.html", name: "A table with rows that changes order.",
-          description: "This demo contains a table in which its rows changes order every time the page is refreshed." },
+          { title: "Dynamic Table",
+          url: "pages/dynamicTable.html",
+          name: "A table with rows that changes order.",
+          description: "This demo contains a table in which its rows changes order every time the page is refreshed.",
+          buttonText: "Open Dynamic Table Page"
+        },
 
-          { title: "Relative Position Table", url: "pages/tableRelativePosition/firstPage.html", name: "A table to use math and relative location to solve questions",
-          description: "This demo contains a table wich contains random numbers to solve simple math questions" },
+          { title: "Relative Position Table",
+          url: "pages/tableRelativePosition/firstPage.html",
+          name: "A table to use math and relative location to solve questions",
+          description: "This demo contains a table wich contains random numbers to solve simple math questions",
+          buttonText: "Open Relative Position Table Page"
+        },
 
-          { title: "HTML Div Table", url: "pages/divTable.html", name: "A table made using a simple div instead of a table class",
-          description: "This demo contains a table wich uses an HTML div instead of using the table class. Useful for testing workflows on different types of tables." },
+          { title: "HTML Div Table",
+          url: "pages/divTable.html",
+          name: "A table made using a simple div instead of a table class",
+          description: "This demo contains a table wich uses an HTML div instead of using the table class. Useful for testing workflows on different types of tables.",
+          buttonText: "Open HTML Div Table Page"
+        },
 
-          { title: "Dropdowns", url: "pages/dropdowns.html", name: "Different dropdowns and selects.",
-          description: "This demo contains multiple dropdowns and selects with different ways of handling them." },
+          { title: "Dropdowns",
+          url: "pages/dropdowns.html",
+          name: "Different dropdowns and selects.",
+          description: "This demo contains multiple dropdowns and selects with different ways of handling them.",
+          buttonText: "Open Dropdowns Page"
+        },
 
-          { title: "Similar Pages", url: "pages/similarPages.html", name: "Two pages with minor differences.",
-          description: "This demo contains two pages that have differences in some elements attributes and tags, but still being nearly identical." },
+          { title: "Similar Pages",
+          url: "pages/similarPages.html",
+          name: "Two pages with minor differences.",
+          description: "This demo contains two pages that have differences in some elements attributes and tags, but still being nearly identical.",
+          buttonText: "Open Similar Pages Page"
+        },
           
-          { title: "Shadow DOM", url: "pages/shadowDom.html", name: "Different implementations of shadow DOMs.",
-          description: "This demo contains different implementations of shadow DOMs." },
+          { title: "Shadow DOM",
+          url: "pages/shadowDom.html",
+          name: "Different implementations of shadow DOMs.",
+          description: "This demo contains different implementations of shadow DOMs.",
+          buttonText: "Open Shadow DOM Page"
+        },
 
-          { title: "Scroll Down", url: "pages/scrollDown.html", name: "Scroll down to find a text.",
-          description: "This demo contains several texts that are widely spaced apart so that you have to scroll to find them." },
+          { title: "Scroll Down",
+          url: "pages/scrollDown.html",
+          name: "Scroll down to find a text.",
+          description: "This demo contains several texts that are widely spaced apart so that you have to scroll to find them.",
+          buttonText: "Open Scroll Down Page"
+        },
 
-          { title: "Delete Elements", url:"pages/deleteElements.html", name: "Dynamic page to delete elements.",
-          description: "This demo contains different elements that can be deleted by clicking in buttons and different elements can be added." },
+          { title: "Delete Elements",
+          url:"pages/deleteElements.html",
+          name: "Dynamic page to delete elements.",
+          description: "This demo contains different elements that can be deleted by clicking in buttons and different elements can be added.",
+          buttonText: "Open Delete Elements Page"
+        },
           
-          { title: "Long Click", url:"pages/longClick.html", name: "Long click button.",
-          description: "This demo contains a button that will say if it was clicked by a long click or a normal click depending on the setting" },
+          { title: "Long Click",
+          url:"pages/longClick.html",
+          name: "Long click button.",
+          description: "This demo contains a button that will say if it was clicked by a long click or a normal click depending on the setting",
+          buttonText: "Open Long Click Page"
+        },
 
-          { title: "Dynamic Login Text", url: "pages/dynamicLoginText.html", name: "Press to login with changing button text.",
-          description: "This demo contains a login screen in which the affirmative button changes the text each refresh." },
+          { title: "Dynamic Login Text",
+          url: "pages/dynamicLoginText.html",
+          name: "Press to login with changing button text.",
+          description: "This demo contains a login screen in which the affirmative button changes the text each refresh.",
+          buttonText: "Open Dynamic Login Text Page"
+        },
 
-          { title: "Radio Buttons", url: "pages/radioButtons.html", name: "Check a radio button to select an option.",
-          description: "This demo displays a select a payment method page where you can select a method by checking a radio button." },
+          { title: "Radio Buttons",
+          url: "pages/radioButtons.html",
+          name: "Check a radio button to select an option.",
+          description: "This demo displays a select a payment method page where you can select a method by checking a radio button." ,
+          buttonText: "Open Radio Buttons Page"
+        },
           
-          { title: "Regex", url: "pages/regex.html", name: "Find text using RegEx.",
-          description: "This demo displays phone number patterns by country for one to search using regex." },
+          { title: "Regex",
+          url: "pages/regex.html",
+          name: "Find text using RegEx.",
+          description: "This demo displays phone number patterns by country for one to search using regex.",
+          buttonText: "Open Regex Page"
+        },
 
-          { title: "Modal Popup", url: "pages/modalPopup.html", name: "Open a modal popup.",
-          description: "This demo displays a modal popup to test the change of focus of the application." },
+          { title: "Modal Popup",
+          url: "pages/modalPopup.html",
+          name: "Open a modal popup.",
+          description: "This demo displays a modal popup to test the change of focus of the application.",
+          buttonText: "Open Modal Popup Page"
+        },
 
-          { title: "SVG Elements", url: "pages/svgElements.html", name: "Interact with SVG elements.",
-          description: "This demo displays a number of interactive SVG elements." },
+          { title: "SVG Elements",
+          url: "pages/svgElements.html",
+          name: "Interact with SVG elements.",
+          description: "This demo displays a number of interactive SVG elements.",
+          buttonText: "Open SVG Elements Page"
+        },
 
-          { title: "Browser Prompt", url: "pages/browserPrompt.html", name: "Enter values to prompts.",
-          description: "This demo allows the user to interact with browser prompt forms." },
+          { title: "Browser Prompt",
+          url: "pages/browserPrompt.html",
+          name: "Enter values to prompts.",
+          description: "This demo allows the user to interact with browser prompt forms.",
+          buttonText: "Open Browser Prompt Page"
+        },
 
-          { title: "Connect the Dots", url: "pages/connectTheDots.html", name: "Click and drag in a canvas.",
-          description: "This demo allows the user to draw on canvas by connecting the dots." },
+          { title: "Connect the Dots",
+          url: "pages/connectTheDots.html",
+          name: "Click and drag in a canvas.",
+          description: "This demo allows the user to draw on canvas by connecting the dots.",
+          buttonText: "Open Connect the Dots Page"
+        },
 
-          { title: "Date Picker", url: "pages/datePicker.html", name: "Choose a date on a date picker.",
-          description: "This demo displays a date picker, where you can choose a date in it and see the value reflected on the field." },
+          { title: "Date Picker",
+          url: "pages/datePicker.html",
+          name: "Choose a date on a date picker.",
+          description: "This demo displays a date picker, where you can choose a date in it and see the value reflected on the field.",
+          buttonText: "Open Date Picker Page"
+        },
           
-          { title: "QR Code", url: "pages/qrCode.html", name: "Generate a QR Code and validate its content.",
-          description: "This demo allows the user to generate a QR Code, which then can be used to validate the QR Code scanning functionality." },
+          { title: "QR Code",
+          url: "pages/qrCode.html",
+          name: "Generate a QR Code and validate its content.",
+          description: "This demo allows the user to generate a QR Code, which then can be used to validate the QR Code scanning functionality.",
+          buttonText: "Open QR Code Page"
+        },
 
-          { title: "Right Click", url: "pages/rightClick.html", name: "Right click a button.",
-          description: "This demo displays a button which will change its contents when right clicked with the mouse." },
+          { title: "Right Click",
+          url: "pages/rightClick.html",
+          name: "Right click a button.",
+          description: "This demo displays a button which will change its contents when right clicked with the mouse.",
+          buttonText: "Open Right Click Page"
+        },
           
-          { title: "Audio Validation", url: "pages/audioValidation.html", name: "Record and check if the audios match.",
-          description: "This demo contains audio files and URLs for recording and validating if they match." },
+          { title: "Audio Validation",
+          url: "pages/audioValidation.html",
+          name: "Record and check if the audios match.",
+          description: "This demo contains audio files and URLs for recording and validating if they match.",
+          buttonText: "Open Audio Validation Page"
+        },
           
-          { title: "Video Playback", url: "pages/video.html", name: "Play a sample video file.",
-          description: "This demo allows the user to play a sample video file, which can be used to validate that a video is playing. The video in question is a clip from the short-film 'Big Buck Bunny', by the Blender Foundation. It is licensed under CC BY 3.0." },
+          { title: "Video Playback",
+          url: "pages/video.html",
+          name: "Play a sample video file.",
+          description: "This demo allows the user to play a sample video file, which can be used to validate that a video is playing. The video in question is a clip from the short-film 'Big Buck Bunny', by the Blender Foundation. It is licensed under CC BY 3.0.",
+          buttonText: "Open Video Playback Page"
+        },
           
-          { title: "Simulated 2FA", url: "pages/emailValidation.html", name: "Send an auth code to an email address and verify if it matches.",
-          description: "This demo allows the user to send an e-mail to validate that it matches the auth code." },
+          { title: "Simulated 2FA",
+          url: "pages/emailValidation.html",
+          name: "Send an auth code to an email address and verify if it matches.",
+          description: "This demo allows the user to send an e-mail to validate that it matches the auth code.",
+          buttonText: "Open Simulated 2FA Page"
+        },
 
-          { title: "Wait for the Image", url: "pages/waitImage.html", name: "Wait five seconds for the image",
-          description: "In this demo, an image will appear after 5 seconds." },
+          { title: "Wait for the Image",
+          url: "pages/waitImage.html",
+          name: "Wait five seconds for the image",
+          description: "In this demo, an image will appear after 5 seconds.",
+          buttonText: "Open Wait for the Image Page"
+        },
         ]
 
       buildDemoBlocks();        
