@@ -1,8 +1,3 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Row } from 'react-bootstrap';
-
-
 const demos = [
     {
         title: "Audio Validation",
@@ -204,17 +199,4 @@ const demos = [
     },
 ];
 
-
-function Sidebar() {
-    return (
-        <Row>
-            {demos.map((demo, index) => (
-                <Link to={demo.url} title={demo.description} className='btn btn-primary my-2' role="button">
-                    {demo.title}
-                </Link>
-            ))}
-        </Row>
-    );
-}
-
-export default Sidebar;
+export default demos;
