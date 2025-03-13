@@ -1,4 +1,4 @@
-function buildRightColumnDemos(title, blockId, name, description, url){
+function buildRightColumnDemos(title, blockId, name, description, url, buttonText){
     var div = document.createElement('div');
     div.innerHTML = `
         <div id="${blockId}" class="row">
@@ -8,7 +8,7 @@ function buildRightColumnDemos(title, blockId, name, description, url){
                     <div class="card-body">
                     <h5 class="card-title">${name}</h5>
                     <p class="card-text">${description}</p>
-                    <a href="${url}" class="btn btn-primary">Check this demo</a>
+                    <a href="${url}" class="btn btn-primary">${buttonText}</a>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@ function buildDemoBlocks(){
     demos.forEach(demo => {
         var demoId = demo.title.replace(/\s/g, '');
         var leftColumnDemo = buildLeftColumnDemos(demo.title, demoId)
-        var demoBlock = buildRightColumnDemos(demo.title, demoId, demo.name, demo.description, demo.url)
+        var demoBlock = buildRightColumnDemos(demo.title, demoId, demo.name, demo.description, demo.url, demo.buttonText)
         
         leftColumnDemos.appendChild(leftColumnDemo);
         rightColumnDemos.appendChild(demoBlock);
