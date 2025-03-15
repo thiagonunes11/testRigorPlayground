@@ -1,10 +1,15 @@
 import { Link } from 'react-router-dom';
 import { Container, Row, Col, Navbar } from "react-bootstrap"
 
-function DemoBlock({ title, description, picture, url }) {
+function DemoBlock({ title, description, picture, url, isDisabled = false }) {
+
     return (
         <Col xs={4}>
-            <Link to={url} title={title} className='btn btn-light border border-danger shadow rounded-0 h-100 w-100' role="button">
+            <Link to={isDisabled ? "" : url}
+                title={title}
+                className={`btn btn-light border border-danger shadow rounded-0 h-100 w-100 ${isDisabled ? 'opacity-50' : ''}`}
+                role="button"
+            >
                 <div className="px-2 pt-3 text-center">
                     <Row>
                         <Col class="d-flex">
@@ -12,7 +17,6 @@ function DemoBlock({ title, description, picture, url }) {
                             <Row class="d-flex align-middle">{description && <p className='text-break'><small>{description}</small></p>}</Row>
                         </Col>
                     </Row>
-
                 </div>
             </Link>
         </Col>
