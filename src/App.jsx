@@ -32,7 +32,8 @@ import SimilarPages from './pages/similarPages';
 import SecondVersion from './pages/similarPages/secondVersion';
 import BrowserPrompt from './pages/browserPrompt';
 import BrowserPromptOnLoad from './pages/browserPromptOnLoad';
-import LongClick from './pages/longClick';
+import LongClick from './pages/longClick'; 
+import DeleteElements from "./pages/deleteElements";
 
 
 function App() {
@@ -80,6 +81,7 @@ function App() {
                 <Route path="/radioButtons" element={<RadioButtons />} /> 
                 <Route path="/rightClick" element={<RightClick />} />
                 <Route path="/longClick" element={<LongClick />} />
+                <Route path="/deleteElements" element={<DeleteElements />} />
                 <Route path="/similarPages" element={<SimilarPages />} />
                 <Route path="/similarPages/secondVersion" element={<SecondVersion />}/>
             </Routes>
