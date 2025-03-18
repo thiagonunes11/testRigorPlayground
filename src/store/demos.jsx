@@ -4,12 +4,14 @@ const demos = [
         url: "/audioValidation",
         name: "Record and check if the audios match.",
         description: "This demo contains audio files and URLs for recording and validating if they match.",
+        isDisabled: true,
     },
     {
         title: "Browser Prompt",
         url: "/browserPrompt",
         name: "Enter values to prompts.",
         description: "This demo allows the user to interact with browser prompt forms.",
+        isDisabled: true,
     },
     {
         title: "Button Click",
@@ -28,6 +30,7 @@ const demos = [
         url: "/connectTheDots",
         name: "Click and drag in a canvas.",
         description: "This demo allows the user to draw on canvas by connecting the dots.",
+        isDisabled: true,
     },
     {
         title: "Counter",
@@ -40,12 +43,14 @@ const demos = [
         url: "/datePicker",
         name: "Choose a date on a date picker.",
         description: "This demo displays a date picker, where you can choose a date in it and see the value reflected on the field.",
+        isDisabled: true,
     },
     {
         title: "Delete Elements",
         url: "/deleteElements",
         name: "Dynamic page to delete elements.",
         description: "This demo contains different elements that can be deleted by clicking buttons, and new elements can be added.",
+        isDisabled: true,
     },
     {
         title: "Drag Item",
@@ -64,6 +69,7 @@ const demos = [
         url: "/dynamicLoginText",
         name: "Press to login with changing button text.",
         description: "This demo contains a login screen in which the affirmative button changes the text each refresh.",
+        isDisabled: true,
     },
     {
         title: "Dynamic Table",
@@ -88,12 +94,14 @@ const demos = [
         url: "/longClick",
         name: "Long click button.",
         description: "This demo contains a button that will detect a long click or a normal click depending on the setting.",
+        isDisabled: true,
     },
     {
         title: "Modal Popup",
         url: "/modalPopup",
         name: "Open a modal popup.",
         description: "This demo displays a modal popup to test the change of focus of the application.",
+        isDisabled: true,
     },
     {
         title: "Mouse Hover",
@@ -106,6 +114,7 @@ const demos = [
         url: "/nestedIframes",
         name: "Inspect and interact with nested iframes.",
         description: "In this demo, there are two levels of iframes, one inside another.",
+        isDisabled: true,
     },
     {
         title: "OCR Check",
@@ -136,6 +145,7 @@ const demos = [
         url: "/regex",
         name: "Find text using RegEx.",
         description: "This demo displays phone number patterns by country for one to search using regex.",
+        isDisabled: true,
     },
     {
         title: "Relative Position Table",
@@ -148,18 +158,21 @@ const demos = [
         url: "/rightClick",
         name: "Right click a button.",
         description: "This demo displays a button which will change its contents when right-clicked with the mouse.",
+        isDisabled: true,
     },
     {
         title: "Scroll Down",
         url: "/scrollDown",
         name: "Scroll down to find a text.",
         description: "This demo contains several texts that are widely spaced apart so that you have to scroll to find them.",
+        isDisabled: true,
     },
     {
         title: "Shadow DOM",
         url: "/shadowDom",
         name: "Different implementations of shadow DOMs.",
         description: "This demo contains different implementations of shadow DOMs.",
+        isDisabled: true,
     },
     {
         title: "Shopping Cart",
@@ -172,12 +185,14 @@ const demos = [
         url: "/similarPages",
         name: "Two pages with minor differences.",
         description: "This demo contains two pages that have differences in some element attributes and tags, but are nearly identical.",
+        isDisabled: true,
     },
     {
         title: "SVG Elements",
         url: "/svgElements",
         name: "Interact with SVG elements.",
         description: "This demo displays a number of interactive SVG elements.",
+        isDisabled: true,
     },
     {
         title: "Video Playback",
