@@ -35,7 +35,7 @@ import BrowserPromptOnLoad from './pages/browserPromptOnLoad';
 import LongClick from './pages/longClick'; 
 import DeleteElements from "./pages/deleteElements";
 import AudioValidation from './pages/audioValidation';
-
+import ConnectTheDots from './pages/connectTheDots';
 function App() {
     return (
         <Router>
@@ -58,6 +58,7 @@ function App() {
                 <Route path="/similarPages" element={<SimilarPages />} />
                 <Route path="/svgElements" element={<SvgElements />} />
                 */}
+                <Route path="/connectTheDots" element={<ConnectTheDots />} />
                 <Route path="/audioValidation" element={<AudioValidation />} />
                 <Route path="/dropdowns" element={<Dropdowns />} />
                 <Route path="/BrowserPrompt" element={<BrowserPrompt />} />
