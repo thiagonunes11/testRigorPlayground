@@ -36,6 +36,8 @@ import LongClick from './pages/longClick';
 import DeleteElements from "./pages/deleteElements";
 import AudioValidation from './pages/audioValidation';
 import ConnectTheDots from './pages/connectTheDots';
+import ModalPopup from './pages/modalPopup';
+
 function App() {
     return (
         <Router>
@@ -58,6 +60,7 @@ function App() {
                 <Route path="/similarPages" element={<SimilarPages />} />
                 <Route path="/svgElements" element={<SvgElements />} />
                 */}
+                <Route path="/modalPopup" element={<ModalPopup />} />
                 <Route path="/connectTheDots" element={<ConnectTheDots />} />
                 <Route path="/audioValidation" element={<AudioValidation />} />
                 <Route path="/dropdowns" element={<Dropdowns />} />
