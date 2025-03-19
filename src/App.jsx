@@ -37,6 +37,7 @@ import DeleteElements from "./pages/deleteElements";
 import AudioValidation from './pages/audioValidation';
 import ConnectTheDots from './pages/connectTheDots';
 import ModalPopup from './pages/modalPopup';
+import ScrollDown from './pages/scrollDown';
 
 function App() {
     return (
@@ -60,6 +61,7 @@ function App() {
                 <Route path="/similarPages" element={<SimilarPages />} />
                 <Route path="/svgElements" element={<SvgElements />} />
                 */}
+                <Route path="/scrollDown" element={<ScrollDown />} />
                 <Route path="/modalPopup" element={<ModalPopup />} />
                 <Route path="/connectTheDots" element={<ConnectTheDots />} />
                 <Route path="/audioValidation" element={<AudioValidation />} />
