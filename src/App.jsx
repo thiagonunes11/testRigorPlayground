@@ -27,6 +27,7 @@ import Dropdowns from './pages/dropdowns'
 import VideoPlayer from './pages/video';
 import CheckboxPage from './pages/checkbox';
 import RadioButtons from './pages/radioButtons';
+import DeleteElements from './pages/deleteElements'
 
 function App() {
     return (
@@ -50,6 +51,8 @@ function App() {
                 <Route path="/similarPages" element={<SimilarPages />} />
                 <Route path="/svgElements" element={<SvgElements />} />
                 */}
+                <Route path="/deleteElements" element={<DeleteElements />} />
+                <Route path="/dynamicLoginText" element={<DynamicLoginText />} />
                 <Route path="/dropdowns" element={<Dropdowns />} />
                 <Route path="/tableRelativePosition" element={<TableRelativePosition />} />
                 <Route path="/dynamicTable" element={<DynamicTable />} />

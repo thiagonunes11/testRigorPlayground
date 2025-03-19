@@ -50,7 +50,6 @@ const demos = [
         url: "/deleteElements",
         name: "Dynamic page to delete elements.",
         description: "This demo contains different elements that can be deleted by clicking buttons, and new elements can be added.",
-        isDisabled: true,
     },
     {
         title: "Drag Item",
