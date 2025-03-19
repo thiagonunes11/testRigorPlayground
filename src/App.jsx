@@ -39,6 +39,7 @@ import ConnectTheDots from './pages/connectTheDots';
 import ModalPopup from './pages/modalPopup';
 import ScrollDown from './pages/scrollDown';
 import DynamicLoginText from './pages/dynamicLoginText';
+import SvgElements from './pages/svgElements'
 
 function App() {
     return (
@@ -62,6 +63,7 @@ function App() {
                 <Route path="/similarPages" element={<SimilarPages />} />
                 <Route path="/svgElements" element={<SvgElements />} />
                 */}
+                <Route path="/svgElements" element={<SvgElements />} />
                 <Route path="/dynamicLoginText" element={<DynamicLoginText />} />
                 <Route path="/scrollDown" element={<ScrollDown />} />
                 <Route path="/modalPopup" element={<ModalPopup />} />
