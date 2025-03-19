@@ -4,7 +4,7 @@ import { Container, Row, Col, Navbar } from "react-bootstrap"
 function DemoBlock({ title, description, picture, url, isDisabled = false }) {
 
     return (
-        <Col sm={12} md={4} className='mb-md-0 mb-3'>
+        <Col xs={6} sm={4} className='mb-3'>
             <Link to={isDisabled ? "" : url}
                 title={title}
                 className={`btn btn-light border border-danger shadow rounded-0 h-100 w-100 ${isDisabled ? 'opacity-50' : ''}`}
