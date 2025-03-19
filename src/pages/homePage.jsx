@@ -15,7 +15,7 @@ const HomePage = () => {
 
         for (let i = 0; i < demos.length; i += 3) {
             const row = (
-                <Row className='mt-4 mb-4'>
+                <Row className='mb-sm-4 mx-3'>
                     {demos.slice(i, i + 3).map((item, index) => (
                         <DemoBlock key={`item-${i}-${index}`} {...item} />
                     ))}
