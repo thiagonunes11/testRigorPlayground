@@ -9,23 +9,6 @@ import Sidebar from '../components/Sidebar';
 import demos from "../store/demos.jsx"
 
 const HomePage = () => {
-    function getDemos() {
-        // Render the demos in groups of three inside <Row/> components
-        const rows = [];
-
-        for (let i = 0; i < demos.length; i += 3) {
-            const row = (
-                <Row className='mb-sm-4 mx-3'>
-                    {demos.slice(i, i + 3).map((item, index) => (
-                        <DemoBlock key={`item-${i}-${index}`} {...item} />
-                    ))}
-                </Row>
-            );
-            rows.push(row);
-        }
-        return rows;
-    }
-
     return (
         <div>
             <Navbar fixed="top" bg="dark" variant="dark">
@@ -40,7 +23,11 @@ const HomePage = () => {
                         <h2>Demos</h2>
                     </Col>
                 </Row>
-                {getDemos()}
+                <Row className='mb-sm-4 mx-3'>
+                    {demos.map((item, index) => (
+                        <DemoBlock key={`item-${index}`} {...item} />
+                    ))}
+                </Row>
                 <div style={{height: "3rem"}}></div>
             </Container>
 
