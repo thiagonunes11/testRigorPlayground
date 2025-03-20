@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Demo from "../components/Demo.jsx";
+import Demo from "../../components/Demo.jsx";
 
-function SimilarPages() {
+function SecondVersion() {
   const [author, setAuthor] = useState("");
   const [showResult, setShowResult] = useState(false);
 
@@ -15,8 +15,6 @@ function SimilarPages() {
     <Demo>
     <div>
 
-
-      <main className="container mt-5">
         <div className="row justify-content-center text-center mb-5">
           <div className="col-6 border p-2">
             <h1 className="fs-2 fw-bold mt-3 mb-4">Similar Pages</h1>
@@ -35,16 +33,18 @@ function SimilarPages() {
               <div className="card-header">
                 <ul className="nav nav-tabs card-header-tabs">
                   <li className="nav-item">
-                    <a className="nav-link active" aria-current="true">First version</a>
+                    <a className="nav-link" href="../similarPages.html">First version</a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="similarPages/secondVersion">Second version</a>
+                    <a className="nav-link active" aria-disabled="true">Second version</a>
                   </li>
                 </ul>
               </div>
               <div className="card-body">
                 <h5 className="card-title">Check by the author</h5>
-                <p className="card-text">Here you can check if our library has a book by the author's name.</p>
+                <p className="card-text" title="Enter the name into the field!">
+                  Here you can check if our library has a book by the author's name.
+                </p>
 
                 <div className="row justify-content-center my-5">
                   <div className="col-8">
@@ -56,7 +56,7 @@ function SimilarPages() {
                         value={author}
                         onChange={(e) => setAuthor(e.target.value)}
                       />
-                      <button className="btn btn-outline-primary" type="button" onClick={handleSearch}>
+                      <button className="btn btn-outline-primary" type="button" data-qa="search-button" onClick={handleSearch}>
                         Search
                       </button>
                     </div>
@@ -72,10 +72,9 @@ function SimilarPages() {
             </div>
           </div>
         </div>
-      </main>
     </div>
     </Demo>
   );
 }
 
-export default SimilarPages;
+export default SecondVersion;

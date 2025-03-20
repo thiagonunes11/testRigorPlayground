@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import bunnyVideo from '../assets/bunny.mp4'
+
 
 const VideoPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);

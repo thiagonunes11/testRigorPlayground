@@ -27,6 +27,26 @@ import Dropdowns from './pages/dropdowns'
 import VideoPlayer from './pages/video';
 import CheckboxPage from './pages/checkbox';
 import RadioButtons from './pages/radioButtons';
+import RightClick from './pages/rightClick';
+import SimilarPages from './pages/similarPages';
+import SecondVersion from './pages/similarPages/secondVersion';
+import BrowserPrompt from './pages/browserPrompt';
+import BrowserPromptOnLoad from './pages/browserPromptOnLoad';
+import LongClick from './pages/longClick'; 
+import DeleteElements from "./pages/deleteElements";
+import AudioValidation from './pages/audioValidation';
+import ConnectTheDots from './pages/connectTheDots';
+import ModalPopup from './pages/modalPopup';
+import ScrollDown from './pages/scrollDown';
+import Regex from './pages/regex';
+import DynamicLoginText from './pages/dynamicLoginText';
+import SvgElements from './pages/svgElements'
+import ShadowDom from './pages/shadowDom'
+import NestedIframes from './pages/nestedIframes'
+import FirstIframe from './pages/nestedIframes/firstIframe'
+import FirstIframeSecret from './pages/nestedIframes/firstIframeSecret'
+import SecondIframe from './pages/nestedIframes/secondIframe'
+import SecondIframeSecret from './pages/nestedIframes/secondIframeSecret'
 
 function App() {
     return (
@@ -50,7 +70,19 @@ function App() {
                 <Route path="/similarPages" element={<SimilarPages />} />
                 <Route path="/svgElements" element={<SvgElements />} />
                 */}
+
+                <Route path="/shadowDom" element={<ShadowDom />} />     
+                <Route path="/regex" element={<Regex />} /> 
+                <Route path="/svgElements" element={<SvgElements />} /> 
+                <Route path="/nestedIframes" element={<NestedIframes />} />
+                <Route path="/dynamicLoginText" element={<DynamicLoginText />} />
+                <Route path="/scrollDown" element={<ScrollDown />} />
+                <Route path="/modalPopup" element={<ModalPopup />} />
+                <Route path="/connectTheDots" element={<ConnectTheDots />} />
+                <Route path="/audioValidation" element={<AudioValidation />} />
                 <Route path="/dropdowns" element={<Dropdowns />} />
+                <Route path="/BrowserPrompt" element={<BrowserPrompt />} />
+                <Route path="/BrowserPromptOnLoad" element={<BrowserPromptOnLoad />} />
                 <Route path="/tableRelativePosition" element={<TableRelativePosition />} />
                 <Route path="/dynamicTable" element={<DynamicTable />} />
                 <Route path="/waitMessage" element={<WaitForMessage />} />
@@ -68,7 +100,16 @@ function App() {
                 <Route path="/fileUpload" element={<FileUpload />} />
                 <Route path="/video" element={<VideoPlayer />} />
                 <Route path="/checkbox" element={<CheckboxPage />} />
-                <Route path="/radioButtons" element={<RadioButtons />} />
+                <Route path="/radioButtons" element={<RadioButtons />} /> 
+                <Route path="/rightClick" element={<RightClick />} />
+                <Route path="/longClick" element={<LongClick />} />
+                <Route path="/deleteElements" element={<DeleteElements />} />
+                <Route path="/similarPages" element={<SimilarPages />} />
+                <Route path="/similarPages/secondVersion" element={<SecondVersion />}/>
+                <Route path="/nestedIframes/firstIframe" element={<FirstIframe />} />
+                <Route path="/nestedIframes/firstIframesecret" element={<FirstIframeSecret />} />
+                <Route path="/nestedIframes/secondIframe" element={<SecondIframe />} />
+                <Route path="/nestedIframes/secondIframeSecret" element={<SecondIframeSecret />} />
             </Routes>
         </Router>
     );
