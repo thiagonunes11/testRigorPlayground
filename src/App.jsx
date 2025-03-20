@@ -38,8 +38,14 @@ import AudioValidation from './pages/audioValidation';
 import ConnectTheDots from './pages/connectTheDots';
 import ModalPopup from './pages/modalPopup';
 import ScrollDown from './pages/scrollDown';
+import Regex from './pages/regex';
 import DynamicLoginText from './pages/dynamicLoginText';
 import SvgElements from './pages/svgElements'
+import NestedIframes from './pages/nestedIframes'
+import FirstIframe from './pages/nestedIframes/firstIframe'
+import FirstIframeSecret from './pages/nestedIframes/firstIframeSecret'
+import SecondIframe from './pages/nestedIframes/secondIframe'
+import SecondIframeSecret from './pages/nestedIframes/secondIframeSecret'
 
 function App() {
     return (
@@ -63,7 +69,10 @@ function App() {
                 <Route path="/similarPages" element={<SimilarPages />} />
                 <Route path="/svgElements" element={<SvgElements />} />
                 */}
-                <Route path="/svgElements" element={<SvgElements />} />
+                
+                <Route path="/regex" element={<Regex />} /> 
+                <Route path="/svgElements" element={<SvgElements />} /> 
+                <Route path="/nestedIframes" element={<NestedIframes />} />
                 <Route path="/dynamicLoginText" element={<DynamicLoginText />} />
                 <Route path="/scrollDown" element={<ScrollDown />} />
                 <Route path="/modalPopup" element={<ModalPopup />} />
@@ -95,6 +104,10 @@ function App() {
                 <Route path="/deleteElements" element={<DeleteElements />} />
                 <Route path="/similarPages" element={<SimilarPages />} />
                 <Route path="/similarPages/secondVersion" element={<SecondVersion />}/>
+                <Route path="/nestedIframes/firstIframe" element={<FirstIframe />} />
+                <Route path="/nestedIframes/firstIframesecret" element={<FirstIframeSecret />} />
+                <Route path="/nestedIframes/secondIframe" element={<SecondIframe />} />
+                <Route path="/nestedIframes/secondIframeSecret" element={<SecondIframeSecret />} />
             </Routes>
         </Router>
     );
