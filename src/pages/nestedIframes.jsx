@@ -1,6 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap (if not added globally)
 
+
 const NestedIframes = () => {
   return (
     <>
@@ -40,7 +41,7 @@ const NestedIframes = () => {
             </p>
 
             <iframe
-              src="nestedIframes/firstIframe.jsx"
+              src={FirstIframe.jsx}
               id="firstIframe"
               title="First Nested Iframe"
               className="h-100 w-100"

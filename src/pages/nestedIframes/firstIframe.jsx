@@ -1,7 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap if not globally added
 
-const FirstIframe = () => {
+const FirstNestedIframe = () => {
   return (
     <main className="container m-3 bg-body-secondary">
       <div className="row">
@@ -28,4 +28,4 @@ const FirstIframe = () => {
   );
 };
 
-export default FirstIframe;
+export default FirstNestedIframe;
