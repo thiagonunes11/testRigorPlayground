@@ -41,6 +41,7 @@ import ScrollDown from './pages/scrollDown';
 import Regex from './pages/regex';
 import DynamicLoginText from './pages/dynamicLoginText';
 import SvgElements from './pages/svgElements'
+import ShadowDom from './pages/shadowDom'
 import NestedIframes from './pages/nestedIframes'
 import FirstIframe from './pages/nestedIframes/firstIframe'
 import FirstIframeSecret from './pages/nestedIframes/firstIframeSecret'
@@ -69,7 +70,8 @@ function App() {
                 <Route path="/similarPages" element={<SimilarPages />} />
                 <Route path="/svgElements" element={<SvgElements />} />
                 */}
-                
+
+                <Route path="/shadowDom" element={<ShadowDom />} />     
                 <Route path="/regex" element={<Regex />} /> 
                 <Route path="/svgElements" element={<SvgElements />} /> 
                 <Route path="/nestedIframes" element={<NestedIframes />} />
