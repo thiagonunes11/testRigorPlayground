@@ -1,31 +1,33 @@
-import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap if not globally added
+import React from 'react';
 
-const FirstNestedIframe = () => {
+const FirstIframe = () => {
   return (
-    <main className="container m-3 bg-body-secondary">
-      <div className="row">
-        <div className="col">
-          <p>
-            But this text is inside the first iframe. Unique word:{" "}
-            <a href="firstIframeSecret.html">tapioca</a>
-          </p>
+    <div className="bg-body-secondary">
+      <main className="container m-3">
+        <div className="row">
+          <div className="col">
+            <p>
+              But this text is inside the first iframe. Unique word:{' '}
+              <a href="./firstIframeSecret">tapioca</a>
+              
+            </p>
+          </div>
         </div>
-      </div>
 
-      <div className="row">
-        <div className="col">
-          <iframe
-            src="secondIframe.html"
-            id="secondIframe"
-            title="First Nested Iframe"
-            className="h-100 w-100"
-            allowFullScreen
-          ></iframe>
+        <div className="row" style={{ height: '500px' }}>
+          <div className="col h-100">
+            {/* Use iframe for isolation */}
+            <iframe
+              src="./secondIframe"
+              title="Second Iframe"
+              className="h-100 w-100"
+              allowFullScreen
+            ></iframe>
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </div>
   );
 };
 
-export default FirstNestedIframe;
+export default FirstIframe;

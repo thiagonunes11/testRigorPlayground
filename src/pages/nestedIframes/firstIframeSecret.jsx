@@ -1,5 +1,5 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap if not globally added
+import SecondIframe from './secondIframe'; // Import the SecondIframe component
 
 const FirstIframeSecret = () => {
   return (
@@ -10,17 +10,13 @@ const FirstIframeSecret = () => {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col">
-          <iframe
-            src="secondIframe.html"
-            id="secondIframe"
-            title="First Nested Iframe"
-            className="h-100 w-100"
-            allowFullScreen
-          ></iframe>
+      <div className="row" style={{ height: '500px' }}> {/* Add a fixed height */}
+          <div className="col h-100"> {/* Ensure the column takes full height */}
+            {/* Render the SecondIframe component */}
+            <iframe src="http://localhost:5173/nestedIframes/secondIframe" width="90%" height="40%">
+            </iframe>
+          </div>
         </div>
-      </div>
     </main>
   );
 };
