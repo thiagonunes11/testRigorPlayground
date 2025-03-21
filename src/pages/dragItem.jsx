@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
-import Prompt from '../components/Prompt.jsx';
+import "../styles/dragItem.css"
+import Prompt from '../components/Prompt.jsx'
 import Demo from '../components/Demo.jsx';
+
 
 const DragItem = () => {
     const [draggingItem, setDraggingItem] = useState(null);
@@ -32,11 +34,11 @@ const DragItem = () => {
 
         messageElement.textContent = isCorrectOrder ? 'Correct' : 'Incorrect';
         messageElement.className = isCorrectOrder ? 'mt-3 alert alert-success' : 'mt-3 alert alert-danger';
-    };
+    }
 
-    const getTouchAfterElement = (container, y) => {
+    const getDragAfterElement = (container, y) => {
         if (!taskListElement) return null;
-
+        
         const draggableElements = [...taskListElement.querySelectorAll('.draggable:not(.dragging)')];
 
         if (draggableElements.length === 0) {
@@ -52,37 +54,36 @@ const DragItem = () => {
                 return closest;
             }
         }, { offset: Number.NEGATIVE_INFINITY }).element;
-    };
+    }
 
-    const onTouchStart = (e) => {
-        const target = e.target.closest('.draggable');
-        if (!target) return;
+    const onDragStart = (e) => {
+        setDraggingItem(e.target);
+        e.target.classList.add('dragging');
+    }
 
-        setDraggingItem(target);
-        target.classList.add('dragging');
-    };
-
-    const onTouchMove = (e) => {
+    const onDragEnd = (e) => {
+        setDraggingItem(null);
+        e.target.classList.remove('dragging');
+        checkOrder();
+    }
+  
+    const onDragOver = (e) => {
         e.preventDefault();
-        if (!taskListElement || !draggingItem) return;
+        if (!taskListElement) return;
+        
+        const afterElement = getDragAfterElement(taskListElement, e.clientY);
+        const draggable = taskListElement.querySelector('.dragging');
+        
+        if (!draggable) return;
 
-        const touch = e.touches[0];
-        const afterElement = getTouchAfterElement(taskListElement, touch.clientY);
-
-        if (afterElement === null) {
-            taskListElement.appendChild(draggingItem);
-        } else {
-            taskListElement.insertBefore(draggingItem, afterElement);
+        if (afterElement !== draggingItem) {
+            if (afterElement === null) {
+                taskListElement.appendChild(draggable);
+            } else {
+                taskListElement.insertBefore(draggable, afterElement);
+            }
         }
-    };
-
-    const onTouchEnd = () => {
-        if (draggingItem) {
-            draggingItem.classList.remove('dragging');
-            setDraggingItem(null);
-            checkOrder();
-        }
-    };
+    }
 
     useEffect(() => {
         if (!taskListElement) return;
@@ -93,66 +94,24 @@ const DragItem = () => {
         items.forEach(item => taskListElement.appendChild(item));
     }, [taskListElement]);
 
+  
     return (
         <Demo>
             <Prompt title="Drag Item" instructions="Drag items in the list to put them in order." />
 
-            <style>
-                {`
-                #task-list {
-                    list-style: none;
-                    margin: 0;
-                    padding: 0;
-                }
-
-                .draggable {
-                    padding: 10px;
-                    margin: 5px 0;
-                    background-color: #f8f9fa;
-                    border: 1px solid #ddd;
-                    border-radius: 4px;
-                    text-align: center;
-                    cursor: grab;
-                    user-select: none;
-                }
-
-                .draggable.dragging {
-                    opacity: 0.5;
-                }
-
-                @media (max-width: 768px) {
-                    .col-4 {
-                        width: 100%;
-                        padding: 0 15px;
-                    }
-
-                    .draggable {
-                        font-size: 14px;
-                        padding: 8px;
-                    }
-                }
-                `}
-            </style>
-
-            <div className="row mt-5 justify-content-center text-center">
-                <div className="row justify-content-center">
-                    <div className="col-4 border">
-                        <ul
-                            id="task-list"
-                            className="px-0 py-3"
-                            onTouchStart={onTouchStart}
-                            onTouchMove={onTouchMove}
-                            onTouchEnd={onTouchEnd}
-                        >
-                            <li draggable="true" className="draggable" id="task1">Task 1</li>
-                            <li draggable="true" className="draggable" id="task2">Task 2</li>
-                            <li draggable="true" className="draggable" id="task3">Task 3</li>
-                            <li draggable="true" className="draggable" id="task4">Task 4</li>
-                            <li draggable="true" className="draggable" id="task5">Task 5</li>
-                            <li draggable="true" className="draggable" id="task6">Task 6</li>
-                            <li draggable="true" className="draggable" id="task7">Task 7</li>
+            <div class="row mt-5 justify-content-center text-center">
+                <div class="row justify-content-center">
+                    <div class="col-4 border">
+                        <ul id="task-list" class="px-0 py-3" onDragStart={onDragStart} onDragEnd={onDragEnd} onDragOver={onDragOver}>
+                            <li draggable="true" class="draggable" id="task1">Task 1</li>
+                            <li draggable="true" class="draggable" id="task2">Task 2</li>
+                            <li draggable="true" class="draggable" id="task3">Task 3</li>
+                            <li draggable="true" class="draggable" id="task4">Task 4</li>
+                            <li draggable="true" class="draggable" id="task5">Task 5</li>
+                            <li draggable="true" class="draggable" id="task6">Task 6</li>
+                            <li draggable="true" class="draggable" id="task7">Task 7</li>
                         </ul>
-                        <div id="order-message" className="mt-3 alert alert-info">Waiting for the items to be sorted...</div>
+                        <div id="order-message" class="mt-3 alert alert-info">Waiting for the items to be sorted...</div>
                     </div>
                 </div>
             </div>
