@@ -47,7 +47,7 @@ import FirstIframe from './pages/nestedIframes/firstIframe'
 import FirstIframeSecret from './pages/nestedIframes/firstIframeSecret'
 import SecondIframe from './pages/nestedIframes/secondIframe'
 import SecondIframeSecret from './pages/nestedIframes/secondIframeSecret'
-import DatePicker from './pages/datePicker'
+import DdatePicker from './pages/ddatePicker'
 function App() {
     return (
         <Router>
@@ -70,7 +70,7 @@ function App() {
                 <Route path="/similarPages" element={<SimilarPages />} />
                 <Route path="/svgElements" element={<SvgElements />} />
                 */}
-                <Route path="/datePicker" element={<DatePicker />} />     
+                <Route path="/ddatePicker" element={<DdatePicker />} />     
                 <Route path="/shadowDom" element={<ShadowDom />} />     
                 <Route path="/regex" element={<Regex />} /> 
                 <Route path="/svgElements" element={<SvgElements />} /> 
