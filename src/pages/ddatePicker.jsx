@@ -1,4 +1,3 @@
-<--for this page to work use: npm install react-datepicker --save -->
 
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";

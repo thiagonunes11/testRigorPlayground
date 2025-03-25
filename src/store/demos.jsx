@@ -19,6 +19,12 @@ const demos = [
         description: "This demo allows the user to click a button. When the button is clicked, a hidden text will be revealed.",
     },
     {
+        title: "Camera",
+        url: "/cameraPage",
+        name: "Use your computer as if it where a camera",
+        description: "Follow the requirements and experiment the page capabilities.",
+    },
+    {
         title: "Checkbox",
         url: "/checkbox",
         name: "Click on any of the checkboxes.",
