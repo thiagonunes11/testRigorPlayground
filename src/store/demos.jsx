@@ -19,6 +19,12 @@ const demos = [
         description: "This demo allows the user to click a button. When the button is clicked, a hidden text will be revealed.",
     },
     {
+        title: "Camera",
+        url: "/cameraPage",
+        name: "Use your computer as if it where a camera",
+        description: "Follow the instrudctions and experiment the page capabilities.",
+    },
+    {
         title: "Checkbox",
         url: "/checkbox",
         name: "Click on any of the checkboxes.",
@@ -38,10 +44,10 @@ const demos = [
     },
     {
         title: "Date Picker",
-        url: "/datePicker",
+        url: "/ddatePicker",
         name: "Choose a date on a date picker.",
         description: "This demo displays a date picker, where you can choose a date in it and see the value reflected on the field.",
-        isDisabled: true,
+
     },
     {
         title: "Delete Elements",
@@ -109,7 +115,6 @@ const demos = [
         url: "/nestedIframes",
         name: "Inspect and interact with nested iframes.",
         description: "In this demo, there are two levels of iframes, one inside another.",
-        isDisabled: true,
     },
     {
         title: "OCR Check",

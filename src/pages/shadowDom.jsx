@@ -1,95 +1,108 @@
-import React, { useEffect } from "react";
-import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap if not globally included
-import Demo from "../components/Demo.jsx";
-
-
+import React, { useEffect, useRef } from 'react';
+import Demo from '../components/Demo.jsx';
 const ShadowDOM = () => {
+  const shadowHostRef = useRef(null);
+  const templateShadowRef = useRef(null);
+  const nestedTemplateShadowRef = useRef(null);
+
   useEffect(() => {
-    // Handling First Button Click
-    const firstButton = document.querySelector("body > main > div:nth-child(2) > div > button");
+    // First button functionality
+    const firstButton = document.querySelector(".first-button");
     if (firstButton) {
-      firstButton.addEventListener("click", () => {
-        firstButton.textContent = "First button";
+      firstButton.addEventListener('click', () => {
+        firstButton.textContent = 'First button';
       });
     }
 
-    // Creating a Shadow DOM with JavaScript
-    const host = document.getElementById("shadowDom");
-    if (host && !host.shadowRoot) {
-      const shadow = host.attachShadow({ mode: "open" });
-
-      const firstParagraph = document.createElement("p");
-      firstParagraph.textContent = "And this text is present inside a shadow DOM created with JavaScript.";
-      shadow.appendChild(firstParagraph);
-
-      const secondParagraph = document.createElement("p");
-      secondParagraph.textContent = "The page CSS also does not work here.";
-      shadow.appendChild(secondParagraph);
-
-      const button = document.createElement("button");
-      button.textContent = "No CSS here either";
-      shadow.appendChild(button);
-
-      button.addEventListener("click", () => {
-        button.textContent = "Third button";
+    // Programmatic Shadow DOM creation
+    if (shadowHostRef.current && !shadowHostRef.current.shadowRoot) {
+      const shadow = shadowHostRef.current.attachShadow({ mode: 'open' });
+      
+      shadow.innerHTML = `
+        <p>And this text is present inside a shadow DOM created with javascript.</p>
+        <p>The page CSS also does not work here.</p>
+        <button>No CSS here either</button>
+      `;
+      
+      const button = shadow.querySelector('button');
+      button.addEventListener('click', () => {
+        button.textContent = 'Third button';
       });
+    }
+
+    // Create shadow DOM for template sections
+    if (templateShadowRef.current && !templateShadowRef.current.shadowRoot) {
+      const shadow = templateShadowRef.current.attachShadow({ mode: 'open' });
+      shadow.innerHTML = `
+        <p>This text, however, is present inside a shadow DOM.</p>
+        <p>As you can see, the page CSS does not work here, check the following button:</p>
+        <button>But no CSS here :(</button>
+      `;
+      
+      const button = shadow.querySelector('button');
+      button.addEventListener('click', () => {
+        button.textContent = 'Second button';
+      });
+    }
+
+    // Create nested shadow DOM
+    if (nestedTemplateShadowRef.current && !nestedTemplateShadowRef.current.shadowRoot) {
+      const shadowRoot1 = nestedTemplateShadowRef.current.attachShadow({ mode: 'open' });
+      shadowRoot1.innerHTML = `
+        <p>This text is inside a different template shadow DOM.</p>
+        <div id="nested-level-1"></div>
+      `;
+      
+      const nested1 = shadowRoot1.getElementById('nested-level-1');
+      const shadowRoot2 = nested1.attachShadow({ mode: 'open' });
+      shadowRoot2.innerHTML = `
+        <p>This one is a second level shadow DOM: inside a template that's inside the before mentioned template.</p>
+        <div id="nested-level-2"></div>
+      `;
+      
+      const nested2 = shadowRoot2.getElementById('nested-level-2');
+      const shadowRoot3 = nested2.attachShadow({ mode: 'open' });
+      shadowRoot3.innerHTML = `
+        <p>And this one is third level shadow DOM.</p>
+      `;
     }
   }, []);
 
-  return (
-    <>
-
-      {/* Main Content */}
-      <Demo>
-        <div className="row justify-content-center text-center mb-5">
-          <div className="col-6 border p-2">
-            <h1 className="fs-2 fw-bold mt-3 mb-4">Shadow DOM</h1>
-            <p>
-              <small>There are multiple different implementations of shadow DOMs with buttons that can be interacted with.</small>
-            </p>
-          </div>
+  return (<Demo>
+    <div className="container text-center p-5">
+      <div className="row justify-content-center text-center mb-5">
+        <div className="col-6 border p-2">
+          <h1 className="fs-2 fw-bold mt-3 mb-4">Shadow DOM</h1>
+          <p><small>There are multiple different implementations of shadow DOMs with buttons that can be interacted with.</small></p>
         </div>
+      </div>
 
-        {/* Regular Content */}
-        <div className="row m-4">
-          <div className="col border p-3">
-            <p>This text is present on the page outside of any shadow DOM.</p>
-            <button type="button" className="btn btn-primary">We have CSS here!</button>
-          </div>
+      {/* Regular DOM section */}
+      <div className="row m-4">
+        <div className="col border p-3">
+          <p>This text is present on the page outside of any shadow DOM.</p>
+          <button type="button" className="btn btn-primary first-button">
+            We have CSS here!
+          </button>
         </div>
+      </div>
 
-        {/* Template Shadow DOM */}
-        <div className="row m-4">
-          <div className="col border p-3">
-            <p>This text, however, is present inside a template shadow DOM.</p>
-            <p>As you can see, the page CSS does not work here, check the following button:</p>
-            <button type="button" className="btn btn-primary" onClick={(e) => (e.target.textContent = "Second button")}>
-              But no CSS here :(
-            </button>
-          </div>
-        </div>
+      {/* Template Shadow DOM */}
+      <div className="row m-4">
+        <div className="col border p-3" ref={templateShadowRef}></div>
+      </div>
 
-        {/* Shadow DOM Created by JavaScript */}
-        <div className="row m-4">
-          <div className="col border p-3" id="shadowDom"></div>
-        </div>
+      {/* Programmatic Shadow DOM */}
+      <div className="row m-4">
+        <div className="col border p-3" ref={shadowHostRef}></div>
+      </div>
 
-        {/* Nested Shadow DOM Templates */}
-        <div className="row m-4">
-          <div className="col border p-3">
-            <p>This text is inside a different template shadow DOM.</p>
-
-            <div>
-              <p>This one is a second level shadow DOM: inside a template that's inside the before-mentioned template.</p>
-
-              <div>
-                <p>And this one is a third-level shadow DOM.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </Demo>
-    </>
+      {/* Nested Shadow DOM */}
+      <div className="row m-4">
+        <div className="col border p-3" ref={nestedTemplateShadowRef}></div>
+      </div>
+    </div>
+    </Demo>
   );
 };
 

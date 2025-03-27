@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
-
-
+import bunnyVideo from "../assets/bunny.mp4"
+import Demo from '../components/Demo.jsx';
 const VideoPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -26,6 +26,7 @@ const VideoPlayer = () => {
   };
 
   return (
+    <Demo>
     <main className="container text-center mt-5">
       <div className="row justify-content-center">
         <div className="col-6 border p-2 pt-4">
@@ -65,6 +66,7 @@ const VideoPlayer = () => {
         </div>
       </div>
     </main>
+    </Demo>
   );
 };
 

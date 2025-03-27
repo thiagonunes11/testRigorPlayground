@@ -1,18 +1,19 @@
-import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap if not already included globally
+import React from 'react';
 
 const SecondIframe = () => {
   return (
-    <main className="container m-3 bg-body-tertiary">
-      <div className="row">
-        <div className="col">
-          <p>
-            And this text is inside the second iframe. Unique link:{" "}
-            <a href="secondIframeSecret.html">samba</a>
-          </p>
+    <div className="bg-body-tertiary h-100">
+      <main className="container m-3 h-100">
+        <div className="row h-100">
+          <div className="col">
+            <p>
+              And this text is inside the second iframe. Unique link:{' '}
+              <a href="./secondIframeSecret">samba</a>
+            </p>
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </div>
   );
 };
 
