@@ -22,7 +22,7 @@ const demos = [
         title: "Camera",
         url: "/cameraPage",
         name: "Use your computer as if it where a camera",
-        description: "Follow the requirements and experiment the page capabilities.",
+        description: "Follow the instrudctions and experiment the page capabilities.",
     },
     {
         title: "Checkbox",

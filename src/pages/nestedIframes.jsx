@@ -5,15 +5,7 @@ import Demo from '../components/Demo.jsx';
 const NestedIframes = () => {
   return (
     <Demo>
-      <header>
-        <nav className="navbar navbar-expand-lg bg-body-tertiary">
-          <div className="container-fluid">
-            <a className="navbar-brand" href="../index.html">
-              testRigor Playground
-            </a>
-          </div>
-        </nav>
-      </header>
+    
       <main className="container mt-5">
         <div className="row justify-content-center text-center">
           <div className="col-6 border p-2">
