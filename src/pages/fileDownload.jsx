@@ -3,21 +3,111 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import Prompt from '../components/Prompt.jsx'
 import Demo from '../components/Demo.jsx';
 import { Link } from 'react-router-dom';
-import samplePdf from '../assets/samples/sample_pdf.pdf';
+
+import sampleCSV from '../assets/file_samples/sample.csv'
+import sampleDOC from '../assets/file_samples/sample.doc'
+import sampleDOCX from '../assets/file_samples/sample.docx'
+import sampleODP from '../assets/file_samples/sample.odp'
+import sampleODS from '../assets/file_samples/sample.ods'
+import sampleODT from '../assets/file_samples/sample.odt'
+import sampleOTT from '../assets/file_samples/sample.ott'
+import samplePDF from '../assets/file_samples/sample.pdf'
+import samplePPT from '../assets/file_samples/sample.ppt'
+import samplePPTX from '../assets/file_samples/sample.pptx'
+import sampleRTF from '../assets/file_samples/sample.rtf'
+import sampleTXT from '../assets/file_samples/sample.txt'
+import sampleXLS from '../assets/file_samples/sample.xls'
+import sampleXLSX from '../assets/file_samples/sample.xlsx'
 
 const FileDownload = () => {
     return (
         <Demo>
             <Prompt title="File Download" instructions="Click the button below to download the file." />
             <Container>
-                <Row className="mt-5 justify-content-center text-center">
+                <Row className="justify-content-center text-center">
                     <Col>
-                        <a href={samplePdf} download="sample_pdf.pdf">
-                            <Button variant="primary">
-                                Download File
-                            </Button>
-                        </a>
+                        <Link to={samplePPTX} download="sample.pptx">
+                            <Button variant="primary" size="lg">Download PPTX File</Button>
+                        </Link>
                     </Col>
+                    <Col>
+                        <Link to={sampleXLSX} download="sample.xlsx">
+                            <Button variant="primary" size="lg">Download XLSX File</Button>
+                        </Link>
+                    </Col>
+                    <Col>
+                        <Link to={sampleCSV} download="sample.csv">
+                            <Button variant="primary" size="lg">Download CSV File</Button>
+                        </Link>
+                    </Col>
+                </Row>
+
+                <Row className="mt-2 justify-content-center text-center">
+                    <Col>
+                        <Link to={sampleXLS} download="sample.xls">
+                            <Button variant="primary" size="lg">Download XLS File</Button>
+                        </Link>
+                    </Col>
+                    <Col>
+                        <Link to={sampleTXT} download="sample.txt">
+                            <Button variant="primary" size="lg">Download TXT File</Button>
+                        </Link>
+                    </Col>
+                    <Col>
+                        <Link to={sampleRTF} download="sample.rtf">
+                            <Button variant="primary" size="lg">Download RTF File</Button>
+                        </Link>
+                    </Col>
+                </Row>
+
+                <Row className="mt-2 justify-content-center text-center">
+                    <Col>
+                        <Link to={samplePPT} download="sample.ppt">
+                            <Button variant="primary" size="lg">Download PPT File</Button>
+                        </Link>
+                    </Col>
+                    <Col>
+                        <Link to={samplePDF} download="sample.pdf">
+                            <Button variant="primary" size="lg">Download PDF File</Button>
+                        </Link>
+                    </Col>
+                    <Col>
+                        <Link to={sampleOTT} download="sample.ott">
+                            <Button variant="primary" size="lg">Download OTT File</Button>
+                        </Link>
+                    </Col>
+                </Row>
+
+                <Row className="mt-2 justify-content-center text-center">
+                    <Col>
+                        <Link to={sampleODT} download="sample.odt">
+                            <Button variant="primary" size="lg">Download ODT File</Button>
+                        </Link>
+                    </Col>
+                    <Col>
+                        <Link to={sampleODS} download="sample.ods">
+                            <Button variant="primary" size="lg">Download ODS File</Button>
+                        </Link>
+                    </Col>
+                    <Col>
+                        <Link to={sampleODP} download="sample.odp">
+                            <Button variant="primary" size="lg">Download ODP File</Button>
+                        </Link>
+                    </Col>
+                </Row>
+
+                <Row className="mt-2 justify-content-center text-center">
+                    <Col>
+                        <Link to={sampleDOCX} download="sample.docx">
+                            <Button variant="primary" size="lg">Download DOCX File</Button>
+                        </Link>
+                    </Col>
+                    <Col>
+                        <Link to={sampleDOC} download="sample.doc">
+                            <Button variant="primary" size="lg">Download DOC File</Button>
+                        </Link>
+                    </Col>
+                    <Col></Col>
                 </Row>
             </Container>
         </Demo>
