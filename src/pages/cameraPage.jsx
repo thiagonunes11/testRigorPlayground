@@ -4,80 +4,75 @@ import Demo from '../components/Demo.jsx';
 const CameraPage = () => {
   const videoRef = useRef(null);
   const [error, setError] = useState(null);
-  const [hasPermission, setHasPermission] = useState(false);
+  const [isCameraOn, setIsCameraOn] = useState(false);
+  const streamRef = useRef(null);
 
-  useEffect(() => {
-    let stream = null;
-
-    const enableStream = async () => {
-      try {
-        const mediaStream = await navigator.mediaDevices.getUserMedia({
-          video: true,
-          audio: false
-        });
-        if (videoRef.current) {
-          videoRef.current.srcObject = mediaStream;
-        }
-        setHasPermission(true);
-        stream = mediaStream;
-      } catch (err) {
-        setError(`Error accessing camera: ${err.message}`);
-      }
-    };
-
-    if (!hasPermission) {
-      enableStream();
-    }
-
-    return () => {
-      if (stream) {
-        stream.getTracks().forEach(track => track.stop());
-      }
-    };
-  }, [hasPermission]);
-
-  const toggleCamera = async () => {
-    if (videoRef.current.srcObject) {
-      videoRef.current.srcObject.getTracks().forEach(track => track.stop());
-      videoRef.current.srcObject = null;
-      setHasPermission(false);
-    } else {
-      try {
-        const mediaStream = await navigator.mediaDevices.getUserMedia({
-          video: true,
-          audio: false
-        });
+  const startCamera = async () => {
+    try {
+      const mediaStream = await navigator.mediaDevices.getUserMedia({
+        video: true,
+        audio: false
+      });
+      streamRef.current = mediaStream;
+      if (videoRef.current) {
         videoRef.current.srcObject = mediaStream;
-        setHasPermission(true);
-      } catch (err) {
-        setError(`Error accessing camera: ${err.message}`);
       }
+      setIsCameraOn(true);
+      setError(null);
+    } catch (err) {
+      setError(`Error accessing camera: ${err.message}`);
+      setIsCameraOn(false);
     }
   };
 
+  const stopCamera = () => {
+    if (streamRef.current) {
+      streamRef.current.getTracks().forEach(track => track.stop());
+      if (videoRef.current) {
+        videoRef.current.srcObject = null;
+      }
+      setIsCameraOn(false);
+    }
+  };
+
+  const toggleCamera = () => {
+    if (isCameraOn) {
+      stopCamera();
+    } else {
+      startCamera();
+    }
+  };
+
+  useEffect(() => {
+    // Start camera on initial mount
+    startCamera();
+
+    return () => {
+      // Cleanup on unmount
+      stopCamera();
+    };
+  }, []);
+
   return (
     <Demo>
-    <div className="camera-container">
-      <h2>Camera Access</h2>
-      {!hasPermission && <p>Requesting camera access...</p>}
-          <button onClick={toggleCamera}>
-            {hasPermission ? 'Turn Off Camera' : 'Turn On Camera'}
-          </button>
-      {error ? (
-        <div className="error">{error}</div>
-      ) : (
-        <>
+      <div className="camera-container">
+        <h2>Camera Access</h2>
+        {!isCameraOn && !error && <p>Camera is currently off</p>}
+        <button onClick={toggleCamera}>
+          {isCameraOn ? 'Turn Off Camera' : 'Turn On Camera'}
+        </button>
+        {error ? (
+          <div className="error">{error}</div>
+        ) : (
           <video
             ref={videoRef}
             autoPlay
             playsInline
             muted
-            style={{ display: hasPermission ? 'block' : 'none', width: '100%' }}
+            style={{ display: isCameraOn ? 'block' : 'none', width: '100%' }}
           />
- 
-        </>
-      )}
-    </div>
+        )}
+      </div>
     </Demo>
   );
 };
