@@ -1,41 +1,62 @@
-
 import React, { useState } from "react";
+import { Container, Row, Col, Card, Form } from "react-bootstrap";
 import DatePicker from "react-datepicker";
-
 import "react-datepicker/dist/react-datepicker.css";
 import Demo from '../components/Demo.jsx';
 
 const DdatePicker = () => {
   const [startDate, setStartDate] = useState(new Date());
-  return (     <Demo>
-       <link rel="stylesheet" href="../style/style.css"></link>
-    <div class="row justify-content-center text-center mb-5">
-        <div class="col-6 border p-2">
-            <h1 class="fs-2 fw-bold mt-3 mb-4">Date Picker</h1>
-            <p><small>Choose a date in the date picker to see the value in the field change.</small></p>
-        </div>
-    </div>
-    <div class="row justify-content-center">
-        <div class="col-4 border px-4 py-5">
-            <h2 class="fs-3 fw-bold text-center pb-4">Pick a date for the event:</h2>
-            <div class="row">
-                <div class="pt-4 input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-calendar-date"></i></span>
 
-                     
-              <DatePicker
-              showIcon
-              selected={startDate}
-              onChange={(date) => setStartDate(date)}
-              showMonthDropdown
-    />
+  return (
+    <Demo>
+      <Container className="my-4">
+        {/* Header Section */}
+        <Row className="justify-content-center mb-4">
+          <Col md={8} lg={6}>
+            <Card className="text-center border-primary">
+              <Card.Body>
+                <Card.Title as="h1" className="fw-bold mb-3">Date Picker</Card.Title>
+                <Card.Text className="text-muted">
+                  Choose a date in the date picker to see the value in the field change.
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
 
-
-                </div>
-            </div>
-        </div>
-    </div>
-</Demo>
+        {/* Date Picker Section */}
+        <Row className="justify-content-center">
+          <Col md={6} lg={4}>
+            <Card className="border-primary">
+              <Card.Body className="p-4">
+                <Card.Title as="h2" className="text-center fw-bold mb-4">
+                  Pick a date for the event:
+                </Card.Title>
+                
+                <Form.Group controlId="datePicker">
+                  <Form.Label visuallyHidden>Select Date</Form.Label>
+                  <div className="d-flex align-items-center">
+                    <DatePicker
+                      selected={startDate}
+                      onChange={(date) => setStartDate(date)}
+                      showMonthDropdown
+                      showYearDropdown
+                      dropdownMode="select"
+                      className="form-control"
+                      wrapperClassName="w-100"
+                      popperPlacement="bottom-start"
+                    />
+                    <span className="ms-2 fs-4">
+                      <i className="bi bi-calendar-date"></i>
+                    </span>
+                  </div>
+                </Form.Group>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
+    </Demo>
   );
 };
 
