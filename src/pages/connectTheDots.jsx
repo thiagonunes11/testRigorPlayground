@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Demo from "../components/Demo.jsx";
+
 const ConnectTheDots = () => {
   const canvasRef = useRef(null);
   const [dots, setDots] = useState([]);
@@ -158,42 +159,42 @@ const ConnectTheDots = () => {
 
   return (
     <Demo>
-    <div className="text-center">
-      <h1 className="fs-2 fw-bold">Connect The Dots</h1>
-      <p>
-        <small>Use the mouse to connect all of the dots on the canvas.</small>
-      </p>
+      <div className="text-center">
+        <h1 className="fs-2 fw-bold">Connect The Dots</h1>
+        <p>
+          <small>Use the mouse to connect all of the dots on the canvas.</small>
+        </p>
 
-      <canvas
-        ref={canvasRef}
-        width="400"
-        height="400"
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseLeave}
-        style={{ border: "1px solid black" }}
-      ></canvas>
+        <canvas
+          ref={canvasRef}
+          width="400"
+          height="400"
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseLeave}
+          style={{ border: "1px solid black" }}
+        ></canvas>
 
-      <div className="mt-3">
-        <button
-          className="btn btn-primary"
-          onClick={showHexagon}
-          style={{ display: showMoreDots ? "none" : "inline-block" }}
-        >
-          Connect more dots
-        </button>
-        <button
-          className="btn btn-primary"
-          onClick={showTriangle}
-          style={{ display: showMoreDots ? "inline-block" : "none" }}
-        >
-          Connect less dots
-        </button>
+        <div className="mt-3">
+          <button
+            className="btn btn-primary"
+            onClick={showHexagon}
+            style={{ display: showMoreDots ? "none" : "inline-block" }}
+          >
+            Connect more dots
+          </button>
+          <button
+            className="btn btn-primary"
+            onClick={showTriangle}
+            style={{ display: showMoreDots ? "inline-block" : "none" }}
+          >
+            Connect less dots
+          </button>
+        </div>
       </div>
-    </div>
-    <br></br>
-    <br></br>
+      <br></br>
+      <br></br>
     </Demo>
   );
 };
