@@ -19,7 +19,7 @@ const WaitMessage = () => {
     }, []);
 
     return (
-        <main className="container mt-5">
+        <Demo className="container mt-5">
             <div className="row justify-content-center text-center">
                 <div className="col-6 border p-2 pt-4">
                     <h1 className="fs-2 fw-bold">Wait for the Message</h1>
@@ -36,7 +36,7 @@ const WaitMessage = () => {
                     </div>
                 </div>
             </div>
-        </main>
+        </Demo>
     );
 };
 
