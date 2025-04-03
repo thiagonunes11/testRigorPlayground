@@ -33,7 +33,7 @@ function SecondVersion() {
               <div className="card-header">
                 <ul className="nav nav-tabs card-header-tabs">
                   <li className="nav-item">
-                    <a className="nav-link" href="../similarPages.html">First version</a>
+                    <a className="nav-link" href="../similarPages">First version</a>
                   </li>
                   <li className="nav-item">
                     <a className="nav-link active" aria-disabled="true">Second version</a>
