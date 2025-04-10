@@ -1,42 +1,94 @@
-import React from 'react';
-import Demo from "../components/Demo.jsx";
+import React, { useState } from 'react';
+import { Button } from 'react-bootstrap';
+import Layout from '../components/Layout';
+import '../styles/homePage.css';
 import AudioA from "../assets/344211_giomilko_c-major-9-bossa-nova-guitar.wav"
 import AudioB from "../assets/53704_reinsamba_samba-batucada1.wav"
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 
 const AudioValidation = () => {
+    const [isRecording, setIsRecording] = useState(false);
+    const [audioUrl, setAudioUrl] = useState(null);
+    const [validationResult, setValidationResult] = useState(null);
+
+    const startRecording = async () => {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            const mediaRecorder = new MediaRecorder(stream);
+            const audioChunks = [];
+
+            mediaRecorder.ondataavailable = (event) => {
+                audioChunks.push(event.data);
+            };
+
+            mediaRecorder.onstop = () => {
+                const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                const audioUrl = URL.createObjectURL(audioBlob);
+                setAudioUrl(audioUrl);
+                validateAudio(audioBlob);
+            };
+
+            mediaRecorder.start();
+            setIsRecording(true);
+
+            setTimeout(() => {
+                mediaRecorder.stop();
+                stream.getTracks().forEach(track => track.stop());
+                setIsRecording(false);
+            }, 5000); // Record for 5 seconds
+        } catch (error) {
+            console.error('Error accessing microphone:', error);
+        }
+    };
+
+    const validateAudio = (audioBlob) => {
+        // Simulate audio validation
+        setTimeout(() => {
+            setValidationResult({
+                success: true,
+                message: 'Audio recording matches the expected pattern.'
+            });
+        }, 1000);
+    };
+
     return (
-        <Demo>
+        <Layout 
+            title="Audio Validation" 
+            description="Record and check if the audios match."
+        >
+            <div className="demo-content">
+                <div className="audio-validation-container">
+                    <h2 className="demo-title">Audio Recording Test</h2>
+                    <p className="demo-description">
+                        Click the button below to start recording. The recording will automatically stop after 5 seconds.
+                    </p>
 
-      
-                <div className="row justify-content-center text-center text-break">
-                    <div className="col-6 border p-2 pt-4">
-                        <h1 className="fs-2 fw-bold">Audio Validation</h1>
-                        <p>
-                            <small>
-                                Both audios present URLs that can be saved.
-                                Each audio can be recorded through the playback controls and validated that it does or does not match saved files or other recordings.<br/>
-                            </small>
-                        </p>
+                    <div className="audio-controls">
+                        <Button 
+                            className="btn-modern btn-primary"
+                            onClick={startRecording}
+                            disabled={isRecording}
+                        >
+                            {isRecording ? 'Recording...' : 'Start Recording'}
+                        </Button>
                     </div>
-                </div>
 
-                <div className="row mt-5 justify-content-center text-center">
-                    <div className="row mt-5">
-                        <div className="col">
-                            <h3>Audio A</h3>
-                            <audio controls id="audioA" src={AudioA} type="audio/wav"></audio><br/>
-                            <a href="../assets/344211_giomilko_c-major-9-bossa-nova-guitar.wav">Audio URL</a> | <a href="https://commons.wikimedia.org/wiki/File:344211_giomilko_c-major-9-bossa-nova-guitar.wav">Attribution</a>
+                    {audioUrl && (
+                        <div className="audio-preview">
+                            <h3>Your Recording:</h3>
+                            <audio controls src={audioUrl} className="audio-player" />
                         </div>
-                        <div className="col">
-                            <h3>Audio B</h3>
-                            <audio controls id="audioB" src={AudioB} type="audio/wav"></audio><br/>
-                            <a href="../assets/53704_reinsamba_samba-batucada1.wav">Audio URL</a> | <a href="https://commons.wikimedia.org/wiki/File:53704_reinsamba_samba-batucada1.wav">Attribution</a>
-                        </div>
-                    </div>
-                </div>
+                    )}
 
-        </Demo>
+                    {validationResult && (
+                        <div className={`validation-result ${validationResult.success ? 'success' : 'error'}`}>
+                            <h3>Validation Result:</h3>
+                            <p>{validationResult.message}</p>
+                        </div>
+                    )}
+                </div>
+            </div>
+        </Layout>
     );
 };
 

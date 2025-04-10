@@ -265,4 +265,100 @@ body {
 
 .fade-in {
   animation: fadeIn 0.5s ease-out;
+}
+
+/* Audio Validation Styles */
+.audio-validation-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.demo-title {
+    color: var(--text);
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.demo-description {
+    color: var(--secondary);
+    text-align: center;
+    max-width: 600px;
+    margin-bottom: 2rem;
+}
+
+.audio-controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.audio-preview {
+    width: 100%;
+    max-width: 400px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.audio-preview h3 {
+    color: var(--text);
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.audio-player {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.validation-result {
+    width: 100%;
+    max-width: 400px;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.validation-result.success {
+    background-color: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.2);
+    color: rgb(34, 197, 94);
+}
+
+.validation-result.error {
+    background-color: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    color: rgb(239, 68, 68);
+}
+
+.validation-result h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.validation-result p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+    .audio-validation-container {
+        padding: 1rem;
+    }
+
+    .demo-title {
+        font-size: 1.5rem;
+    }
+
+    .audio-preview,
+    .validation-result {
+        max-width: 100%;
+    }
 } 
