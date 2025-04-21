@@ -21,8 +21,10 @@ import sampleXLSX from '../assets/file_samples/sample.xlsx'
 
 const FileDownload = () => {
     return (
-        <Demo>
-            <Prompt title="File Download" instructions="Click the button below to download the file." />
+        <Layout
+            title="File Download"
+            description="Click the button below to download the file."
+        >
             <Container>
                 <Row className="justify-content-center text-center">
                     <Col>
@@ -110,7 +112,7 @@ const FileDownload = () => {
                     <Col></Col>
                 </Row>
             </Container>
-        </Demo>
+        </Layout>
     );
 };
 

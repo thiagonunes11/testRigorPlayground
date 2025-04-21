@@ -117,8 +117,10 @@ const DragItem = () => {
     }, [taskListElement]);
 
     return (
-        <Demo>
-            <Prompt title="Drag Item" instructions="Drag items in the list to put them in order." />
+        <Layout
+            title="Drag Item"
+            description="Drag items in the list to put them in order."
+        >
 
             <style>
                 {`
@@ -182,7 +184,7 @@ const DragItem = () => {
                     </div>
                 </div>
             </div>
-        </Demo>
+        </Layout>
     );
 };
 

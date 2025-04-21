@@ -5,8 +5,10 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 
 const CheckboxPage = () => {
     return (
-        <Demo>
-            <Prompt title={"Checkbox"} instructions={"Click on checkboxes in order to select the desired option."}/>
+        <Layout
+            title={"Checkbox"}
+            description={"Click on checkboxes in order to select the desired option."}
+        >
 
             <Container style={{ display: 'flex', justifyContent: 'space-evenly', padding: '80px' }}>
                 {/* First Box */}
@@ -42,7 +44,7 @@ const CheckboxPage = () => {
                     </div>
                 </div>
             </Container>
-        </Demo>
+        </Layout>
     );
 };
 

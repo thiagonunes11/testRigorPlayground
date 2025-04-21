@@ -12,7 +12,7 @@ function SecondVersion() {
   };
 
   return (
-    <Demo>
+    <Layout>
     <div>
 
         <div className="row justify-content-center text-center mb-5">
@@ -73,7 +73,7 @@ function SecondVersion() {
           </div>
         </div>
     </div>
-    </Demo>
+    </Layout>
   );
 }
 

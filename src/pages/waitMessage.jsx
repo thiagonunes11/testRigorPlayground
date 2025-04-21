@@ -42,8 +42,7 @@ const WaitMessage = () => {
 
 
 import Prompt from '../components/Prompt.jsx'
-import Demo from "../components/Demo.jsx";
-import { Collapse, Alert, Row, Col } from 'react-bootstrap';
+import Layout from '../components/Layout';import { Collapse, Alert, Row, Col } from 'react-bootstrap';
 
 function WaitForMessage() {
     const [secondsLeft, setSecondsLeft] = useState(5);
@@ -61,8 +60,7 @@ function WaitForMessage() {
     }, [secondsLeft]);
 
     return (
-        <Demo>
-            <Prompt title="Wait for the Message" instructions="In five seconds, the message will appear."/>
+        <Layout title="Wait for the Message" description="In five seconds, the message will appear.">
 
             <Row className="mt-5">
                 <Col className="">
@@ -76,7 +74,7 @@ function WaitForMessage() {
                     </Collapse>
                 </Col>
             </Row>
-        </Demo>
+        </Layout>
     );
 }
 

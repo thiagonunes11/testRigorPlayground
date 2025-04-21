@@ -9,10 +9,12 @@ const MouseHover = () => {
     const toggleTextVisibility = () => {
         setIsHovering(!isHovering);
     }
-  
+
     return (
-        <Demo>
-            <Prompt title="Mouse hover" instructions="Hover the mouse over the container to reveal the hidden text." />
+        <Layout
+            title="Mouse hover"
+            description="Hover the mouse over the container to reveal the hidden text."
+        >
             <Container>
                 <Row className="mt-5 justify-content-center text-center">
                     <Col>
@@ -29,7 +31,7 @@ const MouseHover = () => {
                     </Row>
                 )}
             </Container>
-        </Demo>
+        </Layout>
     );
 };
 

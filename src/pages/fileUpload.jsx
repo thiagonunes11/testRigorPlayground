@@ -27,11 +27,10 @@ const FileUpload = () => {
     };
 
     return (
-        <Demo>
-            <Prompt 
-                title="File Upload" 
-                instructions={"Use the inputs below for uploading files or directories.\nIt's possible to either select files on the filesystem or to drag and drop them into the desired field below.\nThe files are not actually uploaded anywhere."} 
-            />
+        <Layout
+            title="File Upload"
+            description={"Use the inputs below for uploading files or directories.\nIt's possible to either select files on the filesystem or to drag and drop them into the desired field below.\nThe files are not actually uploaded anywhere."}
+        >
             <Container>
                 <Row className="mt-4">
                     <Col>
@@ -39,8 +38,8 @@ const FileUpload = () => {
                             <h3 className="mb-3">Single File Upload</h3>
                             <Form.Label className="d-none">Choose single file</Form.Label>
                             <InputGroup>
-                                <Form.Control 
-                                    type="file" 
+                                <Form.Control
+                                    type="file"
                                     onChange={handleSingleFileChange}
                                     className='border-primary'
                                     id='inputFileSingle'
@@ -62,8 +61,8 @@ const FileUpload = () => {
                             <h3 className="mb-3">Multiple Files Upload</h3>
                             <Form.Label className="d-none">Choose multiple files</Form.Label>
                             <InputGroup>
-                                <Form.Control 
-                                    type="file" 
+                                <Form.Control
+                                    type="file"
                                     multiple
                                     onChange={handleMultipleFilesChange}
                                     className='border-primary'
@@ -86,7 +85,7 @@ const FileUpload = () => {
                             <h3 className="mb-3">All Files of a Directory (Webkit)</h3>
                             <Form.Label className="d-none">Choose directory</Form.Label>
                             <InputGroup>
-                                <Form.Control 
+                                <Form.Control
                                     type="file"
                                     webkitdirectory="true"
                                     directory="true"
@@ -105,7 +104,7 @@ const FileUpload = () => {
                     </Col>
                 </Row>
             </Container>
-        </Demo>
+        </Layout>
     );
 };
 

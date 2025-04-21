@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Prompt from '../components/Prompt.jsx'
-import Demo from "../components/Demo.jsx";
-import { Collapse, Alert, Row, Col } from 'react-bootstrap';
+import Layout from '../components/Layout'; import { Collapse, Alert, Row, Col } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
@@ -14,7 +13,7 @@ function LongClick() {
 
     useEffect(() => {
         let interval;
-    
+
         if (isPressed) {
             const startTime = Date.now();
             interval = setInterval(() => {
@@ -25,13 +24,15 @@ function LongClick() {
             clearInterval(interval);
             setIsLongClick(clickPressCounter >= chosenClickTime);
         }
-    
+
         return () => clearInterval(interval);
-      }, [isPressed]);
+    }, [isPressed]);
 
     return (
-        <Demo>
-            <Prompt title="Long Click" instructions="The button below will say if it was clicked by a long click or a normal click depending on the setting."/>
+        <Layout
+            title="Long Click"
+            description="The button below will say if it was clicked by a long click or a normal click depending on the setting."
+        >
 
             <Row className="mt-5">
                 <Col className="">
@@ -41,7 +42,7 @@ function LongClick() {
                                 Select the time of a long click:
                             </Form.Label>
                             <Col xs="2">
-                                <Form.Select aria-label="Select the time of a long click:" id="clickTimeSelect" onChange={(e) => {setChosenClickTime(e.target.value)}}>
+                                <Form.Select aria-label="Select the time of a long click:" id="clickTimeSelect" onChange={(e) => { setChosenClickTime(e.target.value) }}>
                                     <option value="1" selected="selected">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -72,7 +73,7 @@ function LongClick() {
             </Row>
             <Row className='mt-3 d-flex justify-content-center'>
                 <Col xs={2} className='fs-2'>
-                   Click time:
+                    Click time:
                 </Col>
                 <Col xs={3}>
                     <Alert variant={isLongClick ? 'success' : "danger"}>
@@ -80,7 +81,7 @@ function LongClick() {
                     </Alert>
                 </Col>
             </Row>
-        </Demo>
+        </Layout>
     );
 }
 
