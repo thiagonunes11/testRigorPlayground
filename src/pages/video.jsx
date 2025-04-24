@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import bunnyVideo from "../assets/bunny.mp4"
-import Demo from '../components/Demo.jsx';
+import Layout from '../components/Layout';
+
 const VideoPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isVisible, setIsVisible] = useState(false);

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Prompt from '../components/Prompt';
-import Demo from '../components/Demo.jsx';
+import Layout from '../components/Layout';
 import { Container, Row, Col } from 'react-bootstrap';
 
 const RadioButtons = () => {

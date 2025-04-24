@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Form, Button, InputGroup, Collapse, Badge } from 'react-bootstrap';
 import { Search, Cart, ArrowLeft } from 'react-bootstrap-icons';
-import Prompt from '../components/Prompt.jsx'
-import Demo from '../components/Demo.jsx';
+import Layout from '../components/Layout';
 import SearchResult from '../components/SearchResult.jsx';
 
 const generateRandomPrice = () => {

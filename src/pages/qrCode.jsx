@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { QRCodeCanvas } from 'qrcode.react';
-import Prompt from '../components/Prompt.jsx'
-import Demo from '../components/Demo.jsx';
+import Layout from '../components/Layout';
 
 const QRCodePage = () => {
     const [text, setText] = useState('');

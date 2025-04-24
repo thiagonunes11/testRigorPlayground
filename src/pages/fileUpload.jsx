@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, InputGroup } from 'react-bootstrap';
-import Prompt from '../components/Prompt.jsx'
-import Demo from '../components/Demo.jsx';
+import Layout from '../components/Layout';
 
 const FileUpload = () => {
     const [singleFile, setSingleFile] = useState(null);

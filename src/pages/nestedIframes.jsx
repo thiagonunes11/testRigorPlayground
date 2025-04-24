@@ -1,6 +1,6 @@
 import React from 'react';
 import FirstIframe from './nestedIframes/firstIframe'; // Import the FirstIframe component
-import Demo from '../components/Demo.jsx';
+import Layout from '../components/Layout';
 
 const NestedIframes = () => {
   return (

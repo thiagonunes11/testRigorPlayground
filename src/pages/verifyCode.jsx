@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Button, Collapse, Form, InputGroup, Alert } from 'react-bootstrap';
-import Prompt from '../components/Prompt.jsx'
-import Demo from '../components/Demo.jsx';
-import { Link } from 'react-router-dom';
-
+import Layout from '../components/Layout';
 
 const VerifyCode = () => {
     const [codeRequested, setCodeRequested] = useState(false);

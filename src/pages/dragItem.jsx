@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
-import Prompt from '../components/Prompt.jsx';
-import Demo from '../components/Demo.jsx';
+import Layout from '../components/Layout';
 
 const DragItem = () => {
     const [draggingItem, setDraggingItem] = useState(null);

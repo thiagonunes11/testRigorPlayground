@@ -1,7 +1,6 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import Prompt from '../components/Prompt.jsx'
-import Demo from '../components/Demo.jsx';
+import Layout from '../components/Layout';
 
 import ocrImage from '../assets/images/OCR_TEXT.png';
 

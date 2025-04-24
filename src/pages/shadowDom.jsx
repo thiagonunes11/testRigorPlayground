@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-import Demo from '../components/Demo.jsx';
+import Layout from '../components/Layout';
+
 const ShadowDOM = () => {
   const shadowHostRef = useRef(null);
   const templateShadowRef = useRef(null);

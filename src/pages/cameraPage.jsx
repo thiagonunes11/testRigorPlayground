@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Demo from '../components/Demo.jsx';
+import Layout from '../components/Layout';
 
 const CameraPage = () => {
   const videoRef = useRef(null);
