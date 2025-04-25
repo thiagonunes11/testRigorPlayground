@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Layout from '../components/Layout';
+import { Button } from 'react-bootstrap';
+
 
 const CameraPage = () => {
   const videoRef = useRef(null);
@@ -55,27 +57,35 @@ const CameraPage = () => {
 
   return (
     <Layout
-      title={"Camera"}
-      description={"Use the camera"}
+        title="Camera" 
+        description="Use your computer as if it were a camera."
     >
-      <div className="camera-container">
-        <h2>Camera Access</h2>
-        {!isCameraOn && !error && <p>Camera is currently off</p>}
-        <button onClick={toggleCamera}>
-          {isCameraOn ? 'Turn Off Camera' : 'Turn On Camera'}
-        </button>
-        {error ? (
-          <div className="error">{error}</div>
-        ) : (
-          <video
-            ref={videoRef}
-            autoPlay
-            playsInline
-            muted
-            style={{ display: isCameraOn ? 'block' : 'none', width: '100%' }}
-          />
-        )}
-      </div>
+        <div className="demo-content">
+            <div className="text-center">
+                <div className="camera-container">
+                    <Button 
+                        className="btn-modern btn-primary mb-5"
+                        onClick={toggleCamera}
+                    >
+                        {isCameraOn ? 'Turn Off Camera' : 'Turn On Camera'}
+                    </Button>
+
+                    {!isCameraOn && !error && <p>Camera is currently off</p>}
+                    
+                    {error ? (
+                    <div className="error">{error}</div>
+                    ) : (
+                    <video
+                        ref={videoRef}
+                        autoPlay
+                        playsInline
+                        muted
+                        style={{ display: isCameraOn ? 'block' : 'none', width: '100%' }}
+                    />
+                    )}
+                </div>
+            </div>
+        </div>
     </Layout>
   );
 };
