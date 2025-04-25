@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
-import Prompt from '../components/Prompt.jsx'
-import Demo from '../components/Demo.jsx';
+import Layout from '../components/Layout';
 import { Link } from 'react-router-dom';
 
 import sampleCSV from '../assets/file_samples/sample.csv'
@@ -21,23 +20,25 @@ import sampleXLSX from '../assets/file_samples/sample.xlsx'
 
 const FileDownload = () => {
     return (
-        <Demo>
-            <Prompt title="File Download" instructions="Click the button below to download the file." />
+        <Layout
+            title="File Download"
+            description="Click the button below to download the file."
+        >
             <Container>
                 <Row className="justify-content-center text-center">
                     <Col>
                         <Link to={samplePPTX} download="sample.pptx">
-                            <Button variant="primary" size="lg">Download PPTX File</Button>
+                            <Button className={"btn-modern"} variant="primary" size="lg">Download PPTX File</Button>
                         </Link>
                     </Col>
                     <Col>
                         <Link to={sampleXLSX} download="sample.xlsx">
-                            <Button variant="primary" size="lg">Download XLSX File</Button>
+                            <Button className={"btn-modern"} variant="primary" size="lg">Download XLSX File</Button>
                         </Link>
                     </Col>
                     <Col>
                         <Link to={sampleCSV} download="sample.csv">
-                            <Button variant="primary" size="lg">Download CSV File</Button>
+                            <Button className={"btn-modern"} variant="primary" size="lg">Download CSV File</Button>
                         </Link>
                     </Col>
                 </Row>
@@ -45,17 +46,17 @@ const FileDownload = () => {
                 <Row className="mt-2 justify-content-center text-center">
                     <Col>
                         <Link to={sampleXLS} download="sample.xls">
-                            <Button variant="primary" size="lg">Download XLS File</Button>
+                            <Button className={"btn-modern"} variant="primary" size="lg">Download XLS File</Button>
                         </Link>
                     </Col>
                     <Col>
                         <Link to={sampleTXT} download="sample.txt">
-                            <Button variant="primary" size="lg">Download TXT File</Button>
+                            <Button className={"btn-modern"} variant="primary" size="lg">Download TXT File</Button>
                         </Link>
                     </Col>
                     <Col>
                         <Link to={sampleRTF} download="sample.rtf">
-                            <Button variant="primary" size="lg">Download RTF File</Button>
+                            <Button className={"btn-modern"} variant="primary" size="lg">Download RTF File</Button>
                         </Link>
                     </Col>
                 </Row>
@@ -63,17 +64,17 @@ const FileDownload = () => {
                 <Row className="mt-2 justify-content-center text-center">
                     <Col>
                         <Link to={samplePPT} download="sample.ppt">
-                            <Button variant="primary" size="lg">Download PPT File</Button>
+                            <Button className={"btn-modern"} variant="primary" size="lg">Download PPT File</Button>
                         </Link>
                     </Col>
                     <Col>
                         <Link to={samplePDF} download="sample.pdf">
-                            <Button variant="primary" size="lg">Download PDF File</Button>
+                            <Button className={"btn-modern"} variant="primary" size="lg">Download PDF File</Button>
                         </Link>
                     </Col>
                     <Col>
                         <Link to={sampleOTT} download="sample.ott">
-                            <Button variant="primary" size="lg">Download OTT File</Button>
+                            <Button className={"btn-modern"} variant="primary" size="lg">Download OTT File</Button>
                         </Link>
                     </Col>
                 </Row>
@@ -81,17 +82,17 @@ const FileDownload = () => {
                 <Row className="mt-2 justify-content-center text-center">
                     <Col>
                         <Link to={sampleODT} download="sample.odt">
-                            <Button variant="primary" size="lg">Download ODT File</Button>
+                            <Button className={"btn-modern"} variant="primary" size="lg">Download ODT File</Button>
                         </Link>
                     </Col>
                     <Col>
                         <Link to={sampleODS} download="sample.ods">
-                            <Button variant="primary" size="lg">Download ODS File</Button>
+                            <Button className={"btn-modern"} variant="primary" size="lg">Download ODS File</Button>
                         </Link>
                     </Col>
                     <Col>
                         <Link to={sampleODP} download="sample.odp">
-                            <Button variant="primary" size="lg">Download ODP File</Button>
+                            <Button className={"btn-modern"} variant="primary" size="lg">Download ODP File</Button>
                         </Link>
                     </Col>
                 </Row>
@@ -99,18 +100,18 @@ const FileDownload = () => {
                 <Row className="mt-2 justify-content-center text-center">
                     <Col>
                         <Link to={sampleDOCX} download="sample.docx">
-                            <Button variant="primary" size="lg">Download DOCX File</Button>
+                            <Button className={"btn-modern"} variant="primary" size="lg">Download DOCX File</Button>
                         </Link>
                     </Col>
                     <Col>
                         <Link to={sampleDOC} download="sample.doc">
-                            <Button variant="primary" size="lg">Download DOC File</Button>
+                            <Button className={"btn-modern"} variant="primary" size="lg">Download DOC File</Button>
                         </Link>
                     </Col>
                     <Col></Col>
                 </Row>
             </Container>
-        </Demo>
+        </Layout>
     );
 };
 

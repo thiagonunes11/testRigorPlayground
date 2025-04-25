@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-import Demo from '../components/Demo.jsx';
+import Layout from '../components/Layout';
+
 const ShadowDOM = () => {
   const shadowHostRef = useRef(null);
   const templateShadowRef = useRef(null);
@@ -68,41 +69,38 @@ const ShadowDOM = () => {
     }
   }, []);
 
-  return (<Demo>
-    <div className="container text-center p-5">
-      <div className="row justify-content-center text-center mb-5">
-        <div className="col-6 border p-2">
-          <h1 className="fs-2 fw-bold mt-3 mb-4">Shadow DOM</h1>
-          <p><small>There are multiple different implementations of shadow DOMs with buttons that can be interacted with.</small></p>
+  return (
+    <Layout
+      title="Shadow DOM"
+      description="There are multiple different implementations of shadow DOMs with buttons that can be interacted with."
+    >
+      <div className="container text-center p-5">
+        {/* Regular DOM section */}
+        <div className="row m-4">
+          <div className="col border p-3">
+            <p>This text is present on the page outside of any shadow DOM.</p>
+            <button type="button" className="btn btn-primary btn-modern first-button">
+              We have CSS here!
+            </button>
+          </div>
+        </div>
+
+        {/* Template Shadow DOM */}
+        <div className="row m-4">
+          <div className="col border p-3" ref={templateShadowRef}></div>
+        </div>
+
+        {/* Programmatic Shadow DOM */}
+        <div className="row m-4">
+          <div className="col border p-3" ref={shadowHostRef}></div>
+        </div>
+
+        {/* Nested Shadow DOM */}
+        <div className="row m-4">
+          <div className="col border p-3" ref={nestedTemplateShadowRef}></div>
         </div>
       </div>
-
-      {/* Regular DOM section */}
-      <div className="row m-4">
-        <div className="col border p-3">
-          <p>This text is present on the page outside of any shadow DOM.</p>
-          <button type="button" className="btn btn-primary first-button">
-            We have CSS here!
-          </button>
-        </div>
-      </div>
-
-      {/* Template Shadow DOM */}
-      <div className="row m-4">
-        <div className="col border p-3" ref={templateShadowRef}></div>
-      </div>
-
-      {/* Programmatic Shadow DOM */}
-      <div className="row m-4">
-        <div className="col border p-3" ref={shadowHostRef}></div>
-      </div>
-
-      {/* Nested Shadow DOM */}
-      <div className="row m-4">
-        <div className="col border p-3" ref={nestedTemplateShadowRef}></div>
-      </div>
-    </div>
-    </Demo>
+    </Layout>
   );
 };
 

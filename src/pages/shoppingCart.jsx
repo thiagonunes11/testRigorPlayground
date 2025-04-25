@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Form, Button, InputGroup, Collapse, Badge } from 'react-bootstrap';
 import { Search, Cart, ArrowLeft } from 'react-bootstrap-icons';
-import Prompt from '../components/Prompt.jsx'
-import Demo from '../components/Demo.jsx';
+import Layout from '../components/Layout';
 import SearchResult from '../components/SearchResult.jsx';
 
 const generateRandomPrice = () => {
@@ -12,7 +11,7 @@ const generateRandomPrice = () => {
 
 const generateSearchResults = (searchTerm) => {
     if (!searchTerm) return [];
-    
+
     return [
         {
             title: `The Best ${searchTerm} Ever Made`,
@@ -43,7 +42,7 @@ const ShoppingCart = () => {
     const handleInputChange = (e) => {
         setInputValue(e.target.value);
     };
-    
+
     const handleSearchClick = () => {
         setSearchQuery(inputValue);
         setSearchResults(generateSearchResults(inputValue));
@@ -75,52 +74,51 @@ const ShoppingCart = () => {
     }, [cartItems]);
 
     return (
-        <Demo>
-            <Prompt 
-                title="Shopping Cart" 
-                instructions={"Search for a random item. This will display items you can press to add to cart."} 
-            />
+        <Layout
+            title="Shopping Cart"
+            description={"Search for a random item. This will display items you can press to add to cart."}
+        >
             <Container>
                 <Row className="mt-4">
                     {showCart && (
                         <Col className="text-start">
                             <Button variant="primary" id="button-cart" onClick={() => setShowCart(!showCart)}>
-                                <ArrowLeft/> Back to search
+                                <ArrowLeft /> Back to search
                             </Button>
                         </Col>
                     )}
                     {!showCart && (
                         <>
-                        <Col>
-                            <InputGroup className="mb-3">
-                                <Form.Control
-                                    type="search"
-                                    role="search"
-                                    autoComplete="off"
-                                    placeholder="Try searching for 'headphones', 'laptop', etc..."
-                                    value={inputValue}
-                                    onChange={handleInputChange}
-                                    onKeyUp={(e) => {
-                                        if (e.key === 'Enter') {
-                                            handleSearchClick();
-                                        }
-                                    }}
-                                    disabled={showCart}
-                                />
-                                <Button variant="primary" onClick={handleSearchClick} disabled={showCart}>
-                                    <Search />
+                            <Col>
+                                <InputGroup className="mb-3">
+                                    <Form.Control
+                                        type="search"
+                                        role="search"
+                                        autoComplete="off"
+                                        placeholder="Try searching for 'headphones', 'laptop', etc..."
+                                        value={inputValue}
+                                        onChange={handleInputChange}
+                                        onKeyUp={(e) => {
+                                            if (e.key === 'Enter') {
+                                                handleSearchClick();
+                                            }
+                                        }}
+                                        disabled={showCart}
+                                    />
+                                    <Button variant="primary" onClick={handleSearchClick} disabled={showCart}>
+                                        <Search />
+                                    </Button>
+                                </InputGroup>
+                            </Col>
+                            <Col xs={2}>
+                                <Button variant="warning" id="button-cart" className="d-flex align-items-center" onClick={() => setShowCart(!showCart)}>
+                                    <Cart className="mx-2" /> Cart <Badge bg="secondary" className="ms-2">{cartItems.length}</Badge>
                                 </Button>
-                            </InputGroup>
-                        </Col>
-                        <Col xs={2}>
-                            <Button variant="warning" id="button-cart" className="d-flex align-items-center" onClick={() => setShowCart(!showCart)}>
-                                <Cart className="mx-2" /> Cart <Badge bg="secondary" className="ms-2">{cartItems.length}</Badge>
-                            </Button>
-                        </Col>
+                            </Col>
                         </>
                     )}
                 </Row>
-                
+
                 <Collapse in={searchQuery !== '' && !showCart}>
                     <div>
                         <Row className="mt-4">
@@ -131,7 +129,7 @@ const ShoppingCart = () => {
                         <Row className="mt-4">
                             <Col className="text-start">
                                 {searchResults.map(item => (
-                                    <SearchResult 
+                                    <SearchResult
                                         key={item.title}
                                         name={item.title}
                                         value={item.value}
@@ -157,7 +155,7 @@ const ShoppingCart = () => {
                                 <Row className="mt-4">
                                     <Col className="text-start" xs={8}>
                                         {cartItems.map(item => (
-                                            <SearchResult 
+                                            <SearchResult
                                                 key={item.title}
                                                 name={item.title}
                                                 value={item.value}
@@ -171,7 +169,7 @@ const ShoppingCart = () => {
                                         ))}
                                     </Col>
                                     <Col className="fs-5 fw-bold">
-                                        <div className='border rounded p-3'>Subtotal:<br/>${subtotal}</div>
+                                        <div className='border rounded p-3'>Subtotal:<br />${subtotal}</div>
                                     </Col>
                                 </Row>
                             </Col>
@@ -179,7 +177,7 @@ const ShoppingCart = () => {
                     </div>
                 </Collapse>
             </Container>
-        </Demo>
+        </Layout >
     );
 };
 

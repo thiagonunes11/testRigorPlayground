@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Button, Collapse, Form, InputGroup, Alert } from 'react-bootstrap';
-import Prompt from '../components/Prompt.jsx'
-import Demo from '../components/Demo.jsx';
-import { Link } from 'react-router-dom';
-
+import Layout from '../components/Layout';
 
 const VerifyCode = () => {
     const [codeRequested, setCodeRequested] = useState(false);
@@ -40,14 +37,16 @@ const VerifyCode = () => {
     }
 
     return (
-        <Demo>
-            <Prompt title="Code Verification" instructions="Click the button below to retrieve and confirm the code." />
+        <Layout
+            title="Code Verification"
+            description="Click the button below to retrieve and confirm the code."
+        >
             <Container role="main" aria-labelledby="verify-code-title">
                 <Collapse in={!codeRequested}>
                     <Row className="mt-5 justify-content-center text-center">
                         <Col>
-                            <Button 
-                                variant="primary btn-lg" 
+                            <Button
+                                variant="primary btn-lg"
                                 onClick={handleCodeRequest}
                                 id="request-code-btn"
                                 aria-label="Request verification code"
@@ -57,8 +56,8 @@ const VerifyCode = () => {
                         </Col>
                     </Row>
                 </Collapse>
-                <Collapse 
-                    in={codeRequested} 
+                <Collapse
+                    in={codeRequested}
                     className="mt-5 justify-content-center text-center"
                 >
                     <div>
@@ -78,8 +77,8 @@ const VerifyCode = () => {
                                                 aria-label="Verification code input"
                                                 aria-describedby="verification-helper"
                                             />
-                                            <Button 
-                                                variant="primary" 
+                                            <Button
+                                                variant="primary"
                                                 id="verify-code-btn"
                                                 onClick={handleCodeVerification}
                                                 aria-label="Verify entered code"
@@ -103,7 +102,7 @@ const VerifyCode = () => {
                 {alertInfo.show && (
                     <Row className="mt-3 justify-content-center text-center">
                         <Col>
-                            <Alert 
+                            <Alert
                                 variant={alertInfo.variant}
                                 onClose={() => setAlertInfo({ ...alertInfo, show: false })}
                                 dismissible
@@ -114,7 +113,7 @@ const VerifyCode = () => {
                     </Row>
                 )}
             </Container>
-        </Demo>
+        </Layout>
     );
 }
 

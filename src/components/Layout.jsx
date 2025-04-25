@@ -56,7 +56,7 @@ const Layout = ({ children, title, description }) => {
 
       <footer className="footer-modern">
         <Container>
-          <p className="mb-0">&copy; {new Date().getFullYear()} testRigor Playground. All rights reserved.</p>
+          <p className="mb-0">Made with ♥️ by the testRigor team<br/>&copy; {new Date().getFullYear()} testRigor Playground. All rights reserved.</p>
         </Container>
       </footer>
     </div>

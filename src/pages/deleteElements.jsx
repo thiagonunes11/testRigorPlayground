@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import Demo from "../components/Demo.jsx";
-
+import Layout from '../components/Layout';
 const DeleteElements = () => {
     const [items, setItems] = useState(["Element 1", "Element 2", "Element 3"]);
     const [inputValue, setInputValue] = useState("");
@@ -17,14 +16,10 @@ const DeleteElements = () => {
     };
 
     return (
-        <Demo className="container text-center my-5">
-            <div className="row justify-content-center mb-5">
-                <div className="col-6 border p-2 pt-4">
-                    <h2><b>Delete Elements</b></h2>
-                    <p className="mt-4"><small>Delete elements by clicking on the "x" buttons besides them and add new elements by inputting text in the field.</small></p>
-                </div>
-            </div>
-            
+        <Layout
+            title={"Delete Elements"}
+            description={"Delete elements by clicking on the \"x\" buttons besides them and add new elements by inputting text in the field."}
+        >
             <div className="row justify-content-center">
                 <div className="col-6 border p-2 pt-4">
                     <div className="row justify-content-center">
@@ -59,7 +54,7 @@ const DeleteElements = () => {
                     </ol>
                 </div>
             </div>
-        </Demo>
+        </Layout>
     );
 };
 

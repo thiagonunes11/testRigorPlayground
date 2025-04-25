@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import logo from "../assets/logo.png";
-import Demo from "../components/Demo.jsx";
-
+import Layout from '../components/Layout';
 const SvgElements = () => {
   const [showContent, setShowContent] = useState(false);
   const [textContent, setTextContent] = useState("#1 Automation Tool");
@@ -22,7 +21,10 @@ const SvgElements = () => {
   };
 
   return (
-    <Demo>
+    <Layout
+      title="SVG Elements"
+      description="Interact with SVG elements and sub-elements."
+    >
       <style>
         {`
             @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
@@ -58,13 +60,6 @@ body{
     font-weight: bold;
 } `}
       </style>
-
-      <div className="row justify-content-center text-center mb-5">
-        <div className="col-6 border p-2">
-          <h1 className="fs-2 fw-bold mt-3 mb-4">SVG Elements</h1>
-          <p>Interact with SVG elements and sub-elements.</p>
-        </div>
-      </div>
 
       <div className="row justify-content-center">
         <div className="col-3 text-center">
@@ -138,7 +133,7 @@ body{
                 {showRightArrow ? (
                   <button
                     id="rightArrowButton"
-                    className="btn btn-primary"
+                    className="btn btn-primary btn-modern"
                     onClick={handleRightArrowClick}
                   >
                     <svg
@@ -162,7 +157,7 @@ body{
                 ) : (
                   <button
                     id="leftArrowButton"
-                    className="btn btn-primary"
+                    className="btn btn-primary btn-modern"
                     onClick={handleLeftArrowClick}
                   >
                     <svg
@@ -189,7 +184,7 @@ body{
           </div>
         </div>
       </div>
-    </Demo>
+    </Layout>
   );
 };
 

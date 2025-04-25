@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Demo from '../components/Demo.jsx';
+import Layout from '../components/Layout';
 
 const CameraPage = () => {
   const videoRef = useRef(null);
@@ -56,29 +56,32 @@ const CameraPage = () => {
   };
 
   return (
-    <Demo>
-    <div className="camera-container">
-      <h2>Camera Access</h2>
-      {!hasPermission && <p>Requesting camera access...</p>}
-          <button onClick={toggleCamera}>
-            {hasPermission ? 'Turn Off Camera' : 'Turn On Camera'}
-          </button>
-      {error ? (
-        <div className="error">{error}</div>
-      ) : (
-        <>
-          <video
-            ref={videoRef}
-            autoPlay
-            playsInline
-            muted
-            style={{ display: hasPermission ? 'block' : 'none', width: '100%' }}
-          />
- 
-        </>
-      )}
-    </div>
-    </Demo>
+    <Layout
+      title={"Camera"}
+      description={"Use the camera"}
+    >
+      <div className="camera-container">
+        <h2>Camera Access</h2>
+        {!hasPermission && <p>Requesting camera access...</p>}
+        <button onClick={toggleCamera}>
+          {hasPermission ? 'Turn Off Camera' : 'Turn On Camera'}
+        </button>
+        {error ? (
+          <div className="error">{error}</div>
+        ) : (
+          <>
+            <video
+              ref={videoRef}
+              autoPlay
+              playsInline
+              muted
+              style={{ display: hasPermission ? 'block' : 'none', width: '100%' }}
+            />
+
+          </>
+        )}
+      </div>
+    </Layout>
   );
 };
 

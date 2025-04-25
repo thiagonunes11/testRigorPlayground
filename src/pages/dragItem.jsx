@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
-import Prompt from '../components/Prompt.jsx';
-import Demo from '../components/Demo.jsx';
+import Layout from '../components/Layout';
 
 const DragItem = () => {
     const [draggingItem, setDraggingItem] = useState(null);
@@ -117,8 +116,10 @@ const DragItem = () => {
     }, [taskListElement]);
 
     return (
-        <Demo>
-            <Prompt title="Drag Item" instructions="Drag items in the list to put them in order." />
+        <Layout
+            title="Drag Item"
+            description="Drag items in the list to put them in order."
+        >
 
             <style>
                 {`
@@ -182,7 +183,7 @@ const DragItem = () => {
                     </div>
                 </div>
             </div>
-        </Demo>
+        </Layout>
     );
 };
 

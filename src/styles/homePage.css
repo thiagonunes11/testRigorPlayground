@@ -182,11 +182,12 @@ body {
 .btn-modern.btn-primary {
   background-color: var(--primary);
   color: white;
+  opacity: 0.8;
 }
 
 .btn-modern.btn-primary:hover {
   background-color: var(--primary);
-  opacity: 0.9;
+  opacity: 1;
 }
 
 .btn-secondary {
