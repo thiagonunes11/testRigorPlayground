@@ -190,13 +190,13 @@ body {
   opacity: 1;
 }
 
-.btn-secondary {
+.btn-modern.btn-secondary {
   background-color: var(--secondary);
   color: white;
 }
 
-.btn-secondary:hover {
-  background-color: #e11d48;
+.btn-modern.btn-secondary:hover {
+  opacity: 0.9;
 }
 
 /* Counter Styles */
