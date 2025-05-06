@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Layout from '../components/Layout';
 import { Container, Row, Col, Card, Form, ListGroup, Button, Alert } from "react-bootstrap";
 import Layout from '../components/Layout';
 
