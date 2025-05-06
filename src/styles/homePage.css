@@ -363,3 +363,38 @@ body {
         max-width: 100%;
     }
 } 
+
+/* Tables */
+.dynamic-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.dynamic-table th,
+.dynamic-table td {
+  padding: 0.75rem;
+  text-align: left;
+  border: 1px solid var(--border);
+}
+
+.dynamic-table th {
+  background-color: var(--card-bg);
+  color: var(--text);
+}
+
+.dynamic-table td {
+  background-color: var(--surface);
+  color: var(--text-secondary);
+}
+
+/* Estilos para o tema escuro */
+.dark-mode .dynamic-table th {
+  background-color: var(--card-hover);
+  color: var(--text);
+}
+
+.dark-mode .dynamic-table td {
+  background-color: var(--card-bg);
+  color: var(--secondary);
+}
