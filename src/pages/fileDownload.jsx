@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Layout from '../components/Layout';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col, Button, Stack } from 'react-bootstrap';
 import Layout from '../components/Layout';
