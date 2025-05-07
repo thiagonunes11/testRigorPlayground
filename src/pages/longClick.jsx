@@ -83,7 +83,7 @@ function LongClick() {
                     <Col xs={12} sm={8} md={6} lg={4}>
                         <div className="d-grid">
                             <Button
-                                variant={isPressed ? "primary" : "outline-primary"}
+                                className={'btn-modern'}
                                 size="lg"
                                 onMouseDown={handlePressStart}
                                 onMouseUp={handlePressEnd}
