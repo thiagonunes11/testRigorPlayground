@@ -167,17 +167,32 @@ body {
   font-weight: 500;
   border: none;
   cursor: pointer;
+  transition: none;
+  transform: none;
 }
 
 .btn-modern.btn-primary {
   background-color: var(--primary);
   color: white;
-  opacity: 0.8;
+}
+
+.btn-modern.btn-primary:hover {
+  background-color: var(--primary);
+  color: white;
+  filter: brightness(0.9);
+  transform: none;
 }
 
 .btn-modern.btn-secondary {
   background-color: var(--secondary);
   color: white;
+}
+
+.btn-modern.btn-secondary:hover {
+  background-color: var(--secondary);
+  color: white;
+  filter: brightness(0.9);
+  transform: none;
 }
 
 /* Counter Styles */
