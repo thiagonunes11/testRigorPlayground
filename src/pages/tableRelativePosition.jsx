@@ -4,38 +4,36 @@ import { Row, Col, Alert, Collapse, Table, Button, Form, InputGroup, Container }
 
 function TableView({ data }) {
     return (
-        <div className="table-responsive">
-            <Table striped bordered hover id="random-table">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Column 1</th>
-                        <th scope="col">Column 2</th>
-                        <th scope="col">Column 3</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row" className="row-index">Line 1</th>
-                        <td id="cell-1">{data[0]}</td>
-                        <td id="cell-2">{data[1]}</td>
-                        <td id="cell-3">{data[2]}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row" className="row-index">Line 2</th>
-                        <td id="cell-4">{data[3]}</td>
-                        <td id="cell-5">{data[4]}</td>
-                        <td id="cell-6">{data[5]}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row" className="row-index">Line 3</th>
-                        <td id="cell-7">{data[6]}</td>
-                        <td id="cell-8">{data[7]}</td>
-                        <td id="cell-9">{data[8]}</td>
-                    </tr>
-                </tbody>
-            </Table>
-        </div>
+        <Table striped bordered hover id="random-table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Column 1</th>
+                    <th scope="col">Column 2</th>
+                    <th scope="col">Column 3</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row" className="row-index">Line 1</th>
+                    <td id="cell-1">{data[0]}</td>
+                    <td id="cell-2">{data[1]}</td>
+                    <td id="cell-3">{data[2]}</td>
+                </tr>
+                <tr>
+                    <th scope="row" className="row-index">Line 2</th>
+                    <td id="cell-4">{data[3]}</td>
+                    <td id="cell-5">{data[4]}</td>
+                    <td id="cell-6">{data[5]}</td>
+                </tr>
+                <tr>
+                    <th scope="row" className="row-index">Line 3</th>
+                    <td id="cell-7">{data[6]}</td>
+                    <td id="cell-8">{data[7]}</td>
+                    <td id="cell-9">{data[8]}</td>
+                </tr>
+            </tbody>
+        </Table>
     );
 }
 
@@ -54,6 +52,32 @@ function TableRelativePosition() {
         for (let i = 0; i < 9; i++) {
             tableData.push(randomIntFromInterval(1, 100));
         }
+
+        const divisorsTable = [
+            [1, 840],
+            [2, 420],
+            [3, 280],
+            [4, 210],
+            [5, 168],
+            [6, 140],
+            [7, 120],
+            [8, 105],
+            [10, 84],
+            [12, 70],
+            [14, 60],
+            [15, 56],
+            [20, 42],
+            [21, 40],
+            [24, 35],
+            [28, 30]
+        ];
+
+        const pairIndex = randomIntFromInterval(1, 16);
+        const numberChoice = randomIntFromInterval(0, 1);
+
+        tableData[3] = divisorsTable[pairIndex][numberChoice];
+        tableData[2] = divisorsTable[pairIndex][1 - numberChoice];
+
         return tableData;
     }
 
@@ -94,8 +118,8 @@ function TableRelativePosition() {
             title="Relative Position Table"
             description="Answer the questions to move to the next page."
         >
-            <Container>
-                <Row className="mt-3 mt-md-5">
+            <Container className='demo-content justify-content-center'>
+                <Row className="mb-5">
                     <Col xs={12}>
                         {!isSecondQuestion &&
                             <>
@@ -103,14 +127,16 @@ function TableRelativePosition() {
                                 <p className="my-3">
                                     You need to <span className="fw-bold">add</span> the item in <span className="fw-bold">line 1 column 2</span> with the item in <span className="fw-bold">column 3 line 3</span>.
                                 </p>
-                            </>}
+                            </>
+                        }
                         {isSecondQuestion &&
                             <>
                                 <h3>Second Question</h3>
                                 <p className="my-3">
                                     You need to <span className="fw-bold">multiply</span> the item in <span className="fw-bold">line 2 column 1</span> with the item in <span className="fw-bold">column 3 line 1</span>.
                                 </p>
-                            </>}
+                            </>
+                        }
                     </Col>
                 </Row>
                 
@@ -131,7 +157,7 @@ function TableRelativePosition() {
                                 value={resultInput}
                                 onChange={handleInputChange}
                             />
-                            <Button variant="primary" id="button-addon2" onClick={handleValueCheck}>
+                            <Button className="btn-modern btn-primary" onClick={handleValueCheck}>
                                 Submit
                             </Button>
                         </InputGroup>
@@ -146,8 +172,6 @@ function TableRelativePosition() {
                     </Col>
                 </Row>
             </Container>
-            <br></br>
-            <br></br>
         </Layout>
     );
 }
