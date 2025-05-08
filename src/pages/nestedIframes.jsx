@@ -1,32 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import FirstIframe from './nestedIframes/firstIframe'; // Import the FirstIframe component
 import Layout from '../components/Layout';
 
-
-
 const NestedIframes = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <Layout
       title={"Nested Iframes"}
-      description={"There are two iframes, one inside another. Both of them have a unique word that is a link. This link changes the iframe url, changing also the text."}
+      description={"There are two iframes, one inside another. Both of them have a unique word that is a link."}
     >
-      <Container className="mt-5 mb-3">
-        
-
-        <Row className="mt-5">
-          <Col xs={12}>
+      <Container className="vh-100 d-flex flex-column p-0" fluid>
+        <Row className="flex-grow-1 m-0">
+          <Col xs={12} className="h-100 p-4">
             <h3>Out of iframe</h3>
             <p>This first test is present on the current page, outside of any iframe.</p>
 
-            {/* Responsive iframe container */}
-            <div className="ratio ratio-16x9">
+            {/* Responsive iframe container - now filling available space */}
+            <div className="ratio ratio-16x9 h-75">
               <iframe 
                 src="http://localhost:5173/nestedIframes/firstIframe" 
                 allowFullScreen
                 title="Nested Iframes Demo"
-              >
-              </iframe>
+                className="h-100"
+              />
             </div>
           </Col>
         </Row>
