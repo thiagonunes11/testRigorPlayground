@@ -21,7 +21,8 @@
   --secondary: #94a3b8;
   --background: #0f172a;
   --text: #f1f5f9;
-  --border: #1e293b;
+  --text-secondary: #c0cad4;
+  --border: #18263a;
   --card-bg: #1e293b;
   --card-hover: #334155;
   --navbar-bg: #1e293b;
@@ -260,6 +261,7 @@ body {
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -272,99 +274,99 @@ body {
 
 /* Audio Validation Styles */
 .audio-validation-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-    padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
 }
 
 .demo-title {
-    color: var(--text);
-    font-size: 1.75rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
+  color: var(--text);
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
 }
 
 .demo-description {
-    color: var(--secondary);
-    text-align: center;
-    max-width: 600px;
-    margin-bottom: 2rem;
+  color: var(--secondary);
+  text-align: center;
+  max-width: 600px;
+  margin-bottom: 2rem;
 }
 
 .audio-controls {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
 }
 
 .audio-preview {
-    width: 100%;
-    max-width: 400px;
-    background-color: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 0.75rem;
-    padding: 1.5rem;
-    text-align: center;
+  width: 100%;
+  max-width: 400px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  text-align: center;
 }
 
 .audio-preview h3 {
-    color: var(--text);
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
+  color: var(--text);
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
 }
 
 .audio-player {
-    width: 100%;
-    margin-top: 1rem;
+  width: 100%;
+  margin-top: 1rem;
 }
 
 .validation-result {
-    width: 100%;
-    max-width: 400px;
-    padding: 1.5rem;
-    border-radius: 0.75rem;
-    text-align: center;
-    margin-top: 1rem;
+  width: 100%;
+  max-width: 400px;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  text-align: center;
+  margin-top: 1rem;
 }
 
 .validation-result.success {
-    background-color: rgba(34, 197, 94, 0.1);
-    border: 1px solid rgba(34, 197, 94, 0.2);
-    color: rgb(34, 197, 94);
+  background-color: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  color: rgb(34, 197, 94);
 }
 
 .validation-result.error {
-    background-color: rgba(239, 68, 68, 0.1);
-    border: 1px solid rgba(239, 68, 68, 0.2);
-    color: rgb(239, 68, 68);
+  background-color: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  color: rgb(239, 68, 68);
 }
 
 .validation-result h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
 }
 
 .validation-result p {
-    margin: 0;
-    font-size: 1rem;
+  margin: 0;
+  font-size: 1rem;
 }
 
 @media (max-width: 768px) {
-    .audio-validation-container {
-        padding: 1rem;
-    }
+  .audio-validation-container {
+    padding: 1rem;
+  }
 
-    .demo-title {
-        font-size: 1.5rem;
-    }
+  .demo-title {
+    font-size: 1.5rem;
+  }
 
-    .audio-preview,
-    .validation-result {
-        max-width: 100%;
-    }
-} 
+  .audio-preview,
+  .validation-result {
+    max-width: 100%;
+  }
+}
 
 /* Tables */
 .dynamic-table {
@@ -400,6 +402,36 @@ body {
   background-color: var(--card-bg);
   color: var(--secondary);
 }
+
+/* Input Fields */
+.input-group>input {
+  background-color: var(--background);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.input-group> ::file-selector-button {
+  background-color: var(--card-bg);
+  color: var(--text);
+}
+
+.input-group>input::placeholder {
+  color: var(--text-secondary);
+}
+
+.input-group>input:focus {
+  background-color: var(--card-bg);
+  color: var(--text);
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.form-select {
+  background-color: var(--background);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
 /* Modals */
 .modal-content {
   background-color: var(--card-bg);
