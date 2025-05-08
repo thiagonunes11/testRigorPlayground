@@ -2,7 +2,8 @@ import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import Layout from '../components/Layout';
 
-import ocrImage from '../assets/images/OCR_TEXT.png';
+import ocrImage from '../../src/assets/images/OCR_TEXT.png';
+
 
 const OcrCheck = () => {
     return (
