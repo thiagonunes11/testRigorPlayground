@@ -13,6 +13,7 @@ const Layout = ({ children, title, description }) => {
   useEffect(() => {
     localStorage.setItem('darkMode', JSON.stringify(isDarkMode));
     document.body.classList.toggle('dark-mode', isDarkMode);
+    document.body.setAttribute('data-bs-theme', isDarkMode ? 'dark' : 'light');
   }, [isDarkMode]);
 
   const toggleDarkMode = () => {

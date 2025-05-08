@@ -20,6 +20,10 @@ const ModalPopup = () => {
         setShowFirstModal(true);
     };
 
+    const getCloseButtonClass = () => {
+        return document.body.classList.contains('dark-mode') ? 'btn-close-white' : '';
+    }
+
     return (
         <Layout
             title={"Modal Popup"}
@@ -32,14 +36,19 @@ const ModalPopup = () => {
 
                 {/* First Modal */}
                 <Modal show={showFirstModal} onHide={handleCloseFirstModal} centered>
-                    <Modal.Header closeButton>
+                    <Modal.Header>
                         <Modal.Title>Modal 1</Modal.Title>
+                        <button
+                            className={`btn-close ${getCloseButtonClass()}`}
+                            onClick={handleCloseFirstModal}
+                            aria-label="Close"
+                        ></button>
                     </Modal.Header>
                     <Modal.Body>
                         Hi. This is the first modal popup.
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="primary" onClick={handleShowSecondModal}>
+                        <Button className={"btn-modern"} variant="primary" onClick={handleShowSecondModal}>
                             Open second modal
                         </Button>
                     </Modal.Footer>
@@ -47,14 +56,19 @@ const ModalPopup = () => {
 
                 {/* Second Modal */}
                 <Modal show={showSecondModal} onHide={handleCloseSecondModal} centered>
-                    <Modal.Header closeButton>
+                    <Modal.Header>
                         <Modal.Title>Modal 2</Modal.Title>
+                        <button
+                            className={`btn-close ${getCloseButtonClass()}`}
+                            onClick={handleCloseSecondModal}
+                            aria-label="Close"
+                        ></button>
                     </Modal.Header>
                     <Modal.Body>
                         Hi. This is the second modal popup.
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="primary" onClick={handleBackToFirstModal}>
+                        <Button className={"btn-modern"} variant="primary" onClick={handleBackToFirstModal}>
                             Back to first
                         </Button>
                     </Modal.Footer>

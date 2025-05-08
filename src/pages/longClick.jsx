@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { 
-  Container, 
-  Row, 
-  Col, 
-  Form, 
-  Button, 
-  Alert 
+import {
+    Container,
+    Row,
+    Col,
+    Form,
+    Button,
+    Alert
 } from 'react-bootstrap';
 import Layout from '../components/Layout';
 
@@ -19,14 +19,15 @@ function LongClick() {
 
     useEffect(() => {
         let interval;
+        let localStartTime = null;
 
         if (isPressed) {
-            setStartTime(Date.now());
+            localStartTime = Date.now();
             setClickPressCounter(0);
             setIsLongClick(false);
-            
+
             interval = setInterval(() => {
-                const elapsed = (Date.now() - startTime) / 1000;
+                const elapsed = (Date.now() - localStartTime) / 1000;
                 setClickPressCounter(elapsed.toFixed(2));
             }, 10);
         } else {
@@ -37,7 +38,7 @@ function LongClick() {
         }
 
         return () => clearInterval(interval);
-    }, [isPressed, startTime]);
+    }, [isPressed]);
 
     const handlePressStart = () => {
         setIsPressed(true);
@@ -63,7 +64,7 @@ function LongClick() {
                                     Select long click duration (seconds):
                                 </Form.Label>
                                 <Col xs={12} sm={6} md={4}>
-                                    <Form.Select 
+                                    <Form.Select
                                         value={chosenClickTime}
                                         onChange={(e) => setChosenClickTime(Number(e.target.value))}
                                         aria-label="Select long click duration"
@@ -83,7 +84,7 @@ function LongClick() {
                     <Col xs={12} sm={8} md={6} lg={4}>
                         <div className="d-grid">
                             <Button
-                                variant={isPressed ? "primary" : "outline-primary"}
+                                className={'btn-modern'}
                                 size="lg"
                                 onMouseDown={handlePressStart}
                                 onMouseUp={handlePressEnd}
@@ -102,8 +103,8 @@ function LongClick() {
                     <Col xs={12} md={8} lg={6}>
                         <div className="d-flex flex-column flex-md-row align-items-center gap-3">
                             <div className="fs-4 text-nowrap">Click time:</div>
-                            <Alert 
-                                variant={isLongClick ? 'success' : clickPressCounter > 0 ? 'danger' : 'secondary'} 
+                            <Alert
+                                variant={isLongClick ? 'success' : clickPressCounter > 0 ? 'danger' : 'secondary'}
                                 className="m-0 text-center flex-grow-1"
                             >
                                 {clickPressCounter > 0 ? (
