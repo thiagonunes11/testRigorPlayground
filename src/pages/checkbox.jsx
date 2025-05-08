@@ -1,65 +1,57 @@
 import React from 'react';
 import Layout from '../components/Layout';
 import { Container, Row, Col, Card, Form } from 'react-bootstrap';
+import '../styles/checkboxPage.css'; 
 
 const CheckboxPage = () => {
+    const checkboxGroups = [
+        {
+            title: "Select Your Preferences",
+            options: [
+                { id: "first-checkbox", label: "First" },
+                { id: "second-checkbox", label: "Second" },
+            ],
+        },
+        {
+            title: "Choose Your Numbers",
+            options: [
+                { id: "one-checkbox", label: "1" },
+                { id: "two-checkbox", label: "2" },
+            ],
+        },
+    ];
+
     return (
         <Layout
-            title="Checkbox" 
-            description="Click on checkboxes in order to select the desired option."
+            title="Checkbox Page"
+            description="Click on checkboxes in order to select the desired option"
         >
             <div className="demo-content">
-                <Container className="my-4">
+                <Container className="my-5">
                     <Row className="justify-content-center">
-                        {/* First Box */}
-                        <Col md={6} lg={5} className="mb-4 mb-lg-0">
-                            <Card>
-                                <Card.Body>
-                                    <Card.Title as="h3">Checkboxes with Labels</Card.Title>
-                                    <Form>
-                                        <Form.Group className="mb-3">
-                                            <Form.Check 
-                                                type="checkbox"
-                                                id="first-checkbox"
-                                                label="First"
-                                            />
-                                        </Form.Group>
-                                        <Form.Group className="mb-3">
-                                            <Form.Check 
-                                                type="checkbox"
-                                                id="second-checkbox"
-                                                label="Second"
-                                            />
-                                        </Form.Group>
-                                    </Form>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-
-                        {/* Second Box */}
-                        <Col md={6} lg={5}>
-                            <Card>
-                                <Card.Body>
-                                    <Card.Title as="h3">Checkboxes with Numbers</Card.Title>
-                                    <Form>
-                                        <Form.Group className="mb-3">
-                                            <Form.Check 
-                                                type="checkbox"
-                                                id="one-checkbox"
-                                                label="1"
-                                            />
-                                        </Form.Group>
-                                        <Form.Group className="mb-3">
-                                            <Form.Check 
-                                                type="checkbox"
-                                                id="two-checkbox"
-                                                label="2"
-                                            />
-                                        </Form.Group>
-                                    </Form>
-                                </Card.Body>
-                            </Card>
-                        </Col>
+                        {checkboxGroups.map((group, index) => (
+                            <Col key={index} md={6} lg={5} className="mb-4">
+                                <Card className="shadow-sm border-0">
+                                    <Card.Body>
+                                        <Card.Title as="h4" className="text-primary mb-4">
+                                            {group.title}
+                                        </Card.Title>
+                                        <Form>
+                                            {group.options.map(option => (
+                                                <Form.Group key={option.id} className="mb-3">
+                                                    <Form.Check
+                                                        type="checkbox"
+                                                        id={option.id}
+                                                        label={option.label}
+                                                        className="custom-checkbox"
+                                                    />
+                                                </Form.Group>
+                                            ))}
+                                        </Form>
+                                    </Card.Body>
+                                </Card>
+                            </Col>
+                        ))}
                     </Row>
                 </Container>
             </div>
