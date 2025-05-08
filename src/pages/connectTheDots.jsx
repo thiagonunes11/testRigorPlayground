@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import Layout from '../components/Layout';
+import Layout from "../components/Layout";
+
 const ConnectTheDots = () => {
   const canvasRef = useRef(null);
   const [dots, setDots] = useState([]);
@@ -92,6 +93,14 @@ const ConnectTheDots = () => {
       setLastDot(hoveredDot);
       // Clear the temporary line once a permanent connection is made.
       setTempLineEnd(null);
+
+      // Check if the last dot connects back to the first dot.
+      if (hoveredDot === 0 && currentPath.length === dots.length) {
+        setLines((prevLines) => [...prevLines, [lastDot, 0]]);
+        setIsDrawing(false);
+        setTempLineEnd(null);
+        setLastDot(null);
+      }
     }
   };
 
@@ -100,21 +109,14 @@ const ConnectTheDots = () => {
     setIsDrawing(false);
     setTempLineEnd(null);
     setLastDot(null);
-    // If the path does not include all dots, clear the drawn lines.
-    if (currentPath.length !== dots.length) {
-      setLines([]);
-      setCurrentPath([]);
-    }
   };
 
   // Clear drawing state if mouse leaves the canvas.
   const handleMouseLeave = () => {
     if (isDrawing) {
-      setLines([]);
-      setCurrentPath([]);
       setIsDrawing(false);
-      setLastDot(null);
       setTempLineEnd(null);
+      setLastDot(null);
     }
   };
 
@@ -190,8 +192,6 @@ const ConnectTheDots = () => {
           </button>
         </div>
       </div>
-      <br></br>
-      <br></br>
     </Layout>
   );
 };

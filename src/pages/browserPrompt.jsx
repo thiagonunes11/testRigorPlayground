@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
-
 import Layout from '../components/Layout';
+import '../styles/homePage.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 const BrowserPrompt = () => {
   const [name, setName] = useState("");
   const [showWelcome, setShowWelcome] = useState(false);
@@ -49,7 +51,6 @@ const BrowserPrompt = () => {
           </a>
         </div>
       </div>
-
     </Layout>
   );
 };
