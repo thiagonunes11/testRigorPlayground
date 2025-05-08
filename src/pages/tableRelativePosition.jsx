@@ -52,32 +52,6 @@ function TableRelativePosition() {
         for (let i = 0; i < 9; i++) {
             tableData.push(randomIntFromInterval(1, 100));
         }
-
-        const divisorsTable = [
-            [1, 840],
-            [2, 420],
-            [3, 280],
-            [4, 210],
-            [5, 168],
-            [6, 140],
-            [7, 120],
-            [8, 105],
-            [10, 84],
-            [12, 70],
-            [14, 60],
-            [15, 56],
-            [20, 42],
-            [21, 40],
-            [24, 35],
-            [28, 30]
-        ];
-
-        const pairIndex = randomIntFromInterval(1, 16);
-        const numberChoice = randomIntFromInterval(0, 1);
-
-        tableData[3] = divisorsTable[pairIndex][numberChoice];
-        tableData[2] = divisorsTable[pairIndex][1 - numberChoice];
-
         return tableData;
     }
 
