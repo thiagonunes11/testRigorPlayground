@@ -13,6 +13,7 @@
   --card-hover: #f8fafc;
   --navbar-bg: #ffffff;
   --footer-bg: #f8fafc;
+  --separator: #e2e8f0;
 }
 
 .dark-mode {
@@ -25,6 +26,7 @@
   --card-hover: #334155;
   --navbar-bg: #1e293b;
   --footer-bg: #1e293b;
+  --separator: #3f4f66;
 }
 
 body {
@@ -397,4 +399,17 @@ body {
 .dark-mode .dynamic-table td {
   background-color: var(--card-bg);
   color: var(--secondary);
+}
+/* Modals */
+.modal-content {
+  background-color: var(--card-bg);
+  color: var(--text);
+}
+
+.modal-header {
+  border-bottom: 0.1rem solid var(--separator);
+}
+
+.modal-footer {
+  border-top: 0.1rem solid var(--separator);
 }
