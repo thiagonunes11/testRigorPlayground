@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Layout from '../components/Layout';
+
 const DynamicLogin = () => {
   // List of possible button texts
   const possibleNames = [
@@ -14,11 +15,12 @@ const DynamicLogin = () => {
     "Manager Sign In", "Subscriber Access"
   ];
 
-  // State for button text
+  // States
   const [buttonText, setButtonText] = useState("");
-
-  // State for showing login success message
   const [showSuccess, setShowSuccess] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   // Change button text on component mount
   useEffect(() => {
@@ -26,7 +28,27 @@ const DynamicLogin = () => {
   }, []);
 
   // Handle button click
-  const handleLoginClick = () => {
+  const handleLoginClick = (e) => {
+    e.preventDefault();
+    
+    // Basic validation
+    if (!email) {
+      setError("Please enter your email");
+      return;
+    }
+    
+    if (!password) {
+      setError("Please enter your password");
+      return;
+    }
+    
+    // Simple email validation
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+      setError("Please enter a valid email address");
+      return;
+    }
+    
+    setError("");
     setShowSuccess(true);
   };
 
@@ -38,28 +60,54 @@ const DynamicLogin = () => {
       {/* Login Form */}
       <div className="row m-4">
         <div className="col p-3">
-          <div className="form-group">
-            <label htmlFor="exampleInputEmail1">Email address</label>
-            <input type="email" className="form-control" id="exampleInputEmail1" placeholder="Enter email" value="example@example.com" disabled />
-            <small className="form-text text-muted">We'll never share your email with anyone else.</small>
-          </div>
-          <br />
-          <div className="form-group">
-            <label htmlFor="exampleInputPassword1">Password</label>
-            <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" value="examplepassword" disabled />
-          </div>
-          <br />
-          {/* Dynamic Login Button */}
-          <button className="btn btn-primary btn-modern" onClick={handleLoginClick}>{buttonText}</button>
-
-          {/* Success Message */}
-          {showSuccess && (
-            <div className="form-group pt-4">
-              <div className="alert alert-info" role="alert">
-                <small>Successful login!</small>
-              </div>
+          <form onSubmit={handleLoginClick}>
+            <div className="form-group">
+              <label htmlFor="emailInput">Email address</label>
+              <input 
+                type="email" 
+                className="form-control" 
+                id="emailInput" 
+                placeholder="Enter email" 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <small className="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
-          )}
+            <br />
+            <div className="form-group">
+              <label htmlFor="passwordInput">Password</label>
+              <input 
+                type="password" 
+                className="form-control" 
+                id="passwordInput" 
+                placeholder="Password" 
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <br />
+            
+            {/* Error Message */}
+            {error && (
+              <div className="alert alert-danger" role="alert">
+                {error}
+              </div>
+            )}
+            
+            {/* Dynamic Login Button */}
+            <button type="submit" className="btn btn-primary btn-modern">
+              {buttonText}
+            </button>
+
+            {/* Success Message */}
+            {showSuccess && (
+              <div className="form-group pt-4">
+                <div className="alert alert-success" role="alert">
+                  Successful login! Welcome back.
+                </div>
+              </div>
+            )}
+          </form>
         </div>
       </div>
     </Layout>

@@ -121,42 +121,44 @@ const DragItem = () => {
             description="Drag items in the list to put them in order."
         >
 
-            <style>
-                {`
-                #task-list {
-                    list-style: none;
-                    margin: 0;
-                    padding: 0;
-                }
+<style>
+    {`
+    #task-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
 
-                .draggable {
-                    padding: 10px;
-                    margin: 5px 0;
-                    background-color: #f8f9fa;
-                    border: 1px solid #ddd;
-                    border-radius: 4px;
-                    text-align: center;
-                    cursor: grab;
-                    user-select: none;
-                }
+    .draggable {
+        padding: 10px;
+        margin: 5px 0;
+        background-color: var(--bs-body-bg);
+        border: 1px solid var(--bs-border-color);
+        color: var(--bs-body-color);
+        border-radius: 4px;
+        text-align: center;
+        cursor: grab;
+        user-select: none;
+    }
 
-                .draggable.dragging {
-                    opacity: 0.5;
-                }
+    .draggable.dragging {
+        opacity: 0.5;
+    }
 
-                @media (max-width: 768px) {
-                    .col-4 {
-                        width: 100%;
-                        padding: 0 15px;
-                    }
+    @media (max-width: 768px) {
+        .col-4 {
+            width: 100%;
+            padding: 0 15px;
+        }
 
-                    .draggable {
-                        font-size: 14px;
-                        padding: 8px;
-                    }
-                }
-                `}
-            </style>
+        .draggable {
+            font-size: 14px;
+            padding: 8px;
+        }
+    }
+    `}
+</style>
+
 
             <div className="row mt-5 justify-content-center text-center">
                 <div className="row justify-content-center">
