@@ -46,6 +46,7 @@ const VerifyCode = () => {
                     <Row className="mt-5 justify-content-center text-center">
                         <Col>
                             <Button
+                                className="btn-modern"
                                 variant="primary btn-lg"
                                 onClick={handleCodeRequest}
                                 id="request-code-btn"
@@ -78,6 +79,7 @@ const VerifyCode = () => {
                                                 aria-describedby="verification-helper"
                                             />
                                             <Button
+                                                className="btn-modern"
                                                 variant="primary"
                                                 id="verify-code-btn"
                                                 onClick={handleCodeVerification}
