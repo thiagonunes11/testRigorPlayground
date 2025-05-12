@@ -13,6 +13,7 @@
   --card-hover: #f8fafc;
   --navbar-bg: #ffffff;
   --footer-bg: #f8fafc;
+  --primary-red: #ff0000;
 }
 
 .dark-mode {
@@ -25,6 +26,7 @@
   --card-hover: #334155;
   --navbar-bg: #1e293b;
   --footer-bg: #1e293b;
+  --primary-red: #fa6162;
 }
 
 body {
