@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import Layout from '../components/Layout';
+import { Row, Col, Container, Button } from 'react-bootstrap';
 
 const ShadowDOM = () => {
   const shadowHostRef = useRef(null);
@@ -22,7 +23,7 @@ const ShadowDOM = () => {
       shadow.innerHTML = `
         <p>And this text is present inside a shadow DOM created with javascript.</p>
         <p>The page CSS also does not work here.</p>
-        <button>No CSS here either</button>
+        <Button>No CSS here either</Button>
       `;
       
       const button = shadow.querySelector('button');
@@ -37,7 +38,7 @@ const ShadowDOM = () => {
       shadow.innerHTML = `
         <p>This text, however, is present inside a shadow DOM.</p>
         <p>As you can see, the page CSS does not work here, check the following button:</p>
-        <button>But no CSS here :(</button>
+        <Button>But no CSS here :(</Button>
       `;
       
       const button = shadow.querySelector('button');
@@ -74,32 +75,35 @@ const ShadowDOM = () => {
       title="Shadow DOM"
       description="There are multiple different implementations of shadow DOMs with buttons that can be interacted with."
     >
-      <div className="container text-center p-5">
-        {/* Regular DOM section */}
-        <div className="row m-4">
-          <div className="col border p-3">
+      {/* Regular DOM section */}
+      <Container className='demo-content justify-content-center'>
+        <Row className='m-4'>
+          <Col className='border p-3'>
             <p>This text is present on the page outside of any shadow DOM.</p>
-            <button type="button" className="btn btn-primary btn-modern first-button">
+            <Button className="btn btn-primary btn-modern first-button">
               We have CSS here!
-            </button>
-          </div>
-        </div>
+            </Button>
+          </Col>
+        </Row>
 
         {/* Template Shadow DOM */}
-        <div className="row m-4">
-          <div className="col border p-3" ref={templateShadowRef}></div>
-        </div>
+        <Row className='m-4'>
+          <Col className='border p-3' ref={templateShadowRef}>
+          </Col>
+        </Row>
 
         {/* Programmatic Shadow DOM */}
-        <div className="row m-4">
-          <div className="col border p-3" ref={shadowHostRef}></div>
-        </div>
+        <Row className='m-4'>
+          <Col className='border p-3' ref={shadowHostRef}>
+          </Col>
+        </Row>
 
         {/* Nested Shadow DOM */}
-        <div className="row m-4">
-          <div className="col border p-3" ref={nestedTemplateShadowRef}></div>
-        </div>
-      </div>
+        <Row className='m-4'>
+          <Col className='border p-3' ref={nestedTemplateShadowRef}>
+          </Col>
+        </Row>
+      </Container>
     </Layout>
   );
 };

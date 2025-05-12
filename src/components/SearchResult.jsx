@@ -31,11 +31,11 @@ function SearchResult({ id, name, value, quantity = 1, isInCart, isCartOpen, onA
                         </Row>
                         )}
                         {!isInCart ? (
-                            <Button variant="warning" onClick={onAdd}>
+                            <Button variant="warning" className="btn-modern btn-primary" onClick={onAdd}>
                                 Add to cart
                             </Button>
                         ) : (
-                            <Button variant="danger" onClick={onRemove}>
+                            <Button variant="danger" className="btn-modern btn-secondary" onClick={onRemove}>
                                 Remove from cart
                             </Button>
                         )}
