@@ -1,68 +1,78 @@
 import React, { useState } from "react";
 import Layout from '../components/Layout';
+import { Container, Row, Col, Button, Card, Nav, InputGroup, Form, Alert } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+
+
 function SimilarPages() {
   const [author, setAuthor] = useState("");
-  const [showResult, setShowResult] = useState(false);
-
-  const handleSearch = () => {
-    if (author.trim() !== "") {
-      setShowResult(true);
-    }
-  };
+    const [_author, set_Author] = useState("");
+    const [showResult, setShowResult] = useState(false);
+  
+    const handleSearch = () => {
+      if (_author.trim() !== ""){
+        setAuthor(_author);
+        setShowResult(true);
+      }
+      else {
+        setShowResult(false);
+      }
+    };
 
   return (
     <Layout
       title="Similar Pages"
       description="There are two nearly identical pages that differ only in tags or attributes."
     >
-      <div>
-        <main className="container mt-5">
-          {/* Search Section */}
-          <div className="row justify-content-center">
-            <div className="col-6">
-              <div className="card text-center">
-                <div className="card-header">
-                  <ul className="nav nav-tabs card-header-tabs">
-                    <li className="nav-item">
-                      <a className="nav-link active" aria-current="true">First version</a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="nav-link" href="similarPages/secondVersion">Second version</a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="card-body">
-                  <h5 className="card-title">Check by the author</h5>
-                  <p className="card-text">Here you can check if our library has a book by the author's name.</p>
+      <Container className="demo-content mt-5">
+        <Card>
+          <Card.Header>
+            <Nav variant="tabs" defaultActiveKey="#">
+              <Nav.Item>
+                <Nav.Link href="#" disabled>First version</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link href="/similarPages/secondVersion">
+                  Second version
+                </Nav.Link>
+              </Nav.Item>
+            </Nav>
+          </Card.Header>
+          <Card.Body>
+            <Card.Title>Check by the author</Card.Title>
+            <Card.Text>
+              Here you can check if our library has a book by the author's name.
+            </Card.Text>
+            <InputGroup>
+              <Form.Control
+                  type="search"
+                  role="search"
+                  autoComplete="off"
+                  placeholder="Author's name"
+                  onChange={(e) => set_Author(e.target.value)}
+                  aria-label="Author's name"
+                  aria-describedby="searchButton"
+              />
+              <Button 
+                variant="primary" 
+                onClick={handleSearch} 
+                id="searchButton" >
+                  Search
+              </Button>
+          </InputGroup>
 
-                  <div className="row justify-content-center my-5">
-                    <div className="col-8">
-                      <div className="input-group">
-                        <input
-                          type="text"
-                          className="form-control"
-                          placeholder="Author's name"
-                          value={author}
-                          onChange={(e) => setAuthor(e.target.value)}
-                        />
-                        <button className="btn btn-outline-primary" type="button" onClick={handleSearch}>
-                          Search
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-
-                  {showResult && (
-                    <div className="alert alert-success" role="alert">
-                      A book by <span>{author}</span> was found!
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        </main>
-      </div>
+          {showResult && (
+            <Row className="mt-4">
+              <Col>
+                <Alert key='success' variant='success' id="resultMessage">
+                  A book by <span id="authorName">{author}</span> was found!
+                </Alert>
+              </Col>
+            </Row>
+          )}
+          </Card.Body>
+        </Card>
+      </Container>
     </Layout>
   );
 }
