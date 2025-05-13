@@ -75,8 +75,8 @@ const EmailValidation = () => {
       description={"Enter the email address and click the button to send a random 6-digit auth code."}
     >
       <Container className="mt-4">
-        <Row>
-          <Col>
+        <Row className="justify-content-center">
+          <Col sm={6}>
             <Form>
               <Form.Group controlId="formEmail">
                 <Form.Label>Email address</Form.Label>
