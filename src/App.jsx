@@ -49,6 +49,8 @@ import SecondIframe from './pages/nestedIframes/secondIframe'
 import SecondIframeSecret from './pages/nestedIframes/secondIframeSecret'
 import DdatePicker from './pages/ddatePicker'
 import CameraPage from './pages/cameraPage'
+import EmailValidation from './pages/emailValidation'
+
 function App() {
     return (
         <Router>
@@ -112,6 +114,7 @@ function App() {
                 <Route path="/nestedIframes/firstIframesecret" element={<FirstIframeSecret />} />
                 <Route path="/nestedIframes/secondIframe" element={<SecondIframe />} />
                 <Route path="/nestedIframes/secondIframeSecret" element={<SecondIframeSecret />} />
+                <Route path="/emailValidation" element={<EmailValidation />} />
             </Routes>
         </Router>
     );
