@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Layout from '../components/Layout';
+import Layout from "../components/Layout";
+import { Form, Button, Alert, Container, Row, Col } from "react-bootstrap";
 
 const EmailValidation = () => {
   const [email, setEmail] = useState("");
@@ -51,13 +52,12 @@ const EmailValidation = () => {
       const response = await fetch("https://tr-playground-email-backend.onrender.com/verify-code", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ "typedCode": validationCode }),
+        body: JSON.stringify({ typedCode: validationCode }),
       });
 
       const result = await response.json();
       setCodeAlertMessage(result.message);
       setIsCodeSuccess(response.ok === true);
-
     } catch (error) {
       setCodeAlertMessage("Failed to verify the code. Please try again later.");
       setIsCodeSuccess(false);
@@ -74,55 +74,64 @@ const EmailValidation = () => {
       title={"Simulated 2FA"}
       description={"Enter the email address and click the button to send a random 6-digit auth code."}
     >
-      <div className="row m-4">
-        <div className="col p-3">
-          <div className="form-group">
-            <label htmlFor="exampleInputEmail1">Email address</label>
-            <input
-              type="email"
-              className="form-control"
-              id="exampleInputEmail1"
-              placeholder="Enter email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <small className="form-text text-muted">We'll never share your email with anyone else.</small>
-          </div>
+      <Container className="mt-4">
+        <Row>
+          <Col>
+            <Form>
+              <Form.Group controlId="formEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="Enter email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <Form.Text className="text-muted">
+                  We'll never share your email with anyone else.
+                </Form.Text>
+              </Form.Group>
 
-          <button className="btn btn-primary btn-modern" onClick={handleSendClick}>Send e-mail</button>
+              <Button variant="primary" className="mt-2" onClick={handleSendClick}>
+                Send e-mail
+              </Button>
 
-          {emailAlertMessage && (
-            <div className="form-group pt-4">
-              <div className={`alert ${isEmailSuccess ? "alert-info" : "alert-danger"}`} role="alert">
-                <small>{emailAlertMessage}</small>
-              </div>
-            </div>
-          )}
+              {emailAlertMessage && (
+                <Alert
+                  className="mt-4"
+                  variant={isEmailSuccess ? "info" : "danger"}
+                >
+                  <small>{emailAlertMessage}</small>
+                </Alert>
+              )}
 
-          <div className="form-group mt-5">
-            <label htmlFor="inputValidationCode">Validation Code</label>
-            <input
-              type="text"
-              inputMode="numeric"
-              pattern="\d*"
-              className="form-control"
-              id="inputValidationCode"
-              placeholder="Enter validation code"
-              value={validationCode}
-              onChange={(e) => setValidationCode(e.target.value)}
-            />
-          </div>
-          <button className="btn btn-primary btn-modern mt-2" onClick={handleSendCode}>Verify</button>
+              <Form.Group controlId="formValidationCode" className="mt-5">
+                <Form.Label>Validation Code</Form.Label>
+                <Form.Control
+                  type="text"
+                  inputMode="numeric"
+                  pattern="\d*"
+                  placeholder="Enter validation code"
+                  value={validationCode}
+                  onChange={(e) => setValidationCode(e.target.value)}
+                />
+              </Form.Group>
 
-          {codeAlertMessage && (
-            <div className="form-group pt-4">
-              <div className={`alert ${isCodeSuccess ? "alert-info" : "alert-danger"}`} role="alert">
-                <small>{codeAlertMessage}</small>
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
+              <Button variant="primary" className="mt-2" onClick={handleSendCode}>
+                Verify
+              </Button>
+
+              {codeAlertMessage && (
+                <Alert
+                  className="mt-4"
+                  variant={isCodeSuccess ? "info" : "danger"}
+                >
+                  <small>{codeAlertMessage}</small>
+                </Alert>
+              )}
+            </Form>
+          </Col>
+        </Row>
+      </Container>
     </Layout>
   );
 };
