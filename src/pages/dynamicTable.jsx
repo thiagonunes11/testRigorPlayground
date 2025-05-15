@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Prompt from '../components/Prompt.jsx'
-import Layout from '../components/Layout'; import { Collapse, Alert, Row, Col } from 'react-bootstrap';
+import Layout from '../components/Layout';
+import { Collapse, Alert, Row, Col, Table } from 'react-bootstrap';
 
 function DynamicTable() {
     const [shuffledValues, setShuffledValues] = useState([]);
@@ -33,16 +33,15 @@ function DynamicTable() {
     return (
         <Layout
             title="Dynamic Table"
-            description="The rows of the table below changes order every time the page is refreshed."
+            description="The rows of the table below change order every time the page is refreshed."
         >
-
-            <Row className="mt-5">
-                <Col className="">
-                    <table class="table table-striped text-start">
+            <Row className="mt-5 demo-content">
+                <Col>
+                    <Table className="text-start dynamic-table" striped bordered hover>
                         <thead>
                             <tr>
-                                <th scope="col">Superhero name</th>
-                                <th scope="col">Real name</th>
+                                <th>Superhero Name</th>
+                                <th>Real Name</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -53,7 +52,7 @@ function DynamicTable() {
                                 </tr>
                             ))}
                         </tbody>
-                    </table>
+                    </Table>
                 </Col>
             </Row>
         </Layout>

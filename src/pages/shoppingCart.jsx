@@ -78,11 +78,11 @@ const ShoppingCart = () => {
             title="Shopping Cart"
             description={"Search for a random item. This will display items you can press to add to cart."}
         >
-            <Container fluid="md">
+            <Container className='demo-content' style={{ maxWidth: 'none' }}>
                 <Row className="mt-4 align-items-center">
                     {showCart ? (
                         <Col xs={12} className="text-start mb-3">
-                            <Button variant="primary" id="button-cart" onClick={() => setShowCart(!showCart)}>
+                            <Button variant="primary" className="btn-modern btn-primary" id="button-cart" onClick={() => setShowCart(!showCart)}>
                                 <ArrowLeft /> Back to search
                             </Button>
                         </Col>
@@ -104,16 +104,16 @@ const ShoppingCart = () => {
                                     }}
                                     disabled={showCart}
                                 />
-                                <Button variant="primary" onClick={handleSearchClick} disabled={showCart}>
+                                <Button variant="primary" className="btn-modern btn-primary" onClick={handleSearchClick} disabled={showCart}>
                                     <Search />
                                 </Button>
                             </InputGroup>
                         </Col>
                         <Col md={2} xs={4} className="mb-3">
                             <Button 
-                                variant="warning" 
-                                id="button-cart" 
-                                className="d-flex align-items-center justify-content-center w-100"
+                                variant="warning"
+                                id="button-cart"
+                                className="d-flex align-items-center justify-content-center w-100 btn-modern btn-primary"
                                 onClick={() => setShowCart(!showCart)}
                             >
                                 <Cart className="me-1" /> 

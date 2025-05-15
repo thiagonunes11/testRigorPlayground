@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import logo from "../assets/logo.png";
 import Layout from '../components/Layout';
+import '../styles/svgElements.css';
+
 const SvgElements = () => {
   const [showContent, setShowContent] = useState(false);
   const [textContent, setTextContent] = useState("#1 Automation Tool");
@@ -39,7 +41,6 @@ const SvgElements = () => {
             display: inline-block;
             padding: 10px 20px;
             border: 1px solid #ccc;
-            background-color: #ffffff;
             margin: 20px 0;
             width: 100%;
             max-width: 400px;
@@ -53,7 +54,6 @@ const SvgElements = () => {
             border: none;
             cursor: pointer;
             border-radius: 50%;
-            background-color: white;
             box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
           }
 
@@ -85,55 +85,45 @@ const SvgElements = () => {
       </style>
 
       <Container>
-        <Row className="justify-content-center text-center mb-4 mb-md-5">
-          <Col xs={12} md={8} lg={6} className="border p-2 p-md-3">
-            <h1 className="fs-2 fs-md-1 fw-bold mt-2 mt-md-3 mb-3 mb-md-4">SVG Elements</h1>
-            <p className="mb-0">Interact with SVG elements and sub-elements.</p>
-          </Col>
-        </Row>
-
         <Row className="justify-content-center">
           <Col xs={12} sm={8} md={6} lg={4} className="text-center">
-            <div className="tab-container">
+            <Container className="tab-container">
               {!showContent ? (
-                <button
-                  id="closeButton"
-                  className="close-btn"
-                  onClick={handleCloseButtonClick}
-                  aria-label="Close"
-                >
-                  <svg
-                    width="24px"
-                    height="24px"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    stroke="#ff0000"
+                <div>
+                  <button
+                    id="closeButton"
+                    className="close-btn"
+                    onClick={handleCloseButtonClick}
+                    aria-label="Close"
                   >
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10zm-2 0a8 8 0 1 1-16 0 8 8 0 0 1 16 0zM7.756 9.167a1 1 0 1 1 1.415-1.414L12 10.585l2.828-2.828a1 1 0 1 1 1.414 1.414L13.415 12l2.828 2.83a1 1 0 1 1-1.415 1.414L12 13.414l-2.83 2.83a1 1 0 0 1-1.414-1.414l2.83-2.83-2.83-2.833z"
-                      fill="#ff0000"
-                    />
-                  </svg>
-                </button>
+                    <svg
+                      width="24px"
+                      height="24px"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="red-elements"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10zm-2 0a8 8 0 1 1-16 0 8 8 0 0 1 16 0zM7.756 9.167a1 1 0 1 1 1.415-1.414L12 10.585l2.828-2.828a1 1 0 1 1 1.414 1.414L13.415 12l2.828 2.83a1 1 0 1 1-1.415 1.414L12 13.414l-2.83 2.83a1 1 0 0 1-1.414-1.414l2.83-2.83-2.83-2.833z"
+                        className="red-elements"
+                      />
+                    </svg>
+                  </button>
+                
+                <svg height="40" width="100%" viewBox="0 0 120 40" preserveAspectRatio="xMidYMid meet">
+                  <text
+                    x="50%"
+                    y="50%"
+                    className="main-tab"
+                  >
+                    Hello World!
+                  </text>
+                </svg>
+              </div>
               ) : null}
-              
-              <svg height="40" width="100%" viewBox="0 0 120 40" preserveAspectRatio="xMidYMid meet">
-                <text
-                  x="50%"
-                  y="50%"
-                  fill="black"
-                  fontFamily="Roboto"
-                  fontWeight="bold"
-                  textAnchor="middle"
-                  dominantBaseline="middle"
-                >
-                  Hello World!
-                </text>
-              </svg>
-
               {showContent && (
                 <div id="buttonClicked" className="svg-content mt-3">
                   <svg aria-label="testrigor logo" width="200" height="200" viewBox="0 0 200 200">
@@ -151,8 +141,7 @@ const SvgElements = () => {
                     <text
                       x="30"
                       y="30"
-                      fill="none"
-                      stroke="red"
+                      className="red-elements"
                       fontFamily="Roboto"
                       fontSize="12"
                     >
@@ -164,7 +153,7 @@ const SvgElements = () => {
                     variant="primary"
                     id={showRightArrow ? "rightArrowButton" : "leftArrowButton"}
                     onClick={showRightArrow ? handleRightArrowClick : handleLeftArrowClick}
-                    className="mt-2"
+                    className="btn-modern mt-2"
                   >
                     <svg
                       aria-label={showRightArrow ? "right arrow" : "left arrow"}
@@ -185,7 +174,7 @@ const SvgElements = () => {
                   </Button>
                 </div>
               )}
-            </div>
+            </Container>
           </Col>
         </Row>
       </Container>
