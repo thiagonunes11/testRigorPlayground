@@ -14,7 +14,7 @@ const FirstIframe = () => {
           </div>
         </div>
 
-        <div className="row" style={{ height: '500px' }}>
+        <div className="row" style={{ height: '800px' }}>
           <div className="col h-100">
             {/* Use iframe for isolation */}
             <iframe
