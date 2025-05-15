@@ -74,9 +74,9 @@ const EmailValidation = () => {
       title={"Simulated 2FA"}
       description={"Enter the email address and click the button to send a random 6-digit auth code."}
     >
-      <Container className="mt-4">
-        <Row>
-          <Col>
+      <Container className="mt-4 d-flex justify-content-center align-items-center">
+        <Row className="w-100 justify-content-center">
+          <Col md={6}>
             <Form>
               <Form.Group controlId="formEmail">
                 <Form.Label>Email address</Form.Label>
