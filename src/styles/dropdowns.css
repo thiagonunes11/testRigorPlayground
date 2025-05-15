@@ -1,31 +1,52 @@
-/* Ajusta os botões de dropdown para se adaptarem ao dark mode */
+/* Dropdowns - Compatível com dark/light mode */
 .dropdown-menu {
-    background-color: var(--bs-body-bg);
-    color: var(--bs-body-color);
-    border-color: var(--bs-border-color);
+    background-color: var(--bs-dropdown-bg) !important;
+    color: var(--bs-dropdown-color) !important;
+    border-color: var(--bs-dropdown-border-color) !important;
 }
 
 .dropdown-item {
-    color: var(--bs-body-color);
+    color: var(--bs-dropdown-link-color) !important;
 }
 
-.dropdown-item:hover, .dropdown-item:focus {
-    background-color: var(--bs-primary-bg-subtle);
-    color: var(--bs-primary-text);
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: var(--bs-dropdown-link-hover-bg) !important;
+    color: var(--bs-dropdown-link-hover-color) !important;
 }
 
-.btn-primary, .btn-secondary {
-    background-color: var(--bs-btn-bg);
-    color: var(--bs-btn-color);
-    border-color: var(--bs-btn-border-color);
+.dropdown-item.active,
+.dropdown-item:active {
+    background-color: var(--bs-dropdown-link-active-bg) !important;
+    color: var(--bs-dropdown-link-active-color) !important;
 }
 
-.btn-primary:hover, .btn-secondary:hover {
-    background-color: var(--bs-btn-hover-bg);
-    color: var(--bs-btn-hover-color);
-    border-color: var(--bs-btn-hover-border-color);
+.btn-primary, 
+.btn-secondary {
+    background-color: var(--bs-btn-bg) !important;
+    color: var(--bs-btn-color) !important;
+    border-color: var(--bs-btn-border-color) !important;
 }
 
-.btn-primary:focus, .btn-secondary:focus {
-    box-shadow: 0 0 0 0.25rem var(--bs-btn-focus-shadow-rgb);
+.btn-primary:hover, 
+.btn-secondary:hover {
+    background-color: var(--bs-btn-hover-bg) !important;
+    color: var(--bs-btn-hover-color) !important;
+    border-color: var(--bs-btn-hover-border-color) !important;
+}
+
+.btn-primary:focus, 
+.btn-secondary:focus {
+    box-shadow: 0 0 0 0.25rem var(--bs-btn-focus-shadow-rgb) !important;
+}
+
+.form-select {
+    background-color: var(--bs-form-select-bg) !important;
+    color: var(--bs-body-color) !important;
+    border-color: var(--bs-border-color) !important;
+}
+
+.form-select:focus {
+    border-color: var(--bs-form-select-focus-border-color) !important;
+    box-shadow: 0 0 0 0.25rem var(--bs-form-select-focus-box-shadow) !important;
 }
