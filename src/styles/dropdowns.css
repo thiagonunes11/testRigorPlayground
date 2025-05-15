@@ -1,0 +1,31 @@
+/* Ajusta os botões de dropdown para se adaptarem ao dark mode */
+.dropdown-menu {
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
+    border-color: var(--bs-border-color);
+}
+
+.dropdown-item {
+    color: var(--bs-body-color);
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+    background-color: var(--bs-primary-bg-subtle);
+    color: var(--bs-primary-text);
+}
+
+.btn-primary, .btn-secondary {
+    background-color: var(--bs-btn-bg);
+    color: var(--bs-btn-color);
+    border-color: var(--bs-btn-border-color);
+}
+
+.btn-primary:hover, .btn-secondary:hover {
+    background-color: var(--bs-btn-hover-bg);
+    color: var(--bs-btn-hover-color);
+    border-color: var(--bs-btn-hover-border-color);
+}
+
+.btn-primary:focus, .btn-secondary:focus {
+    box-shadow: 0 0 0 0.25rem var(--bs-btn-focus-shadow-rgb);
+}
