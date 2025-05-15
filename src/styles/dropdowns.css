@@ -1,4 +1,4 @@
-/* Dropdowns - Compatível com dark/light mode */
+/* Dropdowns - dark/light mode */
 .dropdown-menu {
     background-color: var(--bs-dropdown-bg) !important;
     color: var(--bs-dropdown-color) !important;
