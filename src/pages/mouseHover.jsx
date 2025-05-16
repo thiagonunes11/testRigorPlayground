@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
-import Prompt from '../components/Prompt.jsx'
-import Demo from '../components/Demo.jsx';
-
+import Layout from '../components/Layout';
 const MouseHover = () => {
     const [isHovering, setIsHovering] = useState(false);
 
     const toggleTextVisibility = () => {
         setIsHovering(!isHovering);
     }
-  
+
     return (
-        <Demo>
-            <Prompt title="Mouse hover" instructions="Hover the mouse over the container to reveal the hidden text." />
+        <Layout
+            title="Mouse hover"
+            description="Hover the mouse over the container to reveal the hidden text."
+        >
             <Container>
                 <Row className="mt-5 justify-content-center text-center">
                     <Col>
-                        <Button variant="primary" onMouseOver={toggleTextVisibility} onMouseLeave={toggleTextVisibility}>
+                        <Button className={"btn-modern"} variant="primary" onMouseOver={toggleTextVisibility} onMouseLeave={toggleTextVisibility}>
                             Hover here
                         </Button>
                     </Col>
@@ -29,7 +29,7 @@ const MouseHover = () => {
                     </Row>
                 )}
             </Container>
-        </Demo>
+        </Layout>
     );
 };
 

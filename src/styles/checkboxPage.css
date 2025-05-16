@@ -1,0 +1,42 @@
+.demo-content {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    color: var(--text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    border-radius: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.custom-checkbox .form-check-input {
+    accent-color: var(--primary);
+}
+
+.custom-checkbox .form-check-label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text);
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+    .demo-content {
+        background-color: var(--card-bg);
+        color: var(--text);
+    }
+
+    .card {
+        background-color: var(--card-bg);
+        box-shadow: var(--shadow);
+    }
+
+    .custom-checkbox .form-check-input {
+        accent-color: var(--primary);
+    }
+}

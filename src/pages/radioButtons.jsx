@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Prompt from '../components/Prompt';
-import Demo from '../components/Demo.jsx';
+import Layout from '../components/Layout';
 import { Container, Row, Col } from 'react-bootstrap';
 
 const RadioButtons = () => {
@@ -24,8 +23,10 @@ const RadioButtons = () => {
     }
 
     return (
-        <Demo>
-            <Prompt title={"Radio Buttons"} instructions={"Select one of the payment methods below by checking the associated radio button."}></Prompt>
+        <Layout
+            title={"Radio Buttons"}
+            description={"Select one of the payment methods below by checking the associated radio button."}
+        >
             <Container>
                 <Row className="mt-5 justify-content-center">
                     <Col xs={4} className="border px-4 py-5">
@@ -57,7 +58,7 @@ const RadioButtons = () => {
                             <div className="d-grid gap-2 col-7 mx-auto pt-4">
                                 {!isSubmitted ? (
                                     <button
-                                        className="btn btn-primary"
+                                        className="btn btn-primary btn-modern"
                                         type="button"
                                         onClick={handleNext}
                                     >
@@ -98,7 +99,7 @@ const RadioButtons = () => {
                     </Col>
                 </Row>
             </Container>
-        </Demo>
+        </Layout>
     );
 };
 

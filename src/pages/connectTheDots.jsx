@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import Demo from "../components/Demo.jsx";
+import Layout from "../components/Layout";
+
 const ConnectTheDots = () => {
   const canvasRef = useRef(null);
   const [dots, setDots] = useState([]);
@@ -92,6 +93,14 @@ const ConnectTheDots = () => {
       setLastDot(hoveredDot);
       // Clear the temporary line once a permanent connection is made.
       setTempLineEnd(null);
+
+      // Check if the last dot connects back to the first dot.
+      if (hoveredDot === 0 && currentPath.length === dots.length) {
+        setLines((prevLines) => [...prevLines, [lastDot, 0]]);
+        setIsDrawing(false);
+        setTempLineEnd(null);
+        setLastDot(null);
+      }
     }
   };
 
@@ -100,21 +109,14 @@ const ConnectTheDots = () => {
     setIsDrawing(false);
     setTempLineEnd(null);
     setLastDot(null);
-    // If the path does not include all dots, clear the drawn lines.
-    if (currentPath.length !== dots.length) {
-      setLines([]);
-      setCurrentPath([]);
-    }
   };
 
   // Clear drawing state if mouse leaves the canvas.
   const handleMouseLeave = () => {
     if (isDrawing) {
-      setLines([]);
-      setCurrentPath([]);
       setIsDrawing(false);
-      setLastDot(null);
       setTempLineEnd(null);
+      setLastDot(null);
     }
   };
 
@@ -157,44 +159,40 @@ const ConnectTheDots = () => {
   }, []);
 
   return (
-    <Demo>
-    <div className="text-center">
-      <h1 className="fs-2 fw-bold">Connect The Dots</h1>
-      <p>
-        <small>Use the mouse to connect all of the dots on the canvas.</small>
-      </p>
+    <Layout
+      title={"Connect The Dots"}
+      description={"Use the mouse to connect all of the dots on the canvas."}
+    >
+      <div className="text-center">
+        <canvas
+          ref={canvasRef}
+          width="400"
+          height="400"
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseLeave}
+          style={{ border: "1px solid black" }}
+        ></canvas>
 
-      <canvas
-        ref={canvasRef}
-        width="400"
-        height="400"
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseLeave}
-        style={{ border: "1px solid black" }}
-      ></canvas>
-
-      <div className="mt-3">
-        <button
-          className="btn btn-primary"
-          onClick={showHexagon}
-          style={{ display: showMoreDots ? "none" : "inline-block" }}
-        >
-          Connect more dots
-        </button>
-        <button
-          className="btn btn-primary"
-          onClick={showTriangle}
-          style={{ display: showMoreDots ? "inline-block" : "none" }}
-        >
-          Connect less dots
-        </button>
+        <div className="mt-3">
+          <button
+            className="btn btn-primary btn-modern"
+            onClick={showHexagon}
+            style={{ display: showMoreDots ? "none" : "inline-block" }}
+          >
+            Connect more dots
+          </button>
+          <button
+            className="btn btn-primary btn-modern"
+            onClick={showTriangle}
+            style={{ display: showMoreDots ? "inline-block" : "none" }}
+          >
+            Connect less dots
+          </button>
+        </div>
       </div>
-    </div>
-    <br></br>
-    <br></br>
-    </Demo>
+    </Layout>
   );
 };
 

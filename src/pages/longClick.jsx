@@ -1,86 +1,123 @@
-import React, { useEffect, useState, useRef } from 'react';
-import Prompt from '../components/Prompt.jsx'
-import Demo from "../components/Demo.jsx";
-import { Collapse, Alert, Row, Col } from 'react-bootstrap';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import React, { useEffect, useState } from 'react';
+import {
+    Container,
+    Row,
+    Col,
+    Form,
+    Button,
+    Alert
+} from 'react-bootstrap';
+import Layout from '../components/Layout';
+
 
 function LongClick() {
     const [isPressed, setIsPressed] = useState(false);
     const [isLongClick, setIsLongClick] = useState(false);
-
     const [clickPressCounter, setClickPressCounter] = useState(0);
     const [chosenClickTime, setChosenClickTime] = useState(1);
+    const [startTime, setStartTime] = useState(null);
 
     useEffect(() => {
         let interval;
-    
+        let localStartTime = null;
+
         if (isPressed) {
-            const startTime = Date.now();
+            localStartTime = Date.now();
+            setClickPressCounter(0);
+            setIsLongClick(false);
+
             interval = setInterval(() => {
-                var timeValue = (Date.now() - startTime) / 1000;
-                setClickPressCounter(timeValue.toFixed(2));
+                const elapsed = (Date.now() - localStartTime) / 1000;
+                setClickPressCounter(elapsed.toFixed(2));
             }, 10);
         } else {
             clearInterval(interval);
-            setIsLongClick(clickPressCounter >= chosenClickTime);
+            if (startTime) {
+                setIsLongClick(clickPressCounter >= chosenClickTime);
+            }
         }
-    
+
         return () => clearInterval(interval);
-      }, [isPressed]);
+    }, [isPressed]);
+
+    const handlePressStart = () => {
+        setIsPressed(true);
+        setStartTime(Date.now());
+    };
+
+    const handlePressEnd = () => {
+        setIsPressed(false);
+    };
 
     return (
-        <Demo>
-            <Prompt title="Long Click" instructions="The button below will say if it was clicked by a long click or a normal click depending on the setting."/>
+        <Layout
+            title="Long Click"
+            description="The button below will say if it was clicked by a long click or a normal click depending on the setting."
+        >
+            <Container className="mt-4">
+                {/* Time Selection Row */}
+                <Row className="justify-content-center mb-4">
+                    <Col xs={12} md={8} lg={6}>
+                        <Form>
+                            <Form.Group as={Row} controlId="clickTimeSelect">
+                                <Form.Label column xs={12} sm={6} md={5} className="text-sm-end mb-2 mb-sm-0">
+                                    Select long click duration (seconds):
+                                </Form.Label>
+                                <Col xs={12} sm={6} md={4}>
+                                    <Form.Select
+                                        value={chosenClickTime}
+                                        onChange={(e) => setChosenClickTime(Number(e.target.value))}
+                                        aria-label="Select long click duration"
+                                    >
+                                        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
+                                            <option key={num} value={num}>{num}</option>
+                                        ))}
+                                    </Form.Select>
+                                </Col>
+                            </Form.Group>
+                        </Form>
+                    </Col>
+                </Row>
 
-            <Row className="mt-5">
-                <Col className="">
-                    <Form>
-                        <Form.Group as={Row} className="mb-3 d-flex justify-content-center" controlId="formPlaintextEmail">
-                            <Form.Label column xs="3">
-                                Select the time of a long click:
-                            </Form.Label>
-                            <Col xs="2">
-                                <Form.Select aria-label="Select the time of a long click:" id="clickTimeSelect" onChange={(e) => {setChosenClickTime(e.target.value)}}>
-                                    <option value="1" selected="selected">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                </Form.Select>
-                            </Col>
-                        </Form.Group>
-                    </Form>
-                </Col>
-            </Row>
-            <Row className='mt-2 mb-4 d-flex justify-content-center'>
-                <Col className="d-grid gap-2" xs="5">
-                    <Button
-                        variant="outline-primary"
-                        id="clickButton"
-                        onMouseUp={() => setIsPressed(false)}
-                        onMouseDown={() => setIsPressed(true)}
-                    >
-                        Click here
-                    </Button>
-                </Col>
-            </Row>
-            <Row className='mt-3 d-flex justify-content-center'>
-                <Col xs={2} className='fs-2'>
-                   Click time:
-                </Col>
-                <Col xs={3}>
-                    <Alert variant={isLongClick ? 'success' : "danger"}>
-                        {clickPressCounter}s {isLongClick ? "Long click" : "Not long click"}
-                    </Alert>
-                </Col>
-            </Row>
-        </Demo>
+                {/* Click Button Row */}
+                <Row className="justify-content-center mb-4">
+                    <Col xs={12} sm={8} md={6} lg={4}>
+                        <div className="d-grid">
+                            <Button
+                                className={'btn-modern'}
+                                size="lg"
+                                onMouseDown={handlePressStart}
+                                onMouseUp={handlePressEnd}
+                                onMouseLeave={handlePressEnd}
+                                onTouchStart={handlePressStart}
+                                onTouchEnd={handlePressEnd}
+                            >
+                                {isPressed ? `Holding... ${clickPressCounter}s` : "Click here"}
+                            </Button>
+                        </div>
+                    </Col>
+                </Row>
+
+                {/* Result Display Row */}
+                <Row className="justify-content-center">
+                    <Col xs={12} md={8} lg={6}>
+                        <div className="d-flex flex-column flex-md-row align-items-center gap-3">
+                            <div className="fs-4 text-nowrap">Click time:</div>
+                            <Alert
+                                variant={isLongClick ? 'success' : clickPressCounter > 0 ? 'danger' : 'secondary'}
+                                className="m-0 text-center flex-grow-1"
+                            >
+                                {clickPressCounter > 0 ? (
+                                    <><strong>{clickPressCounter}s</strong> - {isLongClick ? `Long click (threshold: ${chosenClickTime}s)` : `Normal click (threshold: ${chosenClickTime}s)`}</>
+                                ) : (
+                                    `Press and hold (threshold: ${chosenClickTime}s)`
+                                )}
+                            </Alert>
+                        </div>
+                    </Col>
+                </Row>
+            </Container>
+        </Layout>
     );
 }
 

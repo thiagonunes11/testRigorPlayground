@@ -1,33 +1,34 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Button } from 'react-bootstrap';
-import Prompt from '../components/Prompt.jsx'
-import Demo from '../components/Demo.jsx';
+import Layout from '../components/Layout';
 
 const Counter = () => {
-    const [counter, setCounter] = useState(0);
+    const [count, setCount] = useState(0);
 
-    const onCounterButtonClick = () => {
-        setCounter(counter + 1);
-    }
-  
     return (
-        <Demo>
-            <Prompt title="Counter" instructions="Click on the button in order to increase the counter value." />
-            <Container>
-                <Row className="mt-5 justify-content-center text-center">
-                    <Col>
-                        <Button variant="primary" onClick={onCounterButtonClick}>
-                            Click here to increase the counter
-                        </Button>
-                    </Col>
-                </Row>
-                <Row className="mt-4 justify-content-center text-center">
-                    <Col>
-                        <h4>You've pressed the button {counter} times</h4>
-                    </Col>
-                </Row>
-            </Container>
-        </Demo>
+        <Layout
+            title="Counter Demo"
+            description="A simple counter demonstration with increment and decrement functionality."
+        >
+            <div className="demo-content">
+                <div className="counter-container">
+                    <div className="counter-value">{count}</div>
+                    <div className="counter-controls">
+                        <button
+                            className="btn-modern btn-primary"
+                            onClick={() => setCount(count + 1)}
+                        >
+                            Increment
+                        </button>
+                        <button
+                            className="btn-modern btn-secondary"
+                            onClick={() => setCount(count - 1)}
+                        >
+                            Decrement
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </Layout>
     );
 };
 

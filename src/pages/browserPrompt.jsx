@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-
-import Demo from "../components/Demo.jsx";
+import Layout from '../components/Layout';
+import '../styles/homePage.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const BrowserPrompt = () => {
   const [name, setName] = useState("");
@@ -25,39 +26,32 @@ const BrowserPrompt = () => {
   }, []);
 
   return (
-       <Demo>
-        <div className="row justify-content-center">
-          <div className="col-6 border p-2 pt-4">
-            <h1 className="fs-2 fw-bold">Browser Prompt</h1>
-            <p>
-              <small>Click the buttons to interact with the prompt.</small>
-            </p>
+    <Layout
+      title={"Browser Prompt"}
+      description={"Click the buttons to interact with the prompt."}
+    >
+      <div className="row mt-5 justify-content-center text-center">
+        {showWelcome && (
+          <p id="welcomeText">
+            Welcome, <span id="nameText">{name}</span>
+          </p>
+        )}
+
+        <div className="row mt-5">
+          <div className="col-12">
+            <button className="btn btn-primary btn-modern" onClick={showPrompt}>
+              Click this button...
+            </button>
           </div>
         </div>
 
-        <div className="row mt-5 justify-content-center text-center">
-          {showWelcome && (
-            <p id="welcomeText">
-              Welcome, <span id="nameText">{name}</span>
-            </p>
-          )}
-
-          <div className="row mt-5">
-            <div className="col-12">
-              <button className="btn btn-primary" onClick={showPrompt}>
-                Click this button...
-              </button>
-            </div>
-          </div>
-
-          <div className="row mt-5">
-               <a className="nav-link" href="browserPromptOnLoad">
-              <button className="btn btn-primary">...Or this one</button>
-            </a>
-          </div>
+        <div className="row mt-5">
+          <a className="nav-link" href="browserPromptOnLoad">
+            <button className="btn btn-primary btn-modern">...Or this one</button>
+          </a>
         </div>
-
-     </Demo>
+      </div>
+    </Layout>
   );
 };
 
