@@ -24,12 +24,7 @@ const WaitMessage = () => {
         <Layout title="Wait for the Message" 
                 description="In five seconds, the message will appear."
         >
-            <div className="row justify-content-center text-center">
-                <div className="col-6 border p-2 pt-4">
-                    <h1 className="fs-2 fw-bold">Wait for the Message</h1>
-                    <p><small>In five seconds, the message will appear.</small></p>
-                </div>
-            </div>
+
 
             <div className="row mt-5 justify-content-center text-center">
                 <h3>The secret message will appear in <span id="counter">3</span>...</h3>
