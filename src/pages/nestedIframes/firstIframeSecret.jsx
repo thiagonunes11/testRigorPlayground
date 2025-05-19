@@ -13,7 +13,7 @@ const FirstIframeSecret = () => {
       <div className="row" style={{ height: '800px' }}> {/* Add a fixed height */}
           <div className="col h-100"> {/* Ensure the column takes full height */}
             {/* Render the SecondIframe component */}
-            <iframe src="http://localhost:5173/nestedIframes/secondIframe" width="90%" height="40%">
+            <iframe src="/nestedIframes/secondIframe" width="90%" height="40%">
             </iframe>
           </div>
         </div>

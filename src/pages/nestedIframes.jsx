@@ -21,7 +21,7 @@ const NestedIframes = () => {
             {/* Responsive iframe container - now filling available space */}
             <div className="ratio ratio-16x9 h-75">
               <iframe 
-                src="http://localhost:5173/nestedIframes/firstIframe" 
+                src="/nestedIframes/firstIframe" 
                 allowFullScreen
                 title="Nested Iframes Demo"
                 className="h-100"
