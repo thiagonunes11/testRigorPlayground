@@ -1,8 +1,5 @@
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-
 
 import HomePage from './pages/homePage'
 import QRCodePage from './pages/qrCode'
@@ -47,6 +44,7 @@ import SecondIframeSecret from './pages/nestedIframes/secondIframeSecret'
 import DdatePicker from './pages/ddatePicker'
 import CameraPage from './pages/cameraPage'
 import EmailValidation from './pages/emailValidation'
+import DivTable from './pages/divTable'
 
 function App() {
     return (
@@ -95,6 +93,7 @@ function App() {
                 <Route path="/nestedIframes/secondIframe" element={<SecondIframe />} />
                 <Route path="/nestedIframes/secondIframeSecret" element={<SecondIframeSecret />} />
                 <Route path="/emailValidation" element={<EmailValidation />} />
+                <Route path="/divTable" element={<DivTable />} />
             </Routes>
         </Router>
     );

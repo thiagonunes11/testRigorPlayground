@@ -92,6 +92,12 @@ const demos = [
         icon: <TrashFill size={iconSize} />
     },
     {
+        title: "Div Table",
+        path: "/divTable",
+        description: "A table built using div elements.",
+        icon: <Table size={iconSize} />
+    },
+    {
         title: "Drag Item",
         path: "/dragItem",
         description: "Drag the items to change its order.",
