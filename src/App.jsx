@@ -1,11 +1,8 @@
-import React from 'react';
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Container, Row, Col, Navbar } from "react-bootstrap"
 
-import Footer from './components/Footer';
-//import Header from './components/Header'
-import Sidebar from './components/Sidebar';
+
 
 import HomePage from './pages/homePage'
 import QRCodePage from './pages/qrCode'
@@ -56,23 +53,6 @@ function App() {
         <Router>
             <Routes>
                 <Route path="/" element={<HomePage />} />
-                {/*
-                <Route path="/audioValidation" element={<AudioValidation />} />
-                <Route path="/browserPrompt" element={<BrowserPrompt />} />
-                <Route path="/connectTheDots" element={<ConnectTheDots />} />
-                <Route path="/datePicker" element={<DatePicker />} />
-                <Route path="/deleteElements" element={<DeleteElements />} />
-                <Route path="/dynamicLoginText" element={<DynamicLoginText />} />
-                <Route path="/longClick" element={<LongClick />} />
-                <Route path="/modalPopup" element={<ModalPopup />} />
-                <Route path="/nestedIframes" element={<NestedIframes />} />
-                <Route path="/regex" element={<Regex />} />
-                <Route path="/rightClick" element={<RightClick />} />
-                <Route path="/scrollDown" element={<ScrollDown />} />
-                <Route path="/shadowDom" element={<ShadowDom />} />
-                <Route path="/similarPages" element={<SimilarPages />} />
-                <Route path="/svgElements" element={<SvgElements />} />
-                */}
                 <Route path="/cameraPage" element={<CameraPage />} /> 
                 <Route path="/ddatePicker" element={<DdatePicker />} />     
                 <Route path="/shadowDom" element={<ShadowDom />} />     
