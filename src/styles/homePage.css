@@ -447,3 +447,51 @@ body {
 .modal-footer {
   border-top: 0.1rem solid var(--separator);
 }
+
+/* Div Table Styles */
+.divTable.blueTable {
+  display: table;
+  border-collapse: collapse;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  width: 100%;
+}
+
+.divTable.blueTable .divTableRow {
+  display: table-row;
+}
+
+.divTable.blueTable .divTableCell,
+.divTable.blueTable .divTableHead {
+  display: table-cell;
+  padding: 1rem;
+  text-align: left;
+  border: 1px solid var(--border);
+}
+
+.divTable.blueTable .divTableHeading {
+  display: table-header-group;
+  background: var(--card-hover);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.divTable.blueTable .divTableHeading .divTableHead {
+  border-bottom: 2px solid var(--border);
+}
+
+.divTable.blueTable .divTableBody {
+  display: table-row-group;
+}
+
+.divTable.blueTable .divTableRow:nth-child(even) {
+  background: var(--card-hover);
+}
+
+.divTable.blueTable .divTableRow:hover {
+  background: var(--card-hover);
+  transition: background-color 0.2s ease;
+}
