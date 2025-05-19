@@ -45,6 +45,7 @@ import DdatePicker from './pages/ddatePicker'
 import CameraPage from './pages/cameraPage'
 import EmailValidation from './pages/emailValidation'
 import DivTable from './pages/divTable'
+import WaitImage from './pages/waitImage'
 
 function App() {
     return (
@@ -94,6 +95,7 @@ function App() {
                 <Route path="/nestedIframes/secondIframeSecret" element={<SecondIframeSecret />} />
                 <Route path="/emailValidation" element={<EmailValidation />} />
                 <Route path="/divTable" element={<DivTable />} />
+                <Route path="/waitImage" element={<WaitImage />} />
             </Routes>
         </Router>
     );

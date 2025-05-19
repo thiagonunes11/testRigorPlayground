@@ -248,6 +248,12 @@ const demos = [
         icon: <ShieldFill size={iconSize} />
     },
     {
+        title: "Wait for the Image",
+        path: "/waitImage",
+        description: "Wait five seconds for the image.",
+        icon: <HourglassSplit size={iconSize} />
+    },
+    {
         title: "Wait for the Message",
         path: "/waitMessage",
         description: "Wait five seconds for the message.",
