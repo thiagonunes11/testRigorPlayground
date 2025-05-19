@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import Prompt from '../components/Prompt.jsx'
-import Demo from "../components/Demo.jsx";
-import { Row, Col, Alert, Collapse } from 'react-bootstrap';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
+import Layout from '../components/Layout'; 
+import { Row, Col, Alert, Collapse, Table, Button, Form, InputGroup, Container } from 'react-bootstrap';
 
-function TableView({data}) {
+function TableView({ data }) {
     return (
-        <table id="random-table" className="table table-striped table-bordered">
+        <Table striped bordered hover id="random-table">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -37,7 +33,7 @@ function TableView({data}) {
                     <td id="cell-9">{data[8]}</td>
                 </tr>
             </tbody>
-        </table>
+        </Table>
     );
 }
 
@@ -51,19 +47,19 @@ function TableRelativePosition() {
         return Math.floor(Math.random() * (max - min + 1) + min);
     }
 
-    function generateData(){
+    function generateData() {
         var tableData = []
-        for(let i = 0; i < 9; i++){
+        for (let i = 0; i < 9; i++) {
             tableData.push(randomIntFromInterval(1, 100));
         }
         return tableData;
     }
 
-    function handleValueCheck(){
+    function handleValueCheck() {
         var resultInput = document.getElementById("result");
 
-        if (!isSecondQuestion){
-            if (parseInt(resultInput.value) === currentData[1] + currentData[8]){
+        if (!isSecondQuestion) {
+            if (parseInt(resultInput.value) === currentData[1] + currentData[8]) {
                 setIsSecondQuestion(true);
                 setError("");
             }
@@ -72,8 +68,8 @@ function TableRelativePosition() {
             }
         }
 
-        if (isSecondQuestion){
-            if (parseInt(resultInput.value) === currentData[3] * currentData[2]){
+        if (isSecondQuestion) {
+            if (parseInt(resultInput.value) === currentData[3] * currentData[2]) {
                 setError("Correct!");
             }
             else {
@@ -92,57 +88,65 @@ function TableRelativePosition() {
     }, [isSecondQuestion]);
 
     return (
-        <Demo>
-            <Prompt title="Relative Position Table" instructions="Answer the questions to move to the next page."/>
-
-            <Row className="mt-5">
-                <Col className="">
-                {!isSecondQuestion && 
-                <>
-                    <h3>First Question</h3>
-                    <p className="my-3">
-                        You need to <span className="fw-bold">add</span> the item in <span className="fw-bold">line 1 column 2</span> with the item in <span className="fw-bold">column 3 line 3</span>.
-                    </p>
-                </>}
-                {isSecondQuestion && 
-                <>
-                    <h3>Second Question</h3>
-                    <p className="my-3">
-                        You need to <span className="fw-bold">multiply</span> the item in <span className="fw-bold">line 2 column 1</span> with the item in <span className="fw-bold">column 3 line 1</span>.
-                    </p>
-                </>}
-                </Col>
-            </Row>
-            <Row className="mt-4">
-                <Col xs={6} className='mx-auto'>
-                    <TableView data={currentData}/>
-                </Col>
-            </Row>
-            <Row className="mt-4">
-                <Col xs={4} className='mx-auto'>
-                    <InputGroup>
-                        <Form.Control
-                            id='result'
-                            placeholder="Result"
-                            aria-label="Result"
-                            aria-describedby="basic-addon2"
-                            value={resultInput}
-                            onChange={handleInputChange}
-                        />
-                        <Button variant="primary" id="button-addon2" onClick={handleValueCheck}>
-                            Submit
-                        </Button>
-                    </InputGroup>
-                </Col>
-            </Row>
-            <Row>
-                <Col xs={6} className="mx-auto mt-4">
-                    <Collapse in={error !== ""}>
-                        <div><Alert>{error}</Alert></div>
-                    </Collapse>
-                </Col>
-            </Row>
-        </Demo>
+        <Layout
+            title="Relative Position Table"
+            description="Answer the questions to move to the next page."
+        >
+            <Container className='demo-content justify-content-center'>
+                <Row className="mb-5">
+                    <Col xs={12}>
+                        {!isSecondQuestion &&
+                            <>
+                                <h3>First Question</h3>
+                                <p className="my-3">
+                                    You need to <span className="fw-bold">add</span> the item in <span className="fw-bold">line 1 column 2</span> with the item in <span className="fw-bold">column 3 line 3</span>.
+                                </p>
+                            </>
+                        }
+                        {isSecondQuestion &&
+                            <>
+                                <h3>Second Question</h3>
+                                <p className="my-3">
+                                    You need to <span className="fw-bold">multiply</span> the item in <span className="fw-bold">line 2 column 1</span> with the item in <span className="fw-bold">column 3 line 1</span>.
+                                </p>
+                            </>
+                        }
+                    </Col>
+                </Row>
+                
+                <Row className="mt-3 mt-md-4">
+                    <Col xs={12} md={8} lg={6} className='mx-auto'>
+                        <TableView data={currentData} />
+                    </Col>
+                </Row>
+                
+                <Row className="mt-3 mt-md-4">
+                    <Col xs={12} md={6} lg={4} className='mx-auto'>
+                        <InputGroup>
+                            <Form.Control
+                                id='result'
+                                placeholder="Result"
+                                aria-label="Result"
+                                aria-describedby="basic-addon2"
+                                value={resultInput}
+                                onChange={handleInputChange}
+                            />
+                            <Button className="btn-modern btn-primary" onClick={handleValueCheck}>
+                                Submit
+                            </Button>
+                        </InputGroup>
+                    </Col>
+                </Row>
+                
+                <Row>
+                    <Col xs={12} md={8} lg={6} className="mx-auto mt-3 mt-md-4">
+                        <Collapse in={error !== ""}>
+                            <div><Alert variant={error === "Correct!" ? "success" : "danger"}>{error}</Alert></div>
+                        </Collapse>
+                    </Col>
+                </Row>
+            </Container>
+        </Layout>
     );
 }
 

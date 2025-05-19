@@ -1,19 +1,22 @@
-import React, { useState } from "react";
-import Prompt from '../components/Prompt.jsx'
-import Demo from "../components/Demo.jsx";
-import { Link } from "react-router-dom";
+import { Row, Col, Container } from "react-bootstrap";
+import Layout from '../components/Layout';
 
 function NewTab() {
     return (
-        <Demo>
-            <Prompt title="Open new tab" instructions="Click the link that will open a new tab."/>
-            
-            <div className="row mt-5">
-                <div className="col-12">
-                    Hello! This is a page that was opened in a new tab.
-                </div>
-            </div>
-        </Demo>
+        <Layout
+            title="Open new tab"
+            description="Clicking the link or the button will open a new tab."
+        >
+            <Container>
+                <Row
+                    className="d-flex justify-content-center align-items-center"
+                >
+                    <Col className="text-center">
+                        Hello! This is a page that was opened in a new tab.
+                    </Col>
+                </Row>
+            </Container>
+        </Layout>
     );
 }
 

@@ -1,58 +1,59 @@
 import React, { useState } from 'react';
 import { QRCodeCanvas } from 'qrcode.react';
-import Prompt from '../components/Prompt.jsx'
-import Demo from '../components/Demo.jsx';
+import Layout from '../components/Layout';
+import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
 
 const QRCodePage = () => {
-  const [text, setText] = useState('');
-  const [qrValue, setQRValue] = useState('');
+    const [text, setText] = useState('');
+    const [qrValue, setQRValue] = useState('');
 
-  const handleGenerate = () => {
-    setQRValue(text); 
-    setText('');
-  };
+    const handleGenerate = () => {
+        setQRValue(text);
+        setText('');
+    };
 
-  return (
-        <Demo>
-            <Prompt title="QR Code" instructions="Enter some text and click the Generate button to generate your QR Code." />
-            <input
-                type="text"
-                placeholder="Enter text here"
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-                style={{
-                padding: '10px',
-                width: '300px',
-                marginTop: '20px',
-                marginBottom: '20px',
-                fontSize: '16px',
-                }}
-            />
-            <br />
-            <button
-                onClick={handleGenerate}
-                style={{
-                padding: '10px 20px',
-                fontSize: '16px',
-                cursor: 'pointer',
-                backgroundColor: '#007BFF',
-                color: '#fff',
-                border: 'none',
-                borderRadius: '5px',
-                }}
-            >
-                Generate
-            </button>
-            <div style={{ marginTop: '30px' }}>
-                {qrValue && (
-                <>
-                    <h2>Your QR Code:</h2>
-                    <QRCodeCanvas value={qrValue} size={256} />
-                </>
-                )}
-            </div>
-        </Demo>
-  );
+    return (
+        <Layout
+            title="QR Code"
+            description="Enter some text and click the Generate button to create your QR Code."
+        >
+            <Container className="mt-4">
+                <Row className="justify-content-center">
+                    <Col xs={12} md={8} lg={6}>
+                        <Card>
+                            <Card.Body>
+                                <Form>
+                                    <Form.Group controlId="qrText">
+                                        <Form.Control
+                                            type="text"
+                                            placeholder="Enter text"
+                                            value={text}
+                                            onChange={(e) => setText(e.target.value)}
+                                        />
+                                    </Form.Group>
+                                    <Button
+                                        variant="primary"
+                                        className="mt-3"
+                                        onClick={handleGenerate}
+                                    >
+                                        Generate
+                                    </Button>
+                                </Form>
+                                {qrValue && (
+                                    <div className="text-center mt-4">
+                                        <span>Your QR Code:</span>
+                                        <div className="d-flex justify-content-center mt-2">
+                                            <QRCodeCanvas value={qrValue} size={256} />
+                                        </div>
+                                    </div>
+                                )}
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                </Row>
+            </Container>
+        </Layout>
+    );
 };
 
 export default QRCodePage;

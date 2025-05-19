@@ -1,36 +1,36 @@
-import React from 'react';
-import FirstIframe from './nestedIframes/firstIframe'; // Import the FirstIframe component
-import Demo from '../components/Demo.jsx';
+import React, { useEffect } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+import Layout from '../components/Layout';
 
 const NestedIframes = () => {
-  return (
-    <Demo>
-    
-      <main className="container mt-5">
-        <div className="row justify-content-center text-center">
-          <div className="col-6 border p-2">
-            <h1 className="fs-2 fw-bold mt-3 mb-4">Nested Iframes</h1>
-            <p>
-              <small>
-                There are two iframes, one inside another. Both of them have a unique word that is a link. This link changes the iframe url, changing also the text.
-              </small>
-            </p>
-          </div>
-        </div>
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
-        <div className="row mt-5">
-          <div className="col">
+  return (
+    <Layout
+      title={"Nested Iframes"}
+      description={"There are two iframes, one inside another. Both of them have a unique word that is a link."}
+    >
+      <Container className="vh-100 d-flex flex-column p-0" fluid>
+        <Row className="flex-grow-1 m-0">
+          <Col xs={12} className="h-100 p-4">
             <h3>Out of iframe</h3>
             <p>This first test is present on the current page, outside of any iframe.</p>
 
-            {/* Replace iframe with the FirstIframe component */}
-            <iframe src="http://localhost:5173/nestedIframes/firstIframe" width="1000px" height="800px">
-            </iframe>
-           
-          </div>
-        </div>
-      </main>
-    </Demo>
+            {/* Responsive iframe container - now filling available space */}
+            <div className="ratio ratio-16x9 h-75">
+              <iframe 
+                src="http://localhost:5173/nestedIframes/firstIframe" 
+                allowFullScreen
+                title="Nested Iframes Demo"
+                className="h-100"
+              />
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    </Layout>
   );
 };
 

@@ -1,38 +1,33 @@
-import React, { useState } from "react";
-import Prompt from '../components/Prompt.jsx'
-import Demo from "../components/Demo.jsx";
+import React, { useState } from 'react';
+import Layout from '../components/Layout';
 
-function ButtonClick() {
+const ButtonClick = () => {
     const [isVisible, setIsVisible] = useState(false);
 
-    const turnTextVisible = () => {
-        setIsVisible(true);
-    };
-
     return (
-        <Demo>
-            <Prompt title="Button click" instructions="Click the button to reveal the hidden text."/>
-
-            <div className="row mt-5">
-                <div className="col-12">
+        <Layout
+            title="Button Click Demo"
+            description="Click the button to reveal hidden content."
+        >
+            <div className="demo-content">
+                <div className="text-center">
                     <button
-                        id="clickableButton"
-                        className="btn btn-primary"
-                        onClick={turnTextVisible}
+                        className="btn-modern btn-primary mb-4"
+                        onClick={() => setIsVisible(true)}
                     >
-                        Click this button
+                        Click to Reveal
                     </button>
-                    <p
-                        id="textElement"
-                        className="mt-3"
-                        style={{ visibility: isVisible ? "visible" : "hidden" }}
-                    >
-                        This text is now visible!
-                    </p>
+                    {isVisible && (
+                        <div className="fade-in">
+                            <p className="text-secondary">
+                                Congratulations! You've successfully revealed the hidden content.
+                            </p>
+                        </div>
+                    )}
                 </div>
             </div>
-        </Demo>
+        </Layout>
     );
-}
+};
 
 export default ButtonClick;

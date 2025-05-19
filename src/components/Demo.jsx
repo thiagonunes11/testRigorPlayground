@@ -1,22 +1,25 @@
 import {Container, Row, Col, Navbar} from "react-bootstrap"
-
 import Footer from './Footer';
 //import Header from './Header'
 import Sidebar from './Sidebar';
+import '../styles/demo.css';
 
 function Demo({ children }) {
     return (
-        <div>
-            <Navbar fixed="top" bg="dark" variant="dark">
+        <div className="demo-container">
+            <Navbar fixed="top" className="glass-navbar">
                 <Container fluid>
-                    <Navbar.Brand href="/" className="mx-4">testRigor Playground 🛝</Navbar.Brand>
+                    <Navbar.Brand href="/" className="mx-4">
+                        <span className="gradient-text">testRigor Playground</span>
+                        <span className="ms-2">🛝</span>
+                    </Navbar.Brand>
                 </Container>
             </Navbar>
 
-            <Container fluid className="vh-100 pt-5 pb-5">
+            <Container fluid className="pt-5 pb-5">
                 <Row className="h-100 pb-4">
-                    <Col className="bg-white main">
-                        <main className="container mt-5 text-center">
+                    <Col className="main-content">
+                        <main className="container">
                             {children}
                         </main>
                     </Col>
@@ -24,7 +27,7 @@ function Demo({ children }) {
             </Container>
 
             <Footer />
-        </div >
+        </div>
     )
 }
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
-import Prompt from '../components/Prompt.jsx';
-import Demo from '../components/Demo.jsx';
+import Layout from '../components/Layout';
+import '../styles/dragItem.css'; // Importe o arquivo CSS aqui
 
 const DragItem = () => {
     const [draggingItem, setDraggingItem] = useState(null);
@@ -117,46 +117,10 @@ const DragItem = () => {
     }, [taskListElement]);
 
     return (
-        <Demo>
-            <Prompt title="Drag Item" instructions="Drag items in the list to put them in order." />
-
-            <style>
-                {`
-                #task-list {
-                    list-style: none;
-                    margin: 0;
-                    padding: 0;
-                }
-
-                .draggable {
-                    padding: 10px;
-                    margin: 5px 0;
-                    background-color: #f8f9fa;
-                    border: 1px solid #ddd;
-                    border-radius: 4px;
-                    text-align: center;
-                    cursor: grab;
-                    user-select: none;
-                }
-
-                .draggable.dragging {
-                    opacity: 0.5;
-                }
-
-                @media (max-width: 768px) {
-                    .col-4 {
-                        width: 100%;
-                        padding: 0 15px;
-                    }
-
-                    .draggable {
-                        font-size: 14px;
-                        padding: 8px;
-                    }
-                }
-                `}
-            </style>
-
+        <Layout
+            title="Drag Item"
+            description="Drag items in the list to put them in order."
+        >
             <div className="row mt-5 justify-content-center text-center">
                 <div className="row justify-content-center">
                     <div className="col-4 border">
@@ -182,7 +146,7 @@ const DragItem = () => {
                     </div>
                 </div>
             </div>
-        </Demo>
+        </Layout>
     );
 };
 

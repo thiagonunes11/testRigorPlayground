@@ -1,215 +1,252 @@
+import React from 'react';
+import {
+    MicFill,
+    BoxArrowInRight,
+    CheckCircleFill,
+    CameraFill,
+    CheckSquareFill,
+    Pencil,
+    PlusCircleFill,
+    CalendarDateFill,
+    TrashFill,
+    ArrowDownUp,
+    CaretDownFill,
+    BoxArrowInLeft,
+    Table,
+    FileEarmarkArrowDownFill,
+    FileEarmarkArrowUpFill,
+    ClockFill,
+    ExclamationCircleFill,
+    MouseFill,
+    FileEarmarkTextFill,
+    EyeFill,
+    BoxArrowUpRight,
+    QrCode,
+    RecordCircleFill,
+    Search,
+    Mouse2Fill,
+    CartFill,
+    Files,
+    EnvelopeFill,
+    CollectionFill,
+    PlayCircleFill,
+    ShieldFill,
+    HourglassSplit
+} from 'react-bootstrap-icons';
+
+const iconSize = 32;
+
 const demos = [
     {
         title: "Audio Validation",
-        url: "/audioValidation",
-        name: "Record and check if the audios match.",
-        description: "This demo contains audio files and URLs for recording and validating if they match.",
-
+        path: "/audioValidation",
+        description: "Record and check if the audios match.",
+        icon: <MicFill size={iconSize} />
     },
     {
         title: "Browser Prompt",
-        url: "/browserPrompt",
-        name: "Enter values to prompts.",
-        description: "This demo allows the user to interact with browser prompt forms.",
+        path: "/browserPrompt",
+        description: "Enter values to prompts.",
+        icon: <BoxArrowInRight size={iconSize} />
     },
     {
         title: "Button Click",
-        url: "/buttonClick",
-        name: "Click the button to reveal the hidden text.",
-        description: "This demo allows the user to click a button. When the button is clicked, a hidden text will be revealed.",
+        path: "/buttonClick",
+        description: "Click the button to reveal the hidden text.",
+        icon: <CheckCircleFill size={iconSize} />
     },
     {
         title: "Camera",
-        url: "/cameraPage",
-        name: "Use your computer as if it where a camera",
-        description: "Follow the instrudctions and experiment the page capabilities.",
+        path: "/cameraPage",
+        description: "Use your computer as if it were a camera",
+        icon: <CameraFill size={iconSize} />
     },
     {
         title: "Checkbox",
-        url: "/checkbox",
-        name: "Click on any of the checkboxes.",
-        description: "In this demo, the user can check any checkboxes it desired.",
+        path: "/checkbox",
+        description: "Click on any of the checkboxes.",
+        icon: <CheckSquareFill size={iconSize} />
     },
     {
         title: "Connect the Dots",
-        url: "/connectTheDots",
-        name: "Click and drag in a canvas.",
-        description: "This demo allows the user to draw on canvas by connecting the dots.",
+        path: "/connectTheDots",
+        description: "Click and drag in a canvas.",
+        icon: <Pencil size={iconSize} />
     },
     {
         title: "Counter",
-        url: "/counter",
-        name: "Simple Counter.",
-        description: "This demo allows the user to use a counter of clicks.",
+        path: "/counter",
+        description: "Simple Counter.",
+        icon: <PlusCircleFill size={iconSize} />
     },
     {
         title: "Date Picker",
-        url: "/ddatePicker",
-        name: "Choose a date on a date picker.",
-        description: "This demo displays a date picker, where you can choose a date in it and see the value reflected on the field.",
-
+        path: "/ddatePicker",
+        description: "Choose a date on a date picker.",
+        icon: <CalendarDateFill size={iconSize} />
     },
     {
         title: "Delete Elements",
-        url: "/deleteElements",
-        name: "Dynamic page to delete elements.",
-        description: "This demo contains different elements that can be deleted by clicking buttons, and new elements can be added.",
+        path: "/deleteElements",
+        description: "Dynamic page to delete elements.",
+        icon: <TrashFill size={iconSize} />
     },
     {
         title: "Drag Item",
-        url: "/dragItem",
-        name: "Drag the items to change its order.",
-        description: "This demo allows the user to click and drag buttons below or above other buttons so you can change the structure order.",
+        path: "/dragItem",
+        description: "Drag the items to change its order.",
+        icon: <ArrowDownUp size={iconSize} />
     },
     {
         title: "Dropdowns",
-        url: "/dropdowns",
-        name: "Different dropdowns and selects.",
-        description: "This demo contains multiple dropdowns and selects with different ways of handling them.",
+        path: "/dropdowns",
+        description: "Different dropdowns and selects.",
+        icon: <CaretDownFill size={iconSize} />
     },
     {
         title: "Dynamic Login Text",
-        url: "/dynamicLoginText",
-        name: "Press to login with changing button text.",
-        description: "This demo contains a login screen in which the affirmative button changes the text each refresh.",
-
+        path: "/dynamicLoginText",
+        description: "Press to login with changing button text.",
+        icon: <BoxArrowInLeft size={iconSize} />
     },
     {
         title: "Dynamic Table",
-        url: "/dynamicTable",
-        name: "A table with rows that changes order.",
-        description: "This demo contains a table in which its rows change order every time the page is refreshed.",
+        path: "/dynamicTable",
+        description: "A table with rows that changes order.",
+        icon: <Table size={iconSize} />
     },
     {
         title: "File Download",
-        url: "/fileDownload",
-        name: "Download a file.",
-        description: "This demo allow the user to download a file and check it.",
+        path: "/fileDownload",
+        description: "Download a file.",
+        icon: <FileEarmarkArrowDownFill size={iconSize} />
     },
     {
         title: "File Upload",
-        url: "/fileUpload",
-        name: "Upload a file using the input field.",
-        description: "This demo allows the user to submit files and check their names.",
+        path: "/fileUpload",
+        description: "Upload a file using the input field.",
+        icon: <FileEarmarkArrowUpFill size={iconSize} />
     },
     {
         title: "Long Click",
-        url: "/longClick",
-        name: "Long click button.",
-        description: "This demo contains a button that will detect a long click or a normal click depending on the setting.",
+        path: "/longClick",
+        description: "Long click button.",
+        icon: <ClockFill size={iconSize} />
     },
     {
         title: "Modal Popup",
-        url: "/modalPopup",
-        name: "Open a modal popup.",
-        description: "This demo displays a modal popup to test the change of focus of the application.",
+        path: "/modalPopup",
+        description: "Open a modal popup.",
+        icon: <ExclamationCircleFill size={iconSize} />
     },
     {
         title: "Mouse Hover",
-        url: "/mouseHover",
-        name: "Hover the mouse over a button.",
-        description: "This demo allows the user to hover the mouse over a button. When the mouse is over the button, text will appear.",
+        path: "/mouseHover",
+        description: "Hover the mouse over a button.",
+        icon: <MouseFill size={iconSize} />
     },
     {
         title: "Nested Iframes",
-        url: "/nestedIframes",
-        name: "Inspect and interact with nested iframes.",
-        description: "In this demo, there are two levels of iframes, one inside another.",
+        path: "/nestedIframes",
+        description: "Inspect and interact with nested iframes.",
+        icon: <FileEarmarkTextFill size={iconSize} />
     },
     {
         title: "OCR Check",
-        url: "/ocrCheck",
-        name: "Check the contents with OCR.",
-        description: "This demo shows an image to the user, and they must use OCR to check the contents of the image.",
+        path: "/ocrCheck",
+        description: "Check the contents with OCR.",
+        icon: <EyeFill size={iconSize} />
     },
     {
         title: "Open New Tab",
-        url: "/openNewTab",
-        name: "Open a new tab with a click.",
-        description: "This demo offers the tester a button that they can click. This will open a new browser tab.",
+        path: "/openNewTab",
+        description: "Open a new tab with a click.",
+        icon: <BoxArrowUpRight size={iconSize} />
     },
     {
         title: "QR Code",
-        url: "/qrCode",
-        name: "Generate a QR Code and validate its content.",
-        description: "This demo allows the user to generate a QR Code, which can be used to validate the QR Code scanning functionality.",
+        path: "/qrCode",
+        description: "Generate a QR Code and validate its content.",
+        icon: <QrCode size={iconSize} />
     },
     {
         title: "Radio Buttons",
-        url: "/radioButtons",
-        name: "Check a radio button to select an option.",
-        description: "This demo displays a 'select a payment method' page where you can select a method by checking a radio button.",
+        path: "/radioButtons",
+        description: "Check a radio button to select an option.",
+        icon: <RecordCircleFill size={iconSize} />
     },
     {
         title: "Regex",
-        url: "/regex",
-        name: "Find text using RegEx.",
-        description: "This demo displays phone number patterns by country for one to search using regex.",
-
+        path: "/regex",
+        description: "Find text using RegEx.",
+        icon: <Search size={iconSize} />
     },
     {
         title: "Relative Position Table",
-        url: "/tableRelativePosition",
-        name: "A table to use math and relative location to solve questions.",
-        description: "This demo contains a table which contains random numbers to solve simple math questions.",
+        path: "/tableRelativePosition",
+        description: "A table to use math and relative location to solve questions.",
+        icon: <Table size={iconSize} />
     },
     {
         title: "Right Click",
-        url: "/rightClick",
-        name: "Right click a button.",
-        description: "This demo displays a button which will change its contents when right-clicked with the mouse.",
-   
+        path: "/rightClick",
+        description: "Right click a button.",
+        icon: <Mouse2Fill size={iconSize} />
     },
     {
         title: "Scroll Down",
-        url: "/scrollDown",
-        name: "Scroll down to find a text.",
-        description: "This demo contains several texts that are widely spaced apart so that you have to scroll to find them.",
+        path: "/scrollDown",
+        description: "Scroll down to find a text.",
+        icon: <ArrowDownUp size={iconSize} />
     },
     {
         title: "Shadow DOM",
-        url: "/shadowDom",
-        name: "Different implementations of shadow DOMs.",
-        description: "This demo contains different implementations of shadow DOMs.",
+        path: "/shadowDom",
+        description: "Different implementations of shadow DOMs.",
+        icon: <Files size={iconSize} />
     },
     {
         title: "Shopping Cart",
-        url: "/shoppingCart",
-        name: "A simple online shopping page.",
-        description: "This demo allows the user to search for a product and add it to the cart.",
+        path: "/shoppingCart",
+        description: "A simple online shopping page.",
+        icon: <CartFill size={iconSize} />
     },
     {
         title: "Similar Pages",
-        url: "/similarPages",
-        name: "Two pages with minor differences.",
-        description: "This demo contains two pages that have differences in some element attributes and tags, but are nearly identical.",
-
+        path: "/similarPages",
+        description: "Two pages with minor differences.",
+        icon: <Files size={iconSize} />
+    },
+    {
+        title: "Simulated 2FA",
+        path: "/emailValidation",
+        description: "Send an auth code to an email address and verify if it matches.",
+        icon: <EnvelopeFill size={iconSize} />
     },
     {
         title: "SVG Elements",
-        url: "/svgElements",
-        name: "Interact with SVG elements.",
-        description: "This demo displays a number of interactive SVG elements.",
-
+        path: "/svgElements",
+        description: "Interact with SVG elements.",
+        icon: <CollectionFill size={iconSize} />
     },
     {
         title: "Video Playback",
-        url: "/video",
-        name: "Play a sample video file.",
-        description: "This demo allows the user to play a sample video file to validate that a video is playing.",
+        path: "/video",
+        description: "Play a sample video file.",
+        icon: <PlayCircleFill size={iconSize} />
     },
     {
         title: "Verify Code",
-        url: "/verifyCode",
-        name: "Code Verification",
-        description: "This demo allow the user to check a verification code",
+        path: "/verifyCode",
+        description: "Code Verification",
+        icon: <ShieldFill size={iconSize} />
     },
     {
         title: "Wait for the Message",
-        url: "/waitMessage",
-        name: "Wait five seconds for the message.",
-        description: "In this demo, a message will appear after five seconds.",
-    },
+        path: "/waitMessage",
+        description: "Wait five seconds for the message.",
+        icon: <HourglassSplit size={iconSize} />
+    }
 ];
 
 export default demos;
