@@ -1,0 +1,81 @@
+.camera-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .camera-container {
+    width: 100%;
+    max-width: 640px;
+    height: 480px;
+    border: 2px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    position: relative;
+    background-color: #000;
+  }
+  
+  .camera-feed, .photo-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .camera-controls {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .camera-button, .capture-button, .retake-button, 
+  .download-button, .switch-button, .stop-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+  }
+  
+  .camera-button {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .capture-button {
+    background-color: #f44336;
+    color: white;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    font-size: 18px;
+  }
+  
+  .retake-button {
+    background-color: #2196F3;
+    color: white;
+  }
+  
+  .download-button {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .switch-button {
+    background-color: #FF9800;
+    color: white;
+  }
+  
+  .stop-button {
+    background-color: #607D8B;
+    color: white;
+  }
+  
+  button:hover {
+    opacity: 0.9;
+  }
