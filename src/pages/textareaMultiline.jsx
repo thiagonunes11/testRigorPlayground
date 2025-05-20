@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Layout from '../components/Layout';
 import '../styles/textareaMultiline.css';
+import '../styles/homePage.css'
 
 const TextareaMultiline = () => {
   const [text, setText] = useState('');
