@@ -1,0 +1,35 @@
+.textarea-container {
+  margin-top: 2rem;
+}
+
+.multiline-textarea {
+  width: 100%;
+  min-height: 300px;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+  resize: vertical;
+  font-family: monospace;
+  font-size: 16px;
+  line-height: 1.5;
+  transition: all 0.3s ease;
+}
+
+/* Dark mode styles */
+.dark .multiline-textarea {
+  background-color: #2d3748;
+  color: #f7fafc;
+  border-color: #4a5568;
+}
+
+.textarea-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  color: #6c757d;
+  font-size: 14px;
+}
+
+.dark .textarea-stats {
+  color: #a0aec0;
+}
