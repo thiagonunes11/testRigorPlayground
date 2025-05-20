@@ -1,35 +1,33 @@
-.textarea-container {
-  margin-top: 2rem;
-}
-
-.multiline-textarea {
-  width: 100%;
-  min-height: 300px;
-  padding: 15px;
-  border-radius: 8px;
-  border: 1px solid #ced4da;
-  resize: vertical;
-  font-family: monospace;
-  font-size: 16px;
-  line-height: 1.5;
-  transition: all 0.3s ease;
-}
-
-/* Dark mode styles */
-.dark .multiline-textarea {
-  background-color: #2d3748;
-  color: #f7fafc;
-  border-color: #4a5568;
-}
 
 .textarea-stats {
   display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-  color: #6c757d;
-  font-size: 14px;
+  gap: 1.5rem; /* Aumenta o espaçamento entre os itens */
+  margin-top: 1rem; /* Espaço acima dos contadores */
+  padding: 0.5rem 0; /* Espaço interno vertical */
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  
+  /* uma borda para ficar melhor de ver os numeros de linhas e caracteres*/
+  border-top: 1px solid var(--separator);
 }
 
-.dark .textarea-stats {
-  color: #a0aec0;
+/* destaque aos numeros de linhas e caracteres*/
+.textarea-stats span {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.textarea-stats span::before {
+  content: "•";
+  color: var(--primary);
+  font-weight: bold;
+}
+
+/* Versão mobile */
+@media (max-width: 768px) {
+  .textarea-stats {
+    gap: 1rem;
+    flex-wrap: wrap; /* Permite que os itens quebrem linha se necessário */
+  }
 }
