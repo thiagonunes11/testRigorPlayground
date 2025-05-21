@@ -5,14 +5,13 @@ import '../styles/homePage.css'
 
 const TextareaMultiline = () => {
   const [text, setText] = useState('');
-  const [charCount, setCharCount] = useState(0);
-  const [lineCount, setLineCount] = useState(0);
+
+  // Calculate counts directly from text
+  const charCount = text.length;
+  const lineCount = text === '' ? 0 : text.split('\n').length;
 
   const handleTextChange = (e) => {
-    const value = e.target.value;
-    setText(value);
-    setCharCount(value.length);
-    setLineCount(value.split('\n').length);
+    setText(e.target.value);
   };
 
   return (
