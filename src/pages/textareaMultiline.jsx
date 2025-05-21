@@ -31,7 +31,6 @@ const TextareaMultiline = () => {
             />
             <div className="textarea-stats">
               <span>Characters: {charCount}</span>
-              <span>Lines: {lineCount}</span>
             </div>
           </div>
         </div>
