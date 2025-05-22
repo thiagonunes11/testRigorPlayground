@@ -49,6 +49,22 @@ body {
   transition: background-color 0.3s ease;
 }
 
+.brand-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.brand-logo:hover {
+  opacity: 0.9;
+}
+
+.brand-logo img {
+  max-height: 40px;
+  width: auto;
+}
+
 .brand-text {
   color: var(--text);
   font-weight: 600;
