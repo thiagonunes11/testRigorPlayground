@@ -45,7 +45,8 @@ import DdatePicker from './pages/ddatePicker'
 import CameraPage from './pages/cameraPage'
 import EmailValidation from './pages/emailValidation'
 import DivTable from './pages/divTable'
-import WaitImage from './pages/waitImage'
+import WaitImage from './pages/waitImage';
+import TextareaMultiline from './pages/textareaMultiline';
 
 function App() {
     return (
@@ -96,6 +97,8 @@ function App() {
                 <Route path="/emailValidation" element={<EmailValidation />} />
                 <Route path="/divTable" element={<DivTable />} />
                 <Route path="/waitImage" element={<WaitImage />} />
+                <Route path="/textareaMultiline" element={<TextareaMultiline />} />
+                
             </Routes>
         </Router>
     );

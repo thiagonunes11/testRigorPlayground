@@ -258,7 +258,13 @@ const demos = [
         path: "/waitMessage",
         description: "Wait five seconds for the message.",
         icon: <HourglassSplit size={iconSize} />
-    }
+    },
+    {
+    title: "Textarea Multiline",
+    path: "/textareaMultiline",
+    description: "Validate multiline input capabilities.",
+    icon: <FileEarmarkTextFill size={iconSize} />
+}
 ];
 
 export default demos;

@@ -9,13 +9,13 @@ const BrowserPrompt = () => {
 
   // Function to show the prompt
   const showPrompt = () => {
-    let userName;
-    do {
-      userName = prompt("Please enter your name:");
-    } while (!userName);
-
-    setName(userName);
-    setShowWelcome(true);
+    const userName = prompt("Please enter your name:");
+    if (userName && userName.trim() !== "") {
+      setName(userName);
+      setShowWelcome(true);
+    } else {
+      setShowWelcome(false);
+    }
   };
 
   // Effect to trigger prompt if URL contains "browserpromptonload"
