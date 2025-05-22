@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Navbar } from 'react-bootstrap';
-import Footer from './Footer';
 import { Link, useLocation } from 'react-router-dom';
 import GoBackButton from './GoBackButton';
 import '../styles/homePage.css';
