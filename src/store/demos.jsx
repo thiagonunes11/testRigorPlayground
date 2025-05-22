@@ -260,11 +260,11 @@ const demos = [
         icon: <HourglassSplit size={iconSize} />
     },
     {
-    title: "Textarea Multiline",
-    path: "/textareaMultiline",
-    description: "Validate multiline input capabilities.",
-    icon: <FileEarmarkTextFill size={iconSize} />
-}
+        title: "Textarea Multiline",
+        path: "/textareaMultiline",
+        description: "Validate multiline input capabilities.",
+        icon: <FileEarmarkTextFill size={iconSize} />
+    },
 ];
 
 export default demos;
