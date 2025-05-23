@@ -31,7 +31,8 @@ import {
     CollectionFill,
     PlayCircleFill,
     ShieldFill,
-    HourglassSplit
+    HourglassSplit,
+    GeoAltFill
 } from 'react-bootstrap-icons';
 
 const iconSize = 32;
@@ -132,6 +133,12 @@ const demos = [
         path: "/fileUpload",
         description: "Upload a file using the input field.",
         icon: <FileEarmarkArrowUpFill size={iconSize} />
+    },
+    {
+        title: "Geolocation",
+        path: "/geolocation",
+        description: "Get the coordinates of the user.",
+        icon: <GeoAltFill size={iconSize} />
     },
     {
         title: "Long Click",
