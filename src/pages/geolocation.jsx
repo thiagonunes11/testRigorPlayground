@@ -42,8 +42,10 @@ function Geolocation() {
             axios.get(queryURL)
                 .then((response) => {
                     const city = response.data.address.city;
+                    const city_district = response.data.address.city_district;
+                    const town = response.data.address.town;
 
-                    setAddress(city || "Address not found");
+                    setAddress(city || city_district || town || "Address not found");
                     setLoading(false);
                 })
                 .catch((error) => {
