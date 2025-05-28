@@ -2,14 +2,21 @@ import { useState, useEffect } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap"
 import Layout from "../components/Layout";
 import axios from "axios";
+import { Collapse } from "react-bootstrap"
+import Spinner from 'react-bootstrap/Spinner';
 
 function Geolocation() {
-    const [isVisible, setIsVisible] = useState(false);
     const [userLatitude, setUserLatitude] = useState(null);
     const [userLongitude, setUserLongitude] = useState(null);
     const [address, setAddress] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const getUserLocation = () => {
+        setAddress("");
+        setLoading(true);
+        setUserLatitude(null);
+        setUserLongitude(null);
+
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 (position) => {
@@ -17,7 +24,6 @@ function Geolocation() {
 
                     setUserLatitude(latitude);
                     setUserLongitude(longitude);
-                    setIsVisible(true);
                 },
 
                 (error) => {
@@ -35,8 +41,18 @@ function Geolocation() {
 
             axios.get(queryURL)
                 .then((response) => {
-                    const addressData = response.data.display_name;
-                    setAddress(addressData);
+                    const road = response.data.address.road;
+                    const suburb = response.data.address.suburb;
+                    const city = response.data.address.city;
+                    const state = response.data.address.state;
+                    const country = response.data.address.country;
+                    const postcode = response.data.address.postcode;
+
+                    const addressParts = [road, suburb, city, state, country, postcode];
+                    const fullAddress = addressParts.filter(Boolean).join(', ');
+
+                    setAddress(fullAddress || "Address not found");
+                    setLoading(false);
                 })
                 .catch((error) => {
                     console.error("Error fetching address: ", error);
@@ -47,42 +63,43 @@ function Geolocation() {
     return (
         <Layout
             title="Geolocation"
-            description="Click the button to receive an request for geolocation.
-            After, the latitude and longitude will be displayed."
+            description="Click the button to receive a geolocation request. After, the latitude and longitude will be displayed."
         >
-            <Container>
-                <Row className="mt-5 justify-content-center">
-                    <Col xs={12} className="d-flex flex-column align-items-center">
-                        <Button
-                            id="clickableButton"
-                            className="btn-modern"
-                            onClick={getUserLocation}
-                        >
-                            Click this button
-                        </Button>
+            <Container className="mt-5 d-flex justify-content-center align-items-center">
+                <Row className="w-100 justify-content-center">
+                    <Col xs={12} sm={8} md={8} lg={8} xl={8}>
+                        <div className="d-flex flex-column align-items-center">
 
-                        {isVisible &&
-                            <div
-                                id="textElement"
-                                className="mt-3"
+                            <Button
+                                id="clickableButton"
+                                className="btn-modern mb-3"
+                                onClick={getUserLocation}
+                                disabled={loading}
                             >
-                                <Row>
-                                    <Col>
-                                        Latitude: {userLatitude}
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col>
-                                        Longitude: {userLongitude}
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col>
-                                        Address: {address}
-                                    </Col>
-                                </Row>
-                            </div>
-                        }
+                                Request location
+                                {loading && (
+                                    <>
+                                        <Spinner animation="border" size="sm" className="ms-2" />
+                                    </>
+                                )}
+                            </Button>
+
+                            <Collapse in={address !== ""}>
+                                <div id="textElement" className="card w-100 shadow-sm mt-4">
+                                    <div className="card-body p-4">
+                                        <div>
+                                            <strong>Latitude:</strong> {userLatitude}
+                                        </div>
+                                        <div>
+                                            <strong>Longitude:</strong> {userLongitude}
+                                        </div>
+                                        <div>
+                                            <strong>Address:</strong> {address}
+                                        </div>
+                                    </div>
+                                </div>
+                            </Collapse>
+                        </div>
                     </Col>
                 </Row>
             </Container>
