@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap"
 import Layout from "../components/Layout";
+import axios from "axios";
 
 function Geolocation() {
     const [isVisible, setIsVisible] = useState(false);
     const [userLatitude, setUserLatitude] = useState(null);
     const [userLongitude, setUserLongitude] = useState(null);
-
+    const [address, setAddress] = useState("");
 
     const getUserLocation = () => {
         if (navigator.geolocation) {
@@ -27,6 +28,21 @@ function Geolocation() {
             console.log("Geolocation is not supported by this browser");
         }
     };
+
+    useEffect(() => {
+        if (userLatitude !== null || userLongitude !== null) {
+            var queryURL = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${userLatitude}&lon=${userLongitude}&zoom=18&addressdetails=1`
+
+            axios.get(queryURL)
+                .then((response) => {
+                    const addressData = response.data.display_name;
+                    setAddress(addressData);
+                })
+                .catch((error) => {
+                    console.error("Error fetching address: ", error);
+                });
+        }
+    }, [userLatitude]);
 
     return (
         <Layout
@@ -58,6 +74,11 @@ function Geolocation() {
                                 <Row>
                                     <Col>
                                         Longitude: {userLongitude}
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col>
+                                        Address: {address}
                                     </Col>
                                 </Row>
                             </div>
