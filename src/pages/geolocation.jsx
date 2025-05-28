@@ -41,17 +41,9 @@ function Geolocation() {
 
             axios.get(queryURL)
                 .then((response) => {
-                    const road = response.data.address.road;
-                    const suburb = response.data.address.suburb;
                     const city = response.data.address.city;
-                    const state = response.data.address.state;
-                    const country = response.data.address.country;
-                    const postcode = response.data.address.postcode;
 
-                    const addressParts = [road, suburb, city, state, country, postcode];
-                    const fullAddress = addressParts.filter(Boolean).join(', ');
-
-                    setAddress(fullAddress || "Address not found");
+                    setAddress(city || "Address not found");
                     setLoading(false);
                 })
                 .catch((error) => {
@@ -94,7 +86,7 @@ function Geolocation() {
                                             <strong>Longitude:</strong> {userLongitude}
                                         </div>
                                         <div>
-                                            <strong>Address:</strong> {address}
+                                            <strong>City:</strong> {address}
                                         </div>
                                     </div>
                                 </div>
