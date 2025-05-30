@@ -25,7 +25,6 @@ import RightClick from './pages/rightClick';
 import SimilarPages from './pages/similarPages';
 import SecondVersion from './pages/similarPages/secondVersion';
 import BrowserPrompt from './pages/browserPrompt';
-import BrowserPromptOnLoad from './pages/browserPromptOnLoad';
 import LongClick from './pages/longClick'; 
 import DeleteElements from "./pages/deleteElements";
 import AudioValidation from './pages/audioValidation';
@@ -67,7 +66,6 @@ function App() {
                 <Route path="/audioValidation" element={<AudioValidation />} />
                 <Route path="/dropdowns" element={<Dropdowns />} />
                 <Route path="/BrowserPrompt" element={<BrowserPrompt />} />
-                <Route path="/BrowserPromptOnLoad" element={<BrowserPromptOnLoad />} />
                 <Route path="/tableRelativePosition" element={<TableRelativePosition />} />
                 <Route path="/dynamicTable" element={<DynamicTable />} />
                 <Route path="/waitMessage" element={<WaitForMessage />} />

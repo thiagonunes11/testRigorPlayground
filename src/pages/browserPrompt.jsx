@@ -44,12 +44,6 @@ const BrowserPrompt = () => {
             </button>
           </div>
         </div>
-
-        <div className="row mt-5">
-          <a className="nav-link" href="browserPromptOnLoad">
-            <button className="btn btn-primary btn-modern">...Or this one</button>
-          </a>
-        </div>
       </div>
     </Layout>
   );
