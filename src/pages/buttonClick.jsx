@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Layout from '../components/Layout';
+import '../styles/buttonClick.css'; 
 
 const ButtonClick = () => {
     const [isVisible, setIsVisible] = useState(false);
@@ -17,13 +18,14 @@ const ButtonClick = () => {
                     >
                         Click to Reveal
                     </button>
-                    {isVisible && (
-                        <div className="fade-in">
-                            <p className="text-secondary">
-                                Congratulations! You've successfully revealed the hidden content.
-                            </p>
-                        </div>
-                    )}
+                    <div
+                        className={`fade-in${isVisible ? '' : ' visually-hidden'}`}
+                        aria-hidden={!isVisible}
+                    >
+                        <p className="text-secondary">
+                            Congratulations! You've successfully revealed the hidden content.
+                        </p>
+                    </div>
                 </div>
             </div>
         </Layout>
