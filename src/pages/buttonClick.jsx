@@ -19,7 +19,7 @@ const ButtonClick = () => {
                         Click to Reveal
                     </button>
                     <div
-                        className={`fade-in${isVisible ? '' : ' visually-hidden'}`}
+                        className={`fade-in${isVisible ? ' revealed' : ''}`}
                         aria-hidden={!isVisible}
                     >
                         <p className="text-secondary">
