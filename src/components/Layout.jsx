@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Navbar } from 'react-bootstrap';
-import Footer from './Footer';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import GoBackButton from './GoBackButton';
 import '../styles/homePage.css';
+import trPlaygroundLogo from '../assets/images/tr-playground.png';
 
 const Layout = ({ children, title, description }) => {
   const [isDarkMode, setIsDarkMode] = useState(() => {
     const savedMode = localStorage.getItem('darkMode');
     return savedMode ? JSON.parse(savedMode) : false;
   });
+
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
     localStorage.setItem('darkMode', JSON.stringify(isDarkMode));
@@ -24,8 +28,12 @@ const Layout = ({ children, title, description }) => {
     <div className={`app-container ${isDarkMode ? 'dark-mode' : ''}`}>
       <Navbar className="navbar-modern">
         <Container>
-          <Navbar.Brand as={Link} to="/" className="brand-text">
-            testRigor Playground
+          <Navbar.Brand as={Link} to="/" className="brand-logo">
+            <img 
+              src={trPlaygroundLogo}
+              alt="testRigor Playground Logo" 
+              height="40"
+            />
           </Navbar.Brand>
           <button 
             className="theme-toggle"
@@ -48,6 +56,11 @@ const Layout = ({ children, title, description }) => {
       <main className="main-content">
         <Container>
           <div className="page-header">
+            {!isHomePage && (
+              <div className="d-flex justify-content-start mb-3">
+                <GoBackButton variant="outline-secondary" className="btn-modern" />
+              </div>
+            )}
             <h1 className="page-title">{title}</h1>
             {description && <p className="page-description">{description}</p>}
           </div>

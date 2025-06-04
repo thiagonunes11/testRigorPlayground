@@ -9,13 +9,13 @@ const BrowserPrompt = () => {
 
   // Function to show the prompt
   const showPrompt = () => {
-    let userName;
-    do {
-      userName = prompt("Please enter your name:");
-    } while (!userName);
-
-    setName(userName);
-    setShowWelcome(true);
+    const userName = prompt("Please enter your name:");
+    if (userName && userName.trim() !== "") {
+      setName(userName);
+      setShowWelcome(true);
+    } else {
+      setShowWelcome(false);
+    }
   };
 
   // Effect to trigger prompt if URL contains "browserpromptonload"
@@ -43,12 +43,6 @@ const BrowserPrompt = () => {
               Click this button...
             </button>
           </div>
-        </div>
-
-        <div className="row mt-5">
-          <a className="nav-link" href="browserPromptOnLoad">
-            <button className="btn btn-primary btn-modern">...Or this one</button>
-          </a>
         </div>
       </div>
     </Layout>
