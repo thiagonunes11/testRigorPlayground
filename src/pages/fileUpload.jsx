@@ -15,7 +15,12 @@ const FileUpload = () => {
 
     const handleMultipleFilesChange = (e) => {
         if (e.target.files) {
-            setMultipleFiles(Array.from(e.target.files));
+            setMultipleFiles(prev =>
+                [...prev, ...Array.from(e.target.files)]
+                    .filter((file, idx, arr) =>
+                        arr.findIndex(f => f.name === file.name && f.lastModified === file.lastModified) === idx
+                    )
+            );
         }
     };
 
@@ -24,6 +29,11 @@ const FileUpload = () => {
             setDirectory(Array.from(e.target.files));
         }
     };
+
+    // Funções de reset
+    const resetSingleFile = () => setSingleFile(null);
+    const resetMultipleFiles = () => setMultipleFiles([]);
+    const resetDirectory = () => setDirectory([]);
 
     return (
         <Layout
@@ -52,9 +62,14 @@ const FileUpload = () => {
                                     </InputGroup.Text>
                                 </InputGroup>
                                 {singleFile && (
-                                    <small className="text-muted d-block mt-2 text-truncate">
-                                        <span style={{ color: 'var(--text)' }}>File name: {singleFile.name}</span>
-                                    </small>
+                                    <>
+                                        <small className="text-muted d-block mt-2 text-truncate">
+                                            <span style={{ color: 'var(--text)' }}>File name: {singleFile.name}</span>
+                                        </small>
+                                        <Button variant="outline-danger" size="sm" className="mt-2" onClick={resetSingleFile}>
+                                            Reset
+                                        </Button>
+                                    </>
                                 )}
                             </Form.Group>
                         </Col>
@@ -79,12 +94,17 @@ const FileUpload = () => {
                                     </InputGroup.Text>
                                 </InputGroup>
                                 {multipleFiles.length > 0 && (
-                                    <div className="mt-2" style={{ color: 'var(--text)' , opacity: 0.75}}>
-                                        <small className="d-block">Selected files:</small>
-                                        <div className="small text-truncate">
-                                            {multipleFiles.map(file => file.name).join(', ')}
+                                    <>
+                                        <div className="mt-2" style={{ color: 'var(--text)' , opacity: 0.75}}>
+                                            <small className="d-block">Selected files:</small>
+                                            <div className="small text-truncate">
+                                                {multipleFiles.map(file => file.name).join(', ')}
+                                            </div>
                                         </div>
-                                    </div>
+                                        <Button variant="outline-danger" size="sm" className="mt-2" onClick={resetMultipleFiles}>
+                                            Reset
+                                        </Button>
+                                    </>
                                 )}
                             </Form.Group>
                         </Col>
@@ -110,12 +130,17 @@ const FileUpload = () => {
                                     </InputGroup.Text>
                                 </InputGroup>
                                 {directory.length > 0 && (
-                                    <div className="mt-2" style={{ color: 'var(--text)' , opacity: 0.75}}>
-                                        <small className="d-block">Selected files:</small>
-                                        <div className="small text-truncate">
-                                            {directory.map(file => file.name).join(', ')}
+                                    <>
+                                        <div className="mt-2" style={{ color: 'var(--text)' , opacity: 0.75}}>
+                                            <small className="d-block">Selected files:</small>
+                                            <div className="small text-truncate">
+                                                {directory.map(file => file.name).join(', ')}
+                                            </div>
                                         </div>
-                                    </div>
+                                        <Button variant="outline-danger" size="sm" className="mt-2" onClick={resetDirectory}>
+                                            Reset
+                                        </Button>
+                                    </>
                                 )}
                             </Form.Group>
                         </Col>
