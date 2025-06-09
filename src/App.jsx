@@ -47,6 +47,7 @@ import DivTable from './pages/divTable'
 import WaitImage from './pages/waitImage';
 import TextareaMultiline from './pages/textareaMultiline';
 import Geolocation from './pages/geolocation'
+import PdfPreview from './pages/pdfPreview';
 
 function App() {
     return (
@@ -98,6 +99,7 @@ function App() {
                 <Route path="/waitImage" element={<WaitImage />} />
                 <Route path="/textareaMultiline" element={<TextareaMultiline />} />
                 <Route path="/geolocation" element={<Geolocation />} />
+                <Route path="/pdfPreview" element={<PdfPreview />} />
             </Routes>
         </Router>
     );

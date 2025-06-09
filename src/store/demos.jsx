@@ -177,6 +177,12 @@ const demos = [
         icon: <BoxArrowUpRight size={iconSize} />
     },
     {
+        title:"PDF Preview",
+        path:"/pdfPreview",
+        description: "Preview a PDF file in the browser.",
+        icon: <FileEarmarkTextFill size={iconSize} />
+    },
+    {
         title: "QR Code",
         path: "/qrCode",
         description: "Generate a QR Code and validate its content.",
