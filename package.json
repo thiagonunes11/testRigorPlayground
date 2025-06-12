@@ -1,52 +1,50 @@
 {
-  "name": "testrigorplayground",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "axios": "^1.9.0",
-    "bootstrap": "^5.3.3",
-    "npm": "^10.9.0",
-    "qrcode": "^1.5.4",
-    "qrcode.react": "^4.1.0",
-    "qrcodejs": "^1.0.0",
-    "react": "^18.3.1",
-    "react-bootstrap": "^2.10.5",
-    "react-bootstrap-icons": "^1.11.5",
-    "react-datepicker": "^8.2.1",
-    "react-dom": "^18.3.1",
-    "react-router-dom": "^6.28.0",
-    "start": "^5.1.0",
-    "testrigorplayground": "file:",
-    "web-vitals": "^2.1.4"
-  },
+  "name": "playground-native",
+  "main": "expo-router/entry",
+  "version": "1.0.0",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "start": "expo start",
+    "reset-project": "node ./scripts/reset-project.js",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "lint": "expo lint"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "dependencies": {
+    "@expo/ngrok": "^4.1.3",
+    "@expo/vector-icons": "^14.1.0",
+    "@react-navigation/bottom-tabs": "^7.3.10",
+    "@react-navigation/elements": "^2.3.8",
+    "@react-navigation/native": "^7.1.6",
+    "expo": "~53.0.10",
+    "expo-blur": "~14.1.5",
+    "expo-constants": "~17.1.6",
+    "expo-font": "~13.3.1",
+    "expo-haptics": "~14.1.4",
+    "expo-image": "~2.2.0",
+    "expo-linking": "~7.1.5",
+    "expo-router": "~5.0.7",
+    "expo-splash-screen": "~0.30.9",
+    "expo-status-bar": "~2.2.3",
+    "expo-symbols": "~0.4.5",
+    "expo-system-ui": "~5.0.8",
+    "expo-web-browser": "~14.1.6",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "react-native": "0.79.3",
+    "react-native-gesture-handler": "~2.24.0",
+    "react-native-reanimated": "~3.17.4",
+    "react-native-safe-area-context": "5.4.0",
+    "react-native-screens": "~4.11.1",
+    "react-native-web": "~0.20.0",
+    "react-native-webview": "13.13.5"
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "^4.3.4",
-    "vite": "^6.2.1"
-  }
+    "@babel/core": "^7.25.2",
+    "@types/react": "~19.0.10",
+    "eslint": "^9.25.0",
+    "eslint-config-expo": "~9.2.0",
+    "typescript": "~5.8.3"
+  },
+  "private": true
 }
