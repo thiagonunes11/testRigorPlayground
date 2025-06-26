@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { QRCodeCanvas } from 'qrcode.react';
+import { QRCodeSVG } from 'qrcode.react';
 import Layout from '../components/Layout';
 import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
 
@@ -43,7 +43,7 @@ const QRCodePage = () => {
                                     <div className="text-center mt-4">
                                         <span>Your QR Code:</span>
                                         <div className="d-flex justify-content-center mt-2">
-                                            <QRCodeCanvas id="qr-code" value={qrValue} size={400} />
+                                            <QRCodeSVG id="qr-code" value={qrValue} size={400} />
                                         </div>
                                     </div>
                                 )}
