@@ -1,14 +1,21 @@
 import React, { useState } from 'react';
-import { QRCodeSVG } from 'qrcode.react';
+import QRCode from 'qrcode';
 import Layout from '../components/Layout';
 import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
 
 const QRCodePage = () => {
     const [text, setText] = useState('');
     const [qrValue, setQRValue] = useState('');
+    const [qrImg, setQrImg] = useState('');
 
-    const handleGenerate = () => {
+    const handleGenerate = async () => {
         setQRValue(text);
+        if (text) {
+            const url = await QRCode.toDataURL(text, { width: 256, margin: 2 });
+            setQrImg(url);
+        } else {
+            setQrImg('');
+        }
         setText('');
     };
 
@@ -39,14 +46,21 @@ const QRCodePage = () => {
                                         Generate
                                     </Button>
                                 </Form>
-                                {qrValue && (
+                                {qrImg && (
                                     <div className="text-center mt-4">
                                         <span>Your QR Code:</span>
                                         <div
                                             className="d-flex justify-content-center mt-2"
                                             style={{ minWidth: 256, minHeight: 256, overflowX: 'auto' }}
                                         >
-                                            <QRCodeSVG id="qr-code" value={qrValue} size={256} />
+                                            <img
+                                                id="qr-code"
+                                                src={qrImg}
+                                                alt="QR Code"
+                                                width={256}
+                                                height={256}
+                                                style={{ imageRendering: 'pixelated' }}
+                                            />
                                         </div>
                                     </div>
                                 )}
