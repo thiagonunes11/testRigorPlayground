@@ -42,7 +42,10 @@ const QRCodePage = () => {
                                 {qrValue && (
                                     <div className="text-center mt-4">
                                         <span>Your QR Code:</span>
-                                        <div className="d-flex justify-content-center mt-2">
+                                        <div
+                                            className="d-flex justify-content-center mt-2"
+                                            style={{ overflowX: 'auto' }}
+                                        >
                                             <QRCodeSVG id="qr-code" value={qrValue} size={256} />
                                         </div>
                                     </div>
