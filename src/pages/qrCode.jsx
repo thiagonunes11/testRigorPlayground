@@ -43,7 +43,7 @@ const QRCodePage = () => {
                                     <div className="text-center mt-4">
                                         <span>Your QR Code:</span>
                                         <div className="d-flex justify-content-center mt-2">
-                                            <QRCodeCanvas id="qr-code" value={qrValue} size={256} />
+                                            <QRCodeCanvas id="qr-code" value={qrValue} size={400} />
                                         </div>
                                     </div>
                                 )}
