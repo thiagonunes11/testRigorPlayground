@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { PhoneInput } from 'react-international-phone';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/bootstrap.css';
 import Layout from '../components/Layout';
-import 'react-international-phone/style.css';
 import '../styles/homePage.css';
 import '../styles/bootstrapForm.css'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -137,11 +137,16 @@ const BootstrapForm = () => {
                 <label className="form-label d-block text-start">Phone</label>
                 <div className="form-control phone-wrapper">
                   <PhoneInput
+                    country={''}
                     value={formData.phone}
                     onChange={(phone) => setFormData({ ...formData, phone })}
-                    defaultCountry="us"
-                    placeholder="(201) 555-0123"
-                    className="w-100"
+                    inputProps={{
+                      name: 'phone',
+                      required: false,
+                      autoFocus: false,
+                      placeholder: "+1 (201) 555-0123"
+                    }}
+                    inputClass="w-100"
                   />
                 </div>
               </div>
