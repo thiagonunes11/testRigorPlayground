@@ -48,6 +48,7 @@ import WaitImage from './pages/waitImage';
 import TextareaMultiline from './pages/textareaMultiline';
 import Geolocation from './pages/geolocation'
 import PdfPreview from './pages/pdfPreview';
+import Form from './pages/form';
 
 function App() {
     return (
@@ -100,6 +101,7 @@ function App() {
                 <Route path="/textareaMultiline" element={<TextareaMultiline />} />
                 <Route path="/geolocation" element={<Geolocation />} />
                 <Route path="/pdfPreview" element={<PdfPreview />} />
+                <Route path="/form" element={<Form />} />
             </Routes>
         </Router>
     );

@@ -278,6 +278,12 @@ const demos = [
         description: "Validate multiline input capabilities.",
         icon: <FileEarmarkTextFill size={iconSize} />
     },
+    {
+        title: "Form",
+        path: "/form",
+        description: "Example form with various input types using Bootstrap styling.",
+        icon: <FileEarmarkTextFill size={iconSize} />
+    }
 ];
 
 export default demos;
