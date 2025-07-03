@@ -3,10 +3,10 @@ import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/bootstrap.css';
 import Layout from '../components/Layout';
 import '../styles/homePage.css';
-import '../styles/bootstrapForm.css'; 
+import '../styles/form.css'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const BootstrapForm = () => {
+const Form = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -54,7 +54,7 @@ const BootstrapForm = () => {
 
   return (
     <Layout
-      title={"Bootstrap form"}
+      title={"Form"}
       description={"Example form with various input types using Bootstrap styling."}
     >
       <div className="row mt-5 justify-content-center text-center">
@@ -326,4 +326,4 @@ const BootstrapForm = () => {
   );
 };
 
-export default BootstrapForm;
+export default Form;
