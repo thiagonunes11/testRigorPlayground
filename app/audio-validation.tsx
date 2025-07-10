@@ -6,7 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 interface AudioFile {
   name: string;
-  file: any; // Use 'any' for require statements
+  file: any;
 }
 
 const audioFiles: AudioFile[] = [
@@ -70,8 +70,8 @@ export default function AudioValidationPage() {
 
   const formatTime = (millis: number) => {
     const minutes = Math.floor(millis / 60000);
-    const seconds = ((millis % 60000) / 1000).toFixed(0);
-    return `${minutes}:${(seconds < 10 ? '0' : '')}${seconds}`;
+    const secondsNum = Math.floor((millis % 60000) / 1000);
+    return `${minutes}:${secondsNum < 10 ? '0' : ''}${secondsNum}`;
   };
 
   return (
