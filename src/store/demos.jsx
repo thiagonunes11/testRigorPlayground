@@ -279,8 +279,8 @@ const demos = [
         icon: <FileEarmarkTextFill size={iconSize} />
     },
     {
-        title: "BootstrapForm",
-        path: "/BootstrapForm",
+        title: "Form",
+        path: "/form",
         description: "Example form with various input types using Bootstrap styling.",
         icon: <FileEarmarkTextFill size={iconSize} />
     }
