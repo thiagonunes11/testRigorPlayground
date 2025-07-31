@@ -18,7 +18,6 @@ const ScreenResolution = () => {
   const [resolution, setResolution] = useState(getInitialResolution);
   const [viewport, setViewport] = useState(getInitialViewport);
 
-  // Atualiza a resolução e viewport quando a janela é redimensionada
   useEffect(() => {
     const handleResize = () => {
       setViewport(getInitialViewport());
@@ -40,10 +39,10 @@ const ScreenResolution = () => {
         <h2 className="mb-3">Monitor Resolution</h2>
         <div className="form-control p-3 mb-4 border rounded">
           <p className="mb-1 resolution-content">
-            <strong>Screen Resolution (Monitor):</strong> {resolution.width} × {resolution.height}
+            <strong>Screen Resolution (Monitor):</strong> {resolution.width} x {resolution.height}
           </p>
           <p className="mb-1 resolution-content">
-            <strong>Viewport (Browser Window):</strong> {viewport.width} × {viewport.height}
+            <strong>Viewport (Browser Window):</strong> {viewport.width} x {viewport.height}
           </p>
         </div>
         <small className="text-muted">
