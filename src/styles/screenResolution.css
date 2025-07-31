@@ -1,0 +1,13 @@
+.resolution-container {
+  max-width: 620px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.resolution-container .border {
+  max-width: 100%;
+}
+
+.resolution-content {
+    font-size: larger;
+}
