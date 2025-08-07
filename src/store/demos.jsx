@@ -32,7 +32,8 @@ import {
     PlayCircleFill,
     ShieldFill,
     HourglassSplit,
-    GeoAltFill
+    GeoAltFill,
+    AspectRatio
 } from 'react-bootstrap-icons';
 
 const iconSize = 32;
@@ -283,6 +284,12 @@ const demos = [
         path: "/form",
         description: "Example form with various input types using Bootstrap styling.",
         icon: <FileEarmarkTextFill size={iconSize} />
+    },
+        {
+        title: "Screen Resolution Tester",
+        path: "/screenResolution",
+        description: "Test the resolution of the screen",
+        icon: <AspectRatio size={iconSize} />
     }
 ];
 
