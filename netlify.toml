@@ -1,0 +1,20 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  VITE_API_URL = "https://api-testrigor.onrender.com"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[context.deploy-preview]
+  SECRETS_SCAN_OMIT_KEYS = ["VITE_API_URL"]
+
+[context.branch-deploy]
+  SECRETS_SCAN_OMIT_KEYS = ["VITE_API_URL"]
+
+[context.production]
+  SECRETS_SCAN_OMIT_KEYS = ["VITE_API_URL"]
