@@ -51,3 +51,4 @@ bun.lock
 
 # environment variables
 .env
+.expo
