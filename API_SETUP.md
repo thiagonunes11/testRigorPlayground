@@ -10,14 +10,14 @@ This project uses a proxy configuration to avoid exposing API URLs in the client
 - No environment variables exposed in client bundle
 
 ### Netlify Proxy (`netlify.toml`)
-- Redirects `/api/*` requests to `https://api-testrigor.onrender.com/*`
+- Redirects `/api/*` requests to `https://tr-playground-api.onrender.com/*`
 - Includes CORS headers for cross-origin requests
 - Maintains SPA routing with fallback to `/index.html`
 
 ## How it works
 
 1. **Client Request**: `fetch('/api/code')`
-2. **Netlify Proxy**: Redirects to `https://api-testrigor.onrender.com/code`
+2. **Netlify Proxy**: Redirects to `https://tr-playground-api.onrender.com/code`
 3. **API Response**: Returns data to client
 
 ## Benefits
