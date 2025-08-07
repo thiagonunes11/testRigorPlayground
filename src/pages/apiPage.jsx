@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import Layout from '../components/Layout';
 import '../styles/homePage.css';
 
-const API_URL = import.meta.env.VITE_API_URL || "https://api-testrigor.onrender.com";
+// Use relative URL to avoid exposing API URL in bundle
+const API_URL = "/api";
 
 const ApiPage = () => {
   // GET /code
