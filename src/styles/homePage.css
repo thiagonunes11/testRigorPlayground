@@ -139,6 +139,52 @@ body {
   padding: 1rem;
 }
 
+/* API Info Block */
+.api-info-block {
+  text-align: center;
+  padding: 1.5rem;
+  background: linear-gradient(
+    135deg,
+    var(--primary) 0%,
+    rgba(59, 130, 246, 0.8) 100%
+  );
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}
+
+.api-info-block h3 {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.api-url {
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: var(--primary);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-family: "Fira Code", "Monaco", "Consolas", monospace;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.api-url:hover {
+  background-color: white;
+  transform: scale(1.02);
+}
+
+.api-description {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
 @media (max-width: 1200px) {
   .card-grid {
     grid-template-columns: repeat(3, 1fr);

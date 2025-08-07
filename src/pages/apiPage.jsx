@@ -125,8 +125,16 @@ const ApiPage = () => {
 
   return (
     <Layout
-      title="API Validation for testRigor"
-      description="Demonstration of GET, POST, PUT, PATCH, and DELETE calls to a local API."
+      title="API Validation Test "
+      description={
+        <>
+          API Base URL: https://tr-playground-api.onrender.com
+          <br />
+          <br />
+          Note: API responses may take longer on first request due to cold start
+          on Render hosting.
+        </>
+      }
     >
       <div className="api-card-grid">
         <div className="modern-card">
