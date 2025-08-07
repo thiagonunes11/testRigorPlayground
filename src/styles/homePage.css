@@ -125,9 +125,15 @@ body {
 /* Card Grid */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
   padding: 1rem;
+}
+
+@media (max-width: 768px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Modern Card */
@@ -510,4 +516,48 @@ body {
 .divTable.blueTable .divTableRow:hover {
   background: var(--card-hover);
   transition: background-color 0.2s ease;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* Delete Element Styles */
+.deletable-element {
+  background-color: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 1rem 0;
+  color: rgb(34, 197, 94);
+  transition: all 0.3s ease;
+}
+
+.deletable-element p {
+  margin: 0.5rem 0;
+  font-weight: 500;
+}
+
+.deleted-element {
+  background-color: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 1rem 0;
+  color: rgb(239, 68, 68);
+  transition: all 0.3s ease;
+}
+
+.deleted-element p {
+  margin: 0.5rem 0;
+  font-weight: 500;
+}
+
+.deletable-element:hover {
+  background-color: rgba(34, 197, 94, 0.15);
+  transform: translateY(-2px);
+}
+
+.deleted-element:hover {
+  background-color: rgba(239, 68, 68, 0.15);
 }

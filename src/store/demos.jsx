@@ -283,6 +283,12 @@ const demos = [
         path: "/form",
         description: "Example form with various input types using Bootstrap styling.",
         icon: <FileEarmarkTextFill size={iconSize} />
+    },
+    {
+        title: "API Playground",
+        path: "/apiPage",
+        description: "Test API endpoints with GET, POST, PUT, PATCH, and DELETE.",
+        icon: <BoxArrowInRight size={iconSize} />
     }
 ];
 
