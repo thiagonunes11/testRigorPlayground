@@ -34,7 +34,8 @@
 
 body {
   margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, sans-serif;
   background-color: var(--background);
   color: var(--text);
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -125,12 +126,36 @@ body {
 /* Card Grid */
 .card-grid {
   display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  padding: 1rem;
+}
+
+/* API Page Grid - 2 columns for better visibility */
+.api-card-grid {
+  display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
   padding: 1rem;
 }
 
+@media (max-width: 1200px) {
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .api-card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
   .card-grid {
     grid-template-columns: 1fr;
   }
@@ -264,10 +289,6 @@ body {
 @media (max-width: 768px) {
   .page-title {
     font-size: 2rem;
-  }
-
-  .card-grid {
-    grid-template-columns: 1fr;
   }
 
   .demo-content {
@@ -428,22 +449,22 @@ body {
 }
 
 /* Input Fields */
-.input-group>input {
+.input-group > input {
   background-color: var(--background);
   color: var(--text);
   border: 1px solid var(--border);
 }
 
-.input-group> ::file-selector-button {
+.input-group > ::file-selector-button {
   background-color: var(--card-bg);
   color: var(--text);
 }
 
-.input-group>input::placeholder {
+.input-group > input::placeholder {
   color: var(--text-secondary);
 }
 
-.input-group>input:focus {
+.input-group > input:focus {
   background-color: var(--card-bg);
   color: var(--text);
   outline: 2px solid var(--primary);

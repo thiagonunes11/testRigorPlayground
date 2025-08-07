@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Layout from '../components/Layout';
-import '../styles/homePage.css';
+import Layout from "../components/Layout";
+import "../styles/homePage.css";
 
-// Use relative URL to avoid exposing API URL in bundle
-const API_URL = "/api";
+// API URL pointing to the hosted service
+const API_URL = "https://tr-playground-api.onrender.com";
 
 const ApiPage = () => {
   // GET /code
@@ -47,7 +47,7 @@ const ApiPage = () => {
         setGetError("");
       })
       .catch(() => setGetError("Error fetching code."));
-    
+
     // Reset delete status ao carregar a página
     fetch(`${API_URL}/reset-delete`);
   }, []);
@@ -128,7 +128,7 @@ const ApiPage = () => {
       title="API Validation for testRigor"
       description="Demonstration of GET, POST, PUT, PATCH, and DELETE calls to a local API."
     >
-      <div className="card-grid">
+      <div className="api-card-grid">
         <div className="modern-card">
           <h2>GET /code</h2>
           <div className="info-block">
@@ -139,7 +139,9 @@ const ApiPage = () => {
               </span>
             )}
           </div>
-          <button className="btn-modern btn-primary" onClick={handleGet}>Refresh code</button>
+          <button className="btn-modern btn-primary" onClick={handleGet}>
+            Refresh code
+          </button>
           {getError && <p className="error-msg">{getError}</p>}
         </div>
         <div className="modern-card">
@@ -194,7 +196,9 @@ const ApiPage = () => {
             {!isDeleted ? (
               <div className="deletable-element">
                 <p>✅ This element is visible and can be deleted</p>
-                <p className="muted">Send a DELETE request to remove this element</p>
+                <p className="muted">
+                  Send a DELETE request to remove this element
+                </p>
               </div>
             ) : (
               <div className="deleted-element">
@@ -209,7 +213,9 @@ const ApiPage = () => {
             )}
           </div>
           {/* Botão de delete removido */}
-          {deleteResponse && <pre>{JSON.stringify(deleteResponse, null, 2)}</pre>}
+          {deleteResponse && (
+            <pre>{JSON.stringify(deleteResponse, null, 2)}</pre>
+          )}
         </div>
       </div>
     </Layout>
