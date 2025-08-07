@@ -40,6 +40,12 @@ const iconSize = 32;
 
 const demos = [
   {
+    title: "API Validation Test",
+    path: "/apiPage",
+    description: "Test API endpoints with GET, POST, PUT, PATCH, and DELETE.",
+    icon: <BoxArrowInRight size={iconSize} />,
+  },
+  {
     title: "Audio Validation",
     path: "/audioValidation",
     description: "Record and check if the audios match.",
@@ -136,6 +142,13 @@ const demos = [
     icon: <FileEarmarkArrowUpFill size={iconSize} />,
   },
   {
+    title: "Form",
+    path: "/form",
+    description:
+      "Example form with various input types using Bootstrap styling.",
+    icon: <FileEarmarkTextFill size={iconSize} />,
+  },
+  {
     title: "Geolocation",
     path: "/geolocation",
     description: "Get the coordinates of the user.",
@@ -215,6 +228,12 @@ const demos = [
     icon: <Mouse2Fill size={iconSize} />,
   },
   {
+    title: "Screen Resolution Tester",
+    path: "/screenResolution",
+    description: "Test the resolution of the screen",
+    icon: <AspectRatio size={iconSize} />,
+  },
+  {
     title: "Scroll Down",
     path: "/scrollDown",
     description: "Scroll down to find a text.",
@@ -252,16 +271,22 @@ const demos = [
     icon: <CollectionFill size={iconSize} />,
   },
   {
-    title: "Video Playback",
-    path: "/video",
-    description: "Play a sample video file.",
-    icon: <PlayCircleFill size={iconSize} />,
+    title: "Textarea Multiline",
+    path: "/textareaMultiline",
+    description: "Validate multiline input capabilities.",
+    icon: <FileEarmarkTextFill size={iconSize} />,
   },
   {
     title: "Verify Code",
     path: "/verifyCode",
     description: "Code Verification",
     icon: <ShieldFill size={iconSize} />,
+  },
+  {
+    title: "Video Playback",
+    path: "/video",
+    description: "Play a sample video file.",
+    icon: <PlayCircleFill size={iconSize} />,
   },
   {
     title: "Wait for the Image",
@@ -274,32 +299,6 @@ const demos = [
     path: "/waitMessage",
     description: "Wait five seconds for the message.",
     icon: <HourglassSplit size={iconSize} />,
-  },
-  {
-    title: "Textarea Multiline",
-    path: "/textareaMultiline",
-    description: "Validate multiline input capabilities.",
-    icon: <FileEarmarkTextFill size={iconSize} />,
-  },
-  {
-    title: "Form",
-    path: "/form",
-    description:
-      "Example form with various input types using Bootstrap styling.",
-    icon: <FileEarmarkTextFill size={iconSize} />,
-  },
-
-  {
-    title: "Screen Resolution Tester",
-    path: "/screenResolution",
-    description: "Test the resolution of the screen",
-    icon: <AspectRatio size={iconSize} />,
-  },
-  {
-    title: "API Validation Test",
-    path: "/apiPage",
-    description: "Test API endpoints with GET, POST, PUT, PATCH, and DELETE.",
-    icon: <BoxArrowInRight size={iconSize} />,
   },
 ];
 
