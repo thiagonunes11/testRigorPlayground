@@ -49,6 +49,7 @@ import TextareaMultiline from './pages/textareaMultiline';
 import Geolocation from './pages/geolocation'
 import PdfPreview from './pages/pdfPreview';
 import Form from './pages/form';
+import ApiPage from './pages/apiPage';
 import ScreenResolution from './pages/screenResolution';
 
 function App() {
@@ -103,6 +104,7 @@ function App() {
                 <Route path="/geolocation" element={<Geolocation />} />
                 <Route path="/pdfPreview" element={<PdfPreview />} />
                 <Route path="/form" element={<Form />} />
+                <Route path="/apiPage" element={<ApiPage />} />
                 <Route path="/screenResolution" element={<ScreenResolution />} />
             </Routes>
         </Router>

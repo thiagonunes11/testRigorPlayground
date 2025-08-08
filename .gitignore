@@ -48,3 +48,7 @@ yarn-error.log*
 
 bun.lock
 .vite/
+
+# environment variables
+.env
+.expo
