@@ -12,6 +12,7 @@ const VideoPlayer = () => {
             loop
             controls
             playsInline
+            aria-label="Video Player"
           >
             <source src={bunnyVideo} type="video/mp4" />
             Your browser does not support the video tag.
