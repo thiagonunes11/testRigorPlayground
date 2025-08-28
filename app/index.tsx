@@ -1,89 +1,93 @@
+import { useFonts } from "expo-font";
 import {
-  Image,
-  Pressable,
-  SafeAreaView,
-  ScrollView,
-  Text,
-  View,
+    Image,
+    SafeAreaView,
+    ScrollView,
+    Text,
+    View
 } from "react-native";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+
+import { Grid, GridItem } from '@/components/ui/grid';
+
+import DemoButton from "./components/DemoButton";
+
 
 const logoImageInverted = require("../assets/images/tr-playground-inverted.png");
-const logoImage =
-  "https://testrigorplayground.netlify.app/assets/tr-playground-CdNjylXW.png";
+const logoImage = require("../assets/images/tr-playground.png");
 
 export default function App() {
-  return (
-    <SafeAreaView
-      style={{
-        flex: 1,
-        justifyContent: "flex-start",
-        alignItems: "center",
-        backgroundColor: "white",
-      }}
-    >
-      <ScrollView contentContainerStyle={{ gap: 10 }}>
-        <View
-          style={{
-            borderWidth: 1,
-            borderColor: "black",
-            padding: 10,
-          }}
+    const [fontsLoaded] = useFonts({
+        OpenSans: require("../assets/fonts/OpenSans-Regular.ttf"),
+        OpenSansBold: require("../assets/fonts/OpenSans-Bold.ttf"),
+    });
+
+    return (
+        <SafeAreaView
+            style={{
+                flex: 1,
+                justifyContent: "flex-start",
+                backgroundColor: "white",
+            }}
         >
-          <Image
-            source={{ uri: logoImage }}
-            style={{ width: 150, height: 40 }}
-            resizeMode="contain"
-          />
-        </View>
-        <View style={{ borderWidth: 1, borderColor: "black", padding: 10 }}>
-          <Text
-            style={{
-              fontSize: 40,
-              fontWeight: "bold",
-              color: "black",
-              textAlign: "center",
-              marginBottom: 20,
-            }}
-          >
-            Welcome to testRigor Playground
-          </Text>
-          <Text
-            style={{
-              fontSize: 20,
-              color: "gray",
-              textAlign: "center",
-              fontFamily: "Helvetica",
-              fontWeight: "400",
-            }}
-          >
-            Explore our collection of interactive demos designed to help you
-            test various web elements and interactions.
-          </Text>
-        </View>
-        <Pressable onPress={() => console.log("pressed")}>
-          <View style={{ borderWidth: 1, borderColor: "black", padding: 10 }}>
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                marginBottom: 5,
-              }}
-            >
-              <Icon
-                name="microphone"
-                size={24}
-                color="#4285f4"
-                style={{ marginRight: 8 }}
-              />
-              <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-                Audio Validation
-              </Text>
-            </View>
-            <Text>Record and check if the audios match.</Text>
-          </View>
-        </Pressable>
-      </ScrollView>
-    </SafeAreaView>
-  );
+            <ScrollView contentContainerStyle={{ gap: 10 }}>
+                <View
+                    style={{
+                        borderBottomWidth: 1,
+                        borderColor: "#e2e8f0",
+                        paddingHorizontal: 80,
+                        paddingVertical: 20,
+                        width: "100%",
+                        backgroundColor: "white",
+                    }}
+                >
+                    <View>
+                        <Image
+                            source={logoImage}
+                            style={{ width: 300, height: 40 }}
+                            resizeMode="contain"
+                        />
+                    </View>
+                </View>
+                <View style={{ padding: 10 }}>
+                    <Text
+                        style={{
+                            fontSize: 40,
+                            color: "#1e293b",
+                            textAlign: "center",
+                            marginBottom: 20,
+                            fontFamily: "OpenSansBold",
+                        }}
+                    >
+                        Welcome to testRigor Playground
+                    </Text>
+                    <Text
+                        style={{
+                            fontSize: 20,
+                            color: "gray",
+                            textAlign: "center",
+                            fontFamily: "Helvetica",
+                            fontWeight: "400",
+                        }}
+                    >
+                        Explore our collection of interactive demos designed to help you
+                        test various web elements and interactions.
+                    </Text>
+                </View>
+                <Grid className="gap-4" _extra={{ className: 'grid-cols-10' }}>
+                    <GridItem
+                        className="p-6 rounded-md"
+                        _extra={{ className: 'col-span-3' }}
+                    >
+                        <DemoButton icon="microphone" title="Audio Validation" description="Record and check if the audios match." />
+                    </GridItem>
+                    <GridItem
+                        className="p-6 rounded-md"
+                        _extra={{ className: 'col-span-3' }}
+                    >
+                        <DemoButton icon="check-circle" title="Button Click" description="Click the button to reveal hidden text." />
+                    </GridItem>
+                </Grid>
+            </ScrollView>
+        </SafeAreaView>
+    );
 }
