@@ -1,3 +1,4 @@
+import { RelativePathString, useRouter } from "expo-router";
 import React, { useState } from "react";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
@@ -10,20 +11,27 @@ interface DemoBlockProps {
   icon: string;
   title: string;
   description: string;
-  onPress?: () => void;
+  page: string;
 }
 
 const DemoBlock: React.FC<DemoBlockProps> = ({
   icon,
   title,
   description,
-  onPress,
+  page,
 }) => {
   const [hovered, setHovered] = useState(false);
+  const router = useRouter();
+
+  const handlePress = () => {
+    // Garante que 'page' começa com '/'
+    const fullUrl: RelativePathString = `/demos/${page}` as RelativePathString;
+    router.push(fullUrl);
+  };
 
   return (
     <Pressable
-      onPress={onPress}
+      onPress={handlePress}
       onHoverIn={() => setHovered(true)}
       onHoverOut={() => setHovered(false)}
     >

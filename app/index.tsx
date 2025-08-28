@@ -23,7 +23,10 @@ export default function App() {
                     className="p-6 rounded-md"
                     _extra={{ className: 'col-span-3' }}
                 >
-                    <DemoButton icon="check-circle" title="Button Click" description="Click the button to reveal hidden text." />
+                    <DemoButton icon="check-circle"
+                        title="Button Click"
+                        description="Click the button to reveal hidden text."
+                        page="clickButton" />
                 </GridItem>
             </Grid>
         </Layout>
