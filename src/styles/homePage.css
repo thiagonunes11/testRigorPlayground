@@ -628,3 +628,21 @@ body {
 .deleted-element:hover {
   background-color: rgba(239, 68, 68, 0.15);
 }
+
+.osb-grid {
+  justify-items: center;
+  justify-content: center;
+}
+
+.osb-grid .modern-card {
+  width: 100%;
+  max-width: 520px;
+  text-align: center;
+}
+
+.osb-grid .info-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}

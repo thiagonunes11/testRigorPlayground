@@ -51,6 +51,7 @@ import PdfPreview from './pages/pdfPreview';
 import Form from './pages/form';
 import ApiPage from './pages/apiPage';
 import ScreenResolution from './pages/screenResolution';
+import OsBrowser from './pages/osBrowser';
 
 function App() {
     return (
@@ -106,6 +107,7 @@ function App() {
                 <Route path="/form" element={<Form />} />
                 <Route path="/apiPage" element={<ApiPage />} />
                 <Route path="/screenResolution" element={<ScreenResolution />} />
+                <Route path="/osBrowser" element={<OsBrowser />} />
             </Routes>
         </Router>
     );
