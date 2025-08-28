@@ -3,8 +3,7 @@ import Layout from '../components/Layout';
 import '../styles/homePage.css';
 
 const getBrowserInfo = () => {
-  const { userAgent, vendor } = navigator;
-  const ua = userAgent;
+  const ua = navigator.userAgent;
 
   let name = 'Unknown';
   let version = 'Unknown';
@@ -19,12 +18,19 @@ const getBrowserInfo = () => {
   const versionMatch = ua.match(/(Edg|OPR|Chrome|Version|Firefox|MSIE|rv):?\/?([\d\.]+)/);
   if (versionMatch && versionMatch[2]) version = versionMatch[2];
 
-  return { name, version, vendor };
+  // Optionally refine using userAgentData.brands when available
+  const brand = navigator.userAgentData?.brands?.[0]?.brand;
+  if (brand) name = name === 'Unknown' ? brand : name;
+
+  return { name, version };
 };
 
 const getOSInfo = () => {
-  const { platform, userAgent } = navigator;
-  const ua = userAgent;
+  const ua = navigator.userAgent;
+  // Prefer userAgentData.platform when available; otherwise, infer from UA
+  const platform = navigator.userAgentData?.platform ||
+    (/(Windows|Macintosh|Linux|Android|iPhone|iPad|iPod)/.exec(ua)?.[0]) || 'Unknown';
+
   let name = 'Unknown';
 
   if (/Windows NT 10\.0/.test(ua)) name = 'Windows 10/11';
@@ -61,7 +67,6 @@ const OsBrowser = () => {
           <div className="info-block">
             <p><b>Name:</b> {browser.name}</p>
             <p><b>Version:</b> {browser.version}</p>
-            <p><b>Vendor:</b> {browser.vendor || 'N/A'}</p>
             <details style={{marginTop: '1rem'}}>
               <summary>User Agent</summary>
               <pre style={{whiteSpace: 'pre-wrap'}}>{navigator.userAgent}</pre>
