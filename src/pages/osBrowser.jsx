@@ -71,7 +71,7 @@ const OsBrowser = () => {
       uad.getHighEntropyValues(['platform', 'platformVersion', 'model'])
         .then((hints) => {
           if (hints.model) setDeviceModel(hints.model);
-          if (hints.platformVersion && !os.version) setPlatformVersion(hints.platformVersion);
+          if (hints.platformVersion) setPlatformVersion(hints.platformVersion);
         })
         .catch(() => {});
     }
