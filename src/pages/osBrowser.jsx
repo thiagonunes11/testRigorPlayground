@@ -41,7 +41,6 @@ const getOSInfo = () => {
     (/(Windows|Macintosh|Linux|Android|iPhone|iPad|iPod)/.exec(ua)?.[0]) || 'Unknown';
 
   let name = 'Unknown';
-
   if (/Windows NT 10\.0/.test(ua)) name = 'Windows 10/11';
   else if (/Windows NT 6\.3/.test(ua)) name = 'Windows 8.1';
   else if (/Windows NT 6\.2/.test(ua)) name = 'Windows 8';
@@ -51,8 +50,11 @@ const getOSInfo = () => {
   else if (/(iPhone|iPad|iPod)/.test(ua)) name = 'iOS';
   else if (/Linux/.test(ua)) name = 'Linux';
 
-  const version = parseOsVersionFromUA(ua) || navigator.userAgentData?.platformVersion;
+  // Prefer platformVersion (UA-CH) over UA parsing
+  const uaChVersion = navigator.userAgentData?.platformVersion; // ex: "14.0.0"
+  const uaParsedVersion = (ua.match(/Android\s([\d._]+)/)?.[1] || ua.match(/OS\s([\d_]+)/)?.[1])?.replace(/_/g, '.');
 
+  const version = uaChVersion || uaParsedVersion || 'Unknown';
   return { name, platform, version };
 };
 
