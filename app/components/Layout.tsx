@@ -29,24 +29,9 @@ const Layout: React.FC<LayoutProps> = ({
         OpenSansBold: require("../../assets/fonts/OpenSans-Bold.ttf"),
     });
     return (
-        <SafeAreaView
-            style={{
-                flex: 1,
-                justifyContent: "flex-start",
-                backgroundColor: "white",
-            }}
-        >
+        <SafeAreaView className="flex-1 justify-start bg-white">
             <ScrollView contentContainerStyle={{ gap: 10 }}>
-                <View
-                    style={{
-                        borderBottomWidth: 1,
-                        borderColor: "#e2e8f0",
-                        paddingHorizontal: 80,
-                        paddingVertical: 20,
-                        width: "100%",
-                        backgroundColor: "white",
-                    }}
-                >
+                <View className="border-b border-slate-200 px-20 py-5 w-full bg-white">
                     <View>
                         <Image
                             source={logoImage}
@@ -55,32 +40,16 @@ const Layout: React.FC<LayoutProps> = ({
                         />
                     </View>
                 </View>
-                <View style={{ padding: 10 }}>
-                    <Text
-                        style={{
-                            fontSize: 40,
-                            color: "#1e293b",
-                            textAlign: "center",
-                            marginBottom: 20,
-                            fontFamily: "OpenSansBold",
-                        }}
-                    >
+                <View className="px-32 pt-6 items-center w-full">
+                    <Text className="text-4xl text-slate-800 text-center mb-5 font-bold">
                         {title}
                     </Text>
-                    <Text
-                        style={{
-                            fontSize: 20,
-                            color: "gray",
-                            textAlign: "center",
-                            fontFamily: "Helvetica",
-                            fontWeight: "400",
-                        }}
-                    >
+                    <Text className="text-lg text-gray-500 text-center font-helvetica font-normal">
                         {description}
                     </Text>
-                </View>
-                <View>
-                    {children}
+                    <View className="w-full items-center pt-4 mt-8">
+                        {children}
+                    </View>
                 </View>
             </ScrollView>
         </SafeAreaView>

@@ -13,10 +13,10 @@ export default function ClickButton() {
             title="Button Click Demo"
             description="Click the button to reveal hidden content."
         >
-            <Box className="border p-4 rounded-lg ">
+            <Box className="border p-4 rounded-lg w-full">
                 <Button
                     onPress={() => setRevealed(true)}
-                    className="mx-auto block text-lg font-medium bg-blue-400 text-white rounded hover:bg-teal-400 transition"
+                    className="mx-auto block text-lg font-medium bg-blue-400 text-white rounded hover:bg-blue-500 transition"
                 >
                     Click to Reveal
                 </Button>
@@ -26,5 +26,6 @@ export default function ClickButton() {
                     </p>
                 )}
             </Box>
-        </Layout>  );
+        </Layout>
+    );
 }

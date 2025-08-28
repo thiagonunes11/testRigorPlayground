@@ -24,7 +24,6 @@ const DemoBlock: React.FC<DemoBlockProps> = ({
   const router = useRouter();
 
   const handlePress = () => {
-    // Garante que 'page' começa com '/'
     const fullUrl: RelativePathString = `/demos/${page}` as RelativePathString;
     router.push(fullUrl);
   };
