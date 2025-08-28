@@ -300,6 +300,12 @@ const demos = [
     description: "Wait five seconds for the message.",
     icon: <HourglassSplit size={iconSize} />,
   },
+  {
+    title: "OS & Browser",
+    path: "/osBrowser",
+    description: "Detect client OS and browser details.",
+    icon: <Search size={iconSize} />,
+  },
 ];
 
-export default demos;
+export default demos.sort((a, b) => a.title.localeCompare(b.title));
