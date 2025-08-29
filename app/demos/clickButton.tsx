@@ -1,7 +1,7 @@
 
 
 import { Box } from "@/components/ui/box/index.web";
-import { Button } from "@/components/ui/button";
+import { Button, ButtonText } from "@/components/ui/button";
 import { useState } from "react";
 import Layout from "../components/Layout";
 
@@ -18,7 +18,7 @@ export default function ClickButton() {
                     onPress={() => setRevealed(true)}
                     className="mx-auto block text-lg font-medium bg-blue-400 text-white rounded hover:bg-blue-500 transition"
                 >
-                    Click to Reveal
+                    <ButtonText>Click to Reveal</ButtonText>
                 </Button>
                 {revealed && (
                     <p className="text-center text-gray-500 mt-6">

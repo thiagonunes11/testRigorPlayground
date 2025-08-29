@@ -40,7 +40,7 @@ const Layout: React.FC<LayoutProps> = ({
                         />
                     </View>
                 </View>
-                <View className="px-32 pt-6 items-center w-full">
+                <View className="md:px-32 px-16 pt-6 items-center w-full">
                     <Text className="text-4xl text-slate-800 text-center mb-5 font-bold">
                         {title}
                     </Text>
