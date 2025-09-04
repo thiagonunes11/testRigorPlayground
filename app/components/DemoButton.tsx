@@ -42,7 +42,7 @@ const DemoBlock: React.FC<DemoBlockProps> = ({
           boxShadow: hovered
         ? "0 4px 16px rgba(66,133,244,0.2)"
         : "0 1px 4px rgba(0,0,0,0.05)",
-          top: hovered ? -4 : 0, // substitui transform para gluestack
+          top: hovered ? -4 : 0,
           position: "relative",
         }}
       >

@@ -22,9 +22,6 @@ const Layout: React.FC<LayoutProps> = ({
     children
 }) => {
     const [fontsLoaded] = useFonts({
-        Inter: require("../../assets/fonts/Inter_18pt-Regular.ttf"),
-        InterBold: require("../../assets/fonts/Inter_18pt-Bold.ttf"),
-        InterBlack: require("../../assets/fonts/Inter_18pt-Black.ttf"),
         OpenSans: require("../../assets/fonts/OpenSans-Regular.ttf"),
         OpenSansBold: require("../../assets/fonts/OpenSans-Bold.ttf"),
     });
