@@ -40,6 +40,12 @@ const iconSize = 32;
 
 const demos = [
   {
+    title: "Empty Page",
+    path: "/emptyPage",
+    description: "Minimal page with static text.",
+    icon: <FileEarmarkTextFill size={iconSize} />,
+  },
+  {
     title: "API Validation Test",
     path: "/apiPage",
     description: "Test API endpoints with GET, POST, PUT, PATCH, and DELETE.",

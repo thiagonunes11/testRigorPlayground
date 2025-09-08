@@ -52,6 +52,7 @@ import Form from './pages/form';
 import ApiPage from './pages/apiPage';
 import ScreenResolution from './pages/screenResolution';
 import OsBrowser from './pages/osBrowser';
+import EmptyPage from './pages/emptyPage';
 
 function App() {
     return (
@@ -108,6 +109,7 @@ function App() {
                 <Route path="/apiPage" element={<ApiPage />} />
                 <Route path="/screenResolution" element={<ScreenResolution />} />
                 <Route path="/osBrowser" element={<OsBrowser />} />
+                <Route path="/emptyPage" element={<EmptyPage />} />
             </Routes>
         </Router>
     );
