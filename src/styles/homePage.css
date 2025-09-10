@@ -34,7 +34,8 @@
 
 body {
   margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, sans-serif;
   background-color: var(--background);
   color: var(--text);
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -125,9 +126,85 @@ body {
 /* Card Grid */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
   padding: 1rem;
+}
+
+/* API Page Grid - 2 columns for better visibility */
+.api-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  padding: 1rem;
+}
+
+/* API Info Block */
+.api-info-block {
+  text-align: center;
+  padding: 1.5rem;
+  background: linear-gradient(
+    135deg,
+    var(--primary) 0%,
+    rgba(59, 130, 246, 0.8) 100%
+  );
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}
+
+.api-info-block h3 {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.api-url {
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: var(--primary);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-family: "Fira Code", "Monaco", "Consolas", monospace;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.api-url:hover {
+  background-color: white;
+  transform: scale(1.02);
+}
+
+.api-description {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+@media (max-width: 1200px) {
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .api-card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Modern Card */
@@ -258,10 +335,6 @@ body {
 @media (max-width: 768px) {
   .page-title {
     font-size: 2rem;
-  }
-
-  .card-grid {
-    grid-template-columns: 1fr;
   }
 
   .demo-content {
@@ -422,22 +495,22 @@ body {
 }
 
 /* Input Fields */
-.input-group>input {
+.input-group > input {
   background-color: var(--background);
   color: var(--text);
   border: 1px solid var(--border);
 }
 
-.input-group> ::file-selector-button {
+.input-group > ::file-selector-button {
   background-color: var(--card-bg);
   color: var(--text);
 }
 
-.input-group>input::placeholder {
+.input-group > input::placeholder {
   color: var(--text-secondary);
 }
 
-.input-group>input:focus {
+.input-group > input:focus {
   background-color: var(--card-bg);
   color: var(--text);
   outline: 2px solid var(--primary);
@@ -510,4 +583,66 @@ body {
 .divTable.blueTable .divTableRow:hover {
   background: var(--card-hover);
   transition: background-color 0.2s ease;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* Delete Element Styles */
+.deletable-element {
+  background-color: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 1rem 0;
+  color: rgb(34, 197, 94);
+  transition: all 0.3s ease;
+}
+
+.deletable-element p {
+  margin: 0.5rem 0;
+  font-weight: 500;
+}
+
+.deleted-element {
+  background-color: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 1rem 0;
+  color: rgb(239, 68, 68);
+  transition: all 0.3s ease;
+}
+
+.deleted-element p {
+  margin: 0.5rem 0;
+  font-weight: 500;
+}
+
+.deletable-element:hover {
+  background-color: rgba(34, 197, 94, 0.15);
+  transform: translateY(-2px);
+}
+
+.deleted-element:hover {
+  background-color: rgba(239, 68, 68, 0.15);
+}
+
+.osb-grid {
+  justify-items: center;
+  justify-content: center;
+}
+
+.osb-grid .modern-card {
+  width: 100%;
+  max-width: 520px;
+  text-align: center;
+}
+
+.osb-grid .info-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
 }
