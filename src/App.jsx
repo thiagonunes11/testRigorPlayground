@@ -53,6 +53,7 @@ import ApiPage from './pages/apiPage';
 import ScreenResolution from './pages/screenResolution';
 import OsBrowser from './pages/osBrowser';
 import EmptyPage from './pages/emptyPage';
+import Pseudo from './pages/pseudo';
 
 function App() {
     return (
@@ -110,6 +111,7 @@ function App() {
                 <Route path="/screenResolution" element={<ScreenResolution />} />
                 <Route path="/osBrowser" element={<OsBrowser />} />
                 <Route path="/emptyPage" element={<EmptyPage />} />
+                <Route path="/pseudo" element={<Pseudo />} />
             </Routes>
         </Router>
     );
