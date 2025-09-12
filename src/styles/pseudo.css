@@ -1,0 +1,161 @@
+.pseudo-container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 128px;
+}
+
+.m-l-10 {
+  margin-left: 10px;
+}
+
+.m-t-10 {
+  margin-top: 10px;
+}
+
+.example {
+  width: 500px;
+  border-bottom: 2px solid #000;
+  padding-bottom: 30px;
+}
+
+.classTest-1 {
+  position: relative;
+  border-bottom: 2px solid #16e911;
+}
+
+.classTest-1::after {
+  content: "";
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  position: absolute;
+  border-bottom: 2px solid #E75400;
+}
+
+.classTest-1::before {
+  content: "\00a0";
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  position: absolute;
+  border-bottom: 2px solid #dcc818;
+}
+
+.classTest0 {
+  position: relative;
+  border-bottom: 2px solid #16e911;
+}
+
+.classTest0::before {
+  content: "\00a0";
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  position: absolute;
+  border-bottom: 2px solid #dcc818;
+}
+
+.classTest1 {
+  position: relative;
+  border-bottom: 2px solid #16e911;
+}
+
+.classTest1::after {
+  content: "";
+  bottom: -2px;
+  position: absolute;
+  border-bottom: 2px solid #E75400;
+}
+
+.classTest1::before {
+  content: "";
+  bottom: -2px;
+  position: absolute;
+  border-bottom: 2px solid #dcc818;
+}
+
+.classTest2 {
+  position: relative;
+  border-bottom: 2px solid #16e911;
+}
+
+.classTest2::after {
+  content: "";
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  border-bottom: 2px solid #E75400;
+}
+
+.classTest2::before {
+  content: "";
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  border-bottom: 2px solid #dcc818;
+}
+
+.classTest3 {
+  position: relative;
+  border-bottom: 2px solid #16e911;
+}
+
+.classTest3::after {
+  content: "after";
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  border-bottom: 2px solid #E75400;
+}
+
+.classTest3::before {
+  content: "before";
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  border-bottom: 2px solid #dcc818;
+}
+
+.filter-icon {
+  position: relative;
+  width: 25px;
+  height: 25px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.filter-icon::after {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  left: 0;
+  top: 5px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 16 16'%3E%3Cpath d='M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2z'/%3E%3C/svg%3E");
+  content: "";
+  background-size: 100%;
+}
+
+.dark-mode .filter-icon::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 16 16'%3E%3Cpath d='M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2z'/%3E%3C/svg%3E");
+}
+
+#filters .label {
+  min-width: 50px;
+  display: inline-block;
+}
+
+#filters button.save-btn::before {
+  content: "*";
+}
+
+.label-mandatory::before {
+  content: "*";
+}
+
+#companyListTable {
+  width: 100%;
+}
+
+#companyListTable tr td {
+  text-align: center;
+}

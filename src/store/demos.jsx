@@ -203,6 +203,12 @@ const demos = [
     icon: <FileEarmarkTextFill size={iconSize} />,
   },
   {
+    title: "Pseudo Elements",
+    path: "/pseudo",
+    description: "A showcase of the visibility and behavior of pseudo-elements.",
+    icon: <FileEarmarkTextFill size={iconSize} />,
+  },
+  {
     title: "QR Code",
     path: "/qrCode",
     description: "Generate a QR Code and validate its content.",
