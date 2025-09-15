@@ -1,5 +1,4 @@
 import { Text } from '@/components/ui/text';
-import { useFonts } from "expo-font";
 import React from "react";
 import {
     Image,
@@ -21,10 +20,10 @@ const Layout: React.FC<LayoutProps> = ({
     description,
     children
 }) => {
-    const [fontsLoaded] = useFonts({
-        OpenSans: require("../../assets/fonts/OpenSans-Regular.ttf"),
-        OpenSansBold: require("../../assets/fonts/OpenSans-Bold.ttf"),
-    });
+    // const [fontsLoaded] = useFonts({
+    //     OpenSans: require("../../assets/fonts/OpenSans-Regular.ttf"),
+    //     OpenSansBold: require("../../assets/fonts/OpenSans-Bold.ttf"),
+    // });
     return (
         <SafeAreaView className="flex-1 justify-start bg-white">
             <ScrollView contentContainerStyle={{ gap: 10 }}>

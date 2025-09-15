@@ -1,6 +1,6 @@
 
 
-import { Box } from "@/components/ui/box/index.web";
+import { Box } from "@/components/ui/box";
 import { Button, ButtonText } from "@/components/ui/button";
 import { useState } from "react";
 import Layout from "../components/Layout";

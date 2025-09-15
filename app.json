@@ -1,23 +1,24 @@
 {
   "expo": {
-    "name": "tr-playground",
-    "slug": "tr-playground",
+    "name": "starter-kit-expo",
+    "slug": "starter-kit-expo",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/tr-playground-icon.png",
-    "scheme": "trplayground",
+    "icon": "./assets/images/icon.png",
+    "scheme": "starterkitexpo",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/images/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.tr-playground",
-      "infoPlist": {
-        "ITSAppUsesNonExemptEncryption": false
-      }
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/tr-playground-icon.png",
+        "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true
@@ -25,28 +26,14 @@
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/tr-playground-icon.png"
+      "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
       "expo-router",
-      [
-        "expo-splash-screen",
-        {
-          "image": "./assets/images/tr-playground.png",
-          "imageWidth": 200,
-          "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
-        }
-      ]
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true
-    },
-    "extra": {
-      "router": {},
-      "eas": {
-        "projectId": "d871f15f-4619-439e-b966-6557adbee051"
-      }
     }
   }
 }

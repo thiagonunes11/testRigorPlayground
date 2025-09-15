@@ -11,8 +11,12 @@ export default function App() {
             description="Explore our collection of interactive demos designed to help you test various web elements and interactions."
         >
 
-            <Grid className="gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-                <GridItem className="p-6 rounded-md w-full">
+            <Grid className="gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3" _extra={{
+                className: ''
+            }}>
+                <GridItem className="p-6 rounded-md w-full" _extra={{
+                    className: ''
+                }}>
                     <DemoButton
                         icon="microphone"
                         title="Audio Validation"
@@ -20,7 +24,9 @@ export default function App() {
                         page="audioValidation"
                     />
                 </GridItem>
-                <GridItem className="p-6 rounded-md w-full">
+                <GridItem className="p-6 rounded-md w-full" _extra={{
+                    className: ''
+                }}>
                     <DemoButton
                         icon="check-circle"
                         title="Button Click"
