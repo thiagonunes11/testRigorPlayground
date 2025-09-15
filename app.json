@@ -20,7 +20,8 @@
         "foregroundImage": "./assets/images/tr-playground-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.trplayground"
     },
     "web": {
       "bundler": "metro",
