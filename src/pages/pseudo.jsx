@@ -29,7 +29,7 @@ const Pseudo = () => {
             properties
             </p>
             <div className="classTest-1">
-            <input type="text" placeholder="teste" />
+            <input type="text" placeholder="test" />
             </div>
         </div>
 
@@ -45,7 +45,7 @@ const Pseudo = () => {
             because it overlaps the element properties
             </p>
             <div className="classTest0">
-            <input type="text" placeholder="teste" />
+            <input type="text" placeholder="test" />
             </div>
         </div>
 
@@ -57,7 +57,7 @@ const Pseudo = () => {
             </p>
             <p>Use just the element to validate.</p>
             <div className="classTest1">
-            <input type="text" placeholder="teste" />
+            <input type="text" placeholder="test" />
             </div>
         </div>
 
@@ -69,7 +69,7 @@ const Pseudo = () => {
             </p>
             <p>Use just the element to validate.</p>
             <div className="classTest2">
-            <input type="text" placeholder="teste" />
+            <input type="text" placeholder="test" />
             </div>
         </div>
 
@@ -81,7 +81,7 @@ const Pseudo = () => {
             </p>
             <p>Use just the element to validate.</p>
             <div className="classTest3">
-            <input type="text" placeholder="teste" />
+            <input type="text" placeholder="test" />
             </div>
         </div>
 
