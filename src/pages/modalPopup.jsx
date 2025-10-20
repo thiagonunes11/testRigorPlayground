@@ -6,7 +6,6 @@ const ModalPopup = () => {
     const [showFirstModal, setShowFirstModal] = useState(false);
     const [showSecondModal, setShowSecondModal] = useState(false);
     const [updatableText, setUpdatableText] = useState("Initial Text");
-    const [ignoreOutsideClick, setIgnoreOutsideClick] = useState(false);
 
     const handleUpdateText = () => {
         setUpdatableText("Text was updated!");
@@ -35,19 +34,6 @@ const ModalPopup = () => {
             title={"Modal Popup"}
             description={"Click the button below to open a modal popup"}
         >
-            <Row>
-                <Col>
-                    <Form>
-                        <Form.Check
-                            type="switch"
-                            id="ignore-outside"
-                            label="Ignore outside click on modal"
-                            checked={ignoreOutsideClick}
-                            onChange={() => setIgnoreOutsideClick(!ignoreOutsideClick)}
-                        />
-                    </Form>
-                </Col>
-            </Row>
             <div className="row justify-content-center">
                 <div className='text-center'>
                     <Row className="mt-5">
@@ -72,7 +58,7 @@ const ModalPopup = () => {
                 </div>
 
                 {/* First Modal */}
-                <Modal show={showFirstModal} onHide={handleCloseFirstModal} centered backdrop={ignoreOutsideClick ? "static" : true}>
+                <Modal show={showFirstModal} onHide={handleCloseFirstModal} centered>
                     <Modal.Header>
                         <Modal.Title>Modal 1</Modal.Title>
                         <button
@@ -92,7 +78,7 @@ const ModalPopup = () => {
                 </Modal>
 
                 {/* Second Modal */}
-                <Modal show={showSecondModal} onHide={handleCloseSecondModal} centered backdrop={ignoreOutsideClick ? "static" : true}>
+                <Modal show={showSecondModal} onHide={handleCloseSecondModal} centered>
                     <Modal.Header>
                         <Modal.Title>Modal 2</Modal.Title>
                         <button
