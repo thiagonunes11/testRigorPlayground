@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
-import { Button, Modal } from 'react-bootstrap';
+import { Row, Col, Button, Modal, Form } from 'react-bootstrap';
 import Layout from '../components/Layout';
 
 const ModalPopup = () => {
     const [showFirstModal, setShowFirstModal] = useState(false);
     const [showSecondModal, setShowSecondModal] = useState(false);
+    const [updatableText, setUpdatableText] = useState("Initial Text");
+    const [ignoreOutsideClick, setIgnoreOutsideClick] = useState(false);
+
+    const handleUpdateText = () => {
+        setUpdatableText("Text was updated!");
+    };
 
     const handleCloseFirstModal = () => setShowFirstModal(false);
     const handleShowFirstModal = () => setShowFirstModal(true);
@@ -29,13 +35,44 @@ const ModalPopup = () => {
             title={"Modal Popup"}
             description={"Click the button below to open a modal popup"}
         >
+            <Row>
+                <Col>
+                    <Form>
+                        <Form.Check
+                            type="switch"
+                            id="ignore-outside"
+                            label="Ignore outside click on modal"
+                            checked={ignoreOutsideClick}
+                            onChange={() => setIgnoreOutsideClick(!ignoreOutsideClick)}
+                        />
+                    </Form>
+                </Col>
+            </Row>
             <div className="row justify-content-center">
-                <Button className="btn btn-primary btn-modern w-25" onClick={handleShowFirstModal}>
-                    Open first modal
-                </Button>
+                <div className='text-center'>
+                    <Row className="mt-5">
+                        <Col>
+                            <p className='h4'>{updatableText}</p>
+                        </Col>
+                    </Row>
+                    <Row className="mt-1">
+                        <Col>
+                            <Button className={"btn-modern w-15"} variant="primary" onClick={handleUpdateText}>
+                                Update text
+                            </Button>
+                        </Col>
+                    </Row>
+                    <Row className="mt-4">
+                        <Col>
+                            <Button className="btn btn-primary btn-modern w-25" onClick={handleShowFirstModal}>
+                                Open first modal
+                            </Button>
+                        </Col>
+                    </Row>
+                </div>
 
                 {/* First Modal */}
-                <Modal show={showFirstModal} onHide={handleCloseFirstModal} centered>
+                <Modal show={showFirstModal} onHide={handleCloseFirstModal} centered backdrop={ignoreOutsideClick ? "static" : true}>
                     <Modal.Header>
                         <Modal.Title>Modal 1</Modal.Title>
                         <button
@@ -55,7 +92,7 @@ const ModalPopup = () => {
                 </Modal>
 
                 {/* Second Modal */}
-                <Modal show={showSecondModal} onHide={handleCloseSecondModal} centered>
+                <Modal show={showSecondModal} onHide={handleCloseSecondModal} centered backdrop={ignoreOutsideClick ? "static" : true}>
                     <Modal.Header>
                         <Modal.Title>Modal 2</Modal.Title>
                         <button
