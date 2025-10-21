@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Row, Col, Button, Modal, Form } from 'react-bootstrap';
 import Layout from '../components/Layout';
 
@@ -10,6 +10,23 @@ const ModalPopup = () => {
     const handleUpdateText = () => {
         setUpdatableText("Text was updated!");
     };
+
+    // Allow programmatic triggering even when overlapped by a modal
+    useEffect(() => {
+        // Expose a global helper
+        window.triggerUpdateText = handleUpdateText;
+
+        // Listen for a custom event: document.dispatchEvent(new CustomEvent('updateText'))
+        document.addEventListener('updateText', handleUpdateText);
+
+        return () => {
+            // Cleanup global helper and event listener
+            if (window.triggerUpdateText === handleUpdateText) {
+                delete window.triggerUpdateText;
+            }
+            document.removeEventListener('updateText', handleUpdateText);
+        };
+    }, []);
 
     const handleCloseFirstModal = () => setShowFirstModal(false);
     const handleShowFirstModal = () => setShowFirstModal(true);
@@ -43,7 +60,7 @@ const ModalPopup = () => {
                     </Row>
                     <Row className="mt-1">
                         <Col>
-                            <Button className={"btn-modern w-15"} variant="primary" onClick={handleUpdateText}>
+                            <Button id="update-text-button" className={"btn-modern w-15"} variant="primary" onClick={handleUpdateText}>
                                 Update text
                             </Button>
                         </Col>
