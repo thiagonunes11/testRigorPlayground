@@ -58,13 +58,18 @@ const ModalPopup = () => {
                             <p className='h4'>{updatableText}</p>
                         </Col>
                     </Row>
-                    <Row className="mt-1">
-                        <Col>
-                            <Button id="update-text-button" className={"btn-modern w-15"} variant="primary" onClick={handleUpdateText}>
-                                Update text
-                            </Button>
-                        </Col>
-                    </Row>
+                    {/* Keep the update button visible while modals are open (still behind backdrop) */}
+                    <div className="position-fixed d-none d-md-block" style={{ top: '50%', right: '20px', transform: 'translateY(-50%)', zIndex: 1050 }}>
+                        <Button id="update-text-button" className={"btn-modern"} variant="primary" onClick={handleUpdateText}>
+                            Update text
+                        </Button>
+                    </div>
+                    {/* Mobile version - positioned differently for smaller screens */}
+                    <div className="position-fixed d-md-none" style={{ top: '10px', right: '10px', zIndex: 1050 }}>
+                        <Button id="update-text-button-mobile" className={"btn-modern btn-sm"} variant="primary" onClick={handleUpdateText}>
+                            Update
+                        </Button>
+                    </div>
                     <Row className="mt-4">
                         <Col>
                             <Button className="btn btn-primary btn-modern w-25" onClick={handleShowFirstModal}>
@@ -75,7 +80,7 @@ const ModalPopup = () => {
                 </div>
 
                 {/* First Modal */}
-                <Modal show={showFirstModal} onHide={handleCloseFirstModal} centered>
+                <Modal show={showFirstModal} onHide={handleCloseFirstModal} centered backdrop="static" keyboard={false}>
                     <Modal.Header>
                         <Modal.Title>Modal 1</Modal.Title>
                         <button
@@ -95,7 +100,7 @@ const ModalPopup = () => {
                 </Modal>
 
                 {/* Second Modal */}
-                <Modal show={showSecondModal} onHide={handleCloseSecondModal} centered>
+                <Modal show={showSecondModal} onHide={handleCloseSecondModal} centered backdrop="static" keyboard={false}>
                     <Modal.Header>
                         <Modal.Title>Modal 2</Modal.Title>
                         <button
