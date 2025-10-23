@@ -28,7 +28,7 @@ const AudioInput = () => {
       };
 
       mr.onstop = () => {
-        const blob = new Blob(chunksRef.current, { type: 'audio/webm' });
+        const blob = new Blob(chunksRef.current, { type: 'audio/wav' });
         const url = URL.createObjectURL(blob);
         const name = `Recording ${recordings.length + 1}`;
         setRecordings((prev) => [{ url, blob, name }, ...prev]);
@@ -160,7 +160,7 @@ const AudioInput = () => {
                     <div className="ms-3 d-flex flex-column align-items-end">
                       <a
                         href={rec.url}
-                        download={`${rec.name}.webm`}
+                        download={`${rec.name}.wav`}
                         className="btn btn-outline-primary btn-sm mb-2"
                         data-testid={`download-${idx}`}
                       >
