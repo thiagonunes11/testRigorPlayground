@@ -54,6 +54,7 @@ import ScreenResolution from './pages/screenResolution';
 import OsBrowser from './pages/osBrowser';
 import EmptyPage from './pages/emptyPage';
 import Pseudo from './pages/pseudo';
+import AudioInput from './pages/audioInput';
 
 function App() {
     return (
@@ -112,6 +113,7 @@ function App() {
                 <Route path="/osBrowser" element={<OsBrowser />} />
                 <Route path="/emptyPage" element={<EmptyPage />} />
                 <Route path="/pseudo" element={<Pseudo />} />
+                <Route path="/audioInput" element={<AudioInput />} />
             </Routes>
         </Router>
     );

@@ -58,6 +58,12 @@ const demos = [
     icon: <MicFill size={iconSize} />,
   },
   {
+    title: "Audio Input",
+    path: "/audioInput",
+    description: "Capture and validate audio input",
+    icon: <MicFill size={iconSize} />,
+  },
+  {
     title: "Browser Prompt",
     path: "/browserPrompt",
     description: "Enter values to prompts.",
