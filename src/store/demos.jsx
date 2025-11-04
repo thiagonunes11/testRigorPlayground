@@ -10,6 +10,7 @@ import {
   CalendarDateFill,
   TrashFill,
   ArrowDownUp,
+  ArrowLeftRight,
   CaretDownFill,
   BoxArrowInLeft,
   Table,
@@ -55,6 +56,12 @@ const demos = [
     title: "Audio Validation",
     path: "/audioValidation",
     description: "Record and check if the audios match.",
+    icon: <MicFill size={iconSize} />,
+  },
+  {
+    title: "Audio Input",
+    path: "/audioInput",
+    description: "Capture and validate audio input",
     icon: <MicFill size={iconSize} />,
   },
   {
@@ -250,6 +257,12 @@ const demos = [
     path: "/scrollDown",
     description: "Scroll down to find a text.",
     icon: <ArrowDownUp size={iconSize} />,
+  },
+  {
+    title: "Scroll Sideways",
+    path: "/scrollSideways",
+    description: "Scroll horizontally to find a text.",
+    icon: <ArrowLeftRight size={iconSize} />,
   },
   {
     title: "Shadow DOM",
