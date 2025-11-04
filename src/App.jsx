@@ -31,6 +31,7 @@ import AudioValidation from './pages/audioValidation';
 import ConnectTheDots from './pages/connectTheDots';
 import ModalPopup from './pages/modalPopup';
 import ScrollDown from './pages/scrollDown';
+import ScrollSideways from './pages/scrollSideways';
 import Regex from './pages/regex';
 import DynamicLoginText from './pages/dynamicLoginText';
 import SvgElements from './pages/svgElements'
@@ -69,6 +70,7 @@ function App() {
                 <Route path="/nestedIframes" element={<NestedIframes />} />
                 <Route path="/dynamicLoginText" element={<DynamicLoginText />} />
                 <Route path="/scrollDown" element={<ScrollDown />} />
+                <Route path="/scrollSideways" element={<ScrollSideways />} />
                 <Route path="/modalPopup" element={<ModalPopup />} />
                 <Route path="/connectTheDots" element={<ConnectTheDots />} />
                 <Route path="/audioValidation" element={<AudioValidation />} />
