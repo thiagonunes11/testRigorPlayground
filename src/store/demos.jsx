@@ -10,6 +10,7 @@ import {
   CalendarDateFill,
   TrashFill,
   ArrowDownUp,
+  ArrowLeftRight,
   CaretDownFill,
   BoxArrowInLeft,
   Table,
@@ -256,6 +257,12 @@ const demos = [
     path: "/scrollDown",
     description: "Scroll down to find a text.",
     icon: <ArrowDownUp size={iconSize} />,
+  },
+  {
+    title: "Scroll Sideways",
+    path: "/scrollSideways",
+    description: "Scroll horizontally to find a text.",
+    icon: <ArrowLeftRight size={iconSize} />,
   },
   {
     title: "Shadow DOM",
