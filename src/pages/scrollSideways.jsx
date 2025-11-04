@@ -1,7 +1,5 @@
 import React from "react";
 import Layout from '../components/Layout';
-import { Row, Col, Container } from 'react-bootstrap';
-
 
 const ScrollSideways = () => {
   return (
@@ -9,38 +7,38 @@ const ScrollSideways = () => {
       title="Scroll Sideways"
       description="Scroll horizontally in order to find the desired vegetable name."
     >
-      {/* Vegetable List with Horizontal Scroll */}
-      <Container className='demo-content justify-content-center'>
-          <Row className="m-4">
-              <Col className="p-3" style={{ overflowX: 'auto' }}>
-                  <div style={{ 
-                    display: 'flex', 
-                    flexDirection: 'row', 
-                    whiteSpace: 'nowrap',
-                    width: 'max-content'
-                  }}>
-                    <p style={{ width: '100vw', display: 'inline-block', flexShrink: 0 }}>
-                      The first vegetable is carrot.
-                    </p>
-                    <p style={{ width: '100vw', display: 'inline-block', flexShrink: 0 }}>
-                      The second vegetable is broccoli.
-                    </p>
-                    <p style={{ width: '100vw', display: 'inline-block', flexShrink: 0 }}>
-                      The third vegetable is spinach.
-                    </p>
-                    <p style={{ width: '100vw', display: 'inline-block', flexShrink: 0 }}>
-                      The fourth vegetable is zucchini.
-                    </p>
-                    <p style={{ width: '100vw', display: 'inline-block', flexShrink: 0 }}>
-                      The fifth vegetable is eggplant.
-                    </p>
-                    <p style={{ display: 'inline-block', flexShrink: 0, paddingRight: '20px' }}>
-                      And the sixth and final vegetable is bell pepper.
-                    </p>
-                  </div>
-              </Col>
-          </Row>
-      </Container>
+      <div style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ 
+          width: '90vw',
+          minHeight: '300px',
+          overflowX: 'auto',
+          border: '2px solid #dee2e6',
+          borderRadius: '8px',
+          backgroundColor: '#f8f9fa',
+          display: 'flex',
+          alignItems: 'center',
+          padding: '20px'
+        }}>
+          <div style={{ 
+            display: 'flex', 
+            flexDirection: 'row', 
+            whiteSpace: 'nowrap',
+            alignItems: 'center'
+          }}>
+            <p style={{ margin: 0 }}>The first vegetable is carrot.</p>
+            <div style={{ width: '200vw', flexShrink: 0 }}></div>
+            <p style={{ margin: 0 }}>The second vegetable is broccoli.</p>
+            <div style={{ width: '200vw', flexShrink: 0 }}></div>
+            <p style={{ margin: 0 }}>The third vegetable is spinach.</p>
+            <div style={{ width: '200vw', flexShrink: 0 }}></div>
+            <p style={{ margin: 0 }}>The fourth vegetable is zucchini.</p>
+            <div style={{ width: '200vw', flexShrink: 0 }}></div>
+            <p style={{ margin: 0 }}>The fifth vegetable is eggplant.</p>
+            <div style={{ width: '200vw', flexShrink: 0 }}></div>
+            <p style={{ margin: 0 }}>And the sixth and final vegetable is bell pepper.</p>
+          </div>
+        </div>
+      </div>
     </Layout>
   );
 };
