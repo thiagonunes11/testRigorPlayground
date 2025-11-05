@@ -97,7 +97,12 @@ const IframeDropdownTest = () => {
     }
   </style>
 </head>
-<body>
+<body 
+  class="containerbody" 
+  tabindex="-1" 
+  scroll="auto" 
+  onclick="console.log('Parent body onclick');"
+  style="cursor: auto;">
   
   <label for="parentInput">Parent Input Label:</label>
   <input 
