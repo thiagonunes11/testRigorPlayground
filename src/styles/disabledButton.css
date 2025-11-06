@@ -1,0 +1,10 @@
+/* Estilo para botões desabilitados */
+.btn-disabled {
+    opacity: 0.5;
+    cursor: not-allowed !important;
+}
+
+.btn-disabled:hover {
+    transform: none !important;
+}
+
