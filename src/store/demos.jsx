@@ -77,12 +77,6 @@ const demos = [
     icon: <CheckCircleFill size={iconSize} />,
   },
   {
-    title: "Button States",
-    path: "/buttonStates",
-    description: "Interact with buttons in different states: enabled, disabled, clickable, and non-clickable.",
-    icon: <CheckCircleFill size={iconSize} />,
-  },
-  {
     title: "Camera",
     path: "/cameraPage",
     description: "Use your computer as if it were a camera",

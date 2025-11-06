@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/homePage";
 import QRCodePage from "./pages/qrCode";
 import ButtonClick from "./pages/buttonClick";
-import ButtonStates from "./pages/buttonStates";
 import OpenNewTab from "./pages/openNewTab";
 import NewTab from "./pages/newTab";
 import Counter from "./pages/counter";
@@ -94,7 +93,6 @@ function App() {
         <Route path="/newTab" element={<NewTab />} />
         <Route path="/qrCode" element={<QRCodePage />} />
         <Route path="/buttonClick" element={<ButtonClick />} />
-        <Route path="/buttonStates" element={<ButtonStates />} />
         <Route path="/fileUpload" element={<FileUpload />} />
         <Route path="/video" element={<VideoPlayer />} />
         <Route path="/checkbox" element={<CheckboxPage />} />
