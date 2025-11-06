@@ -32,6 +32,7 @@ import AudioValidation from "./pages/audioValidation";
 import ConnectTheDots from "./pages/connectTheDots";
 import ModalPopup from "./pages/modalPopup";
 import ScrollDown from "./pages/scrollDown";
+import ScrollSideways from "./pages/scrollSideways";
 import Regex from "./pages/regex";
 import DynamicLoginText from "./pages/dynamicLoginText";
 import SvgElements from "./pages/svgElements";
@@ -55,6 +56,7 @@ import ScreenResolution from "./pages/screenResolution";
 import OsBrowser from "./pages/osBrowser";
 import EmptyPage from "./pages/emptyPage";
 import Pseudo from "./pages/pseudo";
+import AudioInput from "./pages/audioInput";
 
 function App() {
   return (
@@ -69,6 +71,7 @@ function App() {
         <Route path="/nestedIframes" element={<NestedIframes />} />
         <Route path="/dynamicLoginText" element={<DynamicLoginText />} />
         <Route path="/scrollDown" element={<ScrollDown />} />
+        <Route path="/scrollSideways" element={<ScrollSideways />} />
         <Route path="/modalPopup" element={<ModalPopup />} />
         <Route path="/connectTheDots" element={<ConnectTheDots />} />
         <Route path="/audioValidation" element={<AudioValidation />} />
@@ -123,6 +126,7 @@ function App() {
         <Route path="/osBrowser" element={<OsBrowser />} />
         <Route path="/emptyPage" element={<EmptyPage />} />
         <Route path="/pseudo" element={<Pseudo />} />
+        <Route path="/audioInput" element={<AudioInput />} />
       </Routes>
     </Router>
   );
