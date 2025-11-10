@@ -1,0 +1,766 @@
+/* Heavy Animation Stress Test Styles */
+
+.background-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.controls-section {
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 15px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+}
+
+.counter-display, .fps-display {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 8px;
+}
+
+.fps-display {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.counter-value, .fps-value {
+    font-family: 'Courier New', monospace;
+    font-size: 24px;
+}
+
+.info-text {
+    font-size: 14px;
+    color: #666;
+    padding: 8px 16px;
+    background: #f0f0f0;
+    border-radius: 6px;
+}
+
+/* Particle System */
+.particle-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.particle {
+    position: absolute;
+    background: radial-gradient(circle, #ff6b6b, #ee5a6f);
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: float 2s ease-in-out infinite, colorShift 3s ease-in-out infinite, spin 1.5s linear infinite;
+    filter: blur(1px);
+    box-shadow: 0 0 10px rgba(255, 107, 107, 0.8);
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg) scale(1);
+    }
+    25% {
+        transform: translateY(-120px) rotate(90deg) scale(1.2);
+    }
+    50% {
+        transform: translateY(-60px) rotate(180deg) scale(0.8);
+    }
+    75% {
+        transform: translateY(-180px) rotate(270deg) scale(1.3);
+    }
+}
+
+@keyframes colorShift {
+    0%, 100% {
+        background: radial-gradient(circle, #ff6b6b, #ee5a6f);
+    }
+    25% {
+        background: radial-gradient(circle, #4ecdc4, #44a3db);
+    }
+    50% {
+        background: radial-gradient(circle, #f7b731, #f9ca24);
+    }
+    75% {
+        background: radial-gradient(circle, #5f27cd, #341f97);
+    }
+}
+
+/* Rotating Boxes */
+.rotating-boxes-container {
+    position: absolute;
+    top: 150px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 150px);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.rotating-box {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    animation: rotate3d 2s linear infinite, bounceBox 1.5s ease-in-out infinite, colorCycle 3s linear infinite;
+    transform-style: preserve-3d;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+}
+
+.rotating-box-inner {
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    opacity: 0.7;
+    border: 3px solid white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.3);
+    animation: innerPulse 1s ease-in-out infinite;
+}
+
+@keyframes innerPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(0.9); }
+}
+
+@keyframes colorCycle {
+    0% { filter: hue-rotate(0deg) drop-shadow(0 0 10px rgba(255, 255, 255, 0.5)); }
+    100% { filter: hue-rotate(360deg) drop-shadow(0 0 10px rgba(255, 255, 255, 0.5)); }
+}
+
+@keyframes rotate3d {
+    0% {
+        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    }
+    100% {
+        transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+    }
+}
+
+@keyframes bounceBox {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-30px) scale(1.1);
+    }
+}
+
+/* Pulsing Circles */
+.pulsing-circles-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.pulsing-circle {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(52, 152, 219, 0.8), rgba(41, 128, 185, 0.4));
+    animation: pulse 2s ease-in-out infinite, drift 5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.5);
+        opacity: 0.3;
+    }
+}
+
+@keyframes drift {
+    0%, 100% {
+        transform: translate(0, 0);
+    }
+    25% {
+        transform: translate(50px, -50px);
+    }
+    50% {
+        transform: translate(-50px, 50px);
+    }
+    75% {
+        transform: translate(30px, 30px);
+    }
+}
+
+/* Bouncing Balls */
+.bouncing-balls-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 4;
+}
+
+.bouncing-ball {
+    position: absolute;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    animation: bounce 2s cubic-bezier(0.5, 0.05, 1, 0.5) infinite, sway 3s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        top: 0;
+        animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+    50% {
+        top: calc(100vh - 100px);
+        animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+}
+
+@keyframes sway {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(100px);
+    }
+}
+
+/* Spiraling Elements */
+.spiral-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 400px;
+    margin: -200px 0 0 -200px;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.spiral-element {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    background: linear-gradient(45deg, #f093fb, #f5576c);
+    border-radius: 50%;
+    animation: spiral 4s linear infinite;
+}
+
+@keyframes spiral {
+    0% {
+        transform: rotate(0deg) translateX(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: rotate(360deg) translateX(200px) rotate(-360deg);
+        opacity: 0;
+    }
+}
+
+/* Morphing Shapes */
+.morphing-container {
+    position: absolute;
+    top: 200px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 200px);
+    pointer-events: none;
+    z-index: 6;
+}
+
+.morphing-shape {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    animation: morph 3s ease-in-out infinite, morphRotate 6s linear infinite;
+}
+
+@keyframes morph {
+    0%, 100% {
+        border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
+    }
+    25% {
+        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    }
+    50% {
+        border-radius: 20% 80% 20% 80% / 80% 20% 80% 20%;
+    }
+    75% {
+        border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
+    }
+}
+
+@keyframes morphRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Gradient Waves */
+.gradient-waves {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 7;
+}
+
+.wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        rgba(255, 107, 107, 0.3) 0%, 
+        rgba(78, 205, 196, 0.3) 25%, 
+        rgba(255, 195, 113, 0.3) 50%, 
+        rgba(199, 121, 208, 0.3) 75%, 
+        rgba(255, 107, 107, 0.3) 100%);
+}
+
+.wave1 {
+    animation: wave1 8s linear infinite;
+}
+
+.wave2 {
+    animation: wave2 10s linear infinite;
+    opacity: 0.7;
+}
+
+.wave3 {
+    animation: wave3 12s linear infinite;
+    opacity: 0.5;
+}
+
+@keyframes wave1 {
+    0% {
+        transform: translateX(0) translateY(0);
+    }
+    100% {
+        transform: translateX(-50%) translateY(-20px);
+    }
+}
+
+@keyframes wave2 {
+    0% {
+        transform: translateX(0) translateY(10px);
+    }
+    100% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+}
+
+@keyframes wave3 {
+    0% {
+        transform: translateX(0) translateY(20px);
+    }
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* Spinning Text */
+.spinning-text-container {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    perspective: 1000px;
+    pointer-events: none;
+    z-index: 8;
+}
+
+.spinning-text {
+    font-size: 48px;
+    font-weight: bold;
+    background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #667eea);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: spin3d 3s linear infinite, gradientShift 5s ease-in-out infinite;
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    margin: 20px 0;
+}
+
+@keyframes spin3d {
+    0% {
+        transform: rotateX(0deg) rotateY(0deg);
+    }
+    100% {
+        transform: rotateX(360deg) rotateY(360deg);
+    }
+}
+
+@keyframes gradientShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Additional CPU-intensive effects */
+@keyframes flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+@keyframes glitch {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .controls-section {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px 15px;
+    }
+
+    .particle,
+    .rotating-box,
+    .pulsing-circle,
+    .bouncing-ball {
+        display: none;
+    }
+}
+
+/* Explosion Effects */
+.explosions-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.explosion {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    animation: explode 2s ease-out infinite;
+}
+
+.explosion-particle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4px;
+    height: 20px;
+    background: linear-gradient(to bottom, #ff6b6b, transparent);
+    transform-origin: center;
+    animation: explodeParticle 2s ease-out infinite;
+}
+
+@keyframes explode {
+    0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.5) rotate(180deg);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(2) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes explodeParticle {
+    0% {
+        transform: translateY(0) scale(1);
+    }
+    100% {
+        transform: translateY(-100px) scale(0);
+    }
+}
+
+/* Trail Effect */
+.trail-container {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    pointer-events: none;
+    z-index: 11;
+}
+
+.trail-element {
+    position: absolute;
+    left: -20px;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, #4ecdc4, transparent);
+    border-radius: 50%;
+    animation: trail 3s linear infinite;
+    filter: blur(2px);
+}
+
+@keyframes trail {
+    0% {
+        left: -20px;
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        left: 100%;
+        opacity: 0;
+    }
+}
+
+/* Glitching Elements */
+.glitch-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 12;
+}
+
+.glitch-box {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(45deg, #ff0000, #00ff00, #0000ff);
+    animation: glitch 0.5s infinite, glitchColor 0.3s infinite;
+    mix-blend-mode: screen;
+}
+
+@keyframes glitchColor {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+/* 3D Cubes */
+.cube-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 13;
+    perspective: 1000px;
+}
+
+.cube-3d {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    transform-style: preserve-3d;
+    animation: rotateCube 3s linear infinite;
+}
+
+.cube-face {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    background: rgba(100, 150, 255, 0.3);
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.cube-front  { transform: rotateY(0deg) translateZ(40px); }
+.cube-back   { transform: rotateY(180deg) translateZ(40px); }
+.cube-right  { transform: rotateY(90deg) translateZ(40px); }
+.cube-left   { transform: rotateY(-90deg) translateZ(40px); }
+.cube-top    { transform: rotateX(90deg) translateZ(40px); }
+.cube-bottom { transform: rotateX(-90deg) translateZ(40px); }
+
+@keyframes rotateCube {
+    0% {
+        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    }
+    100% {
+        transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+    }
+}
+
+/* Flickering Grid */
+.flicker-grid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    grid-template-rows: repeat(20, 1fr);
+    pointer-events: none;
+    z-index: 14;
+}
+
+.flicker-cell {
+    background: linear-gradient(45deg, 
+        rgba(255, 0, 0, 0.2), 
+        rgba(0, 255, 0, 0.2), 
+        rgba(0, 0, 255, 0.2));
+    animation: flicker 0.2s infinite, cellPulse 0.5s ease-in-out infinite;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@keyframes cellPulse {
+    0%, 100% {
+        opacity: 0.2;
+        transform: scale(1);
+        filter: hue-rotate(0deg);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(1.1);
+        filter: hue-rotate(180deg);
+    }
+}
+
+/* Matrix Rain */
+.matrix-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 15;
+    overflow: hidden;
+}
+
+.matrix-column {
+    position: absolute;
+    top: -100%;
+    color: #0f0;
+    font-family: monospace;
+    font-size: 20px;
+    text-shadow: 0 0 10px #0f0;
+    animation: matrixFall 5s linear infinite;
+    white-space: nowrap;
+    writing-mode: vertical-rl;
+    opacity: 0.7;
+}
+
+@keyframes matrixFall {
+    0% {
+        top: -100%;
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.7;
+    }
+    90% {
+        opacity: 0.7;
+    }
+    100% {
+        top: 100%;
+        opacity: 0;
+    }
+}
+
+/* Extra CPU intensive spin */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Crazy intensive combined animation */
+.demo-content {
+    animation: backgroundShift 5s ease-in-out infinite;
+}
+
+@keyframes backgroundShift {
+    0%, 100% {
+        filter: hue-rotate(0deg) brightness(1);
+    }
+    50% {
+        filter: hue-rotate(180deg) brightness(1.2);
+    }
+}
+
+/* Glitch Layers */
+.glitch-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(45deg, 
+        rgba(255, 0, 0, 0.1), 
+        rgba(0, 255, 0, 0.1), 
+        rgba(0, 0, 255, 0.1));
+    pointer-events: none;
+    z-index: 20;
+    animation: glitchLayer 0.3s infinite;
+    mix-blend-mode: overlay;
+}
+
+@keyframes glitchLayer {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+        filter: hue-rotate(0deg);
+    }
+    25% {
+        transform: translate(-5px, 5px) scale(1.01);
+        filter: hue-rotate(90deg);
+    }
+    50% {
+        transform: translate(5px, -5px) scale(0.99);
+        filter: hue-rotate(180deg);
+    }
+    75% {
+        transform: translate(-5px, -5px) scale(1.02);
+        filter: hue-rotate(270deg);
+    }
+}
