@@ -35,6 +35,7 @@ import {
   HourglassSplit,
   GeoAltFill,
   AspectRatio,
+  Lightning,
 } from "react-bootstrap-icons";
 
 const iconSize = 32;
@@ -166,6 +167,12 @@ const demos = [
     path: "/geolocation",
     description: "Get the coordinates of the user.",
     icon: <GeoAltFill size={iconSize} />,
+  },
+  {
+    title: "Heavy Animation Stress Test",
+    path: "/heavyAnimation",
+    description: "1200+ animated elements with canvas, 3D transforms, and heavy DOM manipulation.",
+    icon: <Lightning size={iconSize} />,
   },
   {
     title: "Long Click",
