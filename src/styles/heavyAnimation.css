@@ -453,21 +453,6 @@
     80% { transform: translate(2px, -2px); }
 }
 
-/* Performance warning overlay */
-.demo-content::before {
-    content: '⚠️ Heavy Animation Mode Active';
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: rgba(255, 0, 0, 0.8);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-weight: bold;
-    z-index: 9999;
-    animation: pulse 2s ease-in-out infinite;
-}
-
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .controls-section {
@@ -481,12 +466,6 @@
     .pulsing-circle,
     .bouncing-ball {
         display: none;
-    }
-
-    .demo-content::before {
-        content: '⚠️ Heavy Animations';
-        font-size: 12px;
-        padding: 8px 12px;
     }
 }
 
@@ -660,29 +639,31 @@
     width: 100%;
     height: 100vh;
     display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: repeat(10, 1fr);
+    grid-template-columns: repeat(20, 1fr);
+    grid-template-rows: repeat(20, 1fr);
     pointer-events: none;
     z-index: 14;
 }
 
 .flicker-cell {
     background: linear-gradient(45deg, 
-        rgba(255, 0, 0, 0.1), 
-        rgba(0, 255, 0, 0.1), 
-        rgba(0, 0, 255, 0.1));
-    animation: flicker 0.3s infinite, cellPulse 1s ease-in-out infinite;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+        rgba(255, 0, 0, 0.2), 
+        rgba(0, 255, 0, 0.2), 
+        rgba(0, 0, 255, 0.2));
+    animation: flicker 0.2s infinite, cellPulse 0.5s ease-in-out infinite;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 @keyframes cellPulse {
     0%, 100% {
-        opacity: 0.1;
+        opacity: 0.2;
         transform: scale(1);
+        filter: hue-rotate(0deg);
     }
     50% {
-        opacity: 0.3;
-        transform: scale(1.05);
+        opacity: 0.5;
+        transform: scale(1.1);
+        filter: hue-rotate(180deg);
     }
 }
 
@@ -745,5 +726,41 @@
     }
     50% {
         filter: hue-rotate(180deg) brightness(1.2);
+    }
+}
+
+/* Glitch Layers */
+.glitch-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(45deg, 
+        rgba(255, 0, 0, 0.1), 
+        rgba(0, 255, 0, 0.1), 
+        rgba(0, 0, 255, 0.1));
+    pointer-events: none;
+    z-index: 20;
+    animation: glitchLayer 0.3s infinite;
+    mix-blend-mode: overlay;
+}
+
+@keyframes glitchLayer {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+        filter: hue-rotate(0deg);
+    }
+    25% {
+        transform: translate(-5px, 5px) scale(1.01);
+        filter: hue-rotate(90deg);
+    }
+    50% {
+        transform: translate(5px, -5px) scale(0.99);
+        filter: hue-rotate(180deg);
+    }
+    75% {
+        transform: translate(-5px, -5px) scale(1.02);
+        filter: hue-rotate(270deg);
     }
 }

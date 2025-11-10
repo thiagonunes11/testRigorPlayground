@@ -171,7 +171,7 @@ const demos = [
   {
     title: "Heavy Animation Stress Test",
     path: "/heavyAnimation",
-    description: "1200+ animated elements with canvas, 3D transforms, and heavy DOM manipulation.",
+    description: "Creates 10 million elements every 200ms. WILL CRASH!",
     icon: <Lightning size={iconSize} />,
   },
   {
