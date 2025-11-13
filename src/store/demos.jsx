@@ -212,7 +212,8 @@ const demos = [
   {
     title: "Pseudo Elements",
     path: "/pseudo",
-    description: "A showcase of the visibility and behavior of pseudo-elements.",
+    description:
+      "A showcase of the visibility and behavior of pseudo-elements.",
     icon: <FileEarmarkTextFill size={iconSize} />,
   },
   {
@@ -330,6 +331,12 @@ const demos = [
     path: "/osBrowser",
     description: "Detect client OS and browser details.",
     icon: <Search size={iconSize} />,
+  },
+  {
+    title: "Ordered Table",
+    path: "/orderedTable",
+    description: "View and switch between sortable sample tables",
+    icon: <Table size={iconSize} />,
   },
 ];
 
