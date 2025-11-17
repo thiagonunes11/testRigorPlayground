@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { InfoCircle } from "react-bootstrap-icons";
 import Layout from "../components/Layout";
 const EnvironmentTester = () => {
   const [isHeadless, setIsHeadless] = useState(null);
@@ -57,7 +58,7 @@ const EnvironmentTester = () => {
           platform: navigator.userAgentData.platform,
         };
       }
-    } catch (_) {}
+    } catch (_) { }
 
     return {
       ua,
@@ -79,7 +80,6 @@ const EnvironmentTester = () => {
     try {
       const w = window;
       if (!w.webkitRequestFileSystem) {
-        // não é Chromium ou API removida
         setWfsSupported(false);
         setWfsResult("not_supported");
         setWfsErrorName("");
@@ -91,9 +91,8 @@ const EnvironmentTester = () => {
       await new Promise((resolve) => {
         w.webkitRequestFileSystem(
           w.TEMPORARY,
-          1024, // 1 KB só
+          1024,
           () => {
-            // sucesso => não parece incognito (nesse sinal)
             setWfsResult("success");
             setWfsErrorName("");
             resolve();
@@ -141,6 +140,7 @@ const EnvironmentTester = () => {
         if (navigator.storage && navigator.storage.estimate) {
           const result = await navigator.storage.estimate();
           setQuota(result.quota);
+
         }
       } catch (err) {
         setQuota(null);
@@ -149,15 +149,19 @@ const EnvironmentTester = () => {
     (async () => {
       await testWebkitRequestFileSystem();
     })();
-
     const head = detectHeadless();
     setIsHeadless(head);
   }, []);
 
+  useEffect(() => {
+    browserFamily === "Chrome (Chromium)" && quota !== null && quota < 100000000000 ? setIsIncognito(true) : setIsIncognito(false);
+  }, [quota]);
+
+
   return (
     <Layout
       title="Environment Tester"
-      description="Detect if the browser is running in headless mode, and/or in private browsing."
+      description="Detect if the browser is running in headless mode, and/or in incognito browsing."
     >
       <Container>
         <Row>
@@ -171,64 +175,80 @@ const EnvironmentTester = () => {
             </div>
           </Col>
           <Col>
-            {/* <div className="border rounded p-3 text-center">
-              <h5 className="fw-bold mb-2">Incognito Mode</h5>
+            <div className="border rounded p-3 text-center">
+              <div className="position-relative mb-2">
+                <h5 className="fw-bold mb-0 text-center">Incognito Mode</h5>
+                <OverlayTrigger
+                  placement="left"
+                  overlay={
+                    <Tooltip id="incognito-info-tooltip">
+                      For Chrome, incognito mode is being determined with the size of quota offered by the browser
+                    </Tooltip>
+                  }
+                >
+                  <InfoCircle
+                    className="text-muted position-absolute"
+                    size={18}
+                    style={{ right: 0, top: "50%", transform: "translateY(-50%)", cursor: "pointer" }}
+                  />
+                </OverlayTrigger>
+              </div>
               <p className="text-muted mb-0">
                 Status:{" "}
                 {isIncognito === null
                   ? "Detecting…"
                   : isIncognito
-                  ? "On"
-                  : "Off"}
-              </p>
-            </div> */}
-            <div className="border rounded p-3 text-center">
-              <h5 className="fw-bold mb-2">
-                Browser Info (to test for Incognito Mode)
-              </h5>
-
-              <p>
-                <strong>Browser Family:</strong> {browserFamily}
-              </p>
-
-              <p className="text-muted small mb-1">
-                <strong>User-Agent:</strong> {uaSummary.ua}
-              </p>
-
-              <p className="text-muted small mb-1">
-                <strong>Vendor:</strong> {uaSummary.vendor}
-              </p>
-
-              <p className="text-muted small mb-1">
-                <strong>Platform:</strong> {uaSummary.platform}
-              </p>
-
-              <p className="text-muted small mb-1">
-                <strong>Language:</strong> {uaSummary.language}
-              </p>
-
-              <p className="text-muted small mb-1">
-                <strong>Languages:</strong> {uaSummary.languages?.join(", ")}
-              </p>
-
-              <p className="text-muted small mb-1">
-                <strong>Quota:</strong>
-                {quota}
-              </p>
-              <p>
-                <strong>webkitRequestFileSystem supported:</strong>{" "}
-                {wfsSupported ? "yes" : "no"}
-              </p>
-              <p>
-                <strong>webkitRequestFileSystem result:</strong> {wfsResult}
-              </p>
-              <p>
-                <strong>webkitRequestFileSystem error:</strong>{" "}
-                {wfsErrorName || "(none)"}{" "}
+                    ? "On"
+                    : "Off"}
               </p>
             </div>
           </Col>
         </Row>
+        <div className="border rounded p-3 text-center">
+          <h5 className="fw-bold mb-2">
+            Browser Information
+          </h5>
+
+          <p>
+            <strong>Browser Family:</strong> {browserFamily}
+          </p>
+
+          <p className="text-muted small mb-1">
+            <strong>User-Agent:</strong> {uaSummary.ua}
+          </p>
+
+          <p className="text-muted small mb-1">
+            <strong>Vendor:</strong> {uaSummary.vendor}
+          </p>
+
+          <p className="text-muted small mb-1">
+            <strong>Platform:</strong> {uaSummary.platform}
+          </p>
+
+          <p className="text-muted small mb-1">
+            <strong>Language:</strong> {uaSummary.language}
+          </p>
+
+          <p className="text-muted small mb-1">
+            <strong>Languages:</strong> {uaSummary.languages?.join(", ")}
+          </p>
+
+          <p className="text-muted small mb-1">
+            <strong>Quota:</strong>
+            {quota}
+          </p>
+          <p>
+            <strong>webkitRequestFileSystem supported:</strong>{" "}
+            {wfsSupported ? "yes" : "no"}
+          </p>
+          <p>
+            <strong>webkitRequestFileSystem result:</strong> {wfsResult}
+          </p>
+          <p>
+            <strong>webkitRequestFileSystem error:</strong>{" "}
+            {wfsErrorName || "(none)"}{" "}
+          </p>
+        </div>
       </Container>
     </Layout>
   );
