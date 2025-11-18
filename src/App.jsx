@@ -56,7 +56,6 @@ import OsBrowser from "./pages/osBrowser";
 import EmptyPage from "./pages/emptyPage";
 import Pseudo from "./pages/pseudo";
 import AudioInput from "./pages/audioInput";
-import EnvironmentTester from "./pages/environmentTester";
 
 function App() {
   return (
@@ -126,7 +125,6 @@ function App() {
         <Route path="/emptyPage" element={<EmptyPage />} />
         <Route path="/pseudo" element={<Pseudo />} />
         <Route path="/audioInput" element={<AudioInput />} />
-        <Route path="/environmentTester" element={<EnvironmentTester />} />
       </Routes>
     </Router>
   );
