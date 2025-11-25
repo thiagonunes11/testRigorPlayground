@@ -57,7 +57,6 @@ import EmptyPage from "./pages/emptyPage";
 import Pseudo from "./pages/pseudo";
 import AudioInput from "./pages/audioInput";
 
-// ✅ keep both new pages
 import OrderedTablePage from "./pages/orderedTablePage";
 import IframeDropdownTest from "./pages/iframeDropdownTest";
 
@@ -129,8 +128,6 @@ function App() {
         <Route path="/emptyPage" element={<EmptyPage />} />
         <Route path="/pseudo" element={<Pseudo />} />
         <Route path="/audioInput" element={<AudioInput />} />
-
-        {/* ✅ keep both routes */}
         <Route path="/orderedTable" element={<OrderedTablePage />} />
         <Route path="/iframeDropdownTest" element={<IframeDropdownTest />} />
       </Routes>
