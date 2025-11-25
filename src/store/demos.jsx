@@ -168,6 +168,12 @@ const demos = [
     icon: <GeoAltFill size={iconSize} />,
   },
   {
+    title: "Iframe + Dropdown Test",
+    path: "/iframeDropdownTest",
+    description: "Test nested iframes with dropdowns and elements without labels.",
+    icon: <CaretDownFill size={iconSize} />,
+  },
+  {
     title: "Long Click",
     path: "/longClick",
     description: "Long click button.",
