@@ -21,32 +21,34 @@ const AngularMat = ({
     );
 
     return (
-        <FormControl variant="standard" fullWidth={fullWidth}>
-            <InputLabel>{label}</InputLabel>
+        <>
+            {label && <label className="form-label">{label}</label>}
+            <FormControl variant="standard" fullWidth={fullWidth}>
+                <InputLabel>{label}</InputLabel>
 
-            <Select
-                value={value}
-                onChange={(e) => onChange(e.target.value)}
-                displayEmpty
-            >
-                {/* optional empty option if value="" */}
-                <MenuItem value="">
-                    <em>&nbsp;</em>
-                </MenuItem>
-
-                {normalizedOptions.map((opt) => (
-                    <MenuItem key={opt.value} value={opt.value}>
-                        {opt.label}
+                <Select
+                    value={value}
+                    onChange={(e) => onChange(e.target.value)}
+                    displayEmpty
+                >
+                    {/* optional empty option if value="" */}
+                    <MenuItem value="">
+                        <em>&nbsp;</em>
                     </MenuItem>
-                ))}
-            </Select>
 
-            {helperText && (
-                <FormHelperText>
-                    {helperText} <strong>{value}</strong>
-                </FormHelperText>
-            )}
-        </FormControl>
+                    {normalizedOptions.map((opt) => (
+                        <MenuItem key={opt.value} value={opt.value}>
+                            {opt.label}
+                        </MenuItem>
+                    ))}
+                </Select>
+
+                {helperText && (
+                    <FormHelperText>
+                        {helperText} <strong>{value}</strong>
+                    </FormHelperText>
+                )}
+            </FormControl></>
     );
 };
 
