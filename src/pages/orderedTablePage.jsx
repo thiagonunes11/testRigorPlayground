@@ -189,7 +189,7 @@ const OrderedTablePage = () => {
         },
         {
           action: "view",
-          assetName: "asjhcajsc a",
+          assetName: "Automated Invoice Processing System",
           assetId: 39034,
           assetVersionId: 43186,
           status: "Approved",
@@ -197,7 +197,7 @@ const OrderedTablePage = () => {
         },
         {
           action: "view",
-          assetName: "asclj sacas",
+          assetName: "Customer Data Analytics Dashboard",
           assetId: 39072,
           assetVersionId: 43226,
           status: "In Progress",
@@ -205,7 +205,7 @@ const OrderedTablePage = () => {
         },
         {
           action: "view",
-          assetName: "slk jcasjscbasakc",
+          assetName: "Email Campaign Automation Tool",
           assetId: 39074,
           assetVersionId: 43322,
           status: "Rejected",
@@ -213,7 +213,7 @@ const OrderedTablePage = () => {
         },
         {
           action: "view",
-          assetName: "ASLJCKAS KCAS",
+          assetName: "Inventory Management System",
           assetId: 39078,
           assetVersionId: 43232,
           status: "Approved",
@@ -221,7 +221,7 @@ const OrderedTablePage = () => {
         },
         {
           action: "view",
-          assetName: "ASLJCKAS KCASA",
+          assetName: "Real-Time Chat Integration",
           assetId: 39079,
           assetVersionId: 42393,
           status: "In Progress",
@@ -229,7 +229,7 @@ const OrderedTablePage = () => {
         },
         {
           action: "view",
-          assetName: "Sanjaya_test1234",
+          assetName: "Mobile Payment Gateway",
           assetId: 39154,
           assetVersionId: 43239,
           status: "Rejected",
@@ -237,7 +237,7 @@ const OrderedTablePage = () => {
         },
         {
           action: "view",
-          assetName: "askcjascbkjasncasc",
+          assetName: "Document Scanning and OCR System",
           assetId: 39155,
           assetVersionId: 43310,
           status: "Approved",
@@ -245,7 +245,7 @@ const OrderedTablePage = () => {
         },
         {
           action: "view",
-          assetName: "ckjhiasc as",
+          assetName: "Automated Report Generator",
           assetId: 39162,
           assetVersionId: 43317,
           status: "Approved",
@@ -253,7 +253,7 @@ const OrderedTablePage = () => {
         },
         {
           action: "view",
-          assetName: "dbkcasijccasbc",
+          assetName: "Customer Feedback Analysis Tool",
           assetId: 39170,
           assetVersionId: 43325,
           status: "In Progress",
