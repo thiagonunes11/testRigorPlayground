@@ -59,6 +59,7 @@ import AudioInput from "./pages/audioInput";
 
 import OrderedTablePage from "./pages/orderedTablePage";
 import IframeDropdownTest from "./pages/iframeDropdownTest";
+import Recaptcha from "./pages/recaptcha";
 
 function App() {
   return (
@@ -130,6 +131,7 @@ function App() {
         <Route path="/audioInput" element={<AudioInput />} />
         <Route path="/orderedTable" element={<OrderedTablePage />} />
         <Route path="/iframeDropdownTest" element={<IframeDropdownTest />} />
+        <Route path="/recaptcha" element={<Recaptcha />} />
       </Routes>
     </Router>
   );
