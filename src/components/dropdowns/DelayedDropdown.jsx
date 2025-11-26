@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 
-const AnimatedDropdown = ({
-    label = "Animated Dropdown",
+const DelayedDropdown = ({
+    label = "Delayed Dropdown",
     options = [],
     value = null,
     onChange = () => { },
@@ -9,6 +9,7 @@ const AnimatedDropdown = ({
     placeholder = "Select an option",
 }) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [showOptions, setShowOptions] = useState(false); // <-- new state
     const wrapperRef = useRef(null);
 
     // Normalize options: allow ["A","B"] or [{ label, value }]
@@ -23,15 +24,30 @@ const AnimatedDropdown = ({
         const handler = (e) => {
             if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
                 setIsOpen(false);
+                setShowOptions(false); // reset when closing
             }
         };
         document.addEventListener("mousedown", handler);
         return () => document.removeEventListener("mousedown", handler);
     }, []);
 
-    const toggle = () => setIsOpen((o) => !o);
+    const toggle = () => {
+        if (!isOpen) {
+            // Opening → start 2s timer
+            setIsOpen(true);
+            setShowOptions(false);
 
-    // Animated panel styles
+            setTimeout(() => {
+                setShowOptions(true);
+            }, 2000);
+        } else {
+            // Closing immediately
+            setIsOpen(false);
+            setShowOptions(false);
+        }
+    };
+
+    // Delayed panel styles
     const dropdownStyle = {
         position: "absolute",
         left: 0,
@@ -70,30 +86,35 @@ const AnimatedDropdown = ({
                     {selected ? selected.label : placeholder}
                 </span>
 
-                {/* Bootstrap chevron icon */}
                 <i className="bi bi-chevron-down text-muted" style={chevronStyle} />
             </div>
 
-            {/* Animated dropdown menu */}
+            {/* Dropdown panel */}
             <div style={dropdownStyle} onClick={(e) => e.stopPropagation()}>
-                {normalized.map((opt) => {
-                    const isSelected = opt.value === value;
-                    return (
-                        <div
-                            key={opt.value}
-                            className={
-                                "px-3 py-2 " + (isSelected ? "bg-light fw-semibold" : "")
-                            }
-                            style={{ cursor: "pointer" }}
-                            onClick={() => {
-                                onChange(opt.value);
-                                setIsOpen(false);
-                            }}
-                        >
-                            {opt.label}
-                        </div>
-                    );
-                })}
+                {!showOptions && isOpen && (
+                    <div className="px-3 py-2 text-muted">Loading...</div>
+                )}
+
+                {showOptions &&
+                    normalized.map((opt) => {
+                        const isSelected = opt.value === value;
+                        return (
+                            <div
+                                key={opt.value}
+                                className={
+                                    "px-3 py-2 " + (isSelected ? "bg-light fw-semibold" : "")
+                                }
+                                style={{ cursor: "pointer" }}
+                                onClick={() => {
+                                    onChange(opt.value);
+                                    setIsOpen(false);
+                                    setShowOptions(false);
+                                }}
+                            >
+                                {opt.label}
+                            </div>
+                        );
+                    })}
             </div>
             {helperText && (
                 <div className="form-text">
@@ -104,4 +125,4 @@ const AnimatedDropdown = ({
     );
 };
 
-export default AnimatedDropdown;
+export default DelayedDropdown;

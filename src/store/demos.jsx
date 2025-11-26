@@ -337,6 +337,12 @@ const demos = [
     description: "Detect client OS and browser details.",
     icon: <Search size={iconSize} />,
   },
+  {
+    title: "Advanced Dropdowns",
+    path: "/advancedDropdowns",
+    description: "Test various dropdowns.",
+    icon: <CaretDownFill size={iconSize} />,
+  },
 ];
 
 export default demos.sort((a, b) => a.title.localeCompare(b.title));
