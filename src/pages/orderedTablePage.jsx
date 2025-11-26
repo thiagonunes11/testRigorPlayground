@@ -4,6 +4,26 @@ import { Row, Col, ButtonGroup, Button } from "react-bootstrap";
 import OrderedTable from "../components/orderedTable";
 import { Eye } from "react-bootstrap-icons";
 
+function formatSubmittedDate(date) {
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+  let month = months[date.getMonth()];
+  let day = date.getDate();
+  let year = date.getFullYear();
+
+  let hours = date.getHours();
+  let minutes = date.getMinutes().toString().padStart(2, "0");
+  let seconds = date.getSeconds().toString().padStart(2, "0");
+
+  // AM/PM handling
+  let ampm = hours >= 12 ? "PM" : "AM";
+  hours = hours % 12;
+  hours = hours === 0 ? 12 : hours;
+
+  return `${month} ${day}, ${year} ${hours}:${minutes}:${seconds} ${ampm}`;
+}
+
 const OrderedTablePage = () => {
   const tables = [
     {
@@ -94,7 +114,7 @@ const OrderedTablePage = () => {
           assetId: 4026,
           assetVersionId: 4026,
           status: "Approved",
-          submittedDate: "Nov 13, 2018 3:54:19 PM",
+          submittedDate: new Date("Nov 13, 2018 3:54:19 PM"),
         },
         {
           action: "view",
@@ -102,7 +122,7 @@ const OrderedTablePage = () => {
           assetId: 6248,
           assetVersionId: 6248,
           status: "In Progress",
-          submittedDate: "Jan 21, 2019 4:53:22 PM",
+          submittedDate: new Date("Jan 21, 2019 4:53:22 PM"),
         },
         {
           action: "view",
@@ -110,7 +130,7 @@ const OrderedTablePage = () => {
           assetId: 7916,
           assetVersionId: 7916,
           status: "In Progress",
-          submittedDate: "Mar 7, 2019 2:10:18 PM",
+          submittedDate: new Date("Mar 7, 2019 2:10:18 PM"),
         },
         {
           action: "view",
@@ -119,7 +139,7 @@ const OrderedTablePage = () => {
           assetId: 8174,
           assetVersionId: 8174,
           status: "Approved",
-          submittedDate: "Mar 14, 2019 1:56:29 PM",
+          submittedDate: new Date("Mar 14, 2019 1:56:29 PM"),
         },
         {
           action: "view",
@@ -127,7 +147,7 @@ const OrderedTablePage = () => {
           assetId: 8266,
           assetVersionId: 8266,
           status: "Rejected",
-          submittedDate: "Mar 18, 2019 11:22:12 AM",
+          submittedDate: new Date("Mar 18, 2019 11:22:12 AM"),
         },
         {
           action: "view",
@@ -135,7 +155,7 @@ const OrderedTablePage = () => {
           assetId: 8279,
           assetVersionId: 8279,
           status: "Rejected",
-          submittedDate: "Mar 18, 2019 1:58:59 PM",
+          submittedDate: new Date("Mar 18, 2019 1:58:59 PM"),
         },
         {
           action: "view",
@@ -143,7 +163,7 @@ const OrderedTablePage = () => {
           assetId: 10548,
           assetVersionId: 10548,
           status: "Rejected",
-          submittedDate: "Apr 24, 2019 1:28:23 PM",
+          submittedDate: new Date("Apr 24, 2019 1:28:23 PM"),
         },
         {
           action: "view",
@@ -151,7 +171,7 @@ const OrderedTablePage = () => {
           assetId: 11284,
           assetVersionId: 11284,
           status: "In Progress",
-          submittedDate: "May 14, 2019 1:57:52 PM",
+          submittedDate: new Date("May 14, 2019 1:57:52 PM"),
         },
         {
           action: "view",
@@ -160,7 +180,7 @@ const OrderedTablePage = () => {
           assetId: 11522,
           assetVersionId: 11522,
           status: "Approved",
-          submittedDate: "May 17, 2019 2:03:01 PM",
+          submittedDate: new Date("May 17, 2019 2:03:01 PM"),
         },
         {
           action: "view",
@@ -169,7 +189,7 @@ const OrderedTablePage = () => {
           assetId: 15540,
           assetVersionId: 15540,
           status: "In Progress",
-          submittedDate: "Nov 12, 2019 5:39:03 PM",
+          submittedDate: new Date("Nov 12, 2019 5:39:03 PM"),
         },
         {
           action: "view",
@@ -177,7 +197,7 @@ const OrderedTablePage = () => {
           assetId: 15613,
           assetVersionId: 16435,
           status: "In Progress",
-          submittedDate: "Jan 10, 2020 7:19:33 AM",
+          submittedDate: new Date("Jan 10, 2020 7:19:33 AM"),
         },
         {
           action: "view",
@@ -185,7 +205,7 @@ const OrderedTablePage = () => {
           assetId: 6401,
           assetVersionId: 19460,
           status: "Approved",
-          submittedDate: "Feb 10, 2021 8:43:53 AM",
+          submittedDate: new Date("Feb 10, 2021 8:43:53 AM"),
         },
         {
           action: "view",
@@ -193,7 +213,7 @@ const OrderedTablePage = () => {
           assetId: 39034,
           assetVersionId: 43186,
           status: "Approved",
-          submittedDate: "Oct 5, 2021 8:39:50 AM",
+          submittedDate: new Date("Oct 5, 2021 8:39:50 AM"),
         },
         {
           action: "view",
@@ -201,7 +221,7 @@ const OrderedTablePage = () => {
           assetId: 39072,
           assetVersionId: 43226,
           status: "In Progress",
-          submittedDate: "Oct 6, 2021 2:36:17 AM",
+          submittedDate: new Date("Oct 6, 2021 2:36:17 AM"),
         },
         {
           action: "view",
@@ -209,7 +229,7 @@ const OrderedTablePage = () => {
           assetId: 39074,
           assetVersionId: 43322,
           status: "Rejected",
-          submittedDate: "Oct 6, 2021 2:46:19 AM",
+          submittedDate: new Date("Oct 6, 2021 2:46:19 AM"),
         },
         {
           action: "view",
@@ -217,7 +237,7 @@ const OrderedTablePage = () => {
           assetId: 39078,
           assetVersionId: 43232,
           status: "Approved",
-          submittedDate: "Oct 6, 2021 3:08:05 AM",
+          submittedDate: new Date("Oct 6, 2021 3:08:05 AM"),
         },
         {
           action: "view",
@@ -225,7 +245,7 @@ const OrderedTablePage = () => {
           assetId: 39079,
           assetVersionId: 42393,
           status: "In Progress",
-          submittedDate: "Oct 6, 2021 3:22:27 AM",
+          submittedDate: new Date("Oct 6, 2021 3:22:27 AM"),
         },
         {
           action: "view",
@@ -233,7 +253,7 @@ const OrderedTablePage = () => {
           assetId: 39154,
           assetVersionId: 43239,
           status: "Rejected",
-          submittedDate: "Oct 6, 2021 11:49:31 PM",
+          submittedDate: new Date("Oct 6, 2021 11:49:31 PM"),
         },
         {
           action: "view",
@@ -241,7 +261,7 @@ const OrderedTablePage = () => {
           assetId: 39155,
           assetVersionId: 43310,
           status: "Approved",
-          submittedDate: "Oct 6, 2021 11:54:03 PM",
+          submittedDate: new Date("Oct 6, 2021 11:54:03 PM"),
         },
         {
           action: "view",
@@ -249,7 +269,7 @@ const OrderedTablePage = () => {
           assetId: 39162,
           assetVersionId: 43317,
           status: "Approved",
-          submittedDate: "Oct 7, 2021 12:23:45 AM",
+          submittedDate: new Date("Oct 7, 2021 12:23:45 AM"),
         },
         {
           action: "view",
@@ -257,7 +277,7 @@ const OrderedTablePage = () => {
           assetId: 39170,
           assetVersionId: 43325,
           status: "In Progress",
-          submittedDate: "Oct 7, 2021 1:51:59 AM",
+          submittedDate: new Date("Oct 7, 2021 1:51:59 AM"),
         },
       ],
 
@@ -315,7 +335,7 @@ const OrderedTablePage = () => {
         {
           accessorKey: "submittedDate",
           header: "Submitted Date",
-          cell: (props) => <p>{props.getValue()}</p>,
+          cell: (props) => <p>{formatSubmittedDate(props.getValue())}</p>,
         },
       ],
     },
@@ -427,7 +447,7 @@ const OrderedTablePage = () => {
     },
   ];
 
-  const [currentTableIndex, setCurrentTableIndex] = useState(1);
+  const [currentTableIndex, setCurrentTableIndex] = useState(0);
 
   return (
     <Layout
