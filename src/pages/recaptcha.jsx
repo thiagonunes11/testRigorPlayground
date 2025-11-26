@@ -59,7 +59,7 @@ const Recaptcha = () => {
           <div className="col-md-8">
             <div className="card shadow">
               <div className="card-body p-5">
-                <h2 className="card-title text-center mb-4">reCAPTCHA tion Demo</h2>
+                <h2 className="card-title text-center mb-4">Test reCAPTCHA </h2>
                 <p className="text-center text-muted mb-4">
                   Complete the reCAPTCHA challenge below and click validate to test the verification.
                 </p>
