@@ -57,6 +57,7 @@ import EmptyPage from "./pages/emptyPage";
 import Pseudo from "./pages/pseudo";
 import AudioInput from "./pages/audioInput";
 import IframeDropdownTest from "./pages/iframeDropdownTest";
+import Recaptcha from "./pages/recaptcha";
 
 function App() {
   return (
@@ -127,6 +128,7 @@ function App() {
         <Route path="/pseudo" element={<Pseudo />} />
         <Route path="/audioInput" element={<AudioInput />} />
         <Route path="/iframeDropdownTest" element={<IframeDropdownTest />} />
+        <Route path="/recaptcha" element={<Recaptcha />} />
       </Routes>
     </Router>
   );

@@ -35,6 +35,7 @@ import {
   HourglassSplit,
   GeoAltFill,
   AspectRatio,
+  ShieldCheck,
 } from "react-bootstrap-icons";
 
 const iconSize = 32;
@@ -312,6 +313,12 @@ const demos = [
     path: "/verifyCode",
     description: "Code Verification",
     icon: <ShieldFill size={iconSize} />,
+  },
+  {
+    title: "reCAPTCHA Validation",
+    path: "/recaptcha",
+    description: "Test reCAPTCHA verification.",
+    icon: <ShieldCheck size={iconSize} />,
   },
   {
     title: "Video Playback",
