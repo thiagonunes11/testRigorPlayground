@@ -35,6 +35,7 @@ import {
   HourglassSplit,
   GeoAltFill,
   AspectRatio,
+  ShieldCheck,
 } from "react-bootstrap-icons";
 
 const iconSize = 32;
@@ -218,7 +219,8 @@ const demos = [
   {
     title: "Pseudo Elements",
     path: "/pseudo",
-    description: "A showcase of the visibility and behavior of pseudo-elements.",
+    description:
+      "A showcase of the visibility and behavior of pseudo-elements.",
     icon: <FileEarmarkTextFill size={iconSize} />,
   },
   {
@@ -314,6 +316,12 @@ const demos = [
     icon: <ShieldFill size={iconSize} />,
   },
   {
+    title: "reCAPTCHA Validation",
+    path: "/recaptcha",
+    description: "Test reCAPTCHA verification.",
+    icon: <ShieldCheck size={iconSize} />,
+  },
+  {
     title: "Video Playback",
     path: "/video",
     description: "Play a sample video file.",
@@ -342,6 +350,12 @@ const demos = [
     path: "/advancedDropdowns",
     description: "Test various dropdowns.",
     icon: <CaretDownFill size={iconSize} />,
+  },
+  {
+    title: "Ordered Table",
+    path: "/orderedTable",
+    description: "View and switch between sortable sample tables",
+    icon: <Table size={iconSize} />,
   },
 ];
 

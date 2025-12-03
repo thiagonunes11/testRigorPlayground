@@ -56,8 +56,11 @@ import OsBrowser from "./pages/osBrowser";
 import EmptyPage from "./pages/emptyPage";
 import Pseudo from "./pages/pseudo";
 import AudioInput from "./pages/audioInput";
+
+import OrderedTablePage from "./pages/orderedTablePage";
 import IframeDropdownTest from "./pages/iframeDropdownTest";
 import AdvancedDropdowns from "./pages/advancedDropdowns";
+import Recaptcha from "./pages/recaptcha";
 
 function App() {
   return (
@@ -127,8 +130,10 @@ function App() {
         <Route path="/emptyPage" element={<EmptyPage />} />
         <Route path="/pseudo" element={<Pseudo />} />
         <Route path="/audioInput" element={<AudioInput />} />
+        <Route path="/orderedTable" element={<OrderedTablePage />} />
         <Route path="/iframeDropdownTest" element={<IframeDropdownTest />} />
         <Route path="/advancedDropdowns" element={<AdvancedDropdowns />} />
+        <Route path="/recaptcha" element={<Recaptcha />} />
       </Routes>
     </Router>
   );
