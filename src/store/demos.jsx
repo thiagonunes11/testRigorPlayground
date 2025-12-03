@@ -346,6 +346,12 @@ const demos = [
     icon: <Search size={iconSize} />,
   },
   {
+    title: "Advanced Dropdowns",
+    path: "/advancedDropdowns",
+    description: "Test various dropdowns.",
+    icon: <CaretDownFill size={iconSize} />,
+  },
+  {
     title: "Ordered Table",
     path: "/orderedTable",
     description: "View and switch between sortable sample tables",
