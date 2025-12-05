@@ -1,0 +1,112 @@
+name: TestRigor E2E Tests
+
+on:
+  push:
+    branches:
+      - main
+      - stg-env
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      force_cancel_previous:
+        description: "Force cancel previous testing"
+        required: false
+        default: true
+        type: boolean
+
+env:
+  TESTRIGOR_APP_ID: ${{ secrets.TESTRIGOR_APP_ID }}
+
+jobs:
+  testrigor-tests:
+    name: Run TestRigor Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Trigger TestRigor test suite
+        id: trigger
+        run: |
+          echo "Triggering TestRigor test suite..."
+          response=$(curl -s -w "\n%{http_code}" -X POST \
+            -H 'Content-type: application/json' \
+            -H "auth-token: ${{ secrets.TESTRIGOR_AUTH_TOKEN }}" \
+            --data '{"forceCancelPreviousTesting":true,"storedValues":{"storedValueName1":"Value"}}' \
+            "https://api.testrigor.com/api/v1/apps/${{ env.TESTRIGOR_APP_ID }}/retest")
+
+          http_code=$(echo "$response" | tail -n1)
+          body=$(echo "$response" | sed '$d')
+
+          echo "HTTP Code: $http_code"
+          echo "Response: $body"
+
+          if [[ "$http_code" -ge 400 ]]; then
+            echo "Failed to trigger test suite"
+            exit 1
+          fi
+
+          echo "Test suite triggered successfully"
+
+      - name: Wait for tests to start
+        run: sleep 10
+
+      - name: Poll TestRigor status
+        run: |
+          max_attempts=180  # 30 minutes max (180 * 10 seconds)
+          attempt=0
+
+          while true; do
+            attempt=$((attempt + 1))
+            echo ""
+            echo "==================================="
+            echo " Checking run status (attempt $attempt)"
+            echo "==================================="
+            
+            response=$(curl -i -o - -s -X GET \
+              "https://api.testrigor.com/api/v1/apps/${{ env.TESTRIGOR_APP_ID }}/status" \
+              -H "auth-token: ${{ secrets.TESTRIGOR_AUTH_TOKEN }}" \
+              -H 'Accept: application/json')
+            
+            code=$(echo "$response" | grep HTTP | awk '{print $2}')
+            body=$(echo "$response" | sed -n '/{/,/}/p')
+            
+            echo "Status code: $code"
+            echo "Response: $body"
+            
+            case $code in
+              4*|5*)
+                echo "Error calling API"
+                exit 1
+                ;;
+              200)
+                echo "Test finished successfully"
+                exit 0
+                ;;
+              227|228)
+                echo "Test is not finished yet"
+                ;;
+              229)
+                echo "Test canceled"
+                exit 1
+                ;;
+              230)
+                echo "Test finished but failed"
+                exit 1
+                ;;
+              *)
+                echo "Unknown status: $code"
+                exit 1
+                ;;
+            esac
+            
+            if [[ $attempt -ge $max_attempts ]]; then
+              echo "Timeout: Tests did not complete within 30 minutes"
+              exit 1
+            fi
+            
+            sleep 10
+          done
