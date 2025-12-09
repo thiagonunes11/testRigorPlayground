@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+import ScrollToTop from "./components/ScrollToTop";
 import HomePage from "./pages/homePage";
 import QRCodePage from "./pages/qrCode";
 import ButtonClick from "./pages/buttonClick";
@@ -56,7 +56,6 @@ import OsBrowser from "./pages/osBrowser";
 import EmptyPage from "./pages/emptyPage";
 import Pseudo from "./pages/pseudo";
 import AudioInput from "./pages/audioInput";
-
 import OrderedTablePage from "./pages/orderedTablePage";
 import IframeDropdownTest from "./pages/iframeDropdownTest";
 import AdvancedDropdowns from "./pages/advancedDropdowns";
@@ -65,6 +64,7 @@ import Recaptcha from "./pages/recaptcha";
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/cameraPage" element={<CameraPage />} />
