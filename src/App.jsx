@@ -68,7 +68,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/cameraPage" element={<CameraPage />} />
-        <Route path="/ddatePicker" element={<DdatePicker />} />
+        <Route path="/datePicker" element={<DdatePicker />} />
         <Route path="/shadowDom" element={<ShadowDom />} />
         <Route path="/regex" element={<Regex />} />
         <Route path="/svgElements" element={<SvgElements />} />

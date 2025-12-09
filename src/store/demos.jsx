@@ -103,8 +103,8 @@ const demos = [
   },
   {
     title: "Date Picker",
-    path: "/ddatePicker",
-    description: "Choose a date on a date picker.",
+    path: "/datePicker",
+    description: "Choose start and end dates on a date picker.",
     icon: <CalendarDateFill size={iconSize} />,
   },
   {
