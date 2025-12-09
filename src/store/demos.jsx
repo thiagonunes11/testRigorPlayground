@@ -357,6 +357,12 @@ const demos = [
     description: "View and switch between sortable sample tables",
     icon: <Table size={iconSize} />,
   },
+  {
+    title: "Index Testing",
+    path: "/indexTesting",
+    description: "Test selecting elements by index.",
+    icon: <Search size={iconSize} />,
+  },
 ];
 
 export default demos.sort((a, b) => a.title.localeCompare(b.title));
