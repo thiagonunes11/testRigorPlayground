@@ -82,10 +82,7 @@ function App() {
         <Route path="/audioValidation" element={<AudioValidation />} />
         <Route path="/dropdowns" element={<Dropdowns />} />
         <Route path="/BrowserPrompt" element={<BrowserPrompt />} />
-        <Route
-          path="/tableRelativePosition"
-          element={<TableRelativePosition />}
-        />
+        <Route path="/tableRelativePosition" element={<TableRelativePosition />} />
         <Route path="/dynamicTable" element={<DynamicTable />} />
         <Route path="/waitMessage" element={<WaitForMessage />} />
         <Route path="/shoppingCart" element={<ShoppingCart />} />
@@ -109,15 +106,9 @@ function App() {
         <Route path="/similarPages" element={<SimilarPages />} />
         <Route path="/similarPages/secondVersion" element={<SecondVersion />} />
         <Route path="/nestedIframes/firstIframe" element={<FirstIframe />} />
-        <Route
-          path="/nestedIframes/firstIframesecret"
-          element={<FirstIframeSecret />}
-        />
+        <Route path="/nestedIframes/firstIframesecret" element={<FirstIframeSecret />} />
         <Route path="/nestedIframes/secondIframe" element={<SecondIframe />} />
-        <Route
-          path="/nestedIframes/secondIframeSecret"
-          element={<SecondIframeSecret />}
-        />
+        <Route path="/nestedIframes/secondIframeSecret" element={<SecondIframeSecret />} />
         <Route path="/emailValidation" element={<EmailValidation />} />
         <Route path="/divTable" element={<DivTable />} />
         <Route path="/waitImage" element={<WaitImage />} />
