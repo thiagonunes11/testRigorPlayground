@@ -65,7 +65,7 @@ import IndexTesting from "./pages/indexTesting";
 function App() {
   return (
     <Router>
-      <ScrollToTop />
+      {/* <ScrollToTop /> */}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/cameraPage" element={<CameraPage />} />
