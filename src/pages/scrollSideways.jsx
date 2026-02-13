@@ -7,21 +7,14 @@ const ScrollSideways = () => {
       title="Scroll Sideways"
       description="Scroll horizontally in order to find the desired vegetable name."
     >
-      <div style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div style={{ 
-          width: '90vw',
-          minHeight: '300px',
-          overflowX: 'auto',
-          border: '2px solid #dee2e6',
-          borderRadius: '8px',
-          backgroundColor: '#f8f9fa',
-          display: 'flex',
-          alignItems: 'center',
-          padding: '20px'
+      <div style={{ minHeight: '60vh', display: 'flex', alignItems: 'center' }}>
+        <div style={{
+          padding: '20px',
+          width: 'max-content' // Ensure it takes up necessary space
         }}>
-          <div style={{ 
-            display: 'flex', 
-            flexDirection: 'row', 
+          <div style={{
+            display: 'flex',
+            flexDirection: 'row',
             whiteSpace: 'nowrap',
             alignItems: 'center'
           }}>
