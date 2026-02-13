@@ -44,6 +44,7 @@ import SecondIframeSecret from "./pages/nestedIframes/secondIframeSecret";
 import DdatePicker from "./pages/ddatePicker";
 import CameraPage from "./pages/cameraPage";
 import EmailValidation from "./pages/emailValidation";
+import LoginWithOTP from "./pages/LoginWithOTP";
 import DivTable from "./pages/divTable";
 import WaitImage from "./pages/waitImage";
 import TextareaMultiline from "./pages/textareaMultiline";
@@ -110,6 +111,7 @@ function App() {
         <Route path="/nestedIframes/secondIframe" element={<SecondIframe />} />
         <Route path="/nestedIframes/secondIframeSecret" element={<SecondIframeSecret />} />
         <Route path="/emailValidation" element={<EmailValidation />} />
+        <Route path="/loginWithOTP" element={<LoginWithOTP />} />
         <Route path="/divTable" element={<DivTable />} />
         <Route path="/waitImage" element={<WaitImage />} />
         <Route path="/textareaMultiline" element={<TextareaMultiline />} />

@@ -298,6 +298,12 @@ const demos = [
     icon: <EnvelopeFill size={iconSize} />,
   },
   {
+    title: "Login with OTP",
+    path: "/loginWithOTP",
+    description: "Login flow using email OTP.",
+    icon: <ShieldCheck size={iconSize} />,
+  },
+  {
     title: "SVG Elements",
     path: "/svgElements",
     description: "Interact with SVG elements.",
