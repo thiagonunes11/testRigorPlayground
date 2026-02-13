@@ -14,14 +14,17 @@ const vegetables = [
 const ScrollSideways = () => {
   return (
     <Layout
-      title="Scroll Sideways"
-      description="Scroll horizontally to find all the vegetables. We've placed them far apart to test your scrolling endurance!"
+      title="Sideways Scroll with Snap"
+      description="Scroll horizontally seamlessly. We use scroll-snap to ensure each vegetable snaps into view, making it easy to test 'scroll to' commands."
     >
       <div className="d-flex align-items-center justify-content-center" style={{ minHeight: '60vh' }}>
         <div
           id="sideways-scroll-container"
+          tabIndex="0"
+          data-testid="scroll-container"
           style={{
             width: '90vw',
+            maxWidth: '800px', // Limit width for better focus
             padding: '2rem',
             overflowX: 'auto',
             backgroundColor: 'var(--card-bg)',
@@ -29,55 +32,39 @@ const ScrollSideways = () => {
             borderRadius: '1rem',
             boxShadow: 'var(--shadow)',
             display: 'flex',
-            alignItems: 'center'
+            alignItems: 'center',
+            scrollSnapType: 'x mandatory', // This isolates the elements
+            gap: '50vw' // Use gap instead of spacers for cleaner code
           }}
         >
-          {vegetables.map((veg, index) => (
-            <React.Fragment key={veg.id}>
-              <Card
-                className="modern-card text-center"
-                style={{
-                  width: '300px',
-                  minWidth: '300px', // Prevent shrinking
-                  flexShrink: 0,
-                  borderTop: `4px solid ${veg.color}`,
-                  margin: 0
-                }}
-              >
-                <Card.Body>
-                  <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>{veg.icon}</div>
-                  <Card.Title style={{ color: veg.color, fontWeight: 'bold' }}>{veg.name}</Card.Title>
-                  <Card.Text className="text-muted">
-                    {veg.description}
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-
-              {/* Spacer (except after the last item) */}
-              {index < vegetables.length - 1 && (
-                <div style={{
-                  width: '200vw', // The massive spacer as requested
-                  height: '2px',
-                  background: `linear-gradient(90deg, ${veg.color}, var(--border), ${vegetables[index + 1].color})`,
-                  flexShrink: 0,
-                  opacity: 0.5,
-                  margin: '0 1rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
-                  <span style={{
-                    backgroundColor: 'var(--card-bg)',
-                    padding: '0.5rem',
-                    color: 'var(--text-secondary)',
-                    fontSize: '0.8rem'
-                  }}>
-                    Keep scrolling...
-                  </span>
-                </div>
-              )}
-            </React.Fragment>
+          {vegetables.map((veg) => (
+            <Card
+              key={veg.id}
+              id={veg.name.toLowerCase().replace(' ', '-')}
+              data-testid={`vegetable-${veg.id}`}
+              className="modern-card text-center flex-shrink-0"
+              style={{
+                width: '300px',
+                minWidth: '300px',
+                borderTop: `4px solid ${veg.color}`,
+                scrollSnapAlign: 'center', // Snap to this element
+                margin: 0
+              }}
+            >
+              <Card.Body>
+                <div style={{ fontSize: '4rem', marginBottom: '1.5rem' }}>{veg.icon}</div>
+                <Card.Title style={{ color: veg.color, fontWeight: 'bold', fontSize: '1.5rem' }}>{veg.name}</Card.Title>
+                <Card.Text className="text-muted fs-5">
+                  {veg.description}
+                </Card.Text>
+              </Card.Body>
+            </Card>
           ))}
+
+          {/* Final spacer to allow the last item to be centered if needed, 
+              though scroll-snap usually handles this. Adding a small padding 
+              end element just in case. */}
+          <div style={{ minWidth: '1px', height: '1px' }}></div>
         </div>
       </div>
     </Layout>
