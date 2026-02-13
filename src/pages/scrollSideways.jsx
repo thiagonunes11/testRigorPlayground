@@ -32,54 +32,52 @@ const ScrollSideways = () => {
             alignItems: 'center'
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-            {vegetables.map((veg, index) => (
-              <React.Fragment key={veg.id}>
-                <Card
-                  className="modern-card text-center"
-                  style={{
-                    width: '300px',
-                    minWidth: '300px', // Prevent shrinking
-                    flexShrink: 0,
-                    borderTop: `4px solid ${veg.color}`,
-                    margin: 0
-                  }}
-                >
-                  <Card.Body>
-                    <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>{veg.icon}</div>
-                    <Card.Title style={{ color: veg.color, fontWeight: 'bold' }}>{veg.name}</Card.Title>
-                    <Card.Text className="text-muted">
-                      {veg.description}
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
+          {vegetables.map((veg, index) => (
+            <React.Fragment key={veg.id}>
+              <Card
+                className="modern-card text-center"
+                style={{
+                  width: '300px',
+                  minWidth: '300px', // Prevent shrinking
+                  flexShrink: 0,
+                  borderTop: `4px solid ${veg.color}`,
+                  margin: 0
+                }}
+              >
+                <Card.Body>
+                  <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>{veg.icon}</div>
+                  <Card.Title style={{ color: veg.color, fontWeight: 'bold' }}>{veg.name}</Card.Title>
+                  <Card.Text className="text-muted">
+                    {veg.description}
+                  </Card.Text>
+                </Card.Body>
+              </Card>
 
-                {/* Spacer (except after the last item) */}
-                {index < vegetables.length - 1 && (
-                  <div style={{
-                    width: '200vw', // The massive spacer as requested
-                    height: '2px',
-                    background: `linear-gradient(90deg, ${veg.color}, var(--border), ${vegetables[index + 1].color})`,
-                    flexShrink: 0,
-                    opacity: 0.5,
-                    margin: '0 1rem',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center'
+              {/* Spacer (except after the last item) */}
+              {index < vegetables.length - 1 && (
+                <div style={{
+                  width: '200vw', // The massive spacer as requested
+                  height: '2px',
+                  background: `linear-gradient(90deg, ${veg.color}, var(--border), ${vegetables[index + 1].color})`,
+                  flexShrink: 0,
+                  opacity: 0.5,
+                  margin: '0 1rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}>
+                  <span style={{
+                    backgroundColor: 'var(--card-bg)',
+                    padding: '0.5rem',
+                    color: 'var(--text-secondary)',
+                    fontSize: '0.8rem'
                   }}>
-                    <span style={{
-                      backgroundColor: 'var(--card-bg)',
-                      padding: '0.5rem',
-                      color: 'var(--text-secondary)',
-                      fontSize: '0.8rem'
-                    }}>
-                      Keep scrolling...
-                    </span>
-                  </div>
-                )}
-              </React.Fragment>
-            ))}
-          </div>
+                    Keep scrolling...
+                  </span>
+                </div>
+              )}
+            </React.Fragment>
+          ))}
         </div>
       </div>
     </Layout>
