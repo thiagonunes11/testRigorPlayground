@@ -1,13 +1,24 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
-import { ArrowLeft } from 'react-bootstrap-icons';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
+import { ArrowLeft } from "react-bootstrap-icons";
 
-const GoBackButton = ({ className = '', variant = 'secondary' }) => {
+const GoBackButton = ({
+  className = "",
+  variant = "secondary",
+  fallback = "/",
+}) => {
   const navigate = useNavigate();
 
   const handleGoBack = () => {
-    navigate(-1);
+    // react router doesn't expose history length, so use window.history as a fallback.
+    const canGoBack = window.history.state && window.history.state.idx > 0;
+    if (canGoBack) {
+      navigate(-1);
+    } else {
+      // if there's no history stack entry, redirect to a safe default (home)
+      navigate(fallback);
+    }
   };
 
   return (
@@ -21,4 +32,4 @@ const GoBackButton = ({ className = '', variant = 'secondary' }) => {
   );
 };
 
-export default GoBackButton; 
+export default GoBackButton;
