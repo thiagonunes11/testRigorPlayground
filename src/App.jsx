@@ -62,6 +62,7 @@ import IframeDropdownTest from "./pages/iframeDropdownTest";
 import AdvancedDropdowns from "./pages/advancedDropdowns";
 import Recaptcha from "./pages/recaptcha";
 import IndexTesting from "./pages/indexTesting";
+import OverlappedElements from "./pages/overlappedElements";
 
 function App() {
   return (
@@ -129,6 +130,7 @@ function App() {
         <Route path="/advancedDropdowns" element={<AdvancedDropdowns />} />
         <Route path="/recaptcha" element={<Recaptcha />} />
         <Route path="/indexTesting" element={<IndexTesting />} />
+        <Route path="/overlappedElements" element={<OverlappedElements />} />
       </Routes>
     </Router>
   );

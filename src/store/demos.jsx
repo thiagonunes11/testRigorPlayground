@@ -369,6 +369,12 @@ const demos = [
     description: "Test selecting elements by index.",
     icon: <Search size={iconSize} />,
   },
+  {
+    title: "Overlapped Elements",
+    path: "/overlappedElements",
+    description: "Interact with elements that are covered by other elements.",
+    icon: <CollectionFill size={iconSize} />,
+  },
 ];
 
 export default demos.sort((a, b) => a.title.localeCompare(b.title));
