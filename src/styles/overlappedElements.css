@@ -21,8 +21,14 @@
   margin-bottom: 1.5rem;
 }
 
-.overlap-feedback {
+.overlap-feedback-area {
   margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.overlap-feedback {
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
   font-weight: 500;
@@ -36,400 +42,116 @@
   color: rgb(34, 197, 94);
 }
 
-/* ========== Section 1: Transparent Overlay ========== */
-.transparent-overlay-wrapper {
+/* ========== Fully Covered Container ========== */
+.fully-covered-container {
   position: relative;
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
+  max-width: 480px;
+  margin: 0 auto;
 }
 
-.transparent-overlay-target {
+/* --- Back elements (behind the overlay) --- */
+.covered-elements {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem 1.5rem;
+}
+
+.covered-btn {
   padding: 0.85rem 2rem;
   font-size: 1rem;
   font-weight: 600;
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
-  background-color: var(--primary);
+  background: linear-gradient(135deg, #06b6d4, #0891b2);
   color: #fff;
+  box-shadow: 0 3px 10px rgba(6, 182, 212, 0.3);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
-  position: relative;
-  z-index: 1;
 }
 
-.transparent-overlay-target:hover {
-  transform: scale(1.03);
-  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+.covered-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 5px 16px rgba(6, 182, 212, 0.4);
 }
 
-.transparent-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  background: linear-gradient(
-    135deg,
-    rgba(99, 102, 241, 0.15) 0%,
-    rgba(168, 85, 247, 0.15) 100%
-  );
-  border-radius: 0.5rem;
-  border: 2px dashed rgba(99, 102, 241, 0.4);
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding-top: 0.15rem;
-}
-
-.overlay-label {
-  font-size: 0.65rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: rgba(99, 102, 241, 0.7);
-}
-
-/* ========== Section 2: Partially Covered Buttons ========== */
-.partial-overlap-container {
-  position: relative;
-  height: 100px;
+.covered-checkbox-label {
   display: flex;
   align-items: center;
-  justify-content: center;
-}
-
-.partial-btn {
-  position: absolute;
-  padding: 0.85rem 2.5rem;
+  gap: 0.6rem;
   font-size: 1rem;
-  font-weight: 600;
-  border: none;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
   border-radius: 0.5rem;
+  background: var(--card-bg);
+  transition: background-color 0.2s ease;
+}
+
+.covered-checkbox-label:hover {
+  background: var(--card-hover);
+}
+
+.covered-checkbox {
+  width: 1.2rem;
+  height: 1.2rem;
+  accent-color: var(--primary);
   cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.partial-btn:hover {
-  transform: scale(1.04);
-}
-
-.partial-btn-back {
-  background: linear-gradient(135deg, #10b981, #059669);
-  color: #fff;
-  z-index: 1;
-  left: calc(50% - 140px);
-}
-
-.partial-btn-back:hover {
-  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
-}
-
-.partial-btn-front {
-  background: linear-gradient(135deg, #f59e0b, #d97706);
-  color: #fff;
-  z-index: 2;
-  left: calc(50% - 20px);
-}
-
-.partial-btn-front:hover {
-  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
-}
-
-/* ========== Section 3: Stacked Cards ========== */
-.stacked-cards-container {
-  position: relative;
-  height: 280px;
-  max-width: 440px;
-  margin: 0 auto;
-}
-
-.stacked-card {
-  position: absolute;
-  width: 280px;
-  padding: 1.25rem;
-  border-radius: 0.75rem;
-  cursor: pointer;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  user-select: none;
-}
-
-.stacked-card:hover {
-  transform: translateY(-4px) scale(1.02);
-}
-
-.stacked-card h4 {
-  margin: 0 0 0.5rem;
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-.stacked-card p {
-  margin: 0;
-  font-size: 0.85rem;
-  opacity: 0.85;
-}
-
-.stacked-card-1 {
-  background: linear-gradient(135deg, #6366f1, #4f46e5);
-  color: #fff;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-}
-
-.stacked-card-2 {
-  background: linear-gradient(135deg, #ec4899, #db2777);
-  color: #fff;
-  top: 60px;
-  left: 80px;
-  z-index: 2;
-  box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
-}
-
-.stacked-card-3 {
-  background: linear-gradient(135deg, #14b8a6, #0d9488);
-  color: #fff;
-  top: 120px;
-  left: 160px;
-  z-index: 3;
-  box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3);
-}
-
-.stacked-card .card-check {
-  display: inline-block;
-  margin-left: 0.5rem;
-  font-size: 1rem;
-}
-
-/* ========== Section 4: Hidden Input Under Banner ========== */
-.hidden-input-wrapper {
-  position: relative;
-  max-width: 480px;
-  margin: 0 auto;
-}
-
-.hidden-input-field {
-  width: 100%;
+.covered-input {
   padding: 0.85rem 1rem;
   font-size: 1rem;
   border: 2px solid var(--border);
   border-radius: 0.5rem;
   background: var(--background);
   color: var(--text);
-  position: relative;
-  z-index: 1;
   transition: border-color 0.2s ease;
 }
 
-.hidden-input-field:focus {
+.covered-input:focus {
   outline: none;
   border-color: var(--primary);
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 
-.hidden-input-banner {
+/* --- Front overlay (covers everything) --- */
+.front-overlay {
   position: absolute;
-  top: -8px;
-  left: 50%;
-  transform: translateX(-50%);
+  inset: 0;
   z-index: 2;
-  pointer-events: none;
   background: linear-gradient(135deg, #f43f5e, #e11d48);
-  color: #fff;
-  padding: 0.35rem 1.25rem;
-  border-radius: 2rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  white-space: nowrap;
-  box-shadow: 0 2px 8px rgba(244, 63, 94, 0.3);
-}
-
-.hidden-input-echo {
-  margin-top: 0.75rem;
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-}
-
-.hidden-input-echo strong {
-  color: var(--text);
-}
-
-/* ========== Section 5: Overlapping Checkboxes ========== */
-.overlap-checkbox-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0;
-  justify-content: center;
-  position: relative;
-}
-
-.overlap-checkbox-item {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.25rem;
-  border-radius: 0.5rem;
-  border: 1px solid var(--border);
-  background: var(--card-bg);
-  cursor: pointer;
-  transition: background-color 0.2s ease, box-shadow 0.2s ease;
-  user-select: none;
-}
-
-.overlap-checkbox-item:hover {
-  background: var(--card-hover);
-}
-
-.overlap-checkbox-item.checked {
-  border-color: var(--primary);
-  background: rgba(37, 99, 235, 0.06);
-}
-
-.overlap-checkbox-item input[type="checkbox"] {
-  width: 1.1rem;
-  height: 1.1rem;
-  accent-color: var(--primary);
-  cursor: pointer;
-}
-
-.overlap-checkbox-item label {
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--text);
-  cursor: pointer;
-}
-
-.overlap-checkbox-item:nth-child(2) {
-  margin-left: -20px;
-  z-index: 2;
-}
-
-.overlap-checkbox-item:nth-child(3) {
-  margin-left: -20px;
-  z-index: 3;
-}
-
-.overlap-checkbox-item:nth-child(4) {
-  margin-left: -20px;
-  z-index: 1;
-}
-
-.checkbox-summary {
-  margin-top: 1rem;
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-}
-
-.checkbox-summary strong {
-  color: var(--primary);
-}
-
-/* ========== Section 6: Floating Action over Content ========== */
-.floating-action-wrapper {
-  position: relative;
-  max-width: 520px;
-  margin: 0 auto;
-  padding: 1.5rem;
-  border: 1px solid var(--border);
+  opacity: 0.7;
   border-radius: 0.75rem;
-  background: var(--card-bg);
-}
-
-.floating-content-text {
-  font-size: 0.95rem;
-  color: var(--text-secondary);
-  line-height: 1.7;
-  margin-bottom: 1rem;
-}
-
-.floating-content-link {
-  color: var(--primary);
-  font-weight: 600;
   cursor: pointer;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  position: relative;
-  z-index: 1;
-}
-
-.floating-content-link:hover {
-  color: var(--primary-dark);
-}
-
-.floating-action-btn {
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
-  z-index: 3;
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  border: none;
-  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
-  color: #fff;
-  font-size: 1.5rem;
-  font-weight: 700;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 4px 14px rgba(139, 92, 246, 0.4);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  gap: 0.35rem;
+  transition: opacity 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 20px rgba(244, 63, 94, 0.3);
 }
 
-.floating-action-btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5);
+.front-overlay:hover {
+  opacity: 0.78;
+  box-shadow: 0 6px 24px rgba(244, 63, 94, 0.45);
 }
 
-/* ========== Responsive ========== */
-@media (max-width: 640px) {
-  .partial-overlap-container {
-    height: 140px;
-    flex-direction: column;
-  }
+.front-overlay-label {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
 
-  .partial-btn-back {
-    left: calc(50% - 80px);
-    top: 0;
-  }
-
-  .partial-btn-front {
-    left: calc(50% - 80px);
-    top: 50px;
-  }
-
-  .stacked-cards-container {
-    height: 320px;
-  }
-
-  .stacked-card {
-    width: 220px;
-  }
-
-  .stacked-card-2 {
-    left: 40px;
-  }
-
-  .stacked-card-3 {
-    left: 80px;
-  }
-
-  .overlap-checkbox-grid {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .overlap-checkbox-item:nth-child(2),
-  .overlap-checkbox-item:nth-child(3),
-  .overlap-checkbox-item:nth-child(4) {
-    margin-left: 0;
-    margin-top: -12px;
-  }
+.front-overlay-hint {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
 }
