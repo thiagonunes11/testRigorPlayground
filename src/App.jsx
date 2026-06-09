@@ -63,6 +63,7 @@ import AdvancedDropdowns from "./pages/advancedDropdowns";
 import Recaptcha from "./pages/recaptcha";
 import IndexTesting from "./pages/indexTesting";
 import OverlappedElements from "./pages/overlappedElements";
+import ScrollPanels from "./pages/scrollPanels";
 
 function App() {
   return (
@@ -131,6 +132,7 @@ function App() {
         <Route path="/recaptcha" element={<Recaptcha />} />
         <Route path="/indexTesting" element={<IndexTesting />} />
         <Route path="/overlappedElements" element={<OverlappedElements />} />
+        <Route path="/scrollPanels" element={<ScrollPanels />} />
       </Routes>
     </Router>
   );

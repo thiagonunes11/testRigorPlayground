@@ -36,6 +36,7 @@ import {
   GeoAltFill,
   AspectRatio,
   ShieldCheck,
+  LayoutSidebar,
 } from "react-bootstrap-icons";
 
 const iconSize = 32;
@@ -265,6 +266,12 @@ const demos = [
     path: "/scrollDown",
     description: "Scroll down to find a text.",
     icon: <ArrowDownUp size={iconSize} />,
+  },
+  {
+    title: "Scroll Panels",
+    path: "/scrollPanels",
+    description: "Scroll up and down inside independent side panels.",
+    icon: <LayoutSidebar size={iconSize} />,
   },
   {
     title: "Scroll Sideways",
