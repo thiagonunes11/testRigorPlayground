@@ -161,6 +161,12 @@ const demos = [
         description: "This demo contains several texts that are widely spaced apart so that you have to scroll to find them.",
     },
     {
+        title: "Scroll Panels",
+        url: "/scrollPanels",
+        name: "Scroll inside independent side panels.",
+        description: "This demo contains two tall side panels that are independently scrollable, allowing scroll up/down commands to be tested on specific elements.",
+    },
+    {
         title: "Shadow DOM",
         url: "/shadowDom",
         name: "Different implementations of shadow DOMs.",

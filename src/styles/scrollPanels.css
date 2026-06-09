@@ -1,0 +1,243 @@
+/* ============================================================
+   Scroll Panels Demo Styles
+   ============================================================ */
+
+/* ── Outer wrapper (side-by-side layout) ─────────────────── */
+.scroll-panels-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  align-items: flex-start;   /* panels don't stretch to each other's height */
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ── Individual Panel ────────────────────────────────────── */
+/*
+ * The panel is a FIXED-SIZE window.
+ * overflow: hidden clips everything outside the box —
+ * content only becomes visible when the user scrolls inside.
+ */
+.scroll-panel {
+  flex: 1;
+  /* Fixed total height: header + body + footer */
+  height: 580px;
+  display: flex;
+  flex-direction: column;
+
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  /* CRITICAL: clips children that exceed the panel bounds */
+  overflow: hidden;
+  background-color: var(--card-bg);
+  box-shadow: var(--shadow);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* ── Panel Header (fixed, never scrolls) ─────────────────── */
+.scroll-panel-header {
+  /* flex-shrink: 0 keeps the header at its natural size */
+  flex-shrink: 0;
+  padding: 1.25rem 1.5rem 1rem;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(135deg, var(--primary) 0%, #6366f1 100%);
+  color: #fff;
+  text-align: center;
+}
+
+.scroll-panel-icon {
+  font-size: 2.25rem;
+  display: block;
+  margin-bottom: 0.4rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+}
+
+.scroll-panel-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin: 0 0 0.2rem;
+  letter-spacing: -0.02em;
+}
+
+.scroll-panel-subtitle {
+  font-size: 0.8rem;
+  margin: 0;
+  opacity: 0.85;
+}
+
+/* ── Scrollable Body — the actual scroll target ──────────── */
+/*
+ * flex: 1 + min-height: 0 is the key combo that makes a flex
+ * child shrink below its content size so overflow-y: scroll
+ * actually clips the overflow instead of expanding the parent.
+ */
+.scroll-panel-body {
+  flex: 1;
+  min-height: 0;            /* ← allows the flex child to shrink */
+  overflow-y: scroll;       /* always show scrollbar (good for automation) */
+  overflow-x: hidden;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  /* Custom scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) var(--card-hover);
+}
+
+.scroll-panel-body::-webkit-scrollbar {
+  width: 7px;
+}
+.scroll-panel-body::-webkit-scrollbar-track {
+  background: var(--card-hover);
+  border-radius: 3px;
+}
+.scroll-panel-body::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+  border-radius: 3px;
+}
+
+/* ── Panel Footer (fixed, never scrolls) ─────────────────── */
+.scroll-panel-footer {
+  flex-shrink: 0;
+  padding: 0.6rem 1rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  background-color: var(--card-hover);
+}
+
+/* ── Card inside the Panel ───────────────────────────────── */
+.scroll-panel-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+  padding: 0.875rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  position: relative;
+  /* flex-shrink: 0 prevents cards from being compressed */
+  flex-shrink: 0;
+  transition: transform 0.18s ease, box-shadow 0.18s ease,
+    background-color 0.18s ease;
+  cursor: default;
+}
+
+.scroll-panel-card:hover {
+  transform: translateX(3px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.09);
+  background-color: var(--card-hover);
+}
+
+.scroll-card-emoji {
+  font-size: 2rem;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.scroll-card-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.scroll-card-name {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem;
+  color: var(--text);
+}
+
+.scroll-card-fact {
+  font-size: 0.8rem;
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+.scroll-card-badge {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.75rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--primary);
+  opacity: 0.6;
+  letter-spacing: 0.03em;
+}
+
+/* ── Fade gradient hinting that content continues below ──── */
+.scroll-panel-body-wrapper {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.scroll-panel-body-wrapper::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+  background: linear-gradient(to bottom, transparent, var(--card-bg));
+  pointer-events: none;
+  border-radius: 0 0 0.25rem 0.25rem;
+  z-index: 1;
+}
+
+/* ── Divider between panels ──────────────────────────────── */
+.scroll-panels-divider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.75rem;
+  height: 580px;       /* same as .scroll-panel */
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.divider-line {
+  flex: 1;
+  width: 2px;
+  background: var(--border);
+  border-radius: 2px;
+}
+
+.divider-icon {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  opacity: 0.5;
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .scroll-panels-wrapper {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .scroll-panel {
+    height: 440px;
+    width: 100%;
+  }
+
+  .scroll-panels-divider {
+    flex-direction: row;
+    height: auto;
+    padding: 0;
+  }
+
+  .divider-line {
+    flex: 1;
+    width: auto;
+    height: 2px;
+  }
+}

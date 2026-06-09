@@ -61,6 +61,7 @@ import OrderedTablePage from "./pages/orderedTablePage";
 import IframeDropdownTest from "./pages/iframeDropdownTest";
 import AdvancedDropdowns from "./pages/advancedDropdowns";
 import Recaptcha from "./pages/recaptcha";
+import ScrollPanels from "./pages/scrollPanels";
 
 function App() {
   return (
@@ -134,6 +135,7 @@ function App() {
         <Route path="/iframeDropdownTest" element={<IframeDropdownTest />} />
         <Route path="/advancedDropdowns" element={<AdvancedDropdowns />} />
         <Route path="/recaptcha" element={<Recaptcha />} />
+        <Route path="/scrollPanels" element={<ScrollPanels />} />
       </Routes>
     </Router>
   );
