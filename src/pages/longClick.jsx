@@ -10,11 +10,8 @@ import {
 import Layout from '../components/Layout';
 
 
-const buttons = [
-    { id: 'button1', label: 'Button 1' },
-    { id: 'button2', label: 'Button 2' },
-    { id: 'button3', label: 'Button 3' },
-];
+const BUTTON_LABEL = 'Click here';
+const buttons = ['button1', 'button2', 'button3'];
 
 function LongClick() {
     const [isPressed, setIsPressed] = useState(false);
@@ -57,8 +54,10 @@ function LongClick() {
         setIsPressed(false);
     };
 
-    const getButtonLabel = (buttonId) =>
-        buttons.find((button) => button.id === buttonId)?.label ?? buttonId;
+    const getButtonLabel = (buttonId) => {
+        const index = buttons.indexOf(buttonId);
+        return index >= 0 ? `Button ${index + 1}` : buttonId;
+    };
 
     const getResultMessage = () => {
         if (clickPressCounter <= 0) {
@@ -98,20 +97,20 @@ function LongClick() {
                         </Form.Group>
 
                         <div className="d-grid gap-3">
-                            {buttons.map((button) => (
+                            {buttons.map((buttonId) => (
                                 <Button
-                                    key={button.id}
+                                    key={buttonId}
                                     className={'btn-modern'}
                                     size="lg"
-                                    onMouseDown={() => handlePressStart(button.id)}
+                                    onMouseDown={() => handlePressStart(buttonId)}
                                     onMouseUp={handlePressEnd}
                                     onMouseLeave={handlePressEnd}
-                                    onTouchStart={() => handlePressStart(button.id)}
+                                    onTouchStart={() => handlePressStart(buttonId)}
                                     onTouchEnd={handlePressEnd}
                                 >
-                                    {isPressed && clickedButton === button.id
+                                    {isPressed && clickedButton === buttonId
                                         ? `Keep holding... ${clickPressCounter}s`
-                                        : button.label}
+                                        : BUTTON_LABEL}
                                 </Button>
                             ))}
                         </div>
