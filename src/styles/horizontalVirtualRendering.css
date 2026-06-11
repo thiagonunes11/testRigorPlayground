@@ -1,0 +1,99 @@
+/* ============================================================
+   Horizontal Virtual Rendering — batch-load styles
+   ============================================================ */
+
+.hvr-wrapper {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hvr-panel {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  overflow: hidden;
+  background-color: var(--card-bg);
+  box-shadow: var(--shadow);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.hvr-viewport {
+  width: 100%;
+  height: 280px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  background-color: var(--card-bg);
+  outline: none;
+  padding: 1.25rem;
+  box-sizing: border-box;
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) var(--card-hover);
+}
+
+.hvr-viewport:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: -2px;
+}
+
+.hvr-viewport::-webkit-scrollbar {
+  height: 7px;
+}
+
+.hvr-viewport::-webkit-scrollbar-track {
+  background: var(--card-hover);
+  border-radius: 3px;
+}
+
+.hvr-viewport::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+  border-radius: 3px;
+}
+
+.hvr-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  height: 100%;
+  min-height: 220px;
+}
+
+.hvr-item {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 260px;
+  height: 220px;
+  border-radius: 0.75rem;
+  color: #fff;
+  font-size: 2.5rem;
+  font-weight: 700;
+  user-select: none;
+  box-shadow: var(--shadow);
+}
+
+.hvr-panel-footer {
+  flex-shrink: 0;
+  padding: 0.75rem 1rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  background-color: var(--card-hover);
+}
+
+@media (max-width: 768px) {
+  .hvr-viewport {
+    height: 240px;
+  }
+
+  .hvr-item {
+    width: 220px;
+    height: 190px;
+    font-size: 2rem;
+  }
+}

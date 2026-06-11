@@ -170,6 +170,12 @@ const demos = [
     icon: <GeoAltFill size={iconSize} />,
   },
   {
+    title: "Horizontal Virtual Rendering",
+    path: "/horizontalVirtualRendering",
+    description: "Batch-load horizontal scroll with arrow keys.",
+    icon: <ArrowLeftRight size={iconSize} />,
+  },
+  {
     title: "Iframe + Dropdown Test",
     path: "/iframeDropdownTest",
     description: "Test nested iframes with dropdowns and elements without labels.",
