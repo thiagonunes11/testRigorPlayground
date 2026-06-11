@@ -62,6 +62,7 @@ import IframeDropdownTest from "./pages/iframeDropdownTest";
 import AdvancedDropdowns from "./pages/advancedDropdowns";
 import Recaptcha from "./pages/recaptcha";
 import ScrollPanels from "./pages/scrollPanels";
+import HorizontalVirtualRendering from "./pages/horizontalVirtualRendering";
 
 function App() {
   return (
@@ -136,6 +137,7 @@ function App() {
         <Route path="/advancedDropdowns" element={<AdvancedDropdowns />} />
         <Route path="/recaptcha" element={<Recaptcha />} />
         <Route path="/scrollPanels" element={<ScrollPanels />} />
+        <Route path="/horizontalVirtualRendering" element={<HorizontalVirtualRendering />} />
       </Routes>
     </Router>
   );
