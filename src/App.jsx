@@ -64,6 +64,7 @@ import Recaptcha from "./pages/recaptcha";
 import IndexTesting from "./pages/indexTesting";
 import OverlappedElements from "./pages/overlappedElements";
 import ScrollPanels from "./pages/scrollPanels";
+import HorizontalVirtualRendering from "./pages/horizontalVirtualRendering";
 
 function App() {
   return (
@@ -133,6 +134,7 @@ function App() {
         <Route path="/indexTesting" element={<IndexTesting />} />
         <Route path="/overlappedElements" element={<OverlappedElements />} />
         <Route path="/scrollPanels" element={<ScrollPanels />} />
+        <Route path="/horizontalVirtualRendering" element={<HorizontalVirtualRendering />} />
       </Routes>
     </Router>
   );
