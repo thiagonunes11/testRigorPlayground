@@ -5,8 +5,17 @@ import '../styles/horizontalVirtualRendering.css';
 
 const TOTAL_ITEMS = 100;
 const ITEM_WIDTH = 300;
+const ITEM_SIZE = 260;
+const ITEM_OFFSET = 20;
+const INITIAL_ITEM = 50;
 const BUFFER = 1;
 const STEP = 250;
+
+function getScrollLeftToCenterItem(itemNumber, viewportWidth) {
+    const index = itemNumber - 1;
+    const itemCenter = index * ITEM_WIDTH + ITEM_OFFSET + ITEM_SIZE / 2;
+    return Math.max(0, itemCenter - viewportWidth / 2);
+}
 
 function getColor(index) {
     const hue = (index * 47) % 360;
@@ -31,6 +40,14 @@ function HorizontalVirtualRendering() {
             return undefined;
         }
 
+        const centerInitialItem = () => {
+            const width = viewport.clientWidth;
+            if (width > 0) {
+                viewport.scrollLeft = getScrollLeftToCenterItem(INITIAL_ITEM, width);
+            }
+        };
+
+        centerInitialItem();
         updateScroll();
         viewport.addEventListener('scroll', updateScroll);
         window.addEventListener('resize', updateScroll);
@@ -102,7 +119,7 @@ function HorizontalVirtualRendering() {
                                                 id={`hvr-item-${index + 1}`}
                                                 className="hvr-item"
                                                 style={{
-                                                    left: `${index * ITEM_WIDTH + 20}px`,
+                                                    left: `${index * ITEM_WIDTH + ITEM_OFFSET}px`,
                                                     background: getColor(index),
                                                 }}
                                             >
