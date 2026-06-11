@@ -4,33 +4,64 @@ import Layout from '../components/Layout';
 import '../styles/horizontalVirtualRendering.css';
 
 const TOTAL_ITEMS = 100;
-const ITEM_WIDTH = 300;
+const BATCH_SIZE = 20;
 const ITEM_SIZE = 260;
-const ITEM_OFFSET = 20;
-const INITIAL_ITEM = 50;
-const BUFFER = 1;
+const ITEM_GAP = 20;
+const ITEM_STRIDE = ITEM_SIZE + ITEM_GAP;
+const INITIAL_ITEM = 10;
+const NEAR_END_PX = 200;
 const STEP = 250;
-
-function getScrollLeftToCenterItem(itemNumber, viewportWidth) {
-    const index = itemNumber - 1;
-    const itemCenter = index * ITEM_WIDTH + ITEM_OFFSET + ITEM_SIZE / 2;
-    return Math.max(0, itemCenter - viewportWidth / 2);
-}
 
 function getColor(index) {
     const hue = (index * 47) % 360;
     return `hsl(${hue}, 70%, 50%)`;
 }
 
+function getScrollLeftToCenterItem(itemNumber, viewportWidth) {
+    const index = itemNumber - 1;
+    const itemCenter = index * ITEM_STRIDE + ITEM_SIZE / 2;
+    return Math.max(0, itemCenter - viewportWidth / 2);
+}
+
+function getInitialLoadedCount() {
+    const batchesToCoverInitial = Math.ceil(INITIAL_ITEM / BATCH_SIZE);
+    return Math.min(TOTAL_ITEMS, batchesToCoverInitial * BATCH_SIZE);
+}
+
 function HorizontalVirtualRendering() {
     const viewportRef = useRef(null);
-    const [scrollLeft, setScrollLeft] = useState(0);
-    const [viewportWidth, setViewportWidth] = useState(0);
+    const hasCenteredRef = useRef(false);
+    const [loadedCount, setLoadedCount] = useState(getInitialLoadedCount);
 
-    const updateScroll = useCallback(() => {
-        if (viewportRef.current) {
-            setScrollLeft(viewportRef.current.scrollLeft);
-            setViewportWidth(viewportRef.current.clientWidth);
+    const tryLoadMore = useCallback(() => {
+        const viewport = viewportRef.current;
+        if (!viewport) {
+            return;
+        }
+
+        const nearEnd = viewport.scrollLeft + viewport.clientWidth >= viewport.scrollWidth - NEAR_END_PX;
+
+        if (nearEnd) {
+            setLoadedCount((current) => {
+                if (current >= TOTAL_ITEMS) {
+                    return current;
+                }
+
+                return Math.min(TOTAL_ITEMS, current + BATCH_SIZE);
+            });
+        }
+    }, []);
+
+    const centerInitialItem = useCallback(() => {
+        const viewport = viewportRef.current;
+        if (!viewport || hasCenteredRef.current) {
+            return;
+        }
+
+        const width = viewport.clientWidth;
+        if (width > 0) {
+            viewport.scrollLeft = getScrollLeftToCenterItem(INITIAL_ITEM, width);
+            hasCenteredRef.current = true;
         }
     }, []);
 
@@ -40,23 +71,22 @@ function HorizontalVirtualRendering() {
             return undefined;
         }
 
-        const centerInitialItem = () => {
-            const width = viewport.clientWidth;
-            if (width > 0) {
-                viewport.scrollLeft = getScrollLeftToCenterItem(INITIAL_ITEM, width);
-            }
+        const handleScroll = () => {
+            tryLoadMore();
         };
 
-        centerInitialItem();
-        updateScroll();
-        viewport.addEventListener('scroll', updateScroll);
-        window.addEventListener('resize', updateScroll);
+        viewport.addEventListener('scroll', handleScroll);
 
         return () => {
-            viewport.removeEventListener('scroll', updateScroll);
-            window.removeEventListener('resize', updateScroll);
+            viewport.removeEventListener('scroll', handleScroll);
         };
-    }, [updateScroll]);
+    }, [tryLoadMore]);
+
+    useEffect(() => {
+        if (loadedCount >= INITIAL_ITEM) {
+            centerInitialItem();
+        }
+    }, [loadedCount, centerInitialItem]);
 
     useEffect(() => {
         const handleKeyDown = (event) => {
@@ -80,16 +110,7 @@ function HorizontalVirtualRendering() {
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, []);
 
-    const startIndex = Math.max(0, Math.floor(scrollLeft / ITEM_WIDTH) - BUFFER);
-    const endIndex = Math.min(
-        TOTAL_ITEMS - 1,
-        Math.ceil((scrollLeft + viewportWidth) / ITEM_WIDTH) + BUFFER
-    );
-
-    const visibleIndices = [];
-    for (let index = startIndex; index <= endIndex; index += 1) {
-        visibleIndices.push(index);
-    }
+    const items = Array.from({ length: loadedCount }, (_, index) => index + 1);
 
     return (
         <Layout
@@ -106,31 +127,24 @@ function HorizontalVirtualRendering() {
                                     className="hvr-viewport"
                                     ref={viewportRef}
                                     tabIndex={0}
-                                    aria-label="Horizontal virtual rendering viewport"
+                                    aria-label="Horizontal batch-load scroll viewport"
                                 >
-                                    <div
-                                        id="hvr-spacer"
-                                        className="hvr-spacer"
-                                        style={{ width: `${TOTAL_ITEMS * ITEM_WIDTH}px` }}
-                                    >
-                                        {visibleIndices.map((index) => (
+                                    <div id="hvr-track" className="hvr-track">
+                                        {items.map((number) => (
                                             <div
-                                                key={index}
-                                                id={`hvr-item-${index + 1}`}
+                                                key={number}
+                                                id={`hvr-item-${number}`}
                                                 className="hvr-item"
-                                                style={{
-                                                    left: `${index * ITEM_WIDTH + ITEM_OFFSET}px`,
-                                                    background: getColor(index),
-                                                }}
+                                                style={{ background: getColor(number - 1) }}
                                             >
-                                                #{index + 1}
+                                                #{number}
                                             </div>
                                         ))}
                                     </div>
                                 </div>
 
                                 <div className="hvr-panel-footer" id="hvr-footer">
-                                    {TOTAL_ITEMS.toLocaleString()} items total — only visible items are rendered in the DOM
+                                    {loadedCount.toLocaleString()} of {TOTAL_ITEMS.toLocaleString()} items loaded in the DOM — scroll right to batch-load more
                                 </div>
                             </div>
                         </div>

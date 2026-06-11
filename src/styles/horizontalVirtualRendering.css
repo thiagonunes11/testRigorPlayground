@@ -1,5 +1,5 @@
 /* ============================================================
-   Horizontal Virtual Rendering — app-themed styles
+   Horizontal Virtual Rendering — batch-load styles
    ============================================================ */
 
 .hvr-wrapper {
@@ -24,10 +24,11 @@
   height: 280px;
   overflow-x: auto;
   overflow-y: hidden;
-  position: relative;
   white-space: nowrap;
   background-color: var(--card-bg);
   outline: none;
+  padding: 1.25rem;
+  box-sizing: border-box;
 
   scrollbar-width: thin;
   scrollbar-color: var(--primary) var(--card-hover);
@@ -52,21 +53,22 @@
   border-radius: 3px;
 }
 
-.hvr-spacer {
+.hvr-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
   height: 100%;
-  position: relative;
+  min-height: 220px;
 }
 
 .hvr-item {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
   width: 260px;
   height: 220px;
   border-radius: 0.75rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   color: #fff;
   font-size: 2.5rem;
   font-weight: 700;

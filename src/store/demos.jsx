@@ -172,7 +172,7 @@ const demos = [
   {
     title: "Horizontal Virtual Rendering",
     path: "/horizontalVirtualRendering",
-    description: "Use arrow keys to scroll through virtual items horizontally.",
+    description: "Batch-load horizontal scroll with arrow keys.",
     icon: <ArrowLeftRight size={iconSize} />,
   },
   {
