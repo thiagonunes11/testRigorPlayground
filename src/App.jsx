@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+import ScrollToTop from "./components/ScrollToTop";
 import HomePage from "./pages/homePage";
 import QRCodePage from "./pages/qrCode";
 import ButtonClick from "./pages/buttonClick";
@@ -44,6 +44,7 @@ import SecondIframeSecret from "./pages/nestedIframes/secondIframeSecret";
 import DdatePicker from "./pages/ddatePicker";
 import CameraPage from "./pages/cameraPage";
 import EmailValidation from "./pages/emailValidation";
+import LoginWithOTP from "./pages/LoginWithOTP";
 import DivTable from "./pages/divTable";
 import WaitImage from "./pages/waitImage";
 import TextareaMultiline from "./pages/textareaMultiline";
@@ -56,21 +57,23 @@ import OsBrowser from "./pages/osBrowser";
 import EmptyPage from "./pages/emptyPage";
 import Pseudo from "./pages/pseudo";
 import AudioInput from "./pages/audioInput";
-
 import OrderedTablePage from "./pages/orderedTablePage";
 import IframeDropdownTest from "./pages/iframeDropdownTest";
 import AdvancedDropdowns from "./pages/advancedDropdowns";
 import Recaptcha from "./pages/recaptcha";
+import IndexTesting from "./pages/indexTesting";
+import OverlappedElements from "./pages/overlappedElements";
 import ScrollPanels from "./pages/scrollPanels";
 import HorizontalVirtualRendering from "./pages/horizontalVirtualRendering";
 
 function App() {
   return (
     <Router>
+      {<ScrollToTop />}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/cameraPage" element={<CameraPage />} />
-        <Route path="/ddatePicker" element={<DdatePicker />} />
+        <Route path="/datePicker" element={<DdatePicker />} />
         <Route path="/shadowDom" element={<ShadowDom />} />
         <Route path="/regex" element={<Regex />} />
         <Route path="/svgElements" element={<SvgElements />} />
@@ -83,10 +86,7 @@ function App() {
         <Route path="/audioValidation" element={<AudioValidation />} />
         <Route path="/dropdowns" element={<Dropdowns />} />
         <Route path="/BrowserPrompt" element={<BrowserPrompt />} />
-        <Route
-          path="/tableRelativePosition"
-          element={<TableRelativePosition />}
-        />
+        <Route path="/tableRelativePosition" element={<TableRelativePosition />} />
         <Route path="/dynamicTable" element={<DynamicTable />} />
         <Route path="/waitMessage" element={<WaitForMessage />} />
         <Route path="/shoppingCart" element={<ShoppingCart />} />
@@ -110,16 +110,11 @@ function App() {
         <Route path="/similarPages" element={<SimilarPages />} />
         <Route path="/similarPages/secondVersion" element={<SecondVersion />} />
         <Route path="/nestedIframes/firstIframe" element={<FirstIframe />} />
-        <Route
-          path="/nestedIframes/firstIframesecret"
-          element={<FirstIframeSecret />}
-        />
+        <Route path="/nestedIframes/firstIframesecret" element={<FirstIframeSecret />} />
         <Route path="/nestedIframes/secondIframe" element={<SecondIframe />} />
-        <Route
-          path="/nestedIframes/secondIframeSecret"
-          element={<SecondIframeSecret />}
-        />
+        <Route path="/nestedIframes/secondIframeSecret" element={<SecondIframeSecret />} />
         <Route path="/emailValidation" element={<EmailValidation />} />
+        <Route path="/loginWithOTP" element={<LoginWithOTP />} />
         <Route path="/divTable" element={<DivTable />} />
         <Route path="/waitImage" element={<WaitImage />} />
         <Route path="/textareaMultiline" element={<TextareaMultiline />} />
@@ -136,6 +131,8 @@ function App() {
         <Route path="/iframeDropdownTest" element={<IframeDropdownTest />} />
         <Route path="/advancedDropdowns" element={<AdvancedDropdowns />} />
         <Route path="/recaptcha" element={<Recaptcha />} />
+        <Route path="/indexTesting" element={<IndexTesting />} />
+        <Route path="/overlappedElements" element={<OverlappedElements />} />
         <Route path="/scrollPanels" element={<ScrollPanels />} />
         <Route path="/horizontalVirtualRendering" element={<HorizontalVirtualRendering />} />
       </Routes>

@@ -104,8 +104,8 @@ const demos = [
   },
   {
     title: "Date Picker",
-    path: "/ddatePicker",
-    description: "Choose a date on a date picker.",
+    path: "/datePicker",
+    description: "Choose start and end dates on a date picker.",
     icon: <CalendarDateFill size={iconSize} />,
   },
   {
@@ -311,6 +311,12 @@ const demos = [
     icon: <EnvelopeFill size={iconSize} />,
   },
   {
+    title: "Login with OTP",
+    path: "/loginWithOTP",
+    description: "Login flow using email OTP.",
+    icon: <ShieldCheck size={iconSize} />,
+  },
+  {
     title: "SVG Elements",
     path: "/svgElements",
     description: "Interact with SVG elements.",
@@ -369,6 +375,18 @@ const demos = [
     path: "/orderedTable",
     description: "View and switch between sortable sample tables",
     icon: <Table size={iconSize} />,
+  },
+  {
+    title: "Index Testing",
+    path: "/indexTesting",
+    description: "Test selecting elements by index.",
+    icon: <Search size={iconSize} />,
+  },
+  {
+    title: "Overlapped Elements",
+    path: "/overlappedElements",
+    description: "Interact with elements that are covered by other elements.",
+    icon: <CollectionFill size={iconSize} />,
   },
 ];
 
