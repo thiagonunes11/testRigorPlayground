@@ -1,17 +1,36 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Layout from '../components/Layout';
 
+const LONG_CLICK_THRESHOLD = 1;
+
 const HoldKeyClick = () => {
+  const pressStartRef = useRef(null);
   const [message, setMessage] = useState('');
 
-  const handleClick = (event) => {
+  const handlePressStart = () => {
+    pressStartRef.current = Date.now();
+  };
+
+  const handlePressEnd = (event) => {
+    const duration = pressStartRef.current
+      ? (Date.now() - pressStartRef.current) / 1000
+      : 0;
+
+    pressStartRef.current = null;
+
     const isModifierPressed = event.ctrlKey || event.metaKey;
 
-    if (isModifierPressed) {
-      setMessage('Button clicked');
-    } else {
+    if (!isModifierPressed) {
       setMessage('Please hold Ctrl/Command');
+      return;
     }
+
+    if (duration >= LONG_CLICK_THRESHOLD) {
+      setMessage('Long click performed');
+      return;
+    }
+
+    setMessage('Button clicked');
   };
 
   return (
@@ -24,7 +43,11 @@ const HoldKeyClick = () => {
           <button
             type="button"
             className="btn-modern btn-primary mb-4"
-            onClick={handleClick}
+            onMouseDown={handlePressStart}
+            onMouseUp={handlePressEnd}
+            onMouseLeave={handlePressEnd}
+            onTouchStart={handlePressStart}
+            onTouchEnd={handlePressEnd}
           >
             Click Me
           </button>
