@@ -23,6 +23,12 @@ const demos = [
         description: "This demo allows the user to click a button. When the button is clicked, a hidden text will be revealed.",
     },
     {
+        title: "Hold Key Click",
+        url: "/holdKeyClick",
+        name: "Hold Ctrl or Command while clicking.",
+        description: "This demo checks if the user clicks while pressing Ctrl (Windows/Linux) or Command (macOS).",
+    },
+    {
         title: "Checkbox",
         url: "/checkbox",
         name: "Click on any of the checkboxes.",

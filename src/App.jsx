@@ -27,6 +27,7 @@ import SecondVersion from "./pages/similarPages/secondVersion";
 import BrowserPrompt from "./pages/browserPrompt";
 import LongClick from "./pages/longClick";
 import DeleteElements from "./pages/deleteElements";
+import HoldKeyClick from "./pages/holdKeyClick";
 import AudioValidation from "./pages/audioValidation";
 import ConnectTheDots from "./pages/connectTheDots";
 import ModalPopup from "./pages/modalPopup";
@@ -100,6 +101,7 @@ function App() {
         <Route path="/newTab" element={<NewTab />} />
         <Route path="/qrCode" element={<QRCodePage />} />
         <Route path="/buttonClick" element={<ButtonClick />} />
+        <Route path="/holdKeyClick" element={<HoldKeyClick />} />
         <Route path="/fileUpload" element={<FileUpload />} />
         <Route path="/video" element={<VideoPlayer />} />
         <Route path="/checkbox" element={<CheckboxPage />} />
