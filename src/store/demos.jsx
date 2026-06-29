@@ -10,6 +10,7 @@ import {
   CalendarDateFill,
   TrashFill,
   ArrowDownUp,
+  KeyboardFill,
   ArrowLeftRight,
   CaretDownFill,
   BoxArrowInLeft,
@@ -77,6 +78,12 @@ const demos = [
     path: "/buttonClick",
     description: "Click the button to reveal the hidden text.",
     icon: <CheckCircleFill size={iconSize} />,
+  },
+  {
+    title: "Hold Key Click",
+    path: "/holdKeyClick",
+    description: "Click while holding Ctrl (Windows/Linux) or Command (macOS).",
+    icon: <KeyboardFill size={iconSize} />,
   },
   {
     title: "Camera",
