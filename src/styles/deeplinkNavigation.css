@@ -1,0 +1,10 @@
+.deeplink-nav-button {
+  min-height: 3rem;
+  touch-action: manipulation;
+}
+
+@media (min-width: 768px) {
+  .deeplink-nav-button {
+    min-width: 12.5rem;
+  }
+}

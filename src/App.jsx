@@ -64,6 +64,11 @@ import AdvancedDropdowns from "./pages/advancedDropdowns";
 import Recaptcha from "./pages/recaptcha";
 import ScrollPanels from "./pages/scrollPanels";
 import HorizontalVirtualRendering from "./pages/horizontalVirtualRendering";
+import DeeplinkNavigation from "./pages/deeplinkNavigation";
+import DeeplinkPageTwo from "./pages/deeplinkNavigation/pageTwo";
+import DeeplinkPageThree from "./pages/deeplinkNavigation/pageThree";
+import DeeplinkPageFour from "./pages/deeplinkNavigation/pageFour";
+import DeeplinkPageFive from "./pages/deeplinkNavigation/pageFive";
 
 function App() {
   return (
@@ -140,6 +145,11 @@ function App() {
         <Route path="/recaptcha" element={<Recaptcha />} />
         <Route path="/scrollPanels" element={<ScrollPanels />} />
         <Route path="/horizontalVirtualRendering" element={<HorizontalVirtualRendering />} />
+        <Route path="/deeplinkNavigation" element={<DeeplinkNavigation />} />
+        <Route path="/deeplinkNavigation/pageTwo" element={<DeeplinkPageTwo />} />
+        <Route path="/deeplinkNavigation/pageThree" element={<DeeplinkPageThree />} />
+        <Route path="/deeplinkNavigation/pageFour" element={<DeeplinkPageFour />} />
+        <Route path="/deeplinkNavigation/pageFive" element={<DeeplinkPageFive />} />
       </Routes>
     </Router>
   );
