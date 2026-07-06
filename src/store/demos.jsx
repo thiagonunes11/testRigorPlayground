@@ -36,6 +36,7 @@ import {
   HourglassSplit,
   GeoAltFill,
   AspectRatio,
+  ZoomIn,
   ShieldCheck,
   LayoutSidebar,
 } from "react-bootstrap-icons";
@@ -273,6 +274,12 @@ const demos = [
     path: "/screenResolution",
     description: "Test the resolution of the screen",
     icon: <AspectRatio size={iconSize} />,
+  },
+  {
+    title: "Zoom Level",
+    path: "/zoomLevel",
+    description: "Display the current browser zoom percentage from pinch or page zoom.",
+    icon: <ZoomIn size={iconSize} />,
   },
   {
     title: "Scroll Down",
