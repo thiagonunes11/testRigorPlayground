@@ -230,12 +230,12 @@ const RequiredForm = () => {
           <div className="col-12 col-md-10 col-lg-8">
             <div className="result-box text-start mt-5 p-4 rounded" id="resultBox">
               <h4 className="mb-4 text-success">Form Submitted Successfully!</h4>
-              <p><strong>Full Name:</strong> <span id="resFullName">{formData.fullName}</span></p>
-              <p><strong>Email:</strong> <span id="resEmail">{formData.email}</span></p>
+              <p><strong>Full Name:</strong> <span id="resFullName">{formData.fullName || "no value"}</span></p>
+              <p><strong>Email:</strong> <span id="resEmail">{formData.email || "no value"}</span></p>
               <p><strong>Password:</strong> <span id="resPassword">••••••••</span> (Hidden for security)</p>
-              <p><strong>Service Tier:</strong> <span id="resTier">{formData.tier}</span></p>
-              <p><strong>Contact Method:</strong> <span id="resContactMethod">{formData.contactMethod}</span></p>
-              <p><strong>Comments:</strong> <span id="resComments">{formData.comments}</span></p>
+              <p><strong>Service Tier:</strong> <span id="resTier">{formData.tier || "no value"}</span></p>
+              <p><strong>Contact Method:</strong> <span id="resContactMethod">{formData.contactMethod || "no value"}</span></p>
+              <p><strong>Comments:</strong> <span id="resComments">{formData.comments || "no value"}</span></p>
               <p><strong>Agreed to Terms:</strong> <span id="resAgreeTerms">{formData.agreeTerms ? "Yes" : "No"}</span></p>
 
               <button onClick={handleReset} className="btn btn-primary mt-4" id="resetBtn">
