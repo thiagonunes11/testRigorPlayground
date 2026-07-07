@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Layout from '../components/Layout';
 import '../styles/homePage.css';
-import '../styles/form.css'; 
+import '../styles/form.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const RequiredForm = () => {
@@ -59,7 +59,7 @@ const RequiredForm = () => {
         {!showResult && (
           <div className="col-12 col-md-10 col-lg-8 border px-4 py-4 rounded-custom">
             <form onSubmit={handleSubmit} className="form-container">
-              
+
               {/* Full Name - Text Input */}
               <div className="form-group mb-4">
                 <label className="form-label d-block text-start" htmlFor="fullName">
@@ -124,7 +124,6 @@ const RequiredForm = () => {
                   name="tier"
                   value={formData.tier}
                   onChange={handleChange}
-                  required
                 >
                   <option value="">Select a tier...</option>
                   <option value="free">Free - Basic features</option>
@@ -138,17 +137,16 @@ const RequiredForm = () => {
                 <label className="form-label">
                   Preferred Contact Method <span className="text-danger">*</span>
                 </label>
-                
+
                 <div className="form-check">
                   <input
                     id="contactEmail"
-                    type="radio"
+                    type="checkbox"
                     name="contactMethod"
                     className="form-check-input"
                     value="email"
-                    checked={formData.contactMethod === 'email'}
+                    checked={formData.contactMethod}
                     onChange={handleChange}
-                    required
                   />
                   <label className="form-check-label" htmlFor="contactEmail">
                     Email
@@ -158,13 +156,12 @@ const RequiredForm = () => {
                 <div className="form-check">
                   <input
                     id="contactPhone"
-                    type="radio"
+                    type="checkbox"
                     name="contactMethod"
                     className="form-check-input"
                     value="phone"
-                    checked={formData.contactMethod === 'phone'}
+                    checked={formData.contactMethod}
                     onChange={handleChange}
-                    required
                   />
                   <label className="form-check-label" htmlFor="contactPhone">
                     Phone
@@ -174,13 +171,12 @@ const RequiredForm = () => {
                 <div className="form-check">
                   <input
                     id="contactNone"
-                    type="radio"
+                    type="checkbox"
                     name="contactMethod"
                     className="form-check-input"
                     value="none"
-                    checked={formData.contactMethod === 'none'}
+                    checked={formData.contactMethod}
                     onChange={handleChange}
-                    required
                   />
                   <label className="form-check-label" htmlFor="contactNone">
                     Do not contact me
@@ -241,7 +237,7 @@ const RequiredForm = () => {
               <p><strong>Contact Method:</strong> <span id="resContactMethod">{formData.contactMethod}</span></p>
               <p><strong>Comments:</strong> <span id="resComments">{formData.comments}</span></p>
               <p><strong>Agreed to Terms:</strong> <span id="resAgreeTerms">{formData.agreeTerms ? "Yes" : "No"}</span></p>
-              
+
               <button onClick={handleReset} className="btn btn-primary mt-4" id="resetBtn">
                 Fill Again
               </button>
