@@ -36,6 +36,7 @@ import {
   HourglassSplit,
   GeoAltFill,
   AspectRatio,
+  ZoomIn,
   ShieldCheck,
   LayoutSidebar,
 } from "react-bootstrap-icons";
@@ -171,6 +172,12 @@ const demos = [
     icon: <FileEarmarkTextFill size={iconSize} />,
   },
   {
+    title: "Required Fields Form",
+    path: "/requiredForm",
+    description: "Form with various required fields and HTML5 validation.",
+    icon: <FileEarmarkTextFill size={iconSize} />,
+  },
+  {
     title: "Geolocation",
     path: "/geolocation",
     description: "Get the coordinates of the user.",
@@ -273,6 +280,12 @@ const demos = [
     path: "/screenResolution",
     description: "Test the resolution of the screen",
     icon: <AspectRatio size={iconSize} />,
+  },
+  {
+    title: "Zoom Level",
+    path: "/zoomLevel",
+    description: "Display the current browser zoom percentage from pinch or page zoom.",
+    icon: <ZoomIn size={iconSize} />,
   },
   {
     title: "Scroll Down",
