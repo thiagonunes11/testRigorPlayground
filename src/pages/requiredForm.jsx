@@ -116,7 +116,7 @@ const RequiredForm = () => {
               {/* Service Tier - Select Dropdown */}
               <div className="form-group mb-4">
                 <label className="form-label d-block text-start" htmlFor="tier">
-                  Service Tier <span className="text-danger">*</span>
+                  Service Tier
                 </label>
                 <select
                   id="tier"
@@ -135,17 +135,17 @@ const RequiredForm = () => {
               {/* Contact Method - Radio Buttons */}
               <div className="mb-4 text-start">
                 <label className="form-label">
-                  Preferred Contact Method <span className="text-danger">*</span>
+                  Preferred Contact Method
                 </label>
 
                 <div className="form-check">
                   <input
                     id="contactEmail"
-                    type="checkbox"
+                    type="radio"
                     name="contactMethod"
                     className="form-check-input"
                     value="email"
-                    checked={formData.contactMethod}
+                    checked={formData.contactMethod === 'email'}
                     onChange={handleChange}
                   />
                   <label className="form-check-label" htmlFor="contactEmail">
@@ -156,11 +156,11 @@ const RequiredForm = () => {
                 <div className="form-check">
                   <input
                     id="contactPhone"
-                    type="checkbox"
+                    type="radio"
                     name="contactMethod"
                     className="form-check-input"
                     value="phone"
-                    checked={formData.contactMethod}
+                    checked={formData.contactMethod === 'phone'}
                     onChange={handleChange}
                   />
                   <label className="form-check-label" htmlFor="contactPhone">
@@ -171,11 +171,11 @@ const RequiredForm = () => {
                 <div className="form-check">
                   <input
                     id="contactNone"
-                    type="checkbox"
+                    type="radio"
                     name="contactMethod"
                     className="form-check-input"
                     value="none"
-                    checked={formData.contactMethod}
+                    checked={formData.contactMethod === 'none'}
                     onChange={handleChange}
                   />
                   <label className="form-check-label" htmlFor="contactNone">
