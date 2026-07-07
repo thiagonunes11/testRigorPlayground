@@ -79,6 +79,7 @@ const Form = () => {
                   onChange={handleChange}
                   placeholder="Email"
                   required
+                />
               </div>
 
               <div className="form-group mb-4">
@@ -91,6 +92,7 @@ const Form = () => {
                   onChange={handleChange}
                   placeholder="Password"
                   required
+                />
               </div>
 
               <hr className="my-4 border-top border-secondary" />
