@@ -19,7 +19,6 @@ const Form = () => {
     },
     optionsRadios: 'ONE',
     phone: '',
-    additionalField: '',
   });
 
   const [text, setText] = useState('');
@@ -70,7 +69,7 @@ const Form = () => {
             <form onSubmit={handleSubmit} className="form-container">
 
               <div className="form-group mb-4">
-                <label className="form-label d-block text-start">Email address <span className="text-danger">*</span></label>
+                <label className="form-label d-block text-start">Email address</label>
                 <input
                   type="email"
                   className="form-control"
@@ -78,12 +77,11 @@ const Form = () => {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="Email"
-                  required
                 />
               </div>
 
               <div className="form-group mb-4">
-                <label className="form-label d-block text-start">Password <span className="text-danger">*</span></label>
+                <label className="form-label d-block text-start">Password</label>
                 <input
                   type="password"
                   className="form-control"
@@ -91,7 +89,6 @@ const Form = () => {
                   value={formData.password}
                   onChange={handleChange}
                   placeholder="Password"
-                  required
                 />
               </div>
 
@@ -137,7 +134,7 @@ const Form = () => {
               <hr className="my-4 border-top border-secondary" />
 
               <div className="form-group mb-4">
-                <label className="form-label d-block text-start">Phone <span className="text-danger">*</span></label>
+                <label className="form-label d-block text-start">Phone</label>
                 <div className="form-control phone-wrapper">
                   <PhoneInput
                     country={''}
@@ -145,7 +142,7 @@ const Form = () => {
                     onChange={(phone) => setFormData({ ...formData, phone })}
                     inputProps={{
                       name: 'phone',
-                      required: true,
+                      required: false,
                       autoFocus: false,
                       placeholder: "+1 (201) 555-0123"
                     }}
@@ -295,19 +292,6 @@ const Form = () => {
                 </div>
               </div>
 
-              <div className="form-group mb-4 mt-4 text-start">
-                <label className="form-label d-block">Additional required field <span className="text-danger">*</span></label>
-                <input
-                  type="text"
-                  className="form-control"
-                  name="additionalField"
-                  value={formData.additionalField}
-                  onChange={handleChange}
-                  placeholder="Type something"
-                  required
-                />
-              </div>
-
               <button type="submit" className="btn btn-success mt-3">Submit</button>
             </form>
           </div>
@@ -334,7 +318,6 @@ const Form = () => {
               )}
 
               <p><strong>phone:</strong> {formData.phone || 'no value'}</p>
-              <p><strong>additionalField:</strong> {formData.additionalField || 'no value'}</p>
             </div>
           </div>
         )}
