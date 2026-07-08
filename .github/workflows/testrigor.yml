@@ -41,10 +41,12 @@ jobs:
         run: |
           #!/bin/bash
 
-          curl -X POST \
+          # Realiza o disparo e salva a resposta JSON
+          response_trigger=$(curl -s -X POST \
             -H 'Content-type: application/json' \
             -H 'auth-token: 21c8abac-a5b2-46a3-8ed2-07b2698274cb' \
             --data '{
+              "forceCancelPreviousTesting": true,
               "branch": {
                 "name": "${{ github.event.pull_request.head.ref || github.ref_name }}",
                 "commit": "${{ github.event.pull_request.head.sha || github.sha }}"
@@ -52,7 +54,16 @@ jobs:
               "url": "${{ steps.target-url.outputs.url }}",
               "storedValues": { "storedValueName1": "Value" }
             }' \
-            https://api.testrigor.com/api/v1/apps/A8T8G9NN24mJ9zbe6/retest
+            https://api.testrigor.com/api/v1/apps/A8T8G9NN24mJ9zbe6/retest)
+
+          # Extrai o ID da run (taskId)
+          run_id=$(echo "$response_trigger" | jq -r '.taskId')
+          echo "TestRigor Run ID: $run_id"
+
+          if [ -z "$run_id" ] || [ "$run_id" = "null" ]; then
+            echo "Failed to trigger TestRigor run. Response: $response_trigger"
+            exit 1
+          fi
 
           sleep 10
 
@@ -62,39 +73,34 @@ jobs:
             echo "==================================="
             echo " Checking run status"
             echo "==================================="
-            response=$(curl -i -o - -s -X GET 'https://api.testrigor.com/api/v1/apps/A8T8G9NN24mJ9zbe6/status' -H 'auth-token: 21c8abac-a5b2-46a3-8ed2-07b2698274cb' -H 'Accept: application/json')
-            code=$(echo "$response" | grep HTTP |  awk '{print $2}')
-            body=$(echo "$response" | sed -n '/{/,/}/p')
-            echo "Status code: " $code
-            echo "Response: " $body
-            case $code in
-              4*|5*)
-                # 400 or 500 errors
-                echo "Error calling API"
-                exit 1
-                ;;
-              200)
-                # 200: successfully finished
+            
+            response=$(curl -s -X GET "https://api.testrigor.com/api/v1/apps/A8T8G9NN24mJ9zbe6/runs/$run_id" \
+              -H 'auth-token: 21c8abac-a5b2-46a3-8ed2-07b2698274cb' \
+              -H 'Accept: application/json')
+            
+            status=$(echo "$response" | jq -r '.data.status')
+            echo "Status: $status"
+            
+            case "$status" in
+              "Passed")
                 echo "Test finished successfully"
                 exit 0
                 ;;
-              227|228)
-                # 227: New - 228: In progress
-                echo "Test is not finished yet"
-                ;;
-              229)
-                # 229: Canceled
-                echo "Test canceled"
-                exit 1
-                ;;
-              230)
-                # 230: Failed
+              "Failed")
                 echo "Test finished but failed"
                 exit 1
                 ;;
-              *)
-                echo "Unknown status"
+              "Canceled")
+                echo "Test canceled"
                 exit 1
-              esac
+                ;;
+              "New"|"In progress"|"In queue"|"Queued")
+                echo "Test is not finished yet"
+                ;;
+              *)
+                echo "Unknown status: $status"
+                echo "API Response: $response"
+                ;;
+            esac
             sleep 10
           done
