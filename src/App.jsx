@@ -52,8 +52,10 @@ import TextareaMultiline from "./pages/textareaMultiline";
 import Geolocation from "./pages/geolocation";
 import PdfPreview from "./pages/pdfPreview";
 import Form from "./pages/form";
+import RequiredForm from "./pages/requiredForm";
 import ApiPage from "./pages/apiPage";
 import ScreenResolution from "./pages/screenResolution";
+import ZoomLevel from "./pages/zoomLevel";
 import OsBrowser from "./pages/osBrowser";
 import EmptyPage from "./pages/emptyPage";
 import Pseudo from "./pages/pseudo";
@@ -123,8 +125,10 @@ function App() {
         <Route path="/geolocation" element={<Geolocation />} />
         <Route path="/pdfPreview" element={<PdfPreview />} />
         <Route path="/form" element={<Form />} />
+        <Route path="/requiredForm" element={<RequiredForm />} />
         <Route path="/apiPage" element={<ApiPage />} />
         <Route path="/screenResolution" element={<ScreenResolution />} />
+        <Route path="/zoomLevel" element={<ZoomLevel />} />
         <Route path="/osBrowser" element={<OsBrowser />} />
         <Route path="/emptyPage" element={<EmptyPage />} />
         <Route path="/pseudo" element={<Pseudo />} />
