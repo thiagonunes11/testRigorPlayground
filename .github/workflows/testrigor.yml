@@ -44,7 +44,14 @@ jobs:
           curl -X POST \
             -H 'Content-type: application/json' \
             -H 'auth-token: 21c8abac-a5b2-46a3-8ed2-07b2698274cb' \
-            --data '{"forceCancelPreviousTesting":true,"storedValues":{"storedValueName1":"Value"}}' \
+            --data '{
+              "branch": {
+                "name": "${{ github.event.pull_request.head.ref || github.ref_name }}",
+                "commit": "${{ github.event.pull_request.head.sha || github.sha }}"
+              },
+              "url": "${{ steps.target-url.outputs.url }}",
+              "storedValues": { "storedValueName1": "Value" }
+            }' \
             https://api.testrigor.com/api/v1/apps/A8T8G9NN24mJ9zbe6/retest
 
           sleep 10
