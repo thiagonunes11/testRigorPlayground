@@ -44,7 +44,9 @@ jobs:
             -H 'auth-token: ${{ secrets.TESTRIGOR_AUTH_TOKEN }}' \
             --data '{
               "forceCancelPreviousTesting": true,
-              "environmentUrl": "${{ steps.target-url.outputs.url }}",
+              "branch": "${{ github.event.pull_request.head.ref || github.ref_name }}",
+              "commit": "${{ github.event.pull_request.head.sha || github.sha }}",
+              "url": "${{ steps.target-url.outputs.url }}",
               "storedValues": {"storedValueName1": "Value"}
             }' \
             https://api.testrigor.com/api/v1/apps/${{ secrets.TESTRIGOR_APP_ID }}/retest
