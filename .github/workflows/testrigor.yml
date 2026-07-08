@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - stg-env
+  pull_request:
+    branches:
+      - main
+      - stg-env
   workflow_dispatch:
 
 jobs:
@@ -12,55 +16,86 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Wait for Netlify Deploy
+        id: netlify-deploy
+        uses: probablyup/wait-for-netlify-action@v3.2.0
+        with:
+          site_id: ${{ secrets.NETLIFY_SITE_ID }}
+        env:
+          NETLIFY_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+
       - name: Run TestRigor
         run: |
-          curl -X POST \
+          echo "Triggering TestRigor E2E tests against URL: ${{ steps.netlify-deploy.outputs.url }}"
+          
+          trigger_code=$(curl -s -o trigger_response.json -w "%{http_code}" -X POST \
             -H 'Content-type: application/json' \
             -H 'auth-token: ${{ secrets.TESTRIGOR_AUTH_TOKEN }}' \
-            --data '{"forceCancelPreviousTesting":true,"storedValues":{"storedValueName1":"Value"}}' \
-            https://api.testrigor.com/api/v1/apps/${{ secrets.TESTRIGOR_APP_ID }}/retest
+            --data '{
+              "forceCancelPreviousTesting": true,
+              "environmentUrl": "${{ steps.netlify-deploy.outputs.url }}",
+              "storedValues": {"storedValueName1": "Value"}
+            }' \
+            https://api.testrigor.com/api/v1/apps/${{ secrets.TESTRIGOR_APP_ID }}/retest)
+          
+          echo "Trigger HTTP status code: $trigger_code"
+          echo "Trigger response: $(cat trigger_response.json 2>/dev/null || echo 'No response body')"
+          
+          if [[ "$trigger_code" -lt 200 || "$trigger_code" -ge 300 ]]; then
+            echo "Failed to trigger TestRigor tests"
+            exit 1
+          fi
 
           sleep 10
 
-          while true
+          max_attempts=60  # 30 minutes max (60 * 30 seconds)
+          attempt=0
+
+          while [ $attempt -lt $max_attempts ]
           do
+            attempt=$((attempt + 1))
             echo " "
             echo "==================================="
-            echo " Checking run status"
+            echo " Checking run status (Attempt $attempt / $max_attempts)"
             echo "==================================="
-            response=$(curl -i -o - -s -X GET 'https://api.testrigor.com/api/v1/apps/${{ secrets.TESTRIGOR_APP_ID }}/status' -H 'auth-token: ${{ secrets.TESTRIGOR_AUTH_TOKEN }}' -H 'Accept: application/json')
-            code=$(echo "$response" | grep HTTP |  awk '{print $2}')
-            body=$(echo "$response" | sed -n '/{/,/}/p')
-            echo "Status code: " $code
-            echo "Response: " $body
-            case $code in
+            
+            code=$(curl -s -o status_response.json -w "%{http_code}" -X GET \
+              'https://api.testrigor.com/api/v1/apps/${{ secrets.TESTRIGOR_APP_ID }}/status' \
+              -H 'auth-token: ${{ secrets.TESTRIGOR_AUTH_TOKEN }}' \
+              -H 'Accept: application/json')
+            
+            body=$(cat status_response.json 2>/dev/null || echo '')
+            echo "Status code: $code"
+            echo "Response: $body"
+            
+            case "$code" in
               4*|5*)
-                # 400 or 500 errors
                 echo "Error calling API"
                 exit 1
                 ;;
               200)
-                # 200: successfully finished
                 echo "Test finished successfully"
                 exit 0
                 ;;
               227|228)
-                # 227: New - 228: In progress
                 echo "Test is not finished yet"
                 ;;
               229)
-                # 229: Canceled
                 echo "Test canceled"
                 exit 1
                 ;;
               230)
-                # 230: Failed
                 echo "Test finished but failed"
                 exit 1
                 ;;
               *)
                 echo "Unknown status"
                 exit 1
-              esac
-            sleep 10
+                ;;
+            esac
+            sleep 30
           done
+
+          echo "Timeout: Tests did not complete within 30 minutes"
+          exit 1
+
