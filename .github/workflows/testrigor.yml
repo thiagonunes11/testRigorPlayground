@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - stg-env
+  pull_request:
+    branches:
+      - main
+      - stg-env
   workflow_dispatch:
 
 jobs:
@@ -12,12 +16,37 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Wait for Netlify Deploy
+        id: netlify-deploy
+        uses: probablyup/wait-for-netlify-action@3.2.0
+        with:
+          site_id: ${{ (github.base_ref == 'stg-env' || github.ref_name == 'stg-env') && secrets.NETLIFY_STG_SITE_ID || secrets.NETLIFY_PROD_SITE_ID }}
+        env:
+          NETLIFY_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+
+      - name: Determine Target URL
+        id: target-url
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            if [ "${{ github.base_ref }}" = "stg-env" ]; then
+              echo "url=https://deploy-preview-${{ github.event.pull_request.number }}--stg-tr-playground.netlify.app" >> $GITHUB_OUTPUT
+            else
+              echo "url=https://deploy-preview-${{ github.event.pull_request.number }}--testrigorplayground.netlify.app" >> $GITHUB_OUTPUT
+            fi
+          else
+            echo "url=${{ steps.netlify-deploy.outputs.url }}" >> $GITHUB_OUTPUT
+          fi
+
       - name: Run TestRigor
         run: |
           curl -X POST \
             -H 'Content-type: application/json' \
             -H 'auth-token: ${{ secrets.TESTRIGOR_AUTH_TOKEN }}' \
-            --data '{"forceCancelPreviousTesting":true,"storedValues":{"storedValueName1":"Value"}}' \
+            --data '{
+              "forceCancelPreviousTesting": true,
+              "environmentUrl": "${{ steps.target-url.outputs.url }}",
+              "storedValues": {"storedValueName1": "Value"}
+            }' \
             https://api.testrigor.com/api/v1/apps/${{ secrets.TESTRIGOR_APP_ID }}/retest
 
           sleep 10
@@ -61,6 +90,7 @@ jobs:
               *)
                 echo "Unknown status"
                 exit 1
-              esac
+                ;;
+            esac
             sleep 10
           done
