@@ -4,10 +4,7 @@ on:
   push:
     branches:
       - stg-env
-  pull_request:
-    branches:
       - main
-      - stg-env
   workflow_dispatch:
 
 jobs:
@@ -20,34 +17,21 @@ jobs:
         id: netlify-deploy
         uses: probablyup/wait-for-netlify-action@3.2.0
         with:
-          site_id: ${{ (github.base_ref == 'stg-env' || github.ref_name == 'stg-env') && secrets.NETLIFY_STG_SITE_ID || secrets.NETLIFY_PROD_SITE_ID }}
+          # Define Netlify Site ID based on the branch that received the push
+          site_id: ${{ github.ref_name == 'stg-env' && secrets.NETLIFY_STG_SITE_ID || secrets.NETLIFY_PROD_SITE_ID }}
         env:
           NETLIFY_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
 
-      - name: Determine Target URL
-        id: target-url
-        run: |
-          if [ "${{ github.event_name }}" = "pull_request" ]; then
-            if [ "${{ github.base_ref }}" = "stg-env" ]; then
-              echo "url=https://deploy-preview-${{ github.event.pull_request.number }}--stg-tr-playground.netlify.app" >> $GITHUB_OUTPUT
-            else
-              echo "url=https://deploy-preview-${{ github.event.pull_request.number }}--testrigorplayground.netlify.app" >> $GITHUB_OUTPUT
-            fi
-          else
-            echo "url=${{ steps.netlify-deploy.outputs.url }}" >> $GITHUB_OUTPUT
-          fi
-
       - name: Run TestRigor
         run: |
+          #!/bin/bash
+
+          # Trigger TestRigor run (without branch or url overrides)
           curl -X POST \
             -H 'Content-type: application/json' \
-            -H 'auth-token: ${{ secrets.TESTRIGOR_AUTH_TOKEN }}' \
-            --data '{
-              "forceCancelPreviousTesting": true,
-              "environmentUrl": "${{ steps.target-url.outputs.url }}",
-              "storedValues": {"storedValueName1": "Value"}
-            }' \
-            https://api.testrigor.com/api/v1/apps/${{ secrets.TESTRIGOR_APP_ID }}/retest
+            -H 'auth-token: 21c8abac-a5b2-46a3-8ed2-07b2698274cb' \
+            --data '{"forceCancelPreviousTesting":true,"storedValues":{"storedValueName1":"Value"}}' \
+            https://api.testrigor.com/api/v1/apps/A8T8G9NN24mJ9zbe6/retest
 
           sleep 10
 
@@ -57,7 +41,8 @@ jobs:
             echo "==================================="
             echo " Checking run status"
             echo "==================================="
-            response=$(curl -i -o - -s -X GET 'https://api.testrigor.com/api/v1/apps/${{ secrets.TESTRIGOR_APP_ID }}/status' -H 'auth-token: ${{ secrets.TESTRIGOR_AUTH_TOKEN }}' -H 'Accept: application/json')
+            # Poll status API
+            response=$(curl -i -o - -s -X GET 'https://api.testrigor.com/api/v1/apps/A8T8G9NN24mJ9zbe6/status' -H 'auth-token: 21c8abac-a5b2-46a3-8ed2-07b2698274cb' -H 'Accept: application/json')
             code=$(echo "$response" | grep HTTP |  awk '{print $2}')
             body=$(echo "$response" | sed -n '/{/,/}/p')
             echo "Status code: " $code
