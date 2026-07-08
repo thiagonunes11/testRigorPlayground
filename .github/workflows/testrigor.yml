@@ -20,7 +20,7 @@ jobs:
         id: netlify-deploy
         uses: probablyup/wait-for-netlify-action@3.2.0
         with:
-          site_id: ${{ secrets.NETLIFY_STG_SITE_ID }}
+          site_id: ${{ (github.base_ref == 'stg-env' || github.ref_name == 'stg-env') && secrets.NETLIFY_STG_SITE_ID || secrets.NETLIFY_PROD_SITE_ID }}
         env:
           NETLIFY_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
 
