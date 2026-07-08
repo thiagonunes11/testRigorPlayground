@@ -41,8 +41,8 @@ jobs:
         run: |
           #!/bin/bash
 
-          # Realiza o disparo e salva a resposta JSON
-          response_trigger=$(curl -s -X POST \
+          # Realiza o disparo
+          curl -s -X POST \
             -H 'Content-type: application/json' \
             -H 'auth-token: 21c8abac-a5b2-46a3-8ed2-07b2698274cb' \
             --data '{
