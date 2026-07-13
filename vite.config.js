@@ -4,6 +4,9 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   assetsInclude: ['**/*.csv', '**/*.doc', '**/*.docx', '**/*.odp', '**/*.ods', '**/*.odt', '**/*.ott', '**/*.pdf', '**/*.ppt', '**/*.pptx', '**/*.rtf', '**/*.txt', '**/*.xls', '**/*.xlsx'],
+  optimizeDeps: {
+    include: ['jquery', 'jquery-ui-dist/jquery-ui', 'moment', 'daterangepicker'],
+  },
   server:{
     historyApiFallback: true,
   }
