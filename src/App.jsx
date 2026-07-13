@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
@@ -42,7 +43,6 @@ import FirstIframe from "./pages/nestedIframes/firstIframe";
 import FirstIframeSecret from "./pages/nestedIframes/firstIframeSecret";
 import SecondIframe from "./pages/nestedIframes/secondIframe";
 import SecondIframeSecret from "./pages/nestedIframes/secondIframeSecret";
-import DdatePicker from "./pages/ddatePicker";
 import CameraPage from "./pages/cameraPage";
 import EmailValidation from "./pages/emailValidation";
 import LoginWithOTP from "./pages/LoginWithOTP";
@@ -69,6 +69,8 @@ import OverlappedElements from "./pages/overlappedElements";
 import ScrollPanels from "./pages/scrollPanels";
 import HorizontalVirtualRendering from "./pages/horizontalVirtualRendering";
 
+const DatePicker = lazy(() => import("./pages/datePicker"));
+
 function App() {
   return (
     <Router>
@@ -76,7 +78,14 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/cameraPage" element={<CameraPage />} />
-        <Route path="/datePicker" element={<DdatePicker />} />
+        <Route
+          path="/datePicker"
+          element={
+            <Suspense fallback={<div className="p-4 text-center">Loading date pickers…</div>}>
+              <DatePicker />
+            </Suspense>
+          }
+        />
         <Route path="/shadowDom" element={<ShadowDom />} />
         <Route path="/regex" element={<Regex />} />
         <Route path="/svgElements" element={<SvgElements />} />

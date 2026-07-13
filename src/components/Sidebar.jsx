@@ -50,7 +50,7 @@ const demos = [
         title: "Date Picker",
         url: "/datePicker",
         name: "Choose a date on a date picker.",
-        description: "This demo displays a date picker, where you can choose a date in it and see the value reflected on the field.",
+        description: "This demo displays React, Semantic, Material, Bootstrap, and jQuery date pickers.",
     },
     {
         title: "Delete Elements",

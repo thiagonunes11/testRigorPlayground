@@ -113,7 +113,7 @@ const demos = [
   {
     title: "Date Picker",
     path: "/datePicker",
-    description: "Choose start and end dates on a date picker.",
+    description: "Try React, Semantic, Material, Bootstrap, and jQuery date pickers.",
     icon: <CalendarDateFill size={iconSize} />,
   },
   {
