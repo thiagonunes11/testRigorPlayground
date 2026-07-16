@@ -1,6 +1,53 @@
 import React, { useState, useEffect, useRef } from "react";
 import Layout from "../components/Layout";
 
+const edgeKey = (a, b) => (a < b ? `${a}-${b}` : `${b}-${a}`);
+
+const hasEdge = (lines, a, b) => {
+  const key = edgeKey(a, b);
+  return lines.some(([x, y]) => edgeKey(x, y) === key);
+};
+
+/** True when lines form a single cycle covering every vertex (any order). */
+const isClosedLoop = (lines, n) => {
+  if (n === 0) return false;
+
+  const uniqueKeys = new Set();
+  const adjacency = Array.from({ length: n }, () => []);
+
+  for (const [a, b] of lines) {
+    const key = edgeKey(a, b);
+    if (uniqueKeys.has(key)) continue;
+    uniqueKeys.add(key);
+    adjacency[a].push(b);
+    adjacency[b].push(a);
+  }
+
+  if (uniqueKeys.size !== n) return false;
+
+  let start = -1;
+  for (let i = 0; i < n; i++) {
+    if (adjacency[i].length > 0) {
+      start = i;
+      break;
+    }
+  }
+  if (start === -1) return false;
+
+  const visited = new Set();
+  const stack = [start];
+  while (stack.length) {
+    const v = stack.pop();
+    if (visited.has(v)) continue;
+    visited.add(v);
+    for (const neighbor of adjacency[v]) {
+      if (!visited.has(neighbor)) stack.push(neighbor);
+    }
+  }
+
+  return visited.size === n;
+};
+
 const ConnectTheDots = () => {
   const canvasRef = useRef(null);
   const [dots, setDots] = useState([]);
@@ -10,11 +57,17 @@ const ConnectTheDots = () => {
   const [lastDot, setLastDot] = useState(null);
   const [tempLineEnd, setTempLineEnd] = useState(null);
   const [showMoreDots, setShowMoreDots] = useState(false);
+  const [isComplete, setIsComplete] = useState(false);
 
   // Redraw the canvas when any relevant state changes.
   useEffect(() => {
     drawCanvas();
   }, [dots, lines, lastDot, isDrawing, tempLineEnd]);
+
+  // Update completion when lines or dots change.
+  useEffect(() => {
+    setIsComplete(isClosedLoop(lines, dots.length));
+  }, [lines, dots]);
 
   // Draw all elements on the canvas.
   const drawCanvas = () => {
@@ -87,20 +140,15 @@ const ConnectTheDots = () => {
     setTempLineEnd({ x: offsetX, y: offsetY });
 
     const hoveredDot = getDotUnderCursor(offsetX, offsetY);
-    if (hoveredDot !== null && !currentPath.includes(hoveredDot)) {
+    if (
+      hoveredDot !== null &&
+      hoveredDot !== lastDot &&
+      !hasEdge(lines, lastDot, hoveredDot)
+    ) {
       setLines((prevLines) => [...prevLines, [lastDot, hoveredDot]]);
       setCurrentPath((prevPath) => [...prevPath, hoveredDot]);
       setLastDot(hoveredDot);
-      // Clear the temporary line once a permanent connection is made.
       setTempLineEnd(null);
-
-      // Check if the last dot connects back to the first dot.
-      if (hoveredDot === 0 && currentPath.length === dots.length) {
-        setLines((prevLines) => [...prevLines, [lastDot, 0]]);
-        setIsDrawing(false);
-        setTempLineEnd(null);
-        setLastDot(null);
-      }
     }
   };
 
@@ -133,6 +181,7 @@ const ConnectTheDots = () => {
     setLastDot(null);
     setTempLineEnd(null);
     setShowMoreDots(false);
+    setIsComplete(false);
   };
 
   // Set up the hexagon shape.
@@ -151,6 +200,7 @@ const ConnectTheDots = () => {
     setLastDot(null);
     setTempLineEnd(null);
     setShowMoreDots(true);
+    setIsComplete(false);
   };
 
   // Set the default shape (triangle) on component mount.
@@ -166,14 +216,24 @@ const ConnectTheDots = () => {
       <div className="text-center">
         <canvas
           ref={canvasRef}
+          id="canvas"
           width="400"
           height="400"
+          title="Canvas"
+          aria-label="Canvas"
+          data-testid="canvas"
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseLeave}
           style={{ border: "1px solid black" }}
         ></canvas>
+
+        {isComplete && (
+          <p className="mt-3 mb-0" aria-label="All dots connected!">
+            All dots connected!
+          </p>
+        )}
 
         <div className="mt-3">
           <button
