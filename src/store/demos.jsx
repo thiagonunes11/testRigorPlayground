@@ -39,6 +39,7 @@ import {
   ZoomIn,
   ShieldCheck,
   LayoutSidebar,
+  Link45deg,
 } from "react-bootstrap-icons";
 
 const iconSize = 32;
@@ -121,6 +122,12 @@ const demos = [
     path: "/deleteElements",
     description: "Dynamic page to delete elements.",
     icon: <TrashFill size={iconSize} />,
+  },
+  {
+    title: "Deeplink Navigation",
+    path: "/deeplinkNavigation",
+    description: "Navigate through five pages using direct URL links.",
+    icon: <Link45deg size={iconSize} />,
   },
   {
     title: "Div Table",
