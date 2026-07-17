@@ -172,6 +172,12 @@ const demos = [
     icon: <FileEarmarkTextFill size={iconSize} />,
   },
   {
+    title: "Required Fields Form",
+    path: "/requiredForm",
+    description: "Form with various required fields and HTML5 validation.",
+    icon: <FileEarmarkTextFill size={iconSize} />,
+  },
+  {
     title: "Geolocation",
     path: "/geolocation",
     description: "Get the coordinates of the user.",
