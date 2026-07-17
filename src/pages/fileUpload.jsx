@@ -56,6 +56,7 @@ const FileUpload = () => {
                                         onChange={handleSingleFileChange}
                                         className='border-primary'
                                         id='inputFileSingle'
+                                        aria-label="Choose single file to upload"
                                     />
                                     <InputGroup.Text className="border-primary btn btn-outline-primary" htmlFor="inputFileSingle">
                                         <div style={{ color: 'var(--text)' }}>Upload</div>
@@ -88,6 +89,7 @@ const FileUpload = () => {
                                         onChange={handleMultipleFilesChange}
                                         className='border-primary'
                                         id='inputFileMultiple'
+                                        aria-label="Choose multiple files to upload"
                                     />
                                     <InputGroup.Text className="border-primary btn btn-outline-primary" htmlFor="inputFileMultiple">
                                         <div style={{ color: 'var(--text)' }}>Upload</div>
@@ -124,6 +126,7 @@ const FileUpload = () => {
                                         onChange={handleDirectoryChange}
                                         className='border-primary'
                                         id='inputFileDirectory'
+                                        aria-label="Choose directory to upload"
                                     />
                                     <InputGroup.Text className="border-primary btn btn-outline-primary" htmlFor="inputFileDirectory">
                                         <div style={{ color: 'var(--text)' }}>Upload</div>
