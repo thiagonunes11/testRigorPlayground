@@ -182,7 +182,9 @@ const MockApiPage = () => {
                 onClick={() => sendRequest(scenario)}
                 disabled={isPending}
               >
-                {isPending ? "Sending..." : `Send ${scenario.method}`}
+                {isPending
+                  ? "Sending..."
+                  : `Send ${scenario.method} ${scenario.path}`}
               </button>
 
               <div className="info-block mock-result">
