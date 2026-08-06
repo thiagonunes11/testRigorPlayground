@@ -14,12 +14,12 @@ const POST_BODY = { source: "mock-api-playground", value: "REAL_ROUND_TRIP" };
 const scenarios = [
   {
     id: "rotatingCode",
-    title: "GET a rotating value",
+    title: "GET a stable value",
     method: "GET",
     path: "/code",
     savedValuePath: "code",
     hint:
-      "The real endpoint answers with a different code on every call. Mock it to a fixed value: when the code stops changing between requests, the response on screen is the mocked one.",
+      "The backend answers with the same code every time, so its real response is a known baseline. Mock it to any different value: the code changing is the proof that the request never reached the backend.",
   },
   {
     id: "echoGet",
