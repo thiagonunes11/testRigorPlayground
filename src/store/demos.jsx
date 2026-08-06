@@ -39,6 +39,7 @@ import {
   ZoomIn,
   ShieldCheck,
   LayoutSidebar,
+  SignpostSplit,
 } from "react-bootstrap-icons";
 
 const iconSize = 32;
@@ -407,6 +408,12 @@ const demos = [
     path: "/overlappedElements",
     description: "Interact with elements that are covered by other elements.",
     icon: <CollectionFill size={iconSize} />,
+  },
+  {
+    title: "Mock API Call Validation",
+    path: "/mockApiPage",
+    description: "Intercept API calls with mocks and check the response used.",
+    icon: <SignpostSplit size={iconSize} />,
   },
 ];
 
