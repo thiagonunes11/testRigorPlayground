@@ -1,0 +1,80 @@
+.mock-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--text);
+}
+
+.mock-counter {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 1.1rem;
+  color: var(--primary);
+}
+
+.mock-endpoint {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.mock-method {
+  background-color: var(--primary);
+  color: #ffffff;
+  border-radius: 0.35rem;
+  padding: 0.1rem 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.mock-hint {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.mock-muted {
+  color: var(--text-secondary);
+}
+
+.mock-result {
+  margin-top: 1rem;
+}
+
+.mock-status-ok {
+  color: #16a34a;
+}
+
+.mock-status-bad {
+  color: var(--primary-red);
+}
+
+.mock-saved-value {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: var(--primary);
+}
+
+.mock-request-body {
+  margin-bottom: 1rem;
+}
+
+.mock-body {
+  background-color: var(--bg, transparent);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  margin-bottom: 0;
+  max-height: 220px;
+  overflow: auto;
+  font-size: 0.85rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
