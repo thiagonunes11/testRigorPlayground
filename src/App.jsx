@@ -69,6 +69,7 @@ import OverlappedElements from "./pages/overlappedElements";
 import ScrollPanels from "./pages/scrollPanels";
 import HorizontalVirtualRendering from "./pages/horizontalVirtualRendering";
 import MockApiPage from "./pages/mockApiPage";
+import OpacityValidation from "./pages/opacityValidation";
 
 const DatePicker = lazy(() => import("./pages/datePicker"));
 
@@ -152,6 +153,7 @@ function App() {
         <Route path="/scrollPanels" element={<ScrollPanels />} />
         <Route path="/horizontalVirtualRendering" element={<HorizontalVirtualRendering />} />
         <Route path="/mockApiPage" element={<MockApiPage />} />
+        <Route path="/opacityValidation" element={<OpacityValidation />} />
       </Routes>
     </Router>
   );
