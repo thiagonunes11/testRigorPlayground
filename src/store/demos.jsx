@@ -40,6 +40,7 @@ import {
   ShieldCheck,
   LayoutSidebar,
   SignpostSplit,
+  DropletHalf,
 } from "react-bootstrap-icons";
 
 const iconSize = 32;
@@ -390,6 +391,12 @@ const demos = [
     path: "/mockApiPage",
     description: "Intercept API calls with mocks and check the response used.",
     icon: <SignpostSplit size={iconSize} />,
+  },
+  {
+    title: "Opacity Validation",
+    path: "/opacityValidation",
+    description: "Interact with elements at different opacity levels.",
+    icon: <DropletHalf size={iconSize} />,
   },
 ];
 
