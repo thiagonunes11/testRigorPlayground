@@ -1,0 +1,81 @@
+/* Opacity Validation Demo */
+.opacity-section {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  transition: background-color 0.3s ease;
+}
+
+.opacity-section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.25rem;
+}
+
+.opacity-section-description {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.opacity-levels-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.opacity-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background-color: var(--card-hover);
+}
+
+/* The shared .btn-modern.btn-primary rule carries opacity: 0.8, which would
+   multiply with the card opacity. Pinned to 1 here so the effective opacity of
+   each button matches the value its card is labelled with. */
+.opacity-card .btn-modern.btn-primary {
+  opacity: 1;
+}
+
+.opacity-card-value {
+  font-family: monospace;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.opacity-card-text {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0;
+  text-align: center;
+}
+
+.opacity-feedback-area {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.opacity-feedback {
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.opacity-feedback.success {
+  background-color: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  color: rgb(34, 197, 94);
+}
