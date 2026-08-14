@@ -300,111 +300,259 @@ const readNotificationPermissionState = async () => {
   }
 };
 
+const readTimeZone = () => {
+  try {
+    return Intl.DateTimeFormat().resolvedOptions().timeZone || "Unknown";
+  } catch (_) {
+    return "Unknown";
+  }
+};
+
 /**
- * Individual headless signals, each with the raw value it was derived from.
- * No single signal is decisive: the user agent token is authoritative when
- * present but automation tools routinely override the user agent, while the
- * remaining signals fire on containerised Linux runners and stay silent on a
- * headless macOS or Windows browser.
+ * Single pass over everything the verdicts below need, so the WebGL context and
+ * the async readers are only exercised once.
  */
-export const collectHeadlessSignals = async () => {
-  const ua = navigator.userAgent || "";
-  const renderer = readWebGlRenderer();
+export const probeEnvironment = async () => {
   const [mediaDeviceCount, notificationPermissionState] = await Promise.all([
     withTimeout(countMediaDevices(), null),
     withTimeout(readNotificationPermissionState(), null),
   ]);
-  const notificationPermission =
-    typeof Notification !== "undefined" ? Notification.permission : null;
 
-  const signals = [
-    {
-      id: "uaHeadlessToken",
-      label: "User agent reports a headless build",
-      matched: /Headless/i.test(ua),
-      value: ua,
-    },
-    {
-      id: "missingWindowChrome",
-      label: "window.chrome missing on a Chrome user agent",
-      matched: /Chrome\/\d+/.test(ua) && !window.chrome,
-      value: `window.chrome: ${typeof window.chrome}`,
-    },
-    {
-      id: "zeroOuterSize",
-      label: "Window reports no outer dimensions",
-      matched: window.outerWidth === 0 || window.outerHeight === 0,
-      value: `${window.outerWidth} x ${window.outerHeight}`,
-    },
-    {
-      id: "defaultHeadlessScreen",
-      label: "Screen matches the headless default size",
-      matched:
-        window.screen.width === HEADLESS_DEFAULT_SCREEN.width &&
-        window.screen.height === HEADLESS_DEFAULT_SCREEN.height,
-      value: `${window.screen.width} x ${window.screen.height}`,
-    },
-    {
-      id: "softwareRenderer",
-      label: "WebGL is backed by a software renderer",
-      matched: SOFTWARE_RENDERER.test(renderer),
-      value: renderer || "Unavailable",
-    },
-    {
-      id: "noMediaDevices",
-      label: "No media devices are exposed",
-      matched: mediaDeviceCount === 0,
-      value: mediaDeviceCount === null ? "Unavailable" : String(mediaDeviceCount),
-    },
-    {
-      id: "emptyPlugins",
-      label: "Plugin list is empty",
-      matched: navigator.plugins.length === 0,
-      value: String(navigator.plugins.length),
-    },
-    {
-      id: "notificationMismatch",
-      label: "Notification permission disagrees with the Permissions API",
-      matched:
-        notificationPermission === "denied" && notificationPermissionState === "prompt",
-      value: `${notificationPermission ?? "Unavailable"} / ${notificationPermissionState ?? "Unavailable"
-        }`,
-    },
-  ];
+  return {
+    ua: navigator.userAgent || "",
+    renderer: readWebGlRenderer(),
+    mediaDeviceCount,
+    notificationPermissionState,
+    notificationPermission:
+      typeof Notification !== "undefined" ? Notification.permission : null,
+    outerWidth: window.outerWidth,
+    outerHeight: window.outerHeight,
+    innerWidth: window.innerWidth,
+    innerHeight: window.innerHeight,
+    screenWidth: window.screen.width,
+    screenHeight: window.screen.height,
+    availWidth: window.screen.availWidth,
+    availHeight: window.screen.availHeight,
+    pluginCount: navigator.plugins.length,
+    pdfViewerEnabled: navigator.pdfViewerEnabled,
+    hardwareConcurrency: navigator.hardwareConcurrency,
+    deviceMemory: navigator.deviceMemory,
+    timeZone: readTimeZone(),
+    webdriver: navigator.webdriver === true,
+  };
+};
 
-  const matched = signals.filter((signal) => signal.matched);
+/**
+ * Signals are split into two tiers, because mixing them is what produces false
+ * positives on cloud runners.
+ *
+ * "window"      -> only a browser without a window produces this value.
+ * "environment" -> the machine, not the window: a GPU-less container yields the
+ *                  same values with a perfectly visible browser. Measured on a
+ *                  testRigor run (Chrome 135, Linux X11): a software renderer
+ *                  and an empty plugin list, with a real 1280x1024 screen.
+ *
+ * Only "window" signals can push the verdict towards headless. Environment
+ * signals feed the runner verdict instead.
+ */
+export const buildHeadlessSignals = (probe) => [
+  {
+    id: "uaHeadlessToken",
+    label: "User agent reports a headless build",
+    tier: "window",
+    matched: /Headless/i.test(probe.ua),
+    value: probe.ua,
+  },
+  {
+    id: "missingWindowChrome",
+    label: "window.chrome missing on a Chrome user agent",
+    tier: "window",
+    matched: /Chrome\/\d+/.test(probe.ua) && !window.chrome,
+    value: `window.chrome: ${typeof window.chrome}`,
+  },
+  {
+    id: "zeroOuterSize",
+    label: "Window reports no outer dimensions",
+    tier: "window",
+    matched: probe.outerWidth === 0 || probe.outerHeight === 0,
+    value: `${probe.outerWidth} x ${probe.outerHeight}`,
+  },
+  {
+    id: "defaultHeadlessScreen",
+    label: "Screen matches the headless default size",
+    tier: "window",
+    matched:
+      probe.screenWidth === HEADLESS_DEFAULT_SCREEN.width &&
+      probe.screenHeight === HEADLESS_DEFAULT_SCREEN.height,
+    value: `${probe.screenWidth} x ${probe.screenHeight}`,
+  },
+  {
+    // Headless Chrome keeps reporting its default screen while honouring
+    // --window-size, so the window ends up larger than the screen it lives on,
+    // which a real desktop cannot do. A window spanning two displays can.
+    id: "windowExceedsScreen",
+    label: "Window is larger than the reported screen",
+    tier: "window",
+    matched: probe.outerWidth > probe.screenWidth || probe.outerHeight > probe.screenHeight,
+    value: `window ${probe.outerWidth} x ${probe.outerHeight} vs screen ${probe.screenWidth} x ${probe.screenHeight}`,
+  },
+  {
+    id: "softwareRenderer",
+    label: "WebGL is backed by a software renderer",
+    tier: "environment",
+    matched: SOFTWARE_RENDERER.test(probe.renderer),
+    value: probe.renderer || "Unavailable",
+  },
+  {
+    id: "noMediaDevices",
+    label: "No media devices are exposed",
+    tier: "environment",
+    matched: probe.mediaDeviceCount === 0,
+    value: probe.mediaDeviceCount === null ? "Unavailable" : String(probe.mediaDeviceCount),
+  },
+  {
+    id: "emptyPlugins",
+    label: "Plugin list is empty",
+    tier: "environment",
+    matched: probe.pluginCount === 0,
+    value: String(probe.pluginCount),
+  },
+  {
+    id: "noReservedScreenArea",
+    label: "Screen reserves no space for a taskbar or dock",
+    tier: "environment",
+    matched:
+      probe.availWidth === probe.screenWidth && probe.availHeight === probe.screenHeight,
+    value: `available ${probe.availWidth} x ${probe.availHeight} of ${probe.screenWidth} x ${probe.screenHeight}`,
+  },
+  {
+    id: "notificationMismatch",
+    label: "Notification permission disagrees with the Permissions API",
+    tier: "environment",
+    matched:
+      probe.notificationPermission === "denied" &&
+      probe.notificationPermissionState === "prompt",
+    value: `${probe.notificationPermission ?? "Unavailable"} / ${probe.notificationPermissionState ?? "Unavailable"
+      }`,
+  },
+];
+
+const listIds = (signals) => signals.map((signal) => signal.id).join(", ");
+
+export const detectHeadless = (signals) => {
+  const windowSignals = signals.filter((s) => s.tier === "window" && s.matched);
+  const environmentSignals = signals.filter((s) => s.tier === "environment" && s.matched);
   const uaToken = signals.find((signal) => signal.id === "uaHeadlessToken");
 
-  let verdict;
   if (uaToken.matched) {
-    verdict = {
+    return {
       state: "on",
       confidence: "high",
       reason: "The user agent identifies a headless browser build.",
     };
-  } else if (matched.length >= 2) {
-    verdict = {
+  }
+
+  if (windowSignals.length >= 2) {
+    return {
       state: "likely-on",
       confidence: "medium",
-      reason: `${matched.length} headless signals matched: ${matched
-        .map((signal) => signal.id)
-        .join(", ")}.`,
+      reason: `${windowSignals.length} window-level signals matched: ${listIds(
+        windowSignals
+      )}.`,
     };
-  } else if (matched.length === 1) {
-    verdict = {
+  }
+
+  if (windowSignals.length === 1) {
+    return {
+      state: "likely-on",
+      confidence: "low",
+      reason: `${windowSignals[0].id} matched, which points at a browser without a window.`,
+    };
+  }
+
+  if (environmentSignals.length > 0) {
+    return {
       state: "inconclusive",
       confidence: "low",
-      reason: `Only ${matched[0].id} matched, which also happens on regular browsers.`,
+      reason: `No window-level signal matched. Only environment signals did (${listIds(
+        environmentSignals
+      )}), and a visible browser on a GPU-less cloud runner such as testRigor produces exactly the same values.`,
+    };
+  }
+
+  return {
+    state: "off",
+    confidence: "medium",
+    reason: "No headless signal matched.",
+  };
+};
+
+/**
+ * Runner environment: whether this looks like a browser on an automation
+ * runner (cloud VM, container, virtual display) rather than a desktop. This is
+ * what the environment-tier signals actually measure, and on a testRigor run it
+ * is the question that can be answered with confidence — unlike headless.
+ */
+export const detectRunnerEnvironment = (probe, signals) => {
+  const hints = [];
+  const add = (id, matched, value) => hints.push({ id, matched, value });
+
+  const environmentSignals = signals.filter((s) => s.tier === "environment");
+  environmentSignals.forEach((signal) => add(signal.id, signal.matched, signal.value));
+
+  add("webdriverFlag", probe.webdriver, `navigator.webdriver: ${probe.webdriver}`);
+  add(
+    "noWebGl",
+    !probe.renderer,
+    probe.renderer ? "WebGL available" : "WebGL context unavailable"
+  );
+  add(
+    "lowCpuCount",
+    typeof probe.hardwareConcurrency === "number" && probe.hardwareConcurrency <= 2,
+    `hardwareConcurrency: ${probe.hardwareConcurrency ?? "Unavailable"}`
+  );
+  add("utcTimeZone", /^(UTC|Etc\/UTC|GMT)$/i.test(probe.timeZone), probe.timeZone);
+
+  const matched = hints.filter((hint) => hint.matched);
+  const hasGpuLessRendering =
+    matched.some((hint) => hint.id === "softwareRenderer" || hint.id === "noWebGl");
+
+  let verdict;
+  if (probe.webdriver && matched.length >= 2) {
+    const others = matched.filter((hint) => hint.id !== "webdriverFlag");
+    verdict = {
+      state: "on",
+      label: "Automation runner (likely)",
+      confidence: hasGpuLessRendering ? "high" : "medium",
+      reason: `Driven by automation, plus ${others.length === 1 ? "1 further runner hint" : `${others.length} further runner hints`
+        }: ${listIds(others)}.`,
+    };
+  } else if (matched.length >= 3) {
+    verdict = {
+      state: "likely-on",
+      label: "Automation runner (likely)",
+      confidence: "low",
+      reason: `${matched.length} runner hints matched (${listIds(
+        matched
+      )}), but nothing reports automation.`,
+    };
+  } else if (matched.length > 0) {
+    verdict = {
+      state: "inconclusive",
+      label: "Inconclusive",
+      confidence: "low",
+      reason: `Only ${listIds(matched)} matched, which a desktop browser can also produce.`,
     };
   } else {
     verdict = {
       state: "off",
+      label: "Regular desktop browser",
       confidence: "medium",
-      reason: "No headless signal matched.",
+      reason: "No runner hint matched.",
     };
   }
 
-  return { signals, verdict };
+  return { hints, verdict };
 };
 
 /**
@@ -436,5 +584,48 @@ export const VERDICT_LABELS = {
   unsupported: "Not detectable in this browser",
 };
 
-export const verdictLabel = (verdict) =>
-  verdict ? VERDICT_LABELS[verdict.state] ?? verdict.state : "Detecting…";
+/** Verdicts may carry their own label when "On"/"Off" would not read well. */
+export const verdictLabel = (verdict) => {
+  if (!verdict) return "Detecting…";
+  return verdict.label ?? VERDICT_LABELS[verdict.state] ?? verdict.state;
+};
+
+/** Raw values worth showing so a run can be diagnosed from a screenshot alone. */
+export const environmentDetails = (probe) => [
+  { id: "window", label: "Window (outer)", value: `${probe.outerWidth} x ${probe.outerHeight}` },
+  { id: "viewport", label: "Viewport (inner)", value: `${probe.innerWidth} x ${probe.innerHeight}` },
+  {
+    id: "browserUi",
+    label: "Browser UI height (outer − inner)",
+    value: `${probe.outerHeight - probe.innerHeight} px`,
+  },
+  { id: "screen", label: "Screen", value: `${probe.screenWidth} x ${probe.screenHeight}` },
+  {
+    id: "availableScreen",
+    label: "Available screen area",
+    value: `${probe.availWidth} x ${probe.availHeight}`,
+  },
+  { id: "renderer", label: "WebGL renderer", value: probe.renderer || "Unavailable" },
+  {
+    id: "mediaDevices",
+    label: "Media devices",
+    value: probe.mediaDeviceCount === null ? "Unavailable" : String(probe.mediaDeviceCount),
+  },
+  { id: "plugins", label: "Plugins", value: String(probe.pluginCount) },
+  {
+    id: "pdfViewer",
+    label: "PDF viewer enabled",
+    value: probe.pdfViewerEnabled === undefined ? "Unavailable" : String(probe.pdfViewerEnabled),
+  },
+  {
+    id: "cpuCores",
+    label: "CPU cores reported",
+    value: String(probe.hardwareConcurrency ?? "Unavailable"),
+  },
+  {
+    id: "deviceMemory",
+    label: "Device memory (GiB)",
+    value: String(probe.deviceMemory ?? "Unavailable"),
+  },
+  { id: "timeZone", label: "Time zone", value: probe.timeZone },
+];

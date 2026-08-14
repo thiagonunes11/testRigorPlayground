@@ -4,13 +4,17 @@ import { InfoCircle } from "react-bootstrap-icons";
 import Layout from "../components/Layout";
 import {
   CHROMIUM_PRIVATE_QUOTA_MAX,
+  buildHeadlessSignals,
   collectBrowserInfo,
-  collectHeadlessSignals,
   detectAutomation,
   detectBrowserFamily,
+  detectHeadless,
   detectPrivateMode,
+  detectRunnerEnvironment,
+  environmentDetails,
   formatBytes,
   getOSInfo,
+  probeEnvironment,
   readStorageQuota,
   verdictLabel,
 } from "../utils/environmentDetection";
@@ -55,9 +59,53 @@ const VerdictCard = ({ title, testId, verdict, tooltip }) => (
   </div>
 );
 
+const SignalTable = ({ title, description, rows, testIdPrefix, showTier }) => (
+  <div className="modern-card">
+    <h5 className="fw-bold mb-2">{title}</h5>
+    <p className="text-muted small">{description}</p>
+    <table className="table table-sm align-middle mb-0">
+      <thead>
+        <tr>
+          <th scope="col">Signal</th>
+          {showTier && <th scope="col">Tier</th>}
+          <th scope="col">Matched</th>
+          <th scope="col">Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        {rows.length === 0 ? (
+          <tr>
+            <td colSpan={showTier ? 4 : 3} className="text-muted">
+              Collecting signals…
+            </td>
+          </tr>
+        ) : (
+          rows.map((row) => (
+            <tr key={row.id} data-testid={`${testIdPrefix}-${row.id}`}>
+              <td>{row.label ?? row.id}</td>
+              {showTier && (
+                <td className="text-muted small">
+                  {row.tier === "window" ? "Window" : "Environment"}
+                </td>
+              )}
+              <td data-testid={`${testIdPrefix}-${row.id}-matched`}>
+                {row.matched ? "Yes" : "No"}
+              </td>
+              <td className="text-muted small text-break">{row.value}</td>
+            </tr>
+          ))
+        )}
+      </tbody>
+    </table>
+  </div>
+);
+
 const OsBrowser = () => {
   const [headless, setHeadless] = useState(null);
   const [headlessSignals, setHeadlessSignals] = useState([]);
+  const [runner, setRunner] = useState(null);
+  const [runnerHints, setRunnerHints] = useState([]);
+  const [details, setDetails] = useState([]);
   const [incognito, setIncognito] = useState(null);
 
   const [browserFamily, setBrowserFamily] = useState("Unknown");
@@ -100,10 +148,15 @@ const OsBrowser = () => {
     })();
 
     (async () => {
-      const { signals, verdict } = await collectHeadlessSignals();
+      const probe = await probeEnvironment();
       if (!active) return;
+      const signals = buildHeadlessSignals(probe);
+      const { hints, verdict: runnerVerdict } = detectRunnerEnvironment(probe, signals);
       setHeadlessSignals(signals);
-      setHeadless(verdict);
+      setHeadless(detectHeadless(signals));
+      setRunnerHints(hints);
+      setRunner(runnerVerdict);
+      setDetails(environmentDetails(probe));
     })();
 
     return () => {
@@ -181,7 +234,7 @@ const OsBrowser = () => {
         </Row>
 
         <Row className="g-3 mt-1">
-          <Col md={4}>
+          <Col md={3}>
             <VerdictCard
               title="Automation (WebDriver)"
               testId="automation"
@@ -189,15 +242,23 @@ const OsBrowser = () => {
               tooltip="Reads navigator.webdriver. It reports automation, not headless: a visible browser driven by Selenium or testRigor sets it too."
             />
           </Col>
-          <Col md={4}>
+          <Col md={3}>
+            <VerdictCard
+              title="Runner Environment"
+              testId="runner"
+              verdict={runner}
+              tooltip="Whether this looks like a browser on an automation runner: no GPU, no taskbar, no media devices, few CPU cores. These are properties of the machine, not of the window, so they hold whether the browser is visible or not."
+            />
+          </Col>
+          <Col md={3}>
             <VerdictCard
               title="Headless Mode"
               testId="headless"
               verdict={headless}
-              tooltip="A headless user agent token is decisive. Otherwise the verdict comes from how many of the signals below matched, since none of them is conclusive on its own."
+              tooltip="A headless user agent token is decisive. Otherwise only window-level signals count: environment signals such as a software renderer are produced by a visible browser on a cloud runner too, so on their own they leave the verdict inconclusive."
             />
           </Col>
-          <Col md={4}>
+          <Col md={3}>
             <VerdictCard
               title="Incognito Mode"
               testId="incognito"
@@ -211,34 +272,47 @@ const OsBrowser = () => {
 
         <Row className="g-3 mt-1">
           <Col>
+            <SignalTable
+              title="Detection Signals"
+              description="Window-level signals are the only ones that can indicate headless mode. Environment-level signals describe the machine and feed the runner verdict, since a visible browser on a GPU-less runner produces them too."
+              rows={headlessSignals}
+              testIdPrefix="headless-signal"
+              showTier
+            />
+          </Col>
+        </Row>
+
+        <Row className="g-3 mt-1">
+          <Col md={6}>
+            <SignalTable
+              title="Runner Hints"
+              description="Properties of the machine behind the Runner Environment verdict."
+              rows={runnerHints}
+              testIdPrefix="runner-hint"
+            />
+          </Col>
+          <Col md={6}>
             <div className="modern-card">
-              <h5 className="fw-bold mb-2">Headless Signals</h5>
+              <h5 className="fw-bold mb-2">Environment Details</h5>
               <p className="text-muted small">
-                Raw values behind the headless verdict. Each signal is a hint on its own.
+                Raw measurements, so a run can be diagnosed from a screenshot alone.
               </p>
               <table className="table table-sm align-middle mb-0">
-                <thead>
-                  <tr>
-                    <th scope="col">Signal</th>
-                    <th scope="col">Matched</th>
-                    <th scope="col">Value</th>
-                  </tr>
-                </thead>
                 <tbody>
-                  {headlessSignals.length === 0 ? (
+                  {details.length === 0 ? (
                     <tr>
-                      <td colSpan={3} className="text-muted">
-                        Collecting signals…
-                      </td>
+                      <td className="text-muted">Measuring…</td>
                     </tr>
                   ) : (
-                    headlessSignals.map((signal) => (
-                      <tr key={signal.id} data-testid={`headless-signal-${signal.id}`}>
-                        <td>{signal.label}</td>
-                        <td data-testid={`headless-signal-${signal.id}-matched`}>
-                          {signal.matched ? "Yes" : "No"}
+                    details.map((detail) => (
+                      <tr key={detail.id}>
+                        <td>{detail.label}</td>
+                        <td
+                          className="text-muted small text-break"
+                          data-testid={`environment-${detail.id}`}
+                        >
+                          {detail.value}
                         </td>
-                        <td className="text-muted small text-break">{signal.value}</td>
                       </tr>
                     ))
                   )}
