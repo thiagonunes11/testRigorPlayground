@@ -387,14 +387,21 @@ export const buildHeadlessSignals = (probe) => [
     value: `${probe.screenWidth} x ${probe.screenHeight}`,
   },
   {
-    // Headless Chrome keeps reporting its default screen while honouring
-    // --window-size, so the window ends up larger than the screen it lives on,
-    // which a real desktop cannot do. A window spanning two displays can.
-    id: "windowExceedsScreen",
-    label: "Window is larger than the reported screen",
+    // Headless Chrome keeps reporting its 800x600 default screen while honouring
+    // --window-size, so the page ends up bigger than the screen it lives on.
+    //
+    // This compares the VIEWPORT, not the outer window. The outer window is the
+    // viewport plus the browser's own decorations, so on a window that fills the
+    // screen the outer size legitimately exceeds it — measured at 1288x805 outer
+    // against a 1280x720 screen on a perfectly visible Chrome 149, which is what
+    // the outer-based version of this signal reported as headless. The viewport
+    // lives inside the window, which lives on the screen, so a viewport larger
+    // than the screen has no innocent explanation.
+    id: "viewportExceedsScreen",
+    label: "Viewport is larger than the reported screen",
     tier: "window",
-    matched: probe.outerWidth > probe.screenWidth || probe.outerHeight > probe.screenHeight,
-    value: `window ${probe.outerWidth} x ${probe.outerHeight} vs screen ${probe.screenWidth} x ${probe.screenHeight}`,
+    matched: probe.innerWidth > probe.screenWidth || probe.innerHeight > probe.screenHeight,
+    value: `viewport ${probe.innerWidth} x ${probe.innerHeight} vs screen ${probe.screenWidth} x ${probe.screenHeight}`,
   },
   {
     id: "softwareRenderer",
@@ -439,10 +446,21 @@ export const buildHeadlessSignals = (probe) => [
 
 const listIds = (signals) => signals.map((signal) => signal.id).join(", ");
 
-export const detectHeadless = (signals) => {
+/**
+ * `runnerVerdict` comes from detectRunnerEnvironment and only decides what an
+ * ABSENCE of window signals means. A modern `--headless=new` Chrome is
+ * deliberately indistinguishable from a headed one — plugin count, PDF viewer,
+ * window.chrome and chrome.loadTimes were all measured identical on Chrome 149 —
+ * so once the user agent is masked, the only place a headless browser can still
+ * be hiding is an automation runner. On a plain desktop the same absence of
+ * signals is simply a normal browser, and reporting that as "inconclusive" made
+ * every ordinary visitor look suspicious.
+ */
+export const detectHeadless = (signals, runnerVerdict) => {
   const windowSignals = signals.filter((s) => s.tier === "window" && s.matched);
   const environmentSignals = signals.filter((s) => s.tier === "environment" && s.matched);
   const uaToken = signals.find((signal) => signal.id === "uaHeadlessToken");
+  const onRunner = runnerVerdict?.state === "on" || runnerVerdict?.state === "likely-on";
 
   if (uaToken.matched) {
     return {
@@ -470,20 +488,23 @@ export const detectHeadless = (signals) => {
     };
   }
 
-  if (environmentSignals.length > 0) {
+  if (onRunner) {
     return {
       state: "inconclusive",
       confidence: "low",
-      reason: `No window-level signal matched. Only environment signals did (${listIds(
-        environmentSignals
-      )}), and a visible browser on a GPU-less cloud runner such as testRigor produces exactly the same values.`,
+      reason: `No window-level signal matched, but this looks like an automation runner${environmentSignals.length ? ` (${listIds(environmentSignals)})` : ""
+        }. A headless browser whose user agent has been masked cannot be ruled out here, because a modern headless Chrome is otherwise identical to a headed one.`,
     };
   }
 
   return {
     state: "off",
-    confidence: "medium",
-    reason: "No headless signal matched.",
+    confidence: environmentSignals.length > 0 ? "low" : "medium",
+    reason: environmentSignals.length
+      ? `No window-level signal matched. ${listIds(
+        environmentSignals
+      )} did, but those describe the machine rather than the window, and this does not look like an automation runner.`
+      : "No headless signal matched.",
   };
 };
 
