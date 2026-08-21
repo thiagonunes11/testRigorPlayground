@@ -153,7 +153,7 @@ const OsBrowser = () => {
       const signals = buildHeadlessSignals(probe);
       const { hints, verdict: runnerVerdict } = detectRunnerEnvironment(probe, signals);
       setHeadlessSignals(signals);
-      setHeadless(detectHeadless(signals));
+      setHeadless(detectHeadless(signals, runnerVerdict));
       setRunnerHints(hints);
       setRunner(runnerVerdict);
       setDetails(environmentDetails(probe));
